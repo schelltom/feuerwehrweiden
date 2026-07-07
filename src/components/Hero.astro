@@ -13,14 +13,18 @@ const folien = [
   { bild: '/bilder/header/segnung.jpg', titel: 'Fahrzeugsegnung der neuen HLF 20' },
   { bild: '/bilder/header/feldbrand.jpg', titel: 'Vegetationsbrand · Einsatz im Sommer' },
   { bild: '/bilder/header/garten.jpg', titel: 'Brandeinsatz · Trupp unter Atemschutz' },
-  { bild: '/bilder/header/ugoeel-waldbrand.jpg', titel: 'UG-ÖEL · Waldbrand' },
+  { bild: '/bilder/header/ugoeel-waldbrand.jpg', titel: 'UG-ÖEL · Waldbrand', pos: '68% 58%' },
 ];
 ---
 
 <section class="hero" id="start">
   {
     folien.map((f) => (
-      <div class="folie" data-titel={f.titel} style={`background-image:url(${f.bild})`} />
+      <div
+        class="folie"
+        data-titel={f.titel}
+        style={`background-image:url(${f.bild})${f.pos ? `;background-position:${f.pos}` : ''}`}
+      />
     ))
   }
   <div class="duster"></div>
