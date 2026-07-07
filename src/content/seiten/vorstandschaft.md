@@ -3,6 +3,7 @@ titel: "Vorstandschaft"
 bereich: "ueber-uns"
 reihenfolge: 3
 kurz: "Der Vorstand des Feuerwehrvereins"
+titelbild: "/bilder/feuerwehr/hauptwache-heute.jpg"
 personen:
   - name: "Peter Stahl"
     funktion: "1. Vorsitzender"
