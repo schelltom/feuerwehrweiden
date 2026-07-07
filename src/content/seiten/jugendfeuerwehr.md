@@ -6,16 +6,22 @@ kurz: "34 Mitglieder · rund 30 Übungen im Jahr"
 titelbild: "/bilder/feuerwehr/jugend-3597.jpg"
 personen:
   - name: "Jonas Huber"
+    bild: "/bilder/feuerwehr/jugend-3625.jpg"
     funktion: "Jugendsprecher"
   - name: "Leopold Reichl"
+    bild: "/bilder/feuerwehr/jugend-3632.jpg"
     funktion: "Jugendkassier"
   - name: "Moritz Reindl"
+    bild: "/bilder/feuerwehr/jugend-3645.jpg"
     funktion: "1. Jugendwart"
   - name: "Michael Zielbauer"
+    bild: "/bilder/feuerwehr/jugend-3610.jpg"
     funktion: "Stv. Jugendwart"
   - name: "Quirin Huber"
+    bild: "/bilder/feuerwehr/jugend-3617.jpg"
     funktion: "Interims-Jugendwart"
   - name: "Jan Chmelnizki"
+    bild: "/bilder/feuerwehr/jugend-3629.jpg"
     funktion: "Interims-Jugendwart · Stv. Stadtjugendwart"
 uebungsplan:
   - tag: "Samstag"
@@ -90,14 +96,6 @@ uebungsplan:
     datum: "12.12."
     zeit: "19:00 Uhr"
     thema: "Weihnachtsfeier"
-galerie:
-  - bild: "/bilder/feuerwehr/jugend-3597.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3610.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3617.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3625.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3629.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3632.jpg"
-  - bild: "/bilder/feuerwehr/jugend-3645.jpg"
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der
