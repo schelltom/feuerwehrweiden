@@ -1,7 +1,7 @@
 ---
 titel: "Absturzsicherung"
 bereich: "einheiten"
-reihenfolge: 7
+reihenfolge: 6
 kurz: "Rettung aus Höhen und Tiefen"
 titelbild: "/bilder/header/absturz.jpg"
 galerie:

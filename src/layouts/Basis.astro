@@ -125,6 +125,41 @@ const {
         los();
       } else {
         alarm.classList.add('laeuft');
+
+        /* Alarmpiepser (ZVEI-Tonfolge + Weckton). Browser erlauben Ton ohne
+           Nutzer-Interaktion nicht immer – dann bleibt es einfach still. */
+        try {
+          const ctx = new AudioContext();
+          const start = () => {
+            const toene = [1060, 1160, 1270, 1400, 1530]; // 5-Ton-Folge
+            let t0 = ctx.currentTime + 0.05;
+            const ton = (freq: number, dauer: number, lautstaerke = 0.12) => {
+              const osc = ctx.createOscillator();
+              const gain = ctx.createGain();
+              osc.type = 'square';
+              osc.frequency.value = freq;
+              gain.gain.setValueAtTime(0.0001, t0);
+              gain.gain.exponentialRampToValueAtTime(lautstaerke, t0 + 0.01);
+              gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dauer);
+              osc.connect(gain).connect(ctx.destination);
+              osc.start(t0);
+              osc.stop(t0 + dauer + 0.02);
+              t0 += dauer + 0.02;
+            };
+            toene.forEach((f) => ton(f, 0.07));
+            t0 += 0.25;
+            ton(2600, 0.5, 0.08); // Weckton
+            setTimeout(() => ctx.close(), 4000);
+          };
+          if (ctx.state === 'suspended') {
+            ctx.resume().then(start).catch(() => ctx.close());
+          } else {
+            start();
+          }
+        } catch {
+          /* kein Ton möglich – Intro läuft trotzdem */
+        }
+
         const txt = 'ALARM FÜR FLORIAN WEIDEN — EINSATZ FÜR ALLE EINHEITEN';
         const ziel = document.getElementById('tipptext')!;
         let i = 0;

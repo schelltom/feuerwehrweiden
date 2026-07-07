@@ -33,8 +33,30 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
           <div class="seitenraster">
             {
               ueberUns.map((s) => (
-                <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
-                  {helme[s.id] ? (
+                <a
+                  class:list={['seitenkarte', 'reveal', { hell: helme[s.id] || s.id === 'vorstandschaft' }]}
+                  href={`/feuerwehr/${s.data.bereich}/${s.id}/`}
+                >
+                  {s.id === 'vorstandschaft' ? (
+                    <span class="grafikfeld" aria-hidden="true">
+                      <svg viewBox="0 0 140 78" class="koepfe">
+                        <!-- schattierte Köpfe: Vorstand als Gruppe -->
+                        <g fill="#C9CDD6">
+                          <circle cx="38" cy="26" r="13" />
+                          <path d="M18,78 C18,54 27,45 38,45 C49,45 58,54 58,78 Z" />
+                        </g>
+                        <g fill="#9AA0AD">
+                          <circle cx="102" cy="26" r="13" />
+                          <path d="M82,78 C82,54 91,45 102,45 C113,45 122,54 122,78 Z" />
+                        </g>
+                        <g fill="#4A505E">
+                          <circle cx="70" cy="22" r="15" />
+                          <path d="M47,78 C47,52 57,42 70,42 C83,42 93,52 93,78 Z" />
+                        </g>
+                        <rect x="47" y="14" width="46" height="4.5" rx="2" fill="#E10600" opacity="0" />
+                      </svg>
+                    </span>
+                  ) : helme[s.id] ? (
                     <span class="helmfeld" aria-hidden="true">
                       <svg viewBox="0 0 100 82" class="helm">
                         <!-- Bayerischer Feuerwehrhelm, Frontansicht -->
@@ -75,7 +97,7 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
         <div class="gruppe" style="margin-bottom:0">
           <span class="eyebrow">Vom Löschzug bis zur Drohne</span>
           <h2 class="titel display reveal" style="font-size:clamp(1.9rem,4vw,2.8rem)">Einheiten</h2>
-          <div class="seitenraster">
+          <div class="seitenraster einheitenraster">
             {
               einheiten.map((s) => (
                 <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
@@ -111,8 +133,24 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
+  /* Einheiten: Zeile 1+2 je zwei breite Karten, Zeile 3 drei Karten */
+  .einheitenraster {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .einheitenraster > :nth-child(-n + 4) {
+    grid-column: span 3;
+  }
+  .einheitenraster > :nth-child(n + 5) {
+    grid-column: span 2;
+  }
   @media (max-width: 820px) {
     .seitenraster {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .einheitenraster > * {
+      grid-column: span 1 !important;
+    }
+    .einheitenraster {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -147,20 +185,31 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
   .seitenkarte:hover img {
     transform: scale(1.07);
   }
-  .seitenkarte .helmfeld {
+  .seitenkarte .helmfeld,
+  .seitenkarte .grafikfeld {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
     background:
-      radial-gradient(420px 220px at 50% 110%, rgba(225, 6, 0, 0.22), transparent 65%),
-      var(--dunkel2);
+      radial-gradient(420px 220px at 50% 115%, rgba(225, 6, 0, 0.12), transparent 65%),
+      linear-gradient(165deg, #f2f3f7, #d9dce4);
+  }
+  .seitenkarte .koepfe {
+    width: 40%;
+    max-width: 175px;
+    margin-bottom: 22px;
+    filter: drop-shadow(0 6px 14px rgba(20, 22, 28, 0.25));
+    transition: transform 0.3s ease;
+  }
+  .seitenkarte:hover .koepfe {
+    transform: translateY(-4px) scale(1.05);
   }
   .seitenkarte .helm {
     width: 42%;
     max-width: 190px;
     margin-bottom: 26px;
-    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
+    filter: drop-shadow(0 6px 14px rgba(20, 22, 28, 0.3));
     transition: transform 0.3s ease;
   }
   .seitenkarte:hover .helm {
@@ -201,5 +250,18 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
     text-transform: uppercase;
     font-size: clamp(1.3rem, 2.2vw, 1.8rem);
     line-height: 1;
+  }
+  /* Helle Grafik-Karten: kein dunkler Verlauf, dunkle Beschriftung */
+  .seitenkarte.hell {
+    background: linear-gradient(165deg, #f2f3f7, #d9dce4);
+  }
+  .seitenkarte.hell .schatten {
+    display: none;
+  }
+  .seitenkarte.hell .txt b {
+    color: var(--tinte);
+  }
+  .seitenkarte.hell .txt em {
+    color: var(--tinte2);
   }
 </style>
