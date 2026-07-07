@@ -3,6 +3,7 @@ titel: "2. Zug"
 bereich: "einheiten"
 reihenfolge: 2
 kurz: "Zweiter Löschzug der Hauptfeuerwache"
+kartenbild: "/bilder/feuerwehr/zug2.jpg"
 titelbild: "/bilder/header/nachtbrand.jpg"
 gruppenfoto:
   bild: "/bilder/feuerwehr/zug2.jpg"

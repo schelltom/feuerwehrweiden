@@ -3,6 +3,7 @@ titel: "1. Zug"
 bereich: "einheiten"
 reihenfolge: 1
 kurz: "Erster Löschzug der Hauptfeuerwache"
+kartenbild: "/bilder/feuerwehr/zug1.jpg"
 titelbild: "/bilder/header/garten.jpg"
 gruppenfoto:
   bild: "/bilder/feuerwehr/zug1.jpg"

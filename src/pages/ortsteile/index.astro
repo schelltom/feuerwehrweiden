@@ -56,8 +56,8 @@ const orte = (await getCollection('seiten'))
                       <rect x="4" y="102" width="188" height="4" rx="2" fill="#3A3F4C" />
                     </svg>
                   </span>
-                ) : o.data.titelbild ? (
-                  <img class="foto" src={o.data.titelbild} alt={o.data.titel} loading="lazy" />
+                ) : (o.data.kartenbild ?? o.data.titelbild) ? (
+                  <img class="foto" src={o.data.kartenbild ?? o.data.titelbild} alt={o.data.titel} loading="lazy" />
                 ) : (
                   <span class="ohne" aria-hidden="true" />
                 )}

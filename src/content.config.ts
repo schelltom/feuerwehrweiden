@@ -117,6 +117,8 @@ const seiten = defineCollection({
     reihenfolge: z.number().default(99),
     kurz: z.string().default(''),
     titelbild: z.string().optional(),
+    /** Abweichendes Bild für die Übersichtskarte (Standard: titelbild) */
+    kartenbild: z.string().optional(),
     wappen: z.string().optional(),
     /** Externer Auftritt (z.B. eigene Website einer Ortsteilwehr) */
     extern: z.string().optional(),

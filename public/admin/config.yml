@@ -175,6 +175,7 @@ collections:
       - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }
+      - { name: kartenbild, label: 'Bild für die Übersichtskarte (falls anders als Titelbild)', widget: image, required: false }
       - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
       - { name: extern, label: 'Externe Website (Karte verlinkt dorthin)', widget: string, required: false }
       - name: kartenmotiv

@@ -101,8 +101,8 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
             {
               einheiten.map((s) => (
                 <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
-                  {s.data.titelbild ? (
-                    <img src={s.data.titelbild} alt={s.data.titel} loading="lazy" />
+                  {(s.data.kartenbild ?? s.data.titelbild) ? (
+                    <img src={s.data.kartenbild ?? s.data.titelbild} alt={s.data.titel} loading="lazy" />
                   ) : (
                     <span class="ohne" aria-hidden="true" />
                   )}
