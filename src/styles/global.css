@@ -176,7 +176,7 @@
     animation:wechsellicht 3s ease-in-out infinite;
   }
   @keyframes wechsellicht{0%,100%{opacity:.62}50%{opacity:.28}}
-  .hero .inhalt{position:relative;z-index:2;width:100%;padding:clamp(118px,14.5vh,150px) 0 clamp(72px,10vh,140px)}
+  .hero .inhalt{position:relative;z-index:2;width:100%;padding:clamp(100px,12vh,126px) 0 clamp(72px,10vh,140px)}
   /* Niedrige Bildschirme (13-Zoll-Laptops): kompakter Hero, Schlauch sicher im Bild */
   @media (max-height:860px){
     .hero h1{font-size:clamp(2.2rem,6.2vw,3.8rem)}
@@ -189,14 +189,14 @@
     filter:drop-shadow(0 2px 10px rgba(0,0,0,.4));
   }
   .hero .funkspruch{margin-bottom:12px}
-    .hero .inhalt{padding-top:106px;padding-bottom:96px}
+    .hero .inhalt{padding-top:92px;padding-bottom:96px}
     .hero .schlauch{top:30px}
     .btn{padding:12px 24px;font-size:.92rem}
   }
   @media (max-height:700px){
     .hero h1{font-size:clamp(2rem,5.5vw,3.1rem)}
     .hero p.sub{display:none}
-    .hero .inhalt{padding-top:100px}
+    .hero .inhalt{padding-top:88px}
   }
   .hero .heroskyline{margin-bottom:10px;opacity:0}
   body.los .hero .heroskyline{animation:sanft .8s ease .1s forwards}
