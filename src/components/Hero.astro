@@ -1,4 +1,6 @@
 ---
+import SkylineWeiden from './SkylineWeiden.astro';
+
 interface Props {
   ticker?: { datum: string; zeit: string; stichwort: string }[];
 }
@@ -24,6 +26,7 @@ const folien = [
   <div class="glut"></div>
   <div class="inhalt">
     <div class="wrap">
+      <div class="heroskyline" aria-hidden="true"><SkylineWeiden /></div>
       <div class="funkspruch"><i></i>Florian Weiden · einsatzbereit</div>
       <h1 class="display">
         <span><b>24 Stunden.</b></span>
