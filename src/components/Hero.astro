@@ -194,7 +194,7 @@ const folien = [
     setTimeout(puls, document.body.classList.contains('sofort') ? 7000 : 18000);
   }
 
-  /* Schlauch-Ticker: je 1 Durchlauf, dann 30 s Ruhe – endlos im Wechsel */
+  /* Schlauch-Ticker: je 1 Durchlauf (aktuellste 4 Meldungen), dann 60 s Pause – endlos */
   const tickerBox = document.querySelector<HTMLElement>('.schlauchticker');
   const tickerSpur = tickerBox?.querySelector<HTMLElement>('.spur');
   if (tickerBox && tickerSpur && !reduziert) {
@@ -211,7 +211,7 @@ const folien = [
         verbleibend = 1;
         tickerSpur.style.animationPlayState = 'running';
         tickerBox.classList.remove('ruhe');
-      }, 30000);
+      }, 60000);
     });
   }
 </script>
