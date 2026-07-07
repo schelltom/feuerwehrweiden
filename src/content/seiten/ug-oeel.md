@@ -8,16 +8,16 @@ kontakt:
   name: "UG-ÖEL der Stadt Weiden i.d.OPf."
   telefon: "0961 / 391609-0"
   fax: "0961 / 391609-19"
-  email: "ugwen@feuerwehr-weiden.de"
+  email: "ugwen@weiden.de"
   adresse: "Städt. Feuerwache · Landgerichtsstraße 13 · 92637 Weiden"
 personen:
   - name: "Thomas Schell"
     funktion: "Leiter UG-ÖEL"
-    email: "thomas.schell@feuerwehr-weiden.de"
+    email: "thomas.schell@weiden.de"
   - name: "Ronny Pressl"
     funktion: "Stellv. Leiter UG-ÖEL"
     telefon: "0961 / 391609-25"
-    email: "ronny.pressl@feuerwehr-weiden.de"
+    email: "ronny.pressl@weiden.de"
   - name: "Peter Pfaffenzeller"
     funktion: "Stellv. Leiter UG-ÖEL"
     email: "peter.pfaffenzeller@kkh.de"
@@ -73,4 +73,4 @@ Funkmeldeempfänger bei folgenden Alarmstufen:
 
 - Einsatzleitwagen: **Kater Weiden 1/12/1**
 - Kreiseinsatzzentrale (KEZ): 0961 / 391609-11 und -12,
-  E-Mail [kez.wen@feuerwehr-weiden.de](mailto:kez.wen@feuerwehr-weiden.de)
+  E-Mail [kez.wen@weiden.de](mailto:kez.wen@weiden.de)

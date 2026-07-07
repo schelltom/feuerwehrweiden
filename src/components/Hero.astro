@@ -56,10 +56,6 @@ const folien = [
         pathLength="1"
         d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,52"></path>
       <path
-        class="wasserfluss"
-        pathLength="1"
-        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,52"></path>
-      <path
         class="glanz"
         pathLength="1"
         d="M-20,59 C180,35 320,71 520,55 C700,41 840,67 1030,53 L1116,49"></path>
@@ -178,16 +174,24 @@ const folien = [
   zeige(abfolge[0]);
   start();
 
-  /* Wasserpuls: sporadisch (alle ~35–90 s) fließt Wasser durch den Schlauch */
+  /* Druckstoß: sporadisch (alle ~35–90 s) füllt sich der Schlauch sichtbar neu */
   const schlauchEl = document.querySelector<HTMLElement>('.hero .schlauch');
-  if (schlauchEl && !reduziert) {
+  const fuellung = schlauchEl?.querySelector<SVGPathElement>('.fuellung');
+  if (schlauchEl && fuellung && !reduziert) {
     const puls = () => {
+      // Füll-Animation vom Intro erneut abspielen (Web Animations API
+      // überlagert die CSS-Animation und startet sauber neu)
+      fuellung.animate(
+        [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+        { duration: 3200, easing: 'ease-in', fill: 'forwards' }
+      );
+      // Düse spritzt, sobald der Druck ankommt
       schlauchEl.classList.remove('pulsiert');
-      void schlauchEl.offsetWidth; // Animation zurücksetzen
+      void schlauchEl.offsetWidth;
       schlauchEl.classList.add('pulsiert');
       setTimeout(puls, 35000 + Math.random() * 55000);
     };
-    setTimeout(puls, document.body.classList.contains('sofort') ? 6000 : 15500);
+    setTimeout(puls, document.body.classList.contains('sofort') ? 7000 : 18000);
   }
 
   /* Schlauch-Ticker: je 1 Durchlauf, dann 30 s Ruhe – endlos im Wechsel */
