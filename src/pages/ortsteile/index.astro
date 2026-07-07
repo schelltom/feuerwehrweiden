@@ -29,7 +29,12 @@ const orte = (await getCollection('seiten'))
         <div class="orteraster">
           {
             orte.map((o) => (
-              <a class="ortkarte reveal" href={`/ortsteile/${o.id}/`}>
+              <a
+                class="ortkarte reveal"
+                href={o.data.extern ?? `/ortsteile/${o.id}/`}
+                target={o.data.extern ? '_blank' : undefined}
+                rel={o.data.extern ? 'noopener' : undefined}
+              >
                 {o.data.titelbild ? (
                   <img class="foto" src={o.data.titelbild} alt={o.data.titel} loading="lazy" />
                 ) : (
@@ -39,7 +44,7 @@ const orte = (await getCollection('seiten'))
                 {o.data.wappen && <img class="wappen" src={o.data.wappen} alt="" loading="lazy" />}
                 <span class="txt">
                   {o.data.kurz && <em>{o.data.kurz}</em>}
-                  <b>{o.data.titel}</b>
+                  <b>{o.data.titel}{o.data.extern && ' ↗'}</b>
                 </span>
               </a>
             ))

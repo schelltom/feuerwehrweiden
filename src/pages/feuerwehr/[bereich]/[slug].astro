@@ -41,7 +41,7 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
       <div class="wrap schmal" style="padding-top:clamp(44px,6vw,72px)">
         {
           d.kontakt && (
-            <div class="kontaktkarte reveal">
+            <div class:list={['kontaktkarte', 'reveal', { ohneBild: !d.kontakt.bild }]}>
               {d.kontakt.bild && <img class="portraet" src={d.kontakt.bild} alt={d.kontakt.name} />}
               <div class="kdaten">
                 <span class="eyebrow">{d.titel}</span>
@@ -63,6 +63,12 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
                     <li>
                       <span>E-Mail</span>
                       <a href={`mailto:${d.kontakt.email}`}>{d.kontakt.email}</a>
+                    </li>
+                  )}
+                  {d.kontakt.adresse && (
+                    <li>
+                      <span>Anschrift</span>
+                      {d.kontakt.adresse}
                     </li>
                   )}
                 </ul>
@@ -104,10 +110,28 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
                         ))}
                       </ul>
                     )}
+                    {p.telefon && <span class="ptel">{p.telefon}</span>}
                     {p.email && <a href={`mailto:${p.email}`}>{p.email}</a>}
                   </div>
                 </div>
               ))}
+            </div>
+          )
+        }
+
+        {
+          d.uebungsplan.length > 0 && (
+            <div class="uebungsplan reveal">
+              <span class="eyebrow">Übungsplan</span>
+              <ol>
+                {d.uebungsplan.map((u) => (
+                  <li>
+                    <span class="udatum">{u.datum}</span>
+                    <span class="utag">{u.tag}{u.zeit && ` · ${u.zeit}`}</span>
+                    <b>{u.thema}</b>
+                  </li>
+                ))}
+              </ol>
             </div>
           )
         }
@@ -121,6 +145,12 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
                   <span class="zeit">{e.zeit}</span>
                   <div class="stext">
                     <h3 class="display">{e.titel}</h3>
+                    {e.bild && (
+                      <figure class="sbild">
+                        <img src={e.bild} alt={e.bildtext || e.titel} loading="lazy" />
+                        {e.bildtext && <figcaption>{e.bildtext}</figcaption>}
+                      </figure>
+                    )}
                     <p>{e.text}</p>
                     {e.quelle && <small>Quelle: {e.quelle}</small>}
                   </div>
@@ -174,6 +204,9 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
     .kontaktkarte {
       grid-template-columns: 1fr;
     }
+  }
+  .kontaktkarte.ohneBild {
+    grid-template-columns: 1fr;
   }
   .kontaktkarte .portraet {
     width: 100%;
@@ -327,6 +360,13 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
     height: 2px;
     background: var(--rot);
   }
+  .person .ptel {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--tinte2);
+    margin-bottom: 4px;
+  }
   .person a {
     font-family: var(--mono);
     font-size: 0.74rem;
@@ -336,6 +376,57 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
   }
   .person a:hover {
     color: var(--rot);
+  }
+
+  /* ---- Übungsplan ---- */
+  .uebungsplan {
+    margin: 44px 0;
+  }
+  .uebungsplan ol {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--linie);
+  }
+  .uebungsplan li {
+    display: grid;
+    grid-template-columns: 120px 190px 1fr;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--linie);
+    background: var(--karte);
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .uebungsplan li:nth-child(even) {
+    background: transparent;
+  }
+  @media (max-width: 680px) {
+    .uebungsplan li {
+      grid-template-columns: 100px 1fr;
+    }
+    .uebungsplan li b {
+      grid-column: 1 / -1;
+    }
+  }
+  .uebungsplan .udatum {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .uebungsplan .utag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--tinte2);
+    font-variant-numeric: tabular-nums;
+  }
+  .uebungsplan li b {
+    font-weight: 600;
+    font-size: 0.95rem;
   }
 
   /* ---- Zeitstrahl ---- */
@@ -399,6 +490,21 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
     margin: 0;
     color: #3a3f4c;
     font-size: 0.98rem;
+  }
+  .station .sbild {
+    margin: 0 0 14px;
+  }
+  .station .sbild img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--linie);
+  }
+  .station .sbild figcaption {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    color: var(--tinte2);
+    margin-top: 6px;
   }
   .station small {
     display: block;

@@ -4,6 +4,23 @@ bereich: "einheiten"
 reihenfolge: 5
 kurz: "Unterstützungsgruppe Örtliche Einsatzleitung"
 titelbild: "/bilder/fahrzeuge/elw.jpg"
+kontakt:
+  name: "UG-ÖEL der Stadt Weiden i.d.OPf."
+  telefon: "0961 / 391609-0"
+  fax: "0961 / 391609-19"
+  email: "ugwen@feuerwehr-weiden.de"
+  adresse: "Städt. Feuerwache · Landgerichtsstraße 13 · 92637 Weiden"
+personen:
+  - name: "Thomas Schell"
+    funktion: "Leiter UG-ÖEL"
+    email: "thomas.schell@feuerwehr-weiden.de"
+  - name: "Ronny Pressl"
+    funktion: "Stellv. Leiter UG-ÖEL"
+    telefon: "0961 / 391609-25"
+    email: "ronny.pressl@feuerwehr-weiden.de"
+  - name: "Peter Pfaffenzeller"
+    funktion: "Stellv. Leiter UG-ÖEL"
+    email: "peter.pfaffenzeller@kkh.de"
 ---
 
 ### Aufgaben
@@ -51,3 +68,9 @@ Funkmeldeempfänger bei folgenden Alarmstufen:
 - Gefahrgutunfall
 - Katastrophenfall
 - Sonstige Anforderungen durch den Einsatzleiter, z. B. bei Personensuche
+
+### Erreichbarkeit
+
+- Einsatzleitwagen: **Kater Weiden 1/12/1**
+- Kreiseinsatzzentrale (KEZ): 0961 / 391609-11 und -12,
+  E-Mail [kez.wen@feuerwehr-weiden.de](mailto:kez.wen@feuerwehr-weiden.de)

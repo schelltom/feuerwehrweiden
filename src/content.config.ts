@@ -118,6 +118,8 @@ const seiten = defineCollection({
     kurz: z.string().default(''),
     titelbild: z.string().optional(),
     wappen: z.string().optional(),
+    /** Externer Auftritt (z.B. eigene Website einer Ortsteilwehr) */
+    extern: z.string().optional(),
     kontakt: z
       .object({
         name: z.string(),
@@ -135,6 +137,7 @@ const seiten = defineCollection({
           name: z.string(),
           funktion: z.string().optional(),
           sachgebiete: z.array(z.string()).default([]),
+          telefon: z.string().optional(),
           email: z.string().optional(),
           bild: z.string().optional(),
         })
@@ -147,6 +150,18 @@ const seiten = defineCollection({
           titel: z.string(),
           quelle: z.string().optional(),
           text: z.string().default(''),
+          bild: z.string().optional(),
+          bildtext: z.string().optional(),
+        })
+      )
+      .default([]),
+    uebungsplan: z
+      .array(
+        z.object({
+          tag: z.string().default(''),
+          datum: z.string(),
+          zeit: z.string().default(''),
+          thema: z.string(),
         })
       )
       .default([]),

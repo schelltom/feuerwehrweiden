@@ -176,6 +176,7 @@ collections:
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }
       - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
+      - { name: extern, label: 'Externe Website (Karte verlinkt dorthin)', widget: string, required: false }
       - name: kontakt
         label: 'Kontaktkarte (für Personenseiten)'
         widget: object
@@ -208,6 +209,7 @@ collections:
             widget: list
             required: false
             field: { name: eintrag, label: Sachgebiet, widget: string }
+          - { name: telefon, label: Telefon, widget: string, required: false }
           - { name: email, label: E-Mail, widget: string, required: false }
           - { name: bild, label: Foto, widget: image, required: false }
       - name: zeitstrahl
@@ -219,6 +221,17 @@ collections:
           - { name: titel, label: Titel, widget: string }
           - { name: quelle, label: Quelle, widget: string, required: false }
           - { name: text, label: Text, widget: text, required: false }
+          - { name: bild, label: Bild, widget: image, required: false }
+          - { name: bildtext, label: Bildunterschrift, widget: string, required: false }
+      - name: uebungsplan
+        label: 'Übungsplan (Jugendfeuerwehr)'
+        widget: list
+        required: false
+        fields:
+          - { name: tag, label: Wochentag, widget: string, required: false }
+          - { name: datum, label: Datum, widget: string }
+          - { name: zeit, label: Uhrzeit, widget: string, required: false }
+          - { name: thema, label: Thema, widget: string }
       - name: galerie
         label: Bildergalerie
         widget: list
