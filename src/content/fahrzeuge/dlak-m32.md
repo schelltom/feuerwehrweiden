@@ -84,9 +84,3 @@ beladung:
       - "Drucklüfter wasserbetrieben"
       - "Wenderohr"
 ---
-
-Die Drehleiter DLA (K) M32 L-AT ist das Hubrettungsfahrzeug der Feuerwehr
-Weiden. Mit 32 Metern Rettungshöhe, dem 4-Personen-Korb RC 400 und
-umfangreicher Beladung für die Rettung aus Höhen und Tiefen ist sie bei
-Bränden, Unwettern und technischen Hilfeleistungen im gesamten Stadtgebiet
-und darüber hinaus im Einsatz.
