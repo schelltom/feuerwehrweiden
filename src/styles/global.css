@@ -283,6 +283,12 @@
     animation:ausrollen 3s linear .9s forwards;
   }
   @keyframes ausrollen{to{stroke-dashoffset:0}}
+  /* Direktaufruf übers Logo: alles liegt fertig da */
+  body.sofort .hero .schlauch .leitung,
+  body.sofort .hero .schlauch .glanz,
+  body.sofort .hero .schlauch .fuellung{animation:none;stroke-dashoffset:0}
+  body.sofort .hero .schlauch .rolle{display:none}
+  body.sofort .hero .schlauch .rohr{opacity:1}
   @media (prefers-reduced-motion:reduce){
     .hero .schlauch .leitung,.hero .schlauch .glanz{stroke-dashoffset:0}
     .hero .schlauch .rolle{display:none}
@@ -290,10 +296,22 @@
   .hero .schlauch .wasser{opacity:0}
   .hero .schlauch .wasser line{stroke:#8CC1FF;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:18;stroke-dashoffset:18}
   .hero .schlauch .wasser circle{fill:#B7D9FF}
-  body.los .hero .schlauch .wasser{animation:spritzstoss 9s ease-in-out 14.2s infinite}
-  body.los .hero .schlauch .wasser line{animation:strahl 9s linear 14.2s infinite}
-  @keyframes spritzstoss{0%{opacity:0}4%{opacity:1}16%{opacity:.9}23%,100%{opacity:0}}
-  @keyframes strahl{0%{stroke-dashoffset:18}9%,19%{stroke-dashoffset:0}25%,100%{stroke-dashoffset:18}}
+  /* Wasserpuls: heller Strang wandert durch den Schlauch, dann spritzt die Düse */
+  .hero .schlauch .wasserfluss{
+    fill:none;stroke:#A7CFFF;stroke-width:5;stroke-linecap:round;
+    stroke-dasharray:0.13 2;stroke-dashoffset:0.15;opacity:0;
+  }
+  .hero .schlauch.pulsiert .wasserfluss{animation:fluss 2.4s cubic-bezier(.45,.05,.55,.95) forwards}
+  .hero .schlauch.pulsiert .wasser{animation:spritzstoss 1.6s ease 2.1s forwards}
+  .hero .schlauch.pulsiert .wasser line{animation:strahl 1.6s linear 2.1s forwards}
+  @keyframes fluss{
+    0%{stroke-dashoffset:0.15;opacity:0}
+    6%{opacity:.95}
+    88%{opacity:.95}
+    100%{stroke-dashoffset:-1;opacity:0}
+  }
+  @keyframes spritzstoss{0%{opacity:0}12%{opacity:1}70%{opacity:.9}100%{opacity:0}}
+  @keyframes strahl{0%{stroke-dashoffset:18}35%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:18}}
   .schlauchticker{
     overflow:hidden;white-space:nowrap;margin-top:-4px;
     transition:opacity .9s ease;

@@ -40,7 +40,7 @@ const {
 
     <header class="nav" id="topnav">
       <div class="wrap">
-        <a class="marke" href="/">
+        <a class="marke" href="/?direkt">
           <img src="/bilder/wappen.png" alt="Wappen der Feuerwehr Weiden" width="40" height="48" />
           <span class="name">Freiwillige Feuerwehr Weiden</span>
         </a>
@@ -124,7 +124,13 @@ const {
         scrollTo(0, 0);
       }
       const los = () => document.body.classList.add('los');
-      if (!alarm || reduziert) {
+      /* Logo-Klick (?direkt): Startseite sofort zeigen – ohne Depesche, Schlauch fertig ausgerollt */
+      const direkt = new URLSearchParams(location.search).has('direkt');
+      if (direkt) {
+        document.body.classList.add('sofort');
+        history.replaceState(null, '', '/');
+      }
+      if (!alarm || reduziert || direkt) {
         alarm?.remove();
         los();
       } else {
