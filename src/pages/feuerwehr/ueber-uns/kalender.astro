@@ -1,16 +1,56 @@
 ---
 import { getCollection } from 'astro:content';
 import Basis from '../../../layouts/Basis.astro';
+import { KATEGORIE_FARBEN, kategorieSlug } from '../../../lib/kalender';
 
-const termine = (await getCollection('termine'))
+const alleTermine = (await getCollection('termine'))
   .map((t) => t.data)
-  .sort((a, b) => a.datum.getTime() - b.datum.getTime());
+  .sort((a, b) => a.datum.getTime() - b.datum.getTime() || a.von.localeCompare(b.von));
 
-const monate = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-const wochentage = new Intl.DateTimeFormat('de-DE', { weekday: 'long' });
+const kategorien = [...new Set(alleTermine.map((t) => t.kategorie))];
+const farbe = (k: string) => KATEGORIE_FARBEN[k] ?? '#5B6170';
+
+/* Termine nach Monat gruppieren */
+const monatsnamen = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+const wochentage = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+
+interface Monat {
+  jahr: number;
+  monat: number;
+  termine: typeof alleTermine;
+}
+const monate: Monat[] = [];
+for (const t of alleTermine) {
+  const jahr = t.datum.getFullYear();
+  const monat = t.datum.getMonth();
+  let m = monate.find((x) => x.jahr === jahr && x.monat === monat);
+  if (!m) {
+    m = { jahr, monat, termine: [] };
+    monate.push(m);
+  }
+  m.termine.push(t);
+}
+
+/* Kalender-Raster: führende Leerzellen (Wochenstart Montag) + Tage */
+function raster(jahr: number, monat: number) {
+  const erster = new Date(jahr, monat, 1);
+  const fuehrend = (erster.getDay() + 6) % 7;
+  const tage = new Date(jahr, monat + 1, 0).getDate();
+  return { fuehrend, tage };
+}
+
+/* Daten für den Auswahl-Download im Browser */
+const exportDaten = alleTermine.map((t) => ({
+  id: t.id,
+  datum: `${t.datum.getFullYear()}-${String(t.datum.getMonth() + 1).padStart(2, '0')}-${String(t.datum.getDate()).padStart(2, '0')}`,
+  titel: t.titel,
+  von: t.von,
+  bis: t.bis,
+  kategorie: t.kategorie,
+}));
 ---
 
-<Basis titel="Kalender – Feuerwehr Weiden">
+<Basis titel="Kalender – Feuerwehr Weiden" beschreibung="Übungen und Veranstaltungen der Feuerwehr Weiden – mit iCal-Export für den eigenen Kalender.">
   <main>
     <section class="subhero" style="min-height:44svh">
       <div class="bild" style="background-image:url(/bilder/header/feldbrand.jpg)"></div>
@@ -25,27 +65,379 @@ const wochentage = new Intl.DateTimeFormat('de-DE', { weekday: 'long' });
     </section>
 
     <section>
-      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:860px">
-        <ul class="termine">
-          {
-            termine.map((t) => (
-              <li class="termin reveal">
-                <div class="tag">
-                  <b>{t.datum.getDate()}</b>
-                  <span>{monate[t.datum.getMonth()]}</span>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:1000px">
+        <div class="filterzeile reveal">
+          <span class="eyebrow">Kategorien</span>
+          <div class="filter" id="filter">
+            {
+              kategorien.map((k) => (
+                <button class="chip" data-kat={kategorieSlug(k)} aria-pressed="true">
+                  <i style={`background:${farbe(k)}`} />
+                  {k}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        {
+          monate.map((m) => {
+            const { fuehrend, tage } = raster(m.jahr, m.monat);
+            return (
+              <div class="monat reveal">
+                <h2 class="display">
+                  {monatsnamen[m.monat]} <em>{m.jahr}</em>
+                </h2>
+                <div class="tage">
+                  {wochentage.map((w) => (
+                    <span class="wt">{w}</span>
+                  ))}
+                  {Array.from({ length: fuehrend }, () => (
+                    <span class="leer" />
+                  ))}
+                  {Array.from({ length: tage }, (_, i) => {
+                    const tag = i + 1;
+                    const heute = `${m.jahr}-${String(m.monat + 1).padStart(2, '0')}-${String(tag).padStart(2, '0')}`;
+                    const events = m.termine.filter((t) => t.datum.getDate() === tag);
+                    return (
+                      <span class:list={['zelle', { belegt: events.length > 0 }]} data-datum={heute}>
+                        <b>{tag}</b>
+                        {events.map((e) => (
+                          <span
+                            class="ev"
+                            data-kat={kategorieSlug(e.kategorie)}
+                            style={`--kf:${farbe(e.kategorie)}`}
+                            title={`${e.titel} · ${e.von} – ${e.bis} Uhr`}
+                          >
+                            {e.titel}
+                          </span>
+                        ))}
+                      </span>
+                    );
+                  })}
                 </div>
-                <div class="info">
-                  <b>{t.titel}</b>
-                  <span>{wochentage.format(t.datum)} · {t.von} – {t.bis} Uhr</span>
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-        <p style="margin-top:24px">
-          <a href="#" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Kalender abonnieren (iCal) →</a>
-        </p>
+                <ul class="mliste">
+                  {m.termine.map((e) => (
+                    <li class="ev" data-kat={kategorieSlug(e.kategorie)}>
+                      <span class="punkt" style={`background:${farbe(e.kategorie)}`} />
+                      <span class="datum">
+                        {String(e.datum.getDate()).padStart(2, '0')}.{String(m.monat + 1).padStart(2, '0')}.
+                      </span>
+                      <b>{e.titel}</b>
+                      <span class="zeit">{e.von} – {e.bis} Uhr</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })
+        }
+
+        <div class="exportbox reveal" id="exportbox">
+          <span class="eyebrow">In den eigenen Kalender übernehmen</span>
+          <p>
+            Wähle oben die gewünschten Kategorien ab oder an und lade die Auswahl als
+            iCal-Datei – die lässt sich in jeden Handy- oder PC-Kalender importieren.
+            Einzelne Kategorien kannst du auch dauerhaft abonnieren.
+          </p>
+          <div class="exportzeile">
+            <button class="btn btn-rot" id="icsDownload">Auswahl als iCal laden</button>
+            <a class="btn btn-glas dunkelbtn" href="/kalender/termine.ics" download>Alle Termine (.ics)</a>
+          </div>
+          <details class="abos">
+            <summary>Einzelne Kategorien abonnieren</summary>
+            <ul>
+              {
+                kategorien.map((k) => (
+                  <li>
+                    <i style={`background:${farbe(k)}`} />
+                    <a href={`/kalender/${kategorieSlug(k)}.ics`} download>{k} (.ics)</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </details>
+        </div>
       </div>
     </section>
   </main>
 </Basis>
+
+<script define:vars={{ exportDaten }}>
+  /* ---- Kategorie-Filter ---- */
+  const chips = document.querySelectorAll('#filter .chip');
+  const aktiv = new Set([...chips].map((c) => c.dataset.kat));
+  function anwenden() {
+    document.querySelectorAll('.ev').forEach((e) => {
+      e.style.display = aktiv.has(e.dataset.kat) ? '' : 'none';
+    });
+  }
+  chips.forEach((c) =>
+    c.addEventListener('click', () => {
+      const k = c.dataset.kat;
+      if (aktiv.has(k)) aktiv.delete(k);
+      else aktiv.add(k);
+      c.setAttribute('aria-pressed', String(aktiv.has(k)));
+      c.classList.toggle('aus', !aktiv.has(k));
+      anwenden();
+    })
+  );
+
+  /* ---- Heute markieren ---- */
+  const heute = new Date();
+  const hs = `${heute.getFullYear()}-${String(heute.getMonth() + 1).padStart(2, '0')}-${String(heute.getDate()).padStart(2, '0')}`;
+  document.querySelector(`.zelle[data-datum="${hs}"]`)?.classList.add('heute');
+
+  /* ---- Auswahl als iCal laden ---- */
+  const slug = (s) =>
+    s.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue')
+      .replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  document.getElementById('icsDownload').addEventListener('click', () => {
+    const gewaehlt = exportDaten.filter((t) => aktiv.has(slug(t.kategorie)));
+    if (!gewaehlt.length) {
+      alert('Bitte mindestens eine Kategorie auswählen.');
+      return;
+    }
+    const z = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Feuerwehr Weiden//Kalender//DE',
+               'X-WR-CALNAME:Feuerwehr Weiden – Auswahl'];
+    for (const t of gewaehlt) {
+      const d = t.datum.replaceAll('-', '');
+      z.push('BEGIN:VEVENT', `UID:${t.id}@feuerwehr-weiden.de`,
+        `DTSTART:${d}T${t.von.replace(':', '')}00`,
+        `DTEND:${d}T${t.bis.replace(':', '')}00`,
+        `SUMMARY:${t.titel}`, `CATEGORIES:${t.kategorie}`, 'END:VEVENT');
+    }
+    z.push('END:VCALENDAR');
+    const blob = new Blob([z.join('\r\n')], { type: 'text/calendar' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'feuerwehr-weiden-termine.ics';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+</script>
+
+<style>
+  .filterzeile {
+    margin-bottom: 36px;
+  }
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--linie);
+    background: var(--karte);
+    padding: 7px 14px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--tinte);
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .chip:hover {
+    transform: translateY(-1px);
+  }
+  .chip i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .chip.aus {
+    opacity: 0.38;
+  }
+
+  /* ---- Monat ---- */
+  .monat {
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+  .monat h2 {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0 0 14px;
+  }
+  .monat h2 em {
+    color: var(--tinte2);
+    font-size: 0.75em;
+  }
+  .tage {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .wt {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    padding: 4px 6px;
+  }
+  .zelle {
+    min-height: 74px;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    padding: 5px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .zelle b {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--tinte2);
+    font-weight: 400;
+  }
+  .zelle.belegt b {
+    color: var(--tinte);
+    font-weight: 700;
+  }
+  .zelle.heute {
+    border-color: var(--rot);
+    box-shadow: inset 0 0 0 1px var(--rot);
+  }
+  .zelle.heute b {
+    color: var(--rot);
+  }
+  .leer {
+    min-height: 74px;
+    background: transparent;
+  }
+  .zelle .ev {
+    display: block;
+    font-size: 0.64rem;
+    line-height: 1.25;
+    padding: 2px 5px;
+    color: #fff;
+    background: var(--kf);
+    border-radius: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* ---- Monatsliste ---- */
+  .mliste {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+  }
+  .mliste .ev {
+    display: grid;
+    grid-template-columns: 12px 52px 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+    padding: 8px 4px;
+    border-bottom: 1px dashed var(--linie);
+    font-size: 0.92rem;
+  }
+  .mliste .punkt {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    align-self: center;
+  }
+  .mliste .datum {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--tinte2);
+    font-variant-numeric: tabular-nums;
+  }
+  .mliste b {
+    font-weight: 600;
+  }
+  .mliste .zeit {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--tinte2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- Export ---- */
+  .exportbox {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-top: 3px solid var(--rot);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+    padding: clamp(20px, 3vw, 32px);
+    margin: 8px 0 clamp(56px, 8vw, 90px);
+  }
+  .exportbox p {
+    color: var(--tinte2);
+    max-width: 64ch;
+    margin: 10px 0 20px;
+  }
+  .exportzeile {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .dunkelbtn {
+    background: var(--dunkel);
+    border: none;
+    color: #fff;
+  }
+  .dunkelbtn:hover {
+    background: var(--dunkel2);
+  }
+  .abos {
+    margin-top: 20px;
+  }
+  .abos summary {
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+  }
+  .abos ul {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+  }
+  .abos li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .abos i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .abos a {
+    color: var(--tinte);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rot);
+    font-size: 0.9rem;
+  }
+  .abos a:hover {
+    color: var(--rot);
+  }
+
+  @media (max-width: 640px) {
+    .zelle,
+    .leer {
+      min-height: 44px;
+    }
+    .zelle .ev {
+      font-size: 0;
+      padding: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+  }
+</style>
