@@ -1,0 +1,169 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+
+const seiten = (await getCollection('seiten')).sort(
+  (a, b) => a.data.reihenfolge - b.data.reihenfolge
+);
+const ueberUns = seiten.filter((s) => s.data.bereich === 'ueber-uns');
+const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
+---
+
+<Basis titel="Feuerwehr – Feuerwehr Weiden">
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/segnung.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <span class="eyebrow">Über uns · Einheiten</span>
+          <h1 class="display">Unsere Feuerwehr</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
+        <div class="gruppe">
+          <span class="eyebrow">Verein &amp; Führung</span>
+          <h2 class="titel display reveal" style="font-size:clamp(1.9rem,4vw,2.8rem)">Über uns</h2>
+          <div class="seitenraster">
+            {
+              ueberUns.map((s) => (
+                <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
+                  {s.data.titelbild ? (
+                    <img src={s.data.titelbild} alt={s.data.titel} loading="lazy" />
+                  ) : (
+                    <span class="ohne" aria-hidden="true" />
+                  )}
+                  <span class="schatten" aria-hidden="true"></span>
+                  <span class="txt">
+                    {s.data.kurz && <em>{s.data.kurz}</em>}
+                    <b>{s.data.titel}</b>
+                  </span>
+                </a>
+              ))
+            }
+            <a class="seitenkarte reveal" href="/feuerwehr/ueber-uns/kalender/">
+              <span class="ohne" aria-hidden="true"></span>
+              <span class="schatten" aria-hidden="true"></span>
+              <span class="txt">
+                <em>Übungen &amp; Veranstaltungen</em>
+                <b>Kalender</b>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="gruppe" style="margin-bottom:0">
+          <span class="eyebrow">Vom Löschzug bis zur Drohne</span>
+          <h2 class="titel display reveal" style="font-size:clamp(1.9rem,4vw,2.8rem)">Einheiten</h2>
+          <div class="seitenraster">
+            {
+              einheiten.map((s) => (
+                <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
+                  {s.data.titelbild ? (
+                    <img src={s.data.titelbild} alt={s.data.titel} loading="lazy" />
+                  ) : (
+                    <span class="ohne" aria-hidden="true" />
+                  )}
+                  <span class="schatten" aria-hidden="true"></span>
+                  <span class="txt">
+                    {s.data.kurz && <em>{s.data.kurz}</em>}
+                    <b>{s.data.titel}</b>
+                  </span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .gruppe {
+    margin-bottom: clamp(56px, 8vw, 96px);
+  }
+  .gruppe .titel {
+    margin-bottom: 26px;
+  }
+  .seitenraster {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 820px) {
+    .seitenraster {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .seitenraster {
+      grid-template-columns: 1fr;
+    }
+  }
+  .seitenkarte {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    aspect-ratio: 16 / 9;
+    background: var(--dunkel2);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .seitenkarte:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 48px rgba(20, 22, 28, 0.22);
+  }
+  .seitenkarte img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .seitenkarte:hover img {
+    transform: scale(1.07);
+  }
+  .seitenkarte .ohne {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(400px 200px at 80% 0%, rgba(225, 6, 0, 0.25), transparent 65%),
+      var(--dunkel2);
+  }
+  .seitenkarte .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.88) 0%, rgba(10, 12, 16, 0.2) 50%, transparent 75%);
+  }
+  .seitenkarte .txt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 18px;
+    display: grid;
+    gap: 3px;
+  }
+  .seitenkarte .txt em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silber);
+  }
+  .seitenkarte .txt b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+    line-height: 1;
+  }
+</style>

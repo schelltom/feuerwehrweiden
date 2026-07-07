@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../../layouts/Basis.astro';
+
+const termine = (await getCollection('termine'))
+  .map((t) => t.data)
+  .sort((a, b) => a.datum.getTime() - b.datum.getTime());
+
+const monate = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+const wochentage = new Intl.DateTimeFormat('de-DE', { weekday: 'long' });
+---
+
+<Basis titel="Kalender – Feuerwehr Weiden">
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/feldbrand.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <a class="zurueck" href="/feuerwehr/">← Feuerwehr</a>
+          <span class="eyebrow">Übungen &amp; Veranstaltungen</span>
+          <h1 class="display">Kalender</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:860px">
+        <ul class="termine">
+          {
+            termine.map((t) => (
+              <li class="termin reveal">
+                <div class="tag">
+                  <b>{t.datum.getDate()}</b>
+                  <span>{monate[t.datum.getMonth()]}</span>
+                </div>
+                <div class="info">
+                  <b>{t.titel}</b>
+                  <span>{wochentage.format(t.datum)} · {t.von} – {t.bis} Uhr</span>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <p style="margin-top:24px">
+          <a href="#" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Kalender abonnieren (iCal) →</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</Basis>

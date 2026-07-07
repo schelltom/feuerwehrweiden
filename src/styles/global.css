@@ -164,20 +164,20 @@
     animation:wechsellicht 3s ease-in-out infinite;
   }
   @keyframes wechsellicht{0%,100%{opacity:.62}50%{opacity:.28}}
-  .hero .inhalt{position:relative;z-index:2;width:100%;padding:clamp(196px,26vh,250px) 0 clamp(72px,10vh,140px)}
+  .hero .inhalt{position:relative;z-index:2;width:100%;padding:clamp(172px,22vh,224px) 0 clamp(72px,10vh,140px)}
   /* Niedrige Bildschirme (13-Zoll-Laptops): kompakter Hero, Schlauch sicher im Bild */
   @media (max-height:860px){
     .hero h1{font-size:clamp(2.2rem,6.2vw,3.8rem)}
     .hero p.sub{margin:14px 0 20px;font-size:.98rem;max-width:48ch}
     .hero .funkspruch{margin-bottom:12px}
-    .hero .inhalt{padding-top:172px;padding-bottom:96px}
-    .hero .schlauch{top:42px}
+    .hero .inhalt{padding-top:150px;padding-bottom:96px}
+    .hero .schlauch{top:30px}
     .btn{padding:12px 24px;font-size:.92rem}
   }
   @media (max-height:700px){
     .hero h1{font-size:clamp(2rem,5.5vw,3.1rem)}
     .hero p.sub{display:none}
-    .hero .inhalt{padding-top:160px}
+    .hero .inhalt{padding-top:140px}
   }
   .hero .funkspruch{
     font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
@@ -231,7 +231,7 @@
   .hero .punkte button.an{background:var(--rot-hell)}
   @media (max-width:640px){.hero .bildtitel{display:none}.hero .steuer{margin-left:0}}
   .hero .schlauch{
-    position:absolute;left:0;right:0;top:clamp(46px,5.5vh,70px);z-index:2;pointer-events:none;
+    position:absolute;left:0;right:0;top:clamp(34px,4.5vh,54px);z-index:2;pointer-events:none;
   }
   .hero .schlauch svg{display:block;width:100%;height:90px}
   .hero .schlauch .leitung{

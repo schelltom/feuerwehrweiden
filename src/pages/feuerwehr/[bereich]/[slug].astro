@@ -1,0 +1,411 @@
+---
+import { getCollection, render } from 'astro:content';
+import Basis from '../../../layouts/Basis.astro';
+
+export async function getStaticPaths() {
+  const seiten = await getCollection('seiten');
+  return seiten.map((s) => ({
+    params: { bereich: s.data.bereich, slug: s.id },
+    props: { seite: s },
+  }));
+}
+
+const { seite } = Astro.props;
+const { Content } = await render(seite);
+const d = seite.data;
+const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
+---
+
+<Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
+  <main>
+    <section class="subhero" style="min-height:48svh">
+      <div
+        class="bild"
+        style={d.titelbild
+          ? `background-image:url(${d.titelbild});background-position:center 30%`
+          : 'background:linear-gradient(160deg,#171A22,#0E1116)'}
+      >
+      </div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <a class="zurueck" href="/feuerwehr/">← Feuerwehr</a>
+          <span class="eyebrow">{bereichsname}</span>
+          <h1 class="display">{d.titel}</h1>
+          {d.kurz && <p class="untertitel">{d.kurz}</p>}
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap schmal" style="padding-top:clamp(44px,6vw,72px)">
+        {
+          d.kontakt && (
+            <div class="kontaktkarte reveal">
+              {d.kontakt.bild && <img class="portraet" src={d.kontakt.bild} alt={d.kontakt.name} />}
+              <div class="kdaten">
+                <span class="eyebrow">{d.titel}</span>
+                <h2 class="display">{d.kontakt.name}</h2>
+                <ul>
+                  {d.kontakt.telefon && (
+                    <li>
+                      <span>Telefon</span>
+                      <a href={`tel:${d.kontakt.telefon.replace(/[^+\d]/g, '')}`}>{d.kontakt.telefon}</a>
+                    </li>
+                  )}
+                  {d.kontakt.fax && (
+                    <li>
+                      <span>Telefax</span>
+                      {d.kontakt.fax}
+                    </li>
+                  )}
+                  {d.kontakt.email && (
+                    <li>
+                      <span>E-Mail</span>
+                      <a href={`mailto:${d.kontakt.email}`}>{d.kontakt.email}</a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+
+        {
+          seite.body?.trim() && (
+            <div class="fliesstext reveal">
+              <Content />
+            </div>
+          )
+        }
+
+        {
+          d.gruppenfoto && (
+            <figure class="gruppenfoto reveal">
+              <img src={d.gruppenfoto.bild} alt={`Gruppenfoto ${d.titel}`} />
+              {d.gruppenfoto.text && <figcaption>{d.gruppenfoto.text}</figcaption>}
+            </figure>
+          )
+        }
+
+        {
+          d.personen.length > 0 && (
+            <div class:list={['personen', { mitBild: d.personen.some((p) => p.bild) }]}>
+              {d.personen.map((p) => (
+                <div class="person reveal">
+                  {p.bild && <img src={p.bild} alt={p.name} loading="lazy" />}
+                  <div class="pdaten">
+                    {p.funktion && <em>{p.funktion}</em>}
+                    <b>{p.name}</b>
+                    {p.sachgebiete.length > 0 && (
+                      <ul>
+                        {p.sachgebiete.map((s) => (
+                          <li>{s}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {p.email && <a href={`mailto:${p.email}`}>{p.email}</a>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )
+        }
+
+        {
+          d.zeitstrahl.length > 0 && (
+            <ol class="zeitstrahl">
+              {d.zeitstrahl.map((e) => (
+                <li class="station reveal">
+                  <span class="punkt" aria-hidden="true" />
+                  <span class="zeit">{e.zeit}</span>
+                  <div class="stext">
+                    <h3 class="display">{e.titel}</h3>
+                    <p>{e.text}</p>
+                    {e.quelle && <small>Quelle: {e.quelle}</small>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )
+        }
+
+        {
+          d.galerie.length > 0 && (
+            <div class="galerie reveal" style="margin-top:44px">
+              {d.galerie.map((g) => (
+                <figure>
+                  <img src={g.bild} alt={g.text ?? d.titel} loading="lazy" />
+                  {g.text && <figcaption>{g.text}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .wrap.schmal {
+    max-width: 980px;
+  }
+  .untertitel {
+    margin: 14px 0 0;
+    color: #e6e8ee;
+    font-size: 1.05rem;
+  }
+
+  /* ---- Kontaktkarte (Personenseite) ---- */
+  .kontaktkarte {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-top: 3px solid var(--rot);
+    padding: clamp(20px, 3vw, 36px);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+    margin-bottom: 44px;
+    align-items: start;
+  }
+  @media (max-width: 640px) {
+    .kontaktkarte {
+      grid-template-columns: 1fr;
+    }
+  }
+  .kontaktkarte .portraet {
+    width: 100%;
+    aspect-ratio: 6 / 7;
+    object-fit: cover;
+    border: 1px solid var(--linie);
+  }
+  .kdaten h2 {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    margin: 8px 0 20px;
+  }
+  .kdaten ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .kdaten li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--linie);
+    font-size: 1rem;
+  }
+  .kdaten li span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    padding-top: 4px;
+  }
+  .kdaten a {
+    color: var(--rot);
+    text-decoration: none;
+  }
+  .kdaten a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---- Fließtext ---- */
+  .fliesstext {
+    max-width: 72ch;
+    color: #3a3f4c;
+    font-size: 1.04rem;
+    margin-bottom: 44px;
+  }
+  .fliesstext :global(h3) {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 1.6em 0 0.4em;
+  }
+
+  /* ---- Gruppenfoto ---- */
+  .gruppenfoto {
+    margin: 0 0 44px;
+    border: 1px solid var(--linie);
+    background: var(--karte);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+  }
+  .gruppenfoto img {
+    display: block;
+    width: 100%;
+  }
+  .gruppenfoto figcaption {
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: var(--tinte2);
+    line-height: 1.6;
+  }
+
+  /* ---- Personen ---- */
+  .personen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .personen:not(.mitBild) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 820px) {
+    .personen {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+  @media (max-width: 540px) {
+    .personen {
+      grid-template-columns: 1fr !important;
+    }
+  }
+  .person {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .person:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(20, 22, 28, 0.12);
+  }
+  .person img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+  .person .pdaten {
+    padding: 16px 18px 18px;
+  }
+  .person em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rot);
+  }
+  .person b {
+    display: block;
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    line-height: 1.05;
+    margin: 4px 0 8px;
+  }
+  .person ul {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--tinte2);
+  }
+  .person li {
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .person li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.9em;
+    width: 8px;
+    height: 2px;
+    background: var(--rot);
+  }
+  .person a {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--tinte2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rot);
+  }
+  .person a:hover {
+    color: var(--rot);
+  }
+
+  /* ---- Zeitstrahl ---- */
+  .zeitstrahl {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    position: relative;
+  }
+  .zeitstrahl::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(var(--rot), var(--linie));
+  }
+  .station {
+    position: relative;
+    padding: 0 0 36px 44px;
+  }
+  .station:last-child {
+    padding-bottom: 0;
+  }
+  .station .punkt {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--grund);
+    border: 3px solid var(--rot);
+  }
+  .station .zeit {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--rot);
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  }
+  .station .stext {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
+  }
+  .station h3 {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin: 0 0 8px;
+  }
+  .station p {
+    margin: 0;
+    color: #3a3f4c;
+    font-size: 0.98rem;
+  }
+  .station small {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--tinte2);
+  }
+</style>

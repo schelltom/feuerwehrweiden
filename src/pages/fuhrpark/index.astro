@@ -115,7 +115,7 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
   /* ---- Einheitliches Raster: 4 nebeneinander ---- */
   .mosaik {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
   .fzk {
@@ -206,7 +206,7 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
   /* ---- Anhänger: kompaktes Band ---- */
   .anhaengerband {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
   }
   .anh {
@@ -274,11 +274,6 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
   }
 
   /* ---- Responsive ---- */
-  @media (max-width: 1100px) {
-    .mosaik {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
   @media (max-width: 820px) {
     .mosaik {
       grid-template-columns: repeat(2, 1fr);

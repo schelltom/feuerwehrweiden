@@ -104,4 +104,54 @@ const atemschutz = defineCollection({
   }),
 });
 
-export const collections = { berichte, fahrzeuge, einsaetze, termine, atemschutz };
+/**
+ * Feuerwehr-Bereich (Über uns + Einheiten) – eine Markdown-Datei pro Seite.
+ * Route: /feuerwehr/<bereich>/<dateiname>. Die Bausteine (Kontakt, Personen,
+ * Zeitstrahl, Galerie) sind optional – was da ist, wird gerendert.
+ */
+const seiten = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/seiten' }),
+  schema: z.object({
+    titel: z.string(),
+    bereich: z.enum(['ueber-uns', 'einheiten']),
+    reihenfolge: z.number().default(99),
+    kurz: z.string().default(''),
+    titelbild: z.string().optional(),
+    kontakt: z
+      .object({
+        name: z.string(),
+        telefon: z.string().optional(),
+        fax: z.string().optional(),
+        email: z.string().optional(),
+        bild: z.string().optional(),
+      })
+      .optional(),
+    gruppenfoto: z.object({ bild: z.string(), text: z.string().default('') }).optional(),
+    personen: z
+      .array(
+        z.object({
+          name: z.string(),
+          funktion: z.string().optional(),
+          sachgebiete: z.array(z.string()).default([]),
+          email: z.string().optional(),
+          bild: z.string().optional(),
+        })
+      )
+      .default([]),
+    zeitstrahl: z
+      .array(
+        z.object({
+          zeit: z.string(),
+          titel: z.string(),
+          quelle: z.string().optional(),
+          text: z.string().default(''),
+        })
+      )
+      .default([]),
+    galerie: z
+      .array(z.object({ bild: z.string(), text: z.string().optional() }))
+      .default([]),
+  }),
+});
+
+export const collections = { berichte, fahrzeuge, einsaetze, termine, atemschutz, seiten };

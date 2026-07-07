@@ -156,3 +156,71 @@ collections:
               - { name: eingegangen, label: 'Angeliefert am (JJJJ-MM-TT)', widget: string }
               - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
               - { name: benachrichtigt, label: 'E-Mail wurde verschickt (setzt der Bot automatisch)', widget: boolean, default: false }
+
+  - name: seiten
+    label: 'Feuerwehr-Seiten (Über uns & Einheiten)'
+    label_singular: Seite
+    folder: src/content/seiten
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: titel, label: Titel, widget: string }
+      - name: bereich
+        label: Bereich
+        widget: select
+        options:
+          - { label: 'Über uns', value: ueber-uns }
+          - { label: Einheiten, value: einheiten }
+      - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
+      - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
+      - { name: titelbild, label: Titelbild, widget: image, required: false }
+      - name: kontakt
+        label: 'Kontaktkarte (für Personenseiten)'
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: name, label: Name, widget: string, required: false }
+          - { name: telefon, label: Telefon, widget: string, required: false }
+          - { name: fax, label: Telefax, widget: string, required: false }
+          - { name: email, label: E-Mail, widget: string, required: false }
+          - { name: bild, label: Porträt, widget: image, required: false }
+      - name: gruppenfoto
+        label: Gruppenfoto
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: bild, label: Bild, widget: image, required: false }
+          - { name: text, label: 'Bildunterschrift (Namen)', widget: text, required: false }
+      - name: personen
+        label: Personen
+        widget: list
+        required: false
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: funktion, label: Funktion, widget: string, required: false }
+          - name: sachgebiete
+            label: Sachgebiete
+            widget: list
+            required: false
+            field: { name: eintrag, label: Sachgebiet, widget: string }
+          - { name: email, label: E-Mail, widget: string, required: false }
+          - { name: bild, label: Foto, widget: image, required: false }
+      - name: zeitstrahl
+        label: 'Zeitstrahl (Chronik)'
+        widget: list
+        required: false
+        fields:
+          - { name: zeit, label: 'Jahr/Datum', widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: quelle, label: Quelle, widget: string, required: false }
+          - { name: text, label: Text, widget: text, required: false }
+      - name: galerie
+        label: Bildergalerie
+        widget: list
+        required: false
+        fields:
+          - { name: bild, label: Bild, widget: image }
+          - { name: text, label: Bildunterschrift, widget: string, required: false }
+      - { name: body, label: Seitentext, widget: markdown, required: false }
