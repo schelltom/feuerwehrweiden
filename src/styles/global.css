@@ -385,11 +385,16 @@
     .monitorkarte .was{grid-column:1/-1}
   }
   /* Kompakte Variante (schmale Spalte neben Aktuelles) */
-  .monitorkarte.kompakt li{grid-template-columns:1fr auto;row-gap:5px;padding:13px 18px}
-  .monitorkarte.kompakt .was{grid-column:1/-1;font-size:.9rem}
-  .monitorkarte.kompakt .kopf{padding:13px 18px}
-  .monitorkarte.kompakt .kopf h2{font-size:1.15rem}
-  .monitorkarte.kompakt .fuss{padding:11px 18px;font-size:.9em}
+  .monitorkarte .was .art{font-family:var(--mono);font-weight:700;font-size:.9em}
+  .monitorkarte .was .art.thl{color:#7D9BFF}
+  .monitorkarte .was .art.brand{color:var(--rot-hell)}
+  .monitorkarte.kompakt li{grid-template-columns:1fr;row-gap:1px;padding:8px 16px}
+  .monitorkarte.kompakt .zeit{font-size:.68rem}
+  .monitorkarte.kompakt .was{grid-column:1/-1;font-size:.85rem;font-weight:400;line-height:1.45}
+  .monitorkarte.kompakt .kopf{padding:10px 16px}
+  .monitorkarte.kompakt .kopf h2{font-size:1.05rem}
+  .monitorkarte.kompakt .kopf .t{gap:10px}
+  .monitorkarte.kompakt .fuss{padding:9px 16px;font-size:.82em}
 
   /* ============ Sektionen ============ */
   section{position:relative}

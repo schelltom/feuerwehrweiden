@@ -29,10 +29,9 @@ const neuester = einsaetze[0];
         <li>
           <span class="zeit">{e.datum} · {e.zeit}</span>
           <span class="was">
-            {e.stichwort}
+            <b class:list={['art', e.art === 'Brand' ? 'brand' : 'thl']}>{e.art}</b> – {e.stichwort}
             {i === 0 && <em class="neu">Neu</em>}
           </span>
-          <span class:list={['tagchip', e.art === 'Brand' ? 'brand' : 'thl']}>{e.art}</span>
         </li>
       ))
     }
