@@ -518,10 +518,25 @@
   .notfall .apps a:hover{background:rgba(0,0,0,.25)}
 
   /* ============ News + Termine ============ */
-  .zweispalt{display:grid;grid-template-columns:1.45fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+  .zweispalt{display:grid;grid-template-columns:2.05fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
   @media (max-width:900px){.zweispalt{grid-template-columns:1fr}}
   .news{list-style:none;margin:0;padding:0}
-  .news li{border-bottom:1px solid var(--linie);padding:20px 0;transition:padding-left .25s;position:relative}
+  .news li{
+    border-bottom:1px solid var(--linie);padding:14px 0;position:relative;
+    display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:center;
+    transition:padding-left .25s;
+  }
+  .news .thumb{
+    display:block;width:104px;height:70px;overflow:hidden;
+    border:1px solid var(--linie);background:var(--dunkel2);
+  }
+  .news .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  .news li:hover .thumb img{transform:scale(1.08)}
+  .news .thumb .ohne{
+    display:grid;place-items:center;width:100%;height:100%;
+    color:rgba(255,255,255,.45);
+    background:radial-gradient(80px 50px at 70% 20%, rgba(225,6,0,.35), transparent 70%), var(--dunkel2);
+  }
   .news li::before{
     content:"";position:absolute;left:0;top:50%;width:0;height:2px;background:var(--rot);
     transition:width .25s;transform:translateY(-50%);

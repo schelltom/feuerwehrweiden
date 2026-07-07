@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const berichte = (await getCollection('berichte')).sort(
+    (a, b) => b.data.datum.getTime() - a.data.datum.getTime()
+  );
+  return paginate(berichte, { pageSize: 6 });
+}
+
+const { page } = Astro.props;
+const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+
+<Basis titel="Aktuelles – Feuerwehr Weiden">
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/drohne.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <span class="eyebrow">Aktuelles{page.lastPage > 1 && ` · Seite ${page.currentPage} von ${page.lastPage}`}</span>
+          <h1 class="display">Neues aus der Wehr</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:900px">
+        <ul class="news">
+          {
+            page.data.map((b) => (
+              <li>
+                <a class="thumb" href={`/berichte/${b.id}/`} tabindex="-1" aria-hidden="true">
+                  {b.data.titelbild ? (
+                    <img src={b.data.titelbild} alt="" loading="lazy" />
+                  ) : (
+                    <span class="ohne">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c1 4-3 5-3 9a3 3 0 0 0 6 0c0-2-1-3-1-3s4 1 4 5a6 6 0 0 1-12 0c0-6 5-7 6-11z"/></svg>
+                    </span>
+                  )}
+                </a>
+                <div class="ntext">
+                  <span class="meta">
+                    {datumsformat.format(b.data.datum)}
+                    <b>{b.data.ressort}</b>
+                  </span>
+                  <h3>
+                    <a href={`/berichte/${b.id}/`}>{b.data.titel}</a>
+                  </h3>
+                  {b.data.kurz && <p class="kurz">{b.data.kurz}</p>}
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        {
+          page.lastPage > 1 && (
+            <nav class="blaettern" aria-label="Seiten">
+              {page.url.prev ? (
+                <a href={page.url.prev}>← Neuere Berichte</a>
+              ) : (
+                <span />
+              )}
+              <span class="stand">Seite {page.currentPage} / {page.lastPage}</span>
+              {page.url.next ? (
+                <a href={page.url.next}>Ältere Berichte →</a>
+              ) : (
+                <span />
+              )}
+            </nav>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .kurz {
+    margin: 6px 0 0;
+    color: var(--tinte2);
+    font-size: 0.92rem;
+  }
+  .blaettern {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linie);
+  }
+  .blaettern a {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--tinte);
+  }
+  .blaettern a:hover {
+    color: var(--rot);
+  }
+  .blaettern a:last-child {
+    text-align: right;
+  }
+  .blaettern .stand {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--tinte2);
+  }
+</style>
