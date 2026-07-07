@@ -10,22 +10,31 @@ export async function getStaticPaths() {
 const { fahrzeug } = Astro.props;
 const { Content } = await render(fahrzeug);
 const d = fahrzeug.data;
-const herobild = d.galerie[0]?.bild ?? d.bild;
 ---
 
 <Basis titel={`${d.name} – Fuhrpark – Feuerwehr Weiden`}>
   <main>
     <section class="subhero">
-      <div class="bild" style={`background-image:url(${d.bild})`}></div>
+      <div
+        class="bild"
+        style={d.bild
+          ? `background-image:url(${d.bild})`
+          : 'background:linear-gradient(160deg,#171A22,#0E1116)'}
+      >
+      </div>
       <div class="duster"></div>
       <div class="inhalt">
         <div class="wrap">
           <a class="zurueck" href="/fuhrpark/">← Zurück zum Fuhrpark</a>
           <span class="eyebrow">{d.typ} · {d.standort}</span>
           <h1 class="display">{d.name}</h1>
-          <div class="zeile">
-            <span class="funkruf">{d.funkruf}</span>
-          </div>
+          {
+            d.funkruf && (
+              <div class="zeile">
+                <span class="funkruf">{d.funkruf}</span>
+              </div>
+            )
+          }
         </div>
       </div>
     </section>
@@ -45,14 +54,18 @@ const herobild = d.galerie[0]?.bild ?? d.bild;
           )
         }
 
-        <div class="beschreibung reveal">
-          <Content />
-        </div>
+        {
+          fahrzeug.body?.trim() && (
+            <div class="beschreibung reveal">
+              <Content />
+            </div>
+          )
+        }
 
         <div class="ausstattung">
           {
             d.beladung.length > 0 && (
-              <div>
+              <div class:list={[{ voll: d.ausstattung.length === 0 }]}>
                 <span class="eyebrow">Beladung</span>
                 <h2 class="titel display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
                   Geräteräume
@@ -61,12 +74,19 @@ const herobild = d.galerie[0]?.bild ?? d.bild;
                   {d.beladung.map((b, i) => (
                     <details class="raum" open={i === 0}>
                       <summary>{b.raum}</summary>
-                      <div class="inhalt2">
-                        <ul>
-                          {b.inhalt.map((eintrag) => (
-                            <li>{eintrag}</li>
-                          ))}
-                        </ul>
+                      <div class:list={['inhalt2', { nebeneinander: b.bild && b.inhalt.length > 0 }]}>
+                        {b.inhalt.length > 0 && (
+                          <ul>
+                            {b.inhalt.map((eintrag) => (
+                              <li>{eintrag}</li>
+                            ))}
+                          </ul>
+                        )}
+                        {b.bild && (
+                          <a class="raumbild" href={b.bild} target="_blank" rel="noopener">
+                            <img src={b.bild} alt={`${d.name} – ${b.raum}`} loading="lazy" />
+                          </a>
+                        )}
                       </div>
                     </details>
                   ))}
@@ -114,5 +134,37 @@ const herobild = d.galerie[0]?.bild ?? d.bild;
     color: var(--tinte2);
     font-size: 1.04rem;
     margin-bottom: 54px;
+  }
+  /* Beladung über volle Breite, wenn kein Ausstattungs-Block daneben liegt */
+  .ausstattung > .voll {
+    grid-column: 1 / -1;
+  }
+
+  .raumbild {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--linie);
+    align-self: start;
+  }
+  .raumbild img {
+    display: block;
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .raumbild:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Liste links, Foto rechts – stapelt automatisch, wenn der Platz nicht reicht */
+  .inhalt2.nebeneinander {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: start;
+  }
+  .inhalt2.nebeneinander :global(ul) {
+    columns: 1 !important;
   }
 </style>

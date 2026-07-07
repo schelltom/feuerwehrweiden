@@ -41,7 +41,7 @@ const {
       <div class="wrap">
         <a class="marke" href="/">
           <img src="/bilder/wappen.png" alt="Wappen der Feuerwehr Weiden" width="40" height="48" />
-          <span class="name">Feuerwehr Weiden<small>FREIWILLIGE FEUERWEHR · i.d.OPf.</small></span>
+          <span class="name">Freiwillige Feuerwehr Weiden</span>
         </a>
         <button class="burger" aria-expanded="false" aria-controls="menue" id="burger">
           <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="2"/></svg>
@@ -49,11 +49,12 @@ const {
         </button>
         <nav class="menue" id="menue" aria-label="Hauptmenü">
           <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#bereiche">Feuerwehr</a></li>
             <li><a href="/fuhrpark/">Fuhrpark</a></li>
-            <li><a href="/#einsaetze">Einsätze</a></li>
-            <li><a href="/berichte/">Aktuelles</a></li>
-            <li><a href="/#mitmachen">Mitmachen</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="/#standorte">Ortsteile</a></li>
+            <li><a href="/service/atemschutz/">Service</a></li>
+            <li><a href="/admin/index.html">Login</a></li>
             <li><a class="n112" href="tel:112">Notruf 112</a></li>
           </ul>
         </nav>
@@ -76,7 +77,7 @@ const {
         <div>
           <h3>Service</h3>
           <ul>
-            <li><a href="#">Atemschutz &amp; Schläuche</a></li>
+            <li><a href="/service/atemschutz/">Atemschutzpflegestelle</a></li>
             <li><a href="#">Kalenderexport</a></li>
             <li><a href="/fuhrpark/">Fuhrpark</a></li>
             <li><a href="#">Chronik</a></li>
@@ -103,6 +104,11 @@ const {
 
       /* Alarm-Intro (nur wenn vorhanden) + Startsignal für Hero-Animationen */
       const alarm = document.getElementById('alarm');
+      if (alarm && !location.hash) {
+        // Beim Neuladen nicht an alter Scrollposition weitermachen, sondern oben mit dem Intro starten
+        history.scrollRestoration = 'manual';
+        scrollTo(0, 0);
+      }
       const los = () => document.body.classList.add('los');
       if (!alarm || reduziert) {
         alarm?.remove();
@@ -115,12 +121,12 @@ const {
         const tipp = setInterval(() => {
           ziel.textContent = txt.slice(0, ++i);
           if (i >= txt.length) clearInterval(tipp);
-        }, 20);
+        }, 42); // Tippgeschwindigkeit
         setTimeout(() => {
           alarm.classList.add('weg');
           los();
-        }, 1800);
-        setTimeout(() => alarm.remove(), 2600);
+        }, 5600); // Standzeit der Depesche
+        setTimeout(() => alarm.remove(), 6400);
       }
 
       /* Burger-Menü */

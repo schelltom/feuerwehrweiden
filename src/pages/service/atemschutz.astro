@@ -1,0 +1,216 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+
+const vorgaenge = (await getCollection('atemschutz'))
+  .map((v) => v.data)
+  .filter((v) => v.status !== 'abgeholt');
+
+const abholbereit = vorgaenge.filter((v) => v.status === 'abholbereit');
+const inPflege = vorgaenge.filter((v) => v.status === 'in-pflege');
+const eingegangen = vorgaenge.filter((v) => v.status === 'eingegangen');
+
+const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const formatiere = (iso: string) => datumsformat.format(new Date(iso));
+---
+
+<Basis
+  titel="Atemschutzpflegestelle – Feuerwehr Weiden"
+  beschreibung="Aktueller Status der Atemschutzpflegestelle: Welche Geräte, Masken und Flaschen sind abholbereit?"
+>
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/absturz.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <span class="eyebrow">Service · Pflegestelle</span>
+          <h1 class="display">Atemschutz&shy;pflegestelle</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
+        <p class="intro reveal" style="margin-bottom:36px">
+          Die zentrale Atemschutzwerkstatt in der Hauptfeuerwache pflegt und prüft
+          Atemschutzgeräte, Masken und Flaschen für die Wehren der Umgebung. Hier seht ihr
+          jederzeit den aktuellen Stand eurer Anlieferung – sobald etwas abholbereit ist,
+          bekommt eure Wehr automatisch eine E-Mail.
+        </p>
+
+        <div class="statusblock reveal">
+          <h2 class="display statuskopf bereit">
+            <span class="punkt" aria-hidden="true"></span>
+            Abholbereit <em>({abholbereit.length})</em>
+          </h2>
+          {
+            abholbereit.length === 0 ? (
+              <p class="leer">Aktuell ist nichts abholbereit.</p>
+            ) : (
+              <ul class="vorgaenge">
+                {abholbereit.map((v) => (
+                  <li class="vorgang bereit">
+                    <div>
+                      <b>{v.wehr}</b>
+                      <span>{v.artikel}</span>
+                      {v.hinweis && <em class="hinweis">⚠ {v.hinweis}</em>}
+                    </div>
+                    <time>seit {formatiere(v.eingegangen)}</time>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+
+        <div class="statusblock reveal">
+          <h2 class="display statuskopf pflege">
+            <span class="punkt" aria-hidden="true"></span>
+            In Pflege <em>({inPflege.length})</em>
+          </h2>
+          {
+            inPflege.length === 0 ? (
+              <p class="leer">Derzeit nichts in Bearbeitung.</p>
+            ) : (
+              <ul class="vorgaenge">
+                {inPflege.map((v) => (
+                  <li class="vorgang pflege">
+                    <div>
+                      <b>{v.wehr}</b>
+                      <span>{v.artikel}</span>
+                    </div>
+                    <time>angeliefert {formatiere(v.eingegangen)}</time>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+
+        <div class="statusblock reveal">
+          <h2 class="display statuskopf offen">
+            <span class="punkt" aria-hidden="true"></span>
+            Eingegangen <em>({eingegangen.length})</em>
+          </h2>
+          {
+            eingegangen.length === 0 ? (
+              <p class="leer">Keine offenen Anlieferungen.</p>
+            ) : (
+              <ul class="vorgaenge">
+                {eingegangen.map((v) => (
+                  <li class="vorgang offen">
+                    <div>
+                      <b>{v.wehr}</b>
+                      <span>{v.artikel}</span>
+                    </div>
+                    <time>angeliefert {formatiere(v.eingegangen)}</time>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+
+        <div class="hinweisbox">
+          Anlieferung und Abholung zu den Öffnungszeiten der Hauptfeuerwache,
+          Landgerichtsstraße 13 · Fragen: <a href="tel:+4996139160911">0961 / 391 609-11</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .statusblock {
+    margin-bottom: 44px;
+  }
+  .statuskopf {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin: 0 0 16px;
+  }
+  .statuskopf em {
+    font-style: italic;
+    color: var(--tinte2);
+    font-size: 0.7em;
+  }
+  .statuskopf .punkt {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex: none;
+  }
+  .statuskopf.bereit .punkt {
+    background: #1a9b4e;
+    box-shadow: 0 0 10px rgba(26, 155, 78, 0.7);
+  }
+  .statuskopf.pflege .punkt {
+    background: #e8a300;
+  }
+  .statuskopf.offen .punkt {
+    background: #9aa0ad;
+  }
+  .vorgaenge {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .vorgang {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-left: 4px solid var(--linie);
+    padding: 14px 18px;
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.04);
+  }
+  .vorgang.bereit {
+    border-left-color: #1a9b4e;
+  }
+  .vorgang.pflege {
+    border-left-color: #e8a300;
+  }
+  .vorgang b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-right: 12px;
+  }
+  .vorgang span {
+    color: var(--tinte2);
+    font-size: 0.95rem;
+  }
+  .vorgang .hinweis {
+    display: block;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: #b25f00;
+    margin-top: 4px;
+  }
+  .vorgang time {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--tinte2);
+    white-space: nowrap;
+  }
+  .leer {
+    color: var(--tinte2);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .hinweisbox a {
+    color: var(--rot);
+  }
+</style>

@@ -1,8 +1,16 @@
 ---
+interface Props {
+  ticker?: { datum: string; zeit: string; stichwort: string }[];
+}
+const { ticker = [] } = Astro.props;
+
 const folien = [
   { bild: '/bilder/header/absturz.jpg', titel: 'Absturzsicherung im Einsatz' },
+  { bild: '/bilder/header/nachtbrand.jpg', titel: 'Großbrand bei Nacht' },
   { bild: '/bilder/header/drohne.jpg', titel: 'Drohnengruppe · Lage aus der Luft' },
+  { bild: '/bilder/header/segnung.jpg', titel: 'Fahrzeugsegnung der neuen HLF 20' },
   { bild: '/bilder/header/feldbrand.jpg', titel: 'Vegetationsbrand · Einsatz im Sommer' },
+  { bild: '/bilder/header/garten.jpg', titel: 'Brandeinsatz · Trupp unter Atemschutz' },
 ];
 ---
 
@@ -22,19 +30,16 @@ const folien = [
         <span><b>365 Tage.</b></span>
         <span><b>Für Ihre Sicherheit.</b></span>
       </h1>
-      <p class="sub">
-        Die Freiwillige Feuerwehr Weiden i.d.OPf. – Hauptfeuerwache und fünf Ortsteilwehren, rund
-        um die Uhr bereit für Brand, Unfall und Katastrophe.
-      </p>
+      <p class="sub">Herzlich Willkommen bei der Freiwilligen Feuerwehr Weiden i. d. OPf.</p>
       <div class="cta">
         <a class="btn btn-rot" href="/fuhrpark/">Unsere Fahrzeuge</a>
         <a class="btn btn-glas" href="/#mitmachen">Teil des Teams werden</a>
+        <div class="steuer">
+          <span class="bildtitel" id="bildtitel"></span>
+          <div class="punkte" id="punkte" role="tablist" aria-label="Titelbild wählen"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="steuer">
-    <span class="bildtitel" id="bildtitel"></span>
-    <div class="punkte" id="punkte" role="tablist" aria-label="Titelbild wählen"></div>
   </div>
   <div class="schlauch" aria-hidden="true">
     <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
@@ -42,12 +47,16 @@ const folien = [
         id="schlauchweg"
         class="leitung"
         pathLength="1"
-        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1148,50"></path>
+        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,52"></path>
+      <path
+        class="fuellung"
+        pathLength="1"
+        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,52"></path>
       <path
         class="glanz"
         pathLength="1"
-        d="M-20,59 C180,35 320,71 520,55 C700,41 840,67 1030,53 L1148,47"></path>
-      <g class="rolle">
+        d="M-20,59 C180,35 320,71 520,55 C700,41 840,67 1030,53 L1116,49"></path>
+      <g class="rolle" opacity="0">
         <g>
           <circle r="26" fill="none" stroke="#B00500" stroke-width="7"></circle>
           <circle r="15" fill="none" stroke="#E10600" stroke-width="6"></circle>
@@ -58,7 +67,7 @@ const folien = [
             type="scale"
             from="1"
             to="0.04"
-            begin="2.7s"
+            begin="6.5s"
             dur="3s"
             fill="freeze"></animateTransform>
           <animateTransform
@@ -67,23 +76,55 @@ const folien = [
             type="rotate"
             from="0"
             to="-1080"
-            begin="2.7s"
+            begin="6.5s"
             dur="3s"
             fill="freeze"></animateTransform>
         </g>
-        <animateMotion begin="2.7s" dur="3s" fill="freeze" rotate="auto">
+        <animateMotion begin="6.5s" dur="3s" fill="freeze" rotate="auto">
           <mpath href="#schlauchweg"></mpath>
         </animateMotion>
+        <animate attributeName="opacity" from="0" to="1" begin="6.5s" dur="0.05s" fill="freeze"></animate>
       </g>
-      <g class="kupplung" opacity="0">
-        <rect x="-4" y="-9" width="22" height="18" rx="3" fill="#C9CCD6" stroke="#8A8F9C" stroke-width="1.5"></rect>
-        <rect x="14" y="-6.5" width="9" height="13" rx="2" fill="#AEB3BF"></rect>
-        <animateMotion begin="2.7s" dur="3s" fill="freeze" rotate="auto">
-          <mpath href="#schlauchweg"></mpath>
-        </animateMotion>
-        <animate attributeName="opacity" from="0" to="1" begin="5.5s" dur="0.4s" fill="freeze"></animate>
+      <g class="rohr" opacity="0" transform="translate(1116,52) rotate(-2.7)">
+        <g transform="scale(1.5)">
+          <rect x="0" y="-6" width="7" height="12" rx="1.5" fill="#C9CCD6" stroke="#8A8F9C" stroke-width="1"></rect>
+          <path d="M7,-5 L23,-7 L23,7 L7,5 Z" fill="#3A3F4C"></path>
+          <rect x="12" y="4" width="4.5" height="9" rx="1.5" fill="#22252D"></rect>
+          <rect x="23" y="-8" width="8" height="16" rx="2.5" fill="#E10600"></rect>
+        </g>
+        <animate attributeName="opacity" from="0" to="1" begin="9.6s" dur="0.2s" fill="freeze"></animate>
+        <animateTransform attributeName="transform" additive="sum" type="translate"
+          from="22 0" to="0 0" begin="9.6s" dur="0.45s" fill="freeze"
+          calcMode="spline" keySplines="0.2 0.8 0.3 1" keyTimes="0;1" values="22 0;0 0"></animateTransform>
+      </g>
+      <g class="wasser" transform="translate(1164,50) rotate(-3)">
+        <line x1="2" y1="0" x2="15" y2="-7"></line>
+        <line x1="2" y1="0" x2="18" y2="-2"></line>
+        <line x1="2" y1="0" x2="17" y2="3"></line>
+        <line x1="2" y1="0" x2="13" y2="7"></line>
+        <circle cx="22" cy="-6" r="1.4"></circle>
+        <circle cx="25" cy="-1" r="1.6"></circle>
+        <circle cx="21" cy="5" r="1.3"></circle>
       </g>
     </svg>
+    {
+      ticker.length > 0 && (
+        <div class="schlauchticker">
+          <div class="spur">
+            {[0, 1].map(() => (
+              <span class="haelfte">
+                {[...ticker, ...ticker].map((e, idx) => (
+                  <span class:list={['eintrag', { neu: idx % ticker.length === 0 }]}>
+                    +++ {idx % ticker.length === 0 && <em class="neuchip">Neu</em>}
+                    <b>{e.datum} · {e.zeit}</b> · {e.stichwort}
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </div>
   <div class="verlauf"></div>
 </section>
@@ -93,13 +134,21 @@ const folien = [
   const folien = document.querySelectorAll<HTMLElement>('.hero .folie');
   const punkte = document.getElementById('punkte')!;
   const bildtitel = document.getElementById('bildtitel')!;
-  let aktuelle = 0;
   let timer: ReturnType<typeof setInterval> | null = null;
+
+  // Bei jedem Seitenaufruf eine andere Bild-Reihenfolge (Fisher-Yates)
+  const abfolge = [...folien.keys()];
+  for (let i = abfolge.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [abfolge[i], abfolge[j]] = [abfolge[j], abfolge[i]];
+  }
+  let pos = 0;
 
   folien.forEach((f, i) => {
     const p = document.createElement('button');
     p.setAttribute('aria-label', `Bild ${i + 1}`);
     p.addEventListener('click', () => {
+      pos = abfolge.indexOf(i);
       zeige(i);
       start();
     });
@@ -107,15 +156,39 @@ const folien = [
   });
 
   function zeige(i: number) {
-    aktuelle = i;
     folien.forEach((f, j) => f.classList.toggle('an', j === i));
     punkte.querySelectorAll('button').forEach((b, j) => b.classList.toggle('an', j === i));
     bildtitel.textContent = folien[i].dataset.titel ?? '';
   }
   function start() {
     if (timer) clearInterval(timer);
-    if (!reduziert) timer = setInterval(() => zeige((aktuelle + 1) % folien.length), 6000);
+    if (!reduziert)
+      timer = setInterval(() => {
+        pos = (pos + 1) % abfolge.length;
+        zeige(abfolge[pos]);
+      }, 8000);
   }
-  zeige(0);
+  zeige(abfolge[0]);
   start();
+
+  /* Schlauch-Ticker: je 1 Durchlauf, dann 30 s Ruhe – endlos im Wechsel */
+  const tickerBox = document.querySelector<HTMLElement>('.schlauchticker');
+  const tickerSpur = tickerBox?.querySelector<HTMLElement>('.spur');
+  if (tickerBox && tickerSpur && !reduziert) {
+    let verbleibend = 1;
+    tickerSpur.addEventListener('animationiteration', (e) => {
+      if (e.animationName !== 'schlauchlauf') return; // Blink-Animationen der Kinder ignorieren
+      verbleibend--;
+      if (verbleibend > 0) return;
+      tickerBox.classList.add('ruhe');
+      setTimeout(() => {
+        tickerSpur.style.animationPlayState = 'paused';
+      }, 900);
+      setTimeout(() => {
+        verbleibend = 1;
+        tickerSpur.style.animationPlayState = 'running';
+        tickerBox.classList.remove('ruhe');
+      }, 30000);
+    });
+  }
 </script>

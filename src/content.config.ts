@@ -28,9 +28,12 @@ const fahrzeuge = defineCollection({
   schema: z.object({
     name: z.string(),
     typ: z.string(),
-    funkruf: z.string(),
+    funkruf: z.string().default(''),
     standort: z.string().default('Hauptfeuerwache'),
-    bild: z.string(),
+    kategorie: z.enum(['fahrzeug', 'anhaenger']).default('fahrzeug'),
+    /** In der Fahrzeughalle auf der Startseite zeigen */
+    inHalle: z.boolean().default(false),
+    bild: z.string().default(''),
     reihenfolge: z.number().default(99),
     specs: z
       .array(z.object({ label: z.string(), wert: z.string() }))
@@ -38,7 +41,13 @@ const fahrzeuge = defineCollection({
     ausstattungTitel: z.string().optional(),
     ausstattung: z.array(z.string()).default([]),
     beladung: z
-      .array(z.object({ raum: z.string(), inhalt: z.array(z.string()) }))
+      .array(
+        z.object({
+          raum: z.string(),
+          bild: z.string().optional(),
+          inhalt: z.array(z.string()).default([]),
+        })
+      )
       .default([]),
     galerie: z
       .array(z.object({ bild: z.string(), text: z.string().optional() }))
@@ -74,4 +83,25 @@ const termine = defineCollection({
   }),
 });
 
-export const collections = { berichte, fahrzeuge, einsaetze, termine };
+/**
+ * Atemschutzpflegestelle – Status je Anlieferung.
+ * Beim Wechsel auf "abholbereit" verschickt die GitHub-Action
+ * (.github/workflows/atemschutz-mail.yml) automatisch eine E-Mail an die Wehr.
+ */
+const atemschutz = defineCollection({
+  loader: file('./src/content/daten/atemschutz.json', {
+    parser: (text) => JSON.parse(text).vorgaenge,
+  }),
+  schema: z.object({
+    id: z.string(),
+    wehr: z.string(),
+    email: z.string().default(''),
+    artikel: z.string(),
+    status: z.enum(['eingegangen', 'in-pflege', 'abholbereit', 'abgeholt']),
+    eingegangen: z.string(),
+    hinweis: z.string().default(''),
+    benachrichtigt: z.boolean().default(false),
+  }),
+});
+
+export const collections = { berichte, fahrzeuge, einsaetze, termine, atemschutz };

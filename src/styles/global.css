@@ -49,7 +49,7 @@
     font-size:clamp(1rem,3vw,1.5rem);letter-spacing:.06em;
     border-right:10px solid #fff;padding-right:6px;white-space:pre-wrap;min-height:1.4em;
   }
-  #alarm .balken{height:3px;background:#fff;width:0;margin-top:20px;transition:width 1.2s linear}
+  #alarm .balken{height:3px;background:#fff;width:0;margin-top:20px;transition:width 5.2s linear}
   #alarm.laeuft .balken{width:100%}
 
   @media (prefers-reduced-motion:reduce){
@@ -73,7 +73,7 @@
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:13px;padding-bottom:13px}
   .marke{display:flex;align-items:center;gap:13px;text-decoration:none}
   .marke img{width:40px;height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
-  .marke .name{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:1.02;font-size:1.05rem}
+  .marke .name{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:1.02;font-size:1.2rem;letter-spacing:.04em}
   .marke .name small{display:block;font-family:var(--mono);font-weight:400;text-transform:none;font-size:.62rem;letter-spacing:.14em;opacity:.65}
   nav.menue ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
   nav.menue a{
@@ -114,13 +114,14 @@
   }
 
   /* ============ Hero ============ */
-  .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;color:#fff}
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-start;overflow:hidden;color:#fff}
   .hero .folie{
-    position:absolute;inset:-6%;opacity:0;transition:opacity 1.3s ease;
+    position:absolute;inset:-6%;opacity:0;transition:opacity 2.2s ease-in-out;
     background-position:center 35%;background-size:cover;background-repeat:no-repeat;
     will-change:transform,opacity;
+    animation:kenburns 18s ease-in-out infinite alternate;
   }
-  .hero .folie.an{opacity:1;animation:kenburns 14s ease-in-out infinite alternate}
+  .hero .folie.an{opacity:1}
   @keyframes kenburns{from{transform:scale(1) translateX(0)}to{transform:scale(1.1) translateX(-1.2%)}}
   .hero .duster{
     position:absolute;inset:0;
@@ -135,7 +136,21 @@
     animation:wechsellicht 3s ease-in-out infinite;
   }
   @keyframes wechsellicht{0%,100%{opacity:.62}50%{opacity:.28}}
-  .hero .inhalt{position:relative;z-index:2;width:100%;padding:140px 0 170px}
+  .hero .inhalt{position:relative;z-index:2;width:100%;padding:clamp(196px,26vh,250px) 0 clamp(72px,10vh,140px)}
+  /* Niedrige Bildschirme (13-Zoll-Laptops): kompakter Hero, Schlauch sicher im Bild */
+  @media (max-height:860px){
+    .hero h1{font-size:clamp(2.2rem,6.2vw,3.8rem)}
+    .hero p.sub{margin:14px 0 20px;font-size:.98rem;max-width:48ch}
+    .hero .funkspruch{margin-bottom:12px}
+    .hero .inhalt{padding-top:172px;padding-bottom:96px}
+    .hero .schlauch{top:54px}
+    .btn{padding:12px 24px;font-size:.92rem}
+  }
+  @media (max-height:700px){
+    .hero h1{font-size:clamp(2rem,5.5vw,3.1rem)}
+    .hero p.sub{display:none}
+    .hero .inhalt{padding-top:160px}
+  }
   .hero .funkspruch{
     font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
     display:flex;align-items:center;gap:10px;margin-bottom:20px;color:#EDEFF4;
@@ -172,8 +187,8 @@
   .btn-glas{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);color:#fff;backdrop-filter:blur(6px)}
   .btn-glas:hover{background:rgba(255,255,255,.22)}
   .hero .steuer{
-    position:absolute;right:24px;bottom:150px;z-index:3;
     display:flex;align-items:center;gap:14px;
+    margin-left:auto;
   }
   .hero .bildtitel{
     font-family:var(--mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;
@@ -186,9 +201,9 @@
     transition:background .3s;
   }
   .hero .punkte button.an{background:var(--rot-hell)}
-  @media (max-width:640px){.hero .bildtitel{display:none}.hero .steuer{bottom:130px}}
+  @media (max-width:640px){.hero .bildtitel{display:none}.hero .steuer{margin-left:0}}
   .hero .schlauch{
-    position:absolute;left:0;right:0;bottom:96px;z-index:2;pointer-events:none;
+    position:absolute;left:0;right:0;top:clamp(58px,7vh,86px);z-index:2;pointer-events:none;
   }
   .hero .schlauch svg{display:block;width:100%;height:90px}
   .hero .schlauch .leitung{
@@ -196,6 +211,15 @@
     filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));
     stroke-dasharray:1;stroke-dashoffset:1;
   }
+  .hero .schlauch .fuellung{
+    fill:none;stroke:#FF3B30;stroke-width:13;stroke-linecap:round;
+    stroke-dasharray:1;stroke-dashoffset:1;opacity:.92;
+    filter:drop-shadow(0 3px 7px rgba(0,0,0,.4));
+  }
+  body.los .hero .schlauch .fuellung{
+    animation:fuellen 3.6s ease-in 10.6s forwards;
+  }
+  @keyframes fuellen{to{stroke-dashoffset:0}}
   .hero .schlauch .glanz{
     fill:none;stroke:rgba(255,255,255,.4);stroke-width:2;stroke-linecap:round;
     stroke-dasharray:1;stroke-dashoffset:1;
@@ -209,13 +233,42 @@
     .hero .schlauch .leitung,.hero .schlauch .glanz{stroke-dashoffset:0}
     .hero .schlauch .rolle{display:none}
   }
+  .hero .schlauch .wasser{opacity:0}
+  .hero .schlauch .wasser line{stroke:#8CC1FF;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:18;stroke-dashoffset:18}
+  .hero .schlauch .wasser circle{fill:#B7D9FF}
+  body.los .hero .schlauch .wasser{animation:spritzstoss 9s ease-in-out 14.2s infinite}
+  body.los .hero .schlauch .wasser line{animation:strahl 9s linear 14.2s infinite}
+  @keyframes spritzstoss{0%{opacity:0}4%{opacity:1}16%{opacity:.9}23%,100%{opacity:0}}
+  @keyframes strahl{0%{stroke-dashoffset:18}9%,19%{stroke-dashoffset:0}25%,100%{stroke-dashoffset:18}}
+  .schlauchticker{
+    overflow:hidden;white-space:nowrap;margin-top:-4px;
+    transition:opacity .9s ease;
+    mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  }
+  .schlauchticker.ruhe{opacity:0}
+  .schlauchticker .spur{display:inline-block;animation:schlauchlauf 60s linear infinite}
+  .schlauchticker .haelfte{display:inline-block}
+  .schlauchticker .eintrag{
+    font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;
+    color:#C9CDD6;text-shadow:0 1px 10px rgba(0,0,0,.95);margin-right:44px;
+    font-variant-numeric:tabular-nums;
+  }
+  .schlauchticker .eintrag b{color:#fff;font-weight:700}
+  .schlauchticker .eintrag.neu{color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+  .schlauchticker .neuchip{
+    display:inline-block;font-style:normal;background:var(--rot);color:#fff;
+    font-size:.6rem;letter-spacing:.2em;padding:2px 8px 1px;margin-right:10px;
+    vertical-align:1px;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+    animation:blink 1.6s infinite;
+  }
+  @keyframes schlauchlauf{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .hero .verlauf{
     position:absolute;left:0;right:0;bottom:0;height:120px;z-index:1;
     background:linear-gradient(to bottom,transparent,var(--grund));
   }
 
-  /* ============ Einsatzmonitor (prominent) ============ */
-  .monitorband{position:relative;z-index:5;margin-top:-92px}
+  /* ============ Einsatzmonitor ============ */
   .monitorkarte{
     background:var(--dunkel);color:#fff;border:1px solid rgba(255,255,255,.08);
     box-shadow:0 30px 70px rgba(14,17,22,.35);
@@ -267,10 +320,15 @@
   .monitorkarte .fuss a:hover{color:var(--rot-hell)}
   .monitorkarte .fuss span{font-family:var(--mono);font-size:.66rem;color:var(--silber);opacity:.6;letter-spacing:.12em}
   @media (max-width:640px){
-    .monitorband{margin-top:-120px}
     .monitorkarte li{grid-template-columns:1fr auto;row-gap:6px}
     .monitorkarte .was{grid-column:1/-1}
   }
+  /* Kompakte Variante (schmale Spalte neben Aktuelles) */
+  .monitorkarte.kompakt li{grid-template-columns:1fr auto;row-gap:5px;padding:13px 18px}
+  .monitorkarte.kompakt .was{grid-column:1/-1;font-size:.9rem}
+  .monitorkarte.kompakt .kopf{padding:13px 18px}
+  .monitorkarte.kompakt .kopf h2{font-size:1.15rem}
+  .monitorkarte.kompakt .fuss{padding:11px 18px;font-size:.9em}
 
   /* ============ Sektionen ============ */
   section{position:relative}

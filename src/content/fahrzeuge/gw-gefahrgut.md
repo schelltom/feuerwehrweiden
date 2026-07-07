@@ -1,15 +1,103 @@
 ---
-name: GW-Gefahrgut
-typ: Gerätewagen Gefahrgut
-funkruf: FLORIAN WEIDEN 2/52/1
-standort: Hauptfeuerwache
+name: "GW-Gefahrgut"
+typ: "Gerätewagen Gefahrgut"
+funkruf: "FLORIAN WEIDEN 2/52/1"
+standort: "Hauptfeuerwache"
+kategorie: fahrzeug
+inHalle: true
 bild: /bilder/fahrzeuge/gwg.jpg
-reihenfolge: 7
-specs:
-  - label: Fahrzeugart
-    wert: Gerätewagen Gefahrgut
-  - label: Funkrufname
-    wert: Florian Weiden 2/52/1
+reihenfolge: 12
+beladung:
+  - raum: "Geräteraum 1"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-1.jpg"
+    inhalt:
+      - "Rettungsplattform"
+      - "Stromerzeuger 14 KVA"
+      - "Leitungsroller 400 V"
+      - "Edelstahl-Krankentrage"
+      - "Räumgeräte funkenfrei"
+      - "Faltbehälter 3000 Liter"
+      - "Otterwanne"
+      - "Beleuchtungssatz"
+      - "Auffangwannen"
+  - raum: "Geräteraum 2"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-2.jpg"
+    inhalt:
+      - "Sicherheitsstiefel - Gefahrgut"
+      - "Schutzkleidung Form II"
+      - "Chemikalienschutzhandschuhe"
+      - "Feuerlöscher"
+      - "Schnelleinsatzzelt mit Heizung und Beleuchtung"
+      - "Probenahmeset"
+      - "Verkehrsleitkegel"
+      - "Tragbare Körperdusche"
+      - "Erste Hilfe Ausstattung"
+      - "Verkehrswarnleuchten \"Euroblitz\""
+  - raum: "Geräteraum 3"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-3.jpg"
+    inhalt:
+      - "Chemikalienschutzanzüge Form III"
+      - "Gebläsefilterhauben"
+      - "Saug-Druckbehälter Edelstahl"
+      - "Bergefass"
+      - "Auffangwannen PVC"
+      - "Leitungsroller 400 V und 230V"
+      - "Gefahrgutumfüllpumpe als Kreiselpumpe"
+  - raum: "Geräteraum 4"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-4.jpg"
+    inhalt:
+      - "Atemschutzgeräte mit Masken und Filter"
+      - "Ablagetische"
+      - "Kompass"
+      - "Windmesser und Fernglas"
+      - "Fernthermometer"
+      - "Setolight Power LED"
+      - "Kontaminationsnachweisgeräte"
+      - "Koffer mit ABC Messkonzept \"Bayern\""
+      - "Überdrucklüfter \"EX\""
+  - raum: "Geräteraum 5"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-5.jpg"
+    inhalt:
+      - "Auffangbehälter"
+      - "Saug- und Drucklutten"
+      - "Edelstahlkanister"
+      - "Zubehör für Saug-Druckbehälter"
+      - "Handwerkzeugkoffer"
+      - "Be- und Entlüftungsgerät \"EX\""
+      - "Fasskarre"
+      - "Rollplattform"
+  - raum: "Geräteraum 6"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-6.jpg"
+    inhalt:
+      - "Schnellangriff Strom"
+      - "Schnellangriff Luft"
+      - "Zubehör Schlauchfolie"
+      - "Rollplattform"
+      - "fahrbare Hygienestation"
+      - "Strahlenschutzmessgeräte"
+      - "Photoionisationsdetektor PID"
+      - "Mehrgasmessgerät"
+      - "EX - Messgerät"
+      - "Adalit-Lampen"
+      - "Quecksilberaufnahmeset"
+      - "HRT - ATEX"
+  - raum: "Heck"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-7.jpg"
+    inhalt:
+      - "Rollcontainer \"Erstangriff\""
+      - "Rollcontainer \"Auffangen Pumpen leicht\""
+      - "Rollcontainer \"Umpumpen\""
+      - "Rollcontainer \"Dekontamination\""
+  - raum: "Heck ohne Rollcontainer"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-8.jpg"
+    inhalt:
+      - "Gefahrgutschläuche"
+      - "Folienschlauch"
+      - "Folienrolle"
+      - "Sitzgelegenheit"
+      - "Abgasschlauch"
+      - "Aufstiegshilfen dreiteilig"
+  - raum: "Lichtmast und Markise"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-9.jpg"
 ---
 
-Für Einsätze mit gefährlichen Stoffen: Messtechnik, Schutzanzüge und Auffangbehälter an Bord.

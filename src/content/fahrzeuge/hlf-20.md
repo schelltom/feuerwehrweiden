@@ -1,15 +1,87 @@
 ---
-name: HLF 20
-typ: Hilfeleistungslöschgruppenfahrzeug
-funkruf: FLORIAN WEIDEN 1/40/1
-standort: Hauptfeuerwache
+name: "HLF 20"
+typ: "Hilfeleistungslöschgruppenfahrzeug"
+funkruf: "FLORIAN WEIDEN 1/40/1"
+standort: "Hauptfeuerwache"
+kategorie: fahrzeug
+inHalle: true
 bild: /bilder/fahrzeuge/hlf.jpg
-reihenfolge: 2
-specs:
-  - label: Fahrzeugart
-    wert: Hilfeleistungslöschgruppenfahrzeug
-  - label: Funkrufname
-    wert: Florian Weiden 1/40/1
+reihenfolge: 4
+beladung:
+  - raum: "Geräteraum 1"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-1.jpg"
+    inhalt:
+      - "Rettungsspreizer"
+      - "Rettungsschere"
+      - "Rettungszylinder"
+      - "Pedalschneider"
+      - "Bereitstellungsplane"
+      - "Schwelleraufsatz"
+      - "Stabilisierungsset \"Stab Fast\""
+      - "Bolzenschneider"
+      - "Faltleitkegel"
+      - "Halligantool"
+      - "Räumgeräte"
+      - "Euroblitzer"
+      - "Hebekissen"
+      - "Rettungsbrett"
+  - raum: "Geräteraum 2"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-2.jpg"
+    inhalt:
+      - "Stromerzeuger"
+      - "Kabeltrommeln"
+      - "Motorsäge mit Zubehör"
+      - "Schweinwerfer u. Stativ"
+      - "Trennschleifer"
+      - "Anschlagmittel"
+      - "Mehrzweckzug"
+  - raum: "Geräteraum 3"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-3.jpg"
+    inhalt:
+      - "Unterbaumaterial"
+      - "Sprungpolster SP 16"
+      - "Auffangwanne \"Otter\""
+      - "Verkehrsunfall Einsatzkoffer"
+      - "Absturzsicherungssatz"
+  - raum: "Geräteraum 4"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-4.jpg"
+    inhalt:
+      - "Standrohr mit Zubehör"
+      - "Wassersauger mit Zubehör"
+      - "Sperrwerkzeug"
+      - "Werkzeugkasten"
+      - "Elektrowerkzeug"
+      - "Chemiekalienschutzanzüge"
+  - raum: "Geräteraum 5"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-5.jpg"
+    inhalt:
+      - "Verteiler mit B-Schlauch"
+      - "Mulden"
+      - "Überdrucklüfter"
+      - "Schlauchtragekörbe"
+      - "Rauchschutzvorhang"
+      - "B-Schläuche"
+      - "C-Schläuche"
+      - "Ölbindemittel"
+      - "Faltleitkegel"
+  - raum: "Geräteraum 6"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-6.jpg"
+    inhalt:
+      - "Strahlrohre"
+      - "Stützkrümmer"
+      - "Absaugpumpe"
+      - "Atemschutznotfalltasche"
+      - "Feuerlöscher"
+      - "C-Schnellangriffschlauch"
+      - "B-Schlauch mit Verteiler"
+      - "Hygieneboard"
+      - "Kanister"
+  - raum: "Heckansicht / Pumpenbedienstand"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-7.jpg"
+    inhalt:
+      - "Druckluftschaumanlage"
+      - "Wassertank 1650 Liter"
+      - "Schaumtank Brandklasse \"B\" 150 Liter"
+      - "Schaumtank Brandklasse \"A\" 50 Liter"
 ---
 
-Das HLF 20 ist das Arbeitstier der Wehr: Brandbekämpfung und technische Hilfeleistung in einem Fahrzeug – 2026 neu in Dienst gestellt.

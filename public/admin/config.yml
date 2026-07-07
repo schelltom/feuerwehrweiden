@@ -51,9 +51,17 @@ collections:
     fields:
       - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
       - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
-      - { name: funkruf, label: Funkrufname, widget: string, hint: 'z.B. FLORIAN WEIDEN 1/40/1' }
-      - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache }
-      - { name: bild, label: Hauptbild, widget: image }
+      - { name: funkruf, label: Funkrufname, widget: string, required: false, hint: 'z.B. FLORIAN WEIDEN 1/40/1 (Anhänger: leer lassen)' }
+      - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache, hint: 'Hauptfeuerwache oder z.B. FF Rothenstadt' }
+      - name: kategorie
+        label: Kategorie
+        widget: select
+        options:
+          - { label: Fahrzeug, value: fahrzeug }
+          - { label: Anhänger, value: anhaenger }
+        default: fahrzeug
+      - { name: inHalle, label: 'In der Fahrzeughalle auf der Startseite zeigen', widget: boolean, default: false }
+      - { name: bild, label: Hauptbild, widget: image, required: false }
       - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }
       - name: specs
         label: Eckdaten
@@ -74,9 +82,11 @@ collections:
         required: false
         fields:
           - { name: raum, label: Geräteraum, widget: string }
+          - { name: bild, label: 'Foto des Geräteraums (erscheint im Aufklapp-Kasten)', widget: image, required: false }
           - name: inhalt
             label: Inhalt
             widget: list
+            required: false
             field: { name: eintrag, label: Eintrag, widget: string }
       - name: galerie
         label: Bildergalerie
@@ -116,3 +126,33 @@ collections:
               - { name: titel, label: Titel, widget: string }
               - { name: von, label: 'Beginn (HH:MM)', widget: string }
               - { name: bis, label: 'Ende (HH:MM)', widget: string }
+
+  - name: pflegestelle
+    label: Atemschutzpflegestelle
+    files:
+      - name: atemschutz
+        label: Anlieferungen & Status
+        file: src/content/daten/atemschutz.json
+        fields:
+          - name: vorgaenge
+            label: Vorgänge
+            label_singular: Vorgang
+            widget: list
+            summary: '{{fields.wehr}} – {{fields.artikel}} ({{fields.status}})'
+            fields:
+              - { name: id, label: 'ID (z.B. 2026-07-06-etzenricht)', widget: string }
+              - { name: wehr, label: Wehr, widget: string }
+              - { name: email, label: 'E-Mail der Wehr (für Benachrichtigung)', widget: string, required: false, default: '' }
+              - { name: artikel, label: 'Was wurde angeliefert?', widget: string, hint: 'z.B. 2 Geräte, 4 Masken, Flaschen TÜV' }
+              - name: status
+                label: Status
+                widget: select
+                options:
+                  - { label: 'Eingegangen', value: eingegangen }
+                  - { label: 'In Pflege', value: in-pflege }
+                  - { label: 'Abholbereit (löst E-Mail aus)', value: abholbereit }
+                  - { label: 'Abgeholt (verschwindet von der Seite)', value: abgeholt }
+                default: eingegangen
+              - { name: eingegangen, label: 'Angeliefert am (JJJJ-MM-TT)', widget: string }
+              - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
+              - { name: benachrichtigt, label: 'E-Mail wurde verschickt (setzt der Bot automatisch)', widget: boolean, default: false }

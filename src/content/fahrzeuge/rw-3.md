@@ -1,15 +1,101 @@
 ---
-name: RW 3
-typ: Rüstwagen · schwere technische Hilfe
-funkruf: FLORIAN WEIDEN 1/61/1
-standort: Hauptfeuerwache
+name: "RW 3"
+typ: "Rüstwagen · schwere technische Hilfe"
+funkruf: "FLORIAN WEIDEN 1/61/1"
+standort: "Hauptfeuerwache"
+kategorie: fahrzeug
+inHalle: true
 bild: /bilder/fahrzeuge/rw3.jpg
-reihenfolge: 4
-specs:
-  - label: Fahrzeugart
-    wert: Rüstwagen
-  - label: Funkrufname
-    wert: Florian Weiden 1/61/1
+reihenfolge: 10
+beladung:
+  - raum: "Geräteraum 1"
+    bild: "/bilder/fahrzeuge/detail/rw-3-1.jpg"
+    inhalt:
+      - "Flutlichtstrahler mit Stativ"
+      - "Tauchpumpe"
+      - "Kabeltrommeln"
+      - "Bolzenschneider"
+      - "Spaten"
+      - "Rettungsboot"
+      - "Schwimmwesten"
+  - raum: "Geräteraum 2"
+    bild: "/bilder/fahrzeuge/detail/rw-3-2.jpg"
+    inhalt:
+      - "Handlampen"
+      - "Mehrzweckzug Z 32"
+      - "Büffelheber"
+      - "Airbagsicherung"
+      - "Rettungszylinder Ölbinder"
+      - "Feuerlöscher"
+      - "Warnleuchten"
+      - "Faltsignale"
+  - raum: "Geräteraum 3"
+    bild: "/bilder/fahrzeuge/detail/rw-3-3.jpg"
+    inhalt:
+      - "Wassersauger mit Zubehör"
+      - "Sperrwerkzeug"
+      - "Motortrennschleifer"
+      - "Rettungssäge \"Wimutec\""
+      - "Zubehör für Hebekissen"
+  - raum: "Geräteraum 4"
+    bild: "/bilder/fahrzeuge/detail/rw-3-4.jpg"
+    inhalt:
+      - "Beladung G4 Rettungsspreizer SP 45"
+      - "Rettungsschere S 260"
+      - "Schwelleraufsatz"
+      - "Gurtmesser"
+      - "Folien"
+      - "Räumgerät"
+  - raum: "Geräteraum 5"
+    bild: "/bilder/fahrzeuge/detail/rw-3-5.jpg"
+    inhalt:
+      - "Unterbaumaterial"
+      - "Hebekissen"
+      - "C-Schläuche"
+      - "Schleiftragekorb"
+      - "Dreibock für Rollgliss"
+  - raum: "Geräteraum 6"
+    bild: "/bilder/fahrzeuge/detail/rw-3-6.jpg"
+    inhalt:
+      - "Stromerzeuger 23 kVA"
+      - "Lichtmaststeuerung"
+      - "Verkehrsleitkegel"
+      - "Starthilfekabel"
+  - raum: "Geräteraum 7"
+    bild: "/bilder/fahrzeuge/detail/rw-3-7.jpg"
+    inhalt:
+      - "Pressluftflaschen"
+      - "Hebesatz H2"
+      - "Mulden"
+      - "Plasmaschneidgerät"
+      - "Anschlagmaterial"
+  - raum: "Geräteraum 8"
+    bild: "/bilder/fahrzeuge/detail/rw-3-8.jpg"
+    inhalt:
+      - "Unterlegkeile"
+      - "Schäkel"
+      - "Baukrallen"
+      - "Schraubstock"
+      - "Werkzeugkasten \"Metall\""
+      - "Werkzeugkasten \"Holz\""
+      - "Werkzeugkasten \"Elektro\""
+      - "Akkuschrauber"
+      - "Bohrhammer"
+  - raum: "Heck"
+    bild: "/bilder/fahrzeuge/detail/rw-3-9.jpg"
+    inhalt:
+      - "Holzbohlen"
+      - "Kanalstreben"
+      - "Rollgliss"
+      - "Gerätesatz Absturzsicherung"
+      - "Arbeitsleinen"
+      - "Feuerwehrleinen"
+  - raum: "Seilwinde"
+    bild: "/bilder/fahrzeuge/detail/rw-3-10.jpg"
+    inhalt:
+      - "Fa. HPC, Seillänge nach vorne 62 Meter"
+      - "nach hinten 31 Meter"
+      - "Zugkraft nach vorne 60 kN"
+      - "nach hinten 120 kN"
 ---
 
-Der Rüstwagen 3 ist für schwere technische Hilfeleistungen ausgerüstet – von Verkehrsunfällen bis zu Bau-Unglücken.

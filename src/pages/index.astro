@@ -19,6 +19,7 @@ const termine = (await getCollection('termine'))
   .sort((a, b) => a.datum.getTime() - b.datum.getTime());
 
 const fahrzeuge = (await getCollection('fahrzeuge'))
+  .filter((f) => f.data.inHalle)
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge)
   .map((f) => ({
     id: f.id,
@@ -34,8 +35,62 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
 
 <Basis mitAlarm={true}>
   <main>
-    <Hero />
-    <Einsatzmonitor einsaetze={einsaetze} />
+    <Hero ticker={einsaetze.slice(0, 4)} />
+
+    <section id="aktuelles">
+      <div class="wrap" style="padding-top:clamp(40px,5vw,64px)">
+        <div class="zweispalt">
+          <div>
+            <span class="eyebrow">Aktuelles</span>
+            <h2 class="titel display reveal">Neues aus der Wehr</h2>
+            <ul class="news reveal">
+              {
+                berichte.map((b) => (
+                  <li>
+                    <span class="meta">
+                      {datumsformat.format(b.data.datum)}
+                      <b>{b.data.ressort}</b>
+                    </span>
+                    <h3>
+                      <a href={`/berichte/${b.id}/`}>{b.data.titel}</a>
+                    </h3>
+                  </li>
+                ))
+              }
+            </ul>
+            <p style="margin-top:18px">
+              <a href="/berichte/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Alle Berichte ansehen →</a>
+            </p>
+          </div>
+          <div style="display:grid;gap:38px;align-content:start">
+            <Einsatzmonitor einsaetze={einsaetze} kompakt />
+            <div>
+              <span class="eyebrow">Termine</span>
+              <h2 class="titel display reveal" style="font-size:clamp(1.5rem,2.6vw,2rem)">Nächste Übungen</h2>
+              <ul class="termine reveal">
+                {
+                  termine.map((t) => (
+                    <li class="termin">
+                      <div class="tag">
+                        <b>{t.datum.getDate()}</b>
+                        <span>{monate[t.datum.getMonth()]}</span>
+                      </div>
+                      <div class="info">
+                        <b>{t.titel}</b>
+                        <span>{t.von} – {t.bis}</span>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ul>
+              <p style="margin-top:18px">
+                <a href="#" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Kalender abonnieren →</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="zahlen">
       <div class="wrap">
@@ -62,58 +117,6 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
         </div>
       </div>
     </div>
-
-    <section id="aktuelles">
-      <div class="wrap">
-        <div class="zweispalt">
-          <div>
-            <span class="eyebrow">Aktuelles</span>
-            <h2 class="titel display reveal">Neues aus der Wehr</h2>
-            <ul class="news reveal">
-              {
-                berichte.map((b) => (
-                  <li>
-                    <span class="meta">
-                      {datumsformat.format(b.data.datum)}
-                      <b>{b.data.ressort}</b>
-                    </span>
-                    <h3>
-                      <a href={`/berichte/${b.id}/`}>{b.data.titel}</a>
-                    </h3>
-                  </li>
-                ))
-              }
-            </ul>
-            <p style="margin-top:18px">
-              <a href="/berichte/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Alle Berichte ansehen →</a>
-            </p>
-          </div>
-          <div>
-            <span class="eyebrow">Termine</span>
-            <h2 class="titel display reveal" style="font-size:clamp(1.7rem,3vw,2.3rem)">Nächste Übungen</h2>
-            <ul class="termine reveal">
-              {
-                termine.map((t) => (
-                  <li class="termin">
-                    <div class="tag">
-                      <b>{t.datum.getDate()}</b>
-                      <span>{monate[t.datum.getMonth()]}</span>
-                    </div>
-                    <div class="info">
-                      <b>{t.titel}</b>
-                      <span>{t.von} – {t.bis}</span>
-                    </div>
-                  </li>
-                ))
-              }
-            </ul>
-            <p style="margin-top:18px">
-              <a href="#" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Kalender abonnieren →</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="mitmachen" id="mitmachen">
       <div class="wrap" style="padding-top:0">

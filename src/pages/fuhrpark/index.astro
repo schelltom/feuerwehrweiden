@@ -2,19 +2,27 @@
 import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 
-const fahrzeuge = (await getCollection('fahrzeuge')).sort(
+const alle = (await getCollection('fahrzeuge')).sort(
   (a, b) => a.data.reihenfolge - b.data.reihenfolge
 );
+
+const hauptwache = alle.filter(
+  (f) => f.data.kategorie === 'fahrzeug' && f.data.standort === 'Hauptfeuerwache'
+);
+const ortsteile = alle.filter(
+  (f) => f.data.kategorie === 'fahrzeug' && f.data.standort !== 'Hauptfeuerwache'
+);
+const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
 ---
 
 <Basis titel="Fuhrpark – Feuerwehr Weiden">
   <main>
-    <section class="subhero" style="min-height:44svh">
+    <section class="subhero" style="min-height:48svh">
       <div class="bild" style="background-image:url(/bilder/fahrzeuge/dlak.jpg)"></div>
       <div class="duster"></div>
       <div class="inhalt">
         <div class="wrap">
-          <span class="eyebrow">Fahrzeuge &amp; Anhänger</span>
+          <span class="eyebrow">{hauptwache.length + ortsteile.length} Fahrzeuge · {anhaenger.length} Anhänger</span>
           <h1 class="display">Unser Fuhrpark</h1>
         </div>
       </div>
@@ -22,21 +30,73 @@ const fahrzeuge = (await getCollection('fahrzeuge')).sort(
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
-        <div class="fuhrparkliste">
-          {
-            fahrzeuge.map((f) => (
-              <a class="fahrzeugkarte reveal" href={`/fuhrpark/${f.id}/`}>
-                <div class="bildbox">
+        <div class="gruppe">
+          <span class="eyebrow">Standort Landgerichtsstraße</span>
+          <h2 class="titel display reveal">Hauptfeuerwache</h2>
+          <div class="mosaik">
+            {
+              hauptwache.map((f, i) => (
+                <a class="fzk reveal" href={`/fuhrpark/${f.id}/`}>
+                  <img src={f.data.bild} alt={f.data.name} loading={i < 3 ? 'eager' : 'lazy'} />
+                  <span class="schatten" aria-hidden="true" />
+                  <span class="txt">
+                    <em>{f.data.typ}</em>
+                    <b>{f.data.name}</b>
+                    {f.data.funkruf && <i>{f.data.funkruf}</i>}
+                  </span>
+                  <span class="pfeil" aria-hidden="true">↗</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="gruppe">
+          <span class="eyebrow">Frauenricht · Mallersricht · Muglhof · Neunkirchen · Rothenstadt</span>
+          <h2 class="titel display reveal">Ortsteilwehren</h2>
+          <div class="mosaik">
+            {
+              ortsteile.map((f) => (
+                <a class="fzk reveal" href={`/fuhrpark/${f.id}/`}>
                   <img src={f.data.bild} alt={f.data.name} loading="lazy" />
-                </div>
-                <div class="txt">
-                  <span class="typ">{f.data.typ}</span>
-                  <h2>{f.data.name}</h2>
-                  <span class="funk">{f.data.funkruf}</span>
-                </div>
-              </a>
-            ))
-          }
+                  <span class="schatten" aria-hidden="true" />
+                  <span class="txt">
+                    <em>{f.data.standort}</em>
+                    <b>{f.data.name}</b>
+                    {f.data.funkruf && <i>{f.data.funkruf}</i>}
+                  </span>
+                  <span class="pfeil" aria-hidden="true">↗</span>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="gruppe" style="margin-bottom:0">
+          <span class="eyebrow">Sonderausrüstung auf Rädern</span>
+          <h2 class="titel display reveal">Anhänger</h2>
+          <div class="anhaengerband">
+            {
+              anhaenger.map((f) => (
+                <a class="anh reveal" href={`/fuhrpark/${f.id}/`}>
+                  {
+                    f.data.bild ? (
+                      <img src={f.data.bild} alt={f.data.name} loading="lazy" />
+                    ) : (
+                      <span class="ohne" aria-hidden="true">
+                        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15h13v-6a2 2 0 0 1 2-2h5M15 15h4m3 0h-3m-3.5 2.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M2 15v-4h6v4"/></svg>
+                      </span>
+                    )
+                  }
+                  <span class="schatten" aria-hidden="true"></span>
+                  <span class="txt">
+                    <em>{f.data.typ}</em>
+                    <b>{f.data.name}</b>
+                  </span>
+                </a>
+              ))
+            }
+          </div>
         </div>
       </div>
     </section>
@@ -44,68 +104,197 @@ const fahrzeuge = (await getCollection('fahrzeuge')).sort(
 </Basis>
 
 <style>
-  .fuhrparkliste {
+  .gruppe {
+    margin-bottom: clamp(56px, 8vw, 96px);
+  }
+  .gruppe .titel {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    margin-bottom: 26px;
+  }
+
+  /* ---- Einheitliches Raster: 4 nebeneinander ---- */
+  .mosaik {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
   }
-  @media (max-width: 960px) {
-    .fuhrparkliste {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (max-width: 600px) {
-    .fuhrparkliste {
-      grid-template-columns: 1fr;
-    }
-  }
-  .fahrzeugkarte {
-    background: var(--karte);
-    border: 1px solid var(--linie);
+  .fzk {
+    position: relative;
+    overflow: hidden;
+    display: block;
     text-decoration: none;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.04);
+    color: #fff;
+    background: var(--dunkel2);
+    aspect-ratio: 16 / 11;
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .fahrzeugkarte:hover {
+  .fzk:hover {
     transform: translateY(-5px);
-    box-shadow: 0 18px 40px rgba(20, 22, 28, 0.14);
+    box-shadow: 0 22px 48px rgba(20, 22, 28, 0.22);
   }
-  .fahrzeugkarte .bildbox {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-  }
-  .fahrzeugkarte img {
+  .fzk img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.6s ease;
   }
-  .fahrzeugkarte:hover img {
-    transform: scale(1.06);
+  .fzk:hover img {
+    transform: scale(1.07);
   }
-  .fahrzeugkarte .txt {
-    padding: 16px 18px 18px;
+  .fzk .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.88) 0%, rgba(10, 12, 16, 0.25) 45%, transparent 70%);
   }
-  .fahrzeugkarte .typ {
+  .fzk .txt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 18px;
+    display: grid;
+    gap: 2px;
+  }
+  .fzk .txt em {
     font-family: var(--mono);
-    font-size: 0.66rem;
+    font-style: normal;
+    font-size: 0.62rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--tinte2);
+    color: var(--silber);
   }
-  .fahrzeugkarte h2 {
-    margin: 6px 0 8px;
+  .fzk .txt b {
     font-family: var(--display);
     font-style: italic;
     text-transform: uppercase;
-    font-size: 1.45rem;
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
     line-height: 1;
   }
-  .fahrzeugkarte .funk {
+  .fzk .txt i {
     font-family: var(--mono);
-    font-size: 0.72rem;
+    font-style: normal;
+    font-size: 0.68rem;
     letter-spacing: 0.12em;
-    color: var(--rot);
+    color: #ffb300;
+    font-variant-numeric: tabular-nums;
+  }
+  .fzk .pfeil {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.25s, background 0.25s;
+  }
+  .fzk:hover .pfeil {
+    opacity: 1;
+    background: var(--rot);
+    border-color: var(--rot);
+    transform: rotate(45deg);
+  }
+
+  /* ---- Anhänger: kompaktes Band ---- */
+  .anhaengerband {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .anh {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    aspect-ratio: 16/10;
+    background: var(--dunkel2);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .anh:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(20, 22, 28, 0.2);
+  }
+  .anh img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .anh:hover img {
+    transform: scale(1.06);
+  }
+  .anh .ohne {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(255, 255, 255, 0.35);
+    background: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0 14px, transparent 14px 28px);
+  }
+  .anh .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.85) 0%, transparent 55%);
+  }
+  .anh .txt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    display: grid;
+    gap: 2px;
+  }
+  .anh .txt em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silber);
+  }
+  .anh .txt b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 1100px) {
+    .mosaik {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 820px) {
+    .mosaik {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .anhaengerband {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .mosaik,
+    .anhaengerband {
+      grid-template-columns: 1fr;
+    }
+    .fzk,
+    .anh {
+      aspect-ratio: 16 / 9;
+    }
   }
 </style>

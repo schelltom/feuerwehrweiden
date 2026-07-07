@@ -8,40 +8,38 @@ interface Einsatz {
 
 interface Props {
   einsaetze: Einsatz[];
+  /** Kompakte Darstellung für schmale Spalten */
+  kompakt?: boolean;
 }
 
-const { einsaetze } = Astro.props;
+const { einsaetze, kompakt = false } = Astro.props;
 const neuester = einsaetze[0];
 ---
 
-<div class="monitorband">
-  <div class="wrap">
-    <div class="monitorkarte" id="einsaetze">
-      <div class="kopf">
-        <div class="t">
-          <span class="badge-live"><i></i>Live</span>
-          <h2>Einsatzticker</h2>
-        </div>
-        <span class="quelle">Alarmierung · ILS Nordoberpfalz</span>
-      </div>
-      <ol>
-        {
-          einsaetze.map((e, i) => (
-            <li>
-              <span class="zeit">{e.datum} · {e.zeit}</span>
-              <span class="was">
-                {e.stichwort}
-                {i === 0 && <em class="neu">Neu</em>}
-              </span>
-              <span class:list={['tagchip', e.art === 'Brand' ? 'brand' : 'thl']}>{e.art}</span>
-            </li>
-          ))
-        }
-      </ol>
-      <div class="fuss">
-        <a href="#">Alle Einsätze &amp; Statistik ansehen →</a>
-        <span>Letzte Aktualisierung: {neuester?.datum}, {neuester?.zeit} Uhr</span>
-      </div>
+<div class:list={['monitorkarte', { kompakt }]} id="einsaetze">
+  <div class="kopf">
+    <div class="t">
+      <span class="badge-live"><i></i>Live</span>
+      <h2>Einsatzticker</h2>
     </div>
+    <span class="quelle">ILS Nordoberpfalz</span>
+  </div>
+  <ol>
+    {
+      einsaetze.map((e, i) => (
+        <li>
+          <span class="zeit">{e.datum} · {e.zeit}</span>
+          <span class="was">
+            {e.stichwort}
+            {i === 0 && <em class="neu">Neu</em>}
+          </span>
+          <span class:list={['tagchip', e.art === 'Brand' ? 'brand' : 'thl']}>{e.art}</span>
+        </li>
+      ))
+    }
+  </ol>
+  <div class="fuss">
+    <a href="#">Alle Einsätze &amp; Statistik →</a>
+    <span>Stand: {neuester?.datum}, {neuester?.zeit} Uhr</span>
   </div>
 </div>

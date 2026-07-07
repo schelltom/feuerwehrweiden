@@ -4,10 +4,9 @@ typ: Drehleiter · 32 m Rettungshöhe
 funkruf: FLORIAN WEIDEN 1/30/1
 standort: Hauptfeuerwache
 bild: /bilder/fahrzeuge/dlak.jpg
-reihenfolge: 1
+inHalle: true
+reihenfolge: 8
 specs:
-  - label: Fahrzeugart
-    wert: Drehleiter mit Korb
   - label: Rettungshöhe
     wert: 32 Meter
   - label: Korb
@@ -24,70 +23,77 @@ ausstattung:
   - Krankentragenhalterung für schonende Patientenrettung
   - "Stromversorgung im Korb: 3× 230 V, 1× 400 V"
 beladung:
-  - raum: Geräteraum 1
+  - raum: "Geräteraum 1"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-2.jpg
     inhalt:
-      - Schleifkorbtrage
-      - Satz Rollgliss
-      - Absturzsicherungssatz
-      - Krankentragenhalterung
-      - Safety-Peak-Halterung
-      - Druckluftschlauch 15 m
-  - raum: Geräteraum 2
+      - "Schleifkorbtrage Satz Rollgliss"
+      - "Absturzsicherungssatz"
+      - "Krankentragehalterung"
+      - "Safety-Peak Halterung"
+      - "Druckluftschlauch 15m"
+  - raum: "Geräteraum 2"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-3.jpg
     inhalt:
-      - Atemschutzgeräte
-      - Atemanschlüsse
-      - Atemfilter
-      - Fluchthauben
-      - Spalthammer
-      - Bolzenschneider
-      - Brechwerkzeug
-      - Einreißhaken
-      - Feuerwehrleinen
-      - Auffahrbohlen
-  - raum: Geräteraum 3
+      - "Atemschutzgeräte"
+      - "Atemanschlüsse"
+      - "Atemfilter"
+      - "Spalthammer"
+      - "Bolzenschnieder"
+      - "Brechwerkzeug"
+      - "Auffahrbohlen"
+      - "Einreißhaken"
+      - "Feuerwehrleinen"
+      - "Fluchthauben"
+  - raum: "Geräteraum 3"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-4.jpg
     inhalt:
-      - Motorsäge mit Zubehör
-      - Elektrokettensäge mit Zubehör
-      - Schnittschutzkleidung
-      - Doppelkanister
-      - Reservekanister
-  - raum: Geräteraum 4
+      - "Motorsäge mit Zubehör"
+      - "Doppelkanister"
+      - "Schnittschutzkleidung"
+      - "Elektrokettensäge mit Zubehör"
+      - "Reservekanister"
+  - raum: "Geräteraum 4"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-5.jpg
     inhalt:
-      - B- und C-Schläuche
-      - 35-m-Schlauch
-      - Verteiler
-      - Strahlrohr
-      - Werkzeugkasten
-      - Kupplungsschlüssel
-      - Hydrantenschlüssel
-  - raum: Geräteraum 5 + 6
+      - "C-Schläuche"
+      - "B-Schläuche"
+      - "35m Schlauch"
+      - "Werkzeugkasten"
+      - "Kupplungsschlüssel"
+      - "Hydrantenschlüssel"
+      - "Verteiler"
+      - "Strahlrohr"
+  - raum: "Geräteraum 5"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-6.jpg
     inhalt:
-      - Feuerlöscher
-      - Sturmleinen
-      - Bohlen für Abstützung
-      - Verkehrsleitkegel
-      - Verbandskasten
-      - Absperrband
-  - raum: Podium & Drehkranz
+      - "Feuerlöscher"
+      - "Sturmleinen"
+      - "Bohlen für Abstützung"
+  - raum: "Geräteraum 6"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-7.jpg
     inhalt:
-      - Stromerzeuger mit Fernstart/-stopp
-      - Abgasschlauch
-      - Aufstiegsleiter
-      - Elektrolüfter
-      - Drucklüfter (wasserbetrieben)
-      - Wenderohr
-      - Schlauchfenster
+      - "Verkehrsleitkegel"
+      - "Bohlen für Abstützung"
+      - "Verbandskasten"
+      - "Absperrband"
+  - raum: "Podium"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-8.jpg
+    inhalt:
+      - "Stromerzeuger mit Fernstart/Stopp Einrichtung"
+      - "Abgasschlauch"
+  - raum: "Drehkranz"
+    bild: /bilder/fahrzeuge/detail/dlak-m32-9.jpg
+    inhalt:
+      - "Aufstiegsleiter"
+      - "Schlauchfenster"
+      - "Elektrolüfter"
+      - "Drucklüfter wasserbetrieben"
+      - "Wenderohr"
 galerie:
   - bild: /bilder/fahrzeuge/dlak/dreh.jpg
     text: Leiter ausgefahren
-  - bild: /bilder/fahrzeuge/dlak/podium.jpg
-    text: Podium
-  - bild: /bilder/fahrzeuge/dlak/geraeteraum1.jpg
-    text: Geräteraum
-  - bild: /bilder/fahrzeuge/dlak/geraeteraum3.jpg
-    text: Beladung
-  - bild: /bilder/fahrzeuge/dlak/geraeteraum5.jpg
-    text: Schläuche & Armaturen
+  - bild: /bilder/fahrzeuge/dlak/normal.jpg
+    text: Seitenansicht
   - bild: /bilder/fahrzeuge/dlak.jpg
     text: Vor der Hauptfeuerwache
 ---
