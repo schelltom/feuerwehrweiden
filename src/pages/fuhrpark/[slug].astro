@@ -41,18 +41,24 @@ const d = fahrzeug.data;
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
-        {
-          d.specs.length > 0 && (
-            <div class="specs reveal">
-              {d.specs.map((s) => (
-                <div class="spec">
-                  <span>{s.label}</span>
-                  <b>{s.wert}</b>
-                </div>
-              ))}
+        <div class="specs reveal">
+          <div class="spec">
+            <span>Fahrzeugtyp</span>
+            <b>{d.typ}</b>
+          </div>
+          {d.funkruf && (
+            <div class="spec">
+              <span>Funkrufname</span>
+              <b>{d.funkruf.toLowerCase()}</b>
             </div>
-          )
-        }
+          )}
+          {d.specs.map((s) => (
+            <div class="spec">
+              <span>{s.label}</span>
+              <b>{s.wert}</b>
+            </div>
+          ))}
+        </div>
 
         {
           fahrzeug.body?.trim() && (
