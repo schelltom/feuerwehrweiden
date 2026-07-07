@@ -80,6 +80,7 @@ const termine = defineCollection({
     titel: z.string(),
     von: z.string(),
     bis: z.string(),
+    kategorie: z.string().default('Sonstiges'),
   }),
 });
 

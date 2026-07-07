@@ -10,6 +10,10 @@ export async function getStaticPaths() {
 const { bericht } = Astro.props;
 const { Content } = await render(bericht);
 const d = bericht.data;
+
+/* Einleitung nur zeigen, wenn sie nicht ohnehin der erste Satz des Textes ist */
+const norm = (s: string) => s.replace(/\s+/g, ' ').trim();
+const zeigeLead = !!d.kurz && !norm(bericht.body ?? '').startsWith(norm(d.kurz).slice(0, 40));
 const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' });
 ---
 
@@ -33,7 +37,7 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
 
     <section>
       <div class="artikel" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px)">
-        {d.kurz && <p class="artikel-lead reveal">{d.kurz}</p>}
+        {zeigeLead && <p class="artikel-lead reveal">{d.kurz}</p>}
 
         {
           d.stats.length > 0 && (

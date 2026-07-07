@@ -14,9 +14,13 @@ const berichte = (await getCollection('berichte'))
   .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime())
   .slice(0, 6);
 
+const heute = new Date();
+heute.setHours(0, 0, 0, 0);
 const termine = (await getCollection('termine'))
   .map((t) => t.data)
-  .sort((a, b) => a.datum.getTime() - b.datum.getTime());
+  .filter((t) => t.datum >= heute)
+  .sort((a, b) => a.datum.getTime() - b.datum.getTime())
+  .slice(0, 4);
 
 const fahrzeuge = (await getCollection('fahrzeuge'))
   .filter((f) => f.data.inHalle)
