@@ -1,0 +1,32 @@
+{
+  "termine": [
+    {
+      "id": "2026-07-11-maschinisten",
+      "datum": "2026-07-11",
+      "titel": "Übung Maschinisten",
+      "von": "08:00",
+      "bis": "14:00"
+    },
+    {
+      "id": "2026-07-18-ugoeel",
+      "datum": "2026-07-18",
+      "titel": "UG-ÖEL",
+      "von": "09:00",
+      "bis": "15:00"
+    },
+    {
+      "id": "2026-07-20-zug2",
+      "datum": "2026-07-20",
+      "titel": "Übung 2. Zug",
+      "von": "19:00",
+      "bis": "21:00"
+    },
+    {
+      "id": "2026-07-23-maschinisten",
+      "datum": "2026-07-23",
+      "titel": "Übung Maschinisten",
+      "von": "19:00",
+      "bis": "21:00"
+    }
+  ]
+}

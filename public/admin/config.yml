@@ -1,0 +1,118 @@
+# Decap CMS – Konfiguration der Redaktions-Oberfläche
+#
+# Voraussetzung fürs Live-System: Hosting bei Netlify mit aktiviertem
+# "Identity" + "Git Gateway" (kostenlos). Bis dahin kann lokal mit
+# `npx decap-server` + backend: name: proxy gearbeitet werden.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Für lokales Testen ohne Login (npx decap-server im Projektordner starten):
+local_backend: true
+
+media_folder: 'public/bilder/uploads'
+public_folder: '/bilder/uploads'
+
+locale: de
+
+collections:
+  - name: berichte
+    label: Berichte & News
+    label_singular: Bericht
+    folder: src/content/berichte
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: titel, label: Titel, widget: string }
+      - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', time_format: false }
+      - name: ressort
+        label: Ressort
+        widget: select
+        options: [Einsatzdienst, Feuerwehrverein, Fuhrpark, Verein, Jugend, Feuerwehr]
+        default: Feuerwehr
+      - { name: titelbild, label: Titelbild, widget: image, required: false }
+      - { name: kurz, label: 'Kurzfassung (1 Satz)', widget: text, required: false }
+      - name: stats
+        label: 'Zahlen-Kacheln (optional)'
+        widget: list
+        required: false
+        fields:
+          - { name: wert, label: Wert, widget: string }
+          - { name: label, label: Beschriftung, widget: string }
+      - { name: body, label: Berichtstext, widget: markdown }
+
+  - name: fahrzeuge
+    label: Fahrzeuge
+    label_singular: Fahrzeug
+    folder: src/content/fahrzeuge
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
+      - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
+      - { name: funkruf, label: Funkrufname, widget: string, hint: 'z.B. FLORIAN WEIDEN 1/40/1' }
+      - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache }
+      - { name: bild, label: Hauptbild, widget: image }
+      - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }
+      - name: specs
+        label: Eckdaten
+        widget: list
+        required: false
+        fields:
+          - { name: label, label: Bezeichnung, widget: string }
+          - { name: wert, label: Wert, widget: string }
+      - { name: ausstattungTitel, label: 'Überschrift Ausstattung', widget: string, required: false }
+      - name: ausstattung
+        label: Ausstattung (Liste)
+        widget: list
+        required: false
+        field: { name: eintrag, label: Eintrag, widget: string }
+      - name: beladung
+        label: Beladung nach Geräteräumen
+        widget: list
+        required: false
+        fields:
+          - { name: raum, label: Geräteraum, widget: string }
+          - name: inhalt
+            label: Inhalt
+            widget: list
+            field: { name: eintrag, label: Eintrag, widget: string }
+      - name: galerie
+        label: Bildergalerie
+        widget: list
+        required: false
+        fields:
+          - { name: bild, label: Bild, widget: image }
+          - { name: text, label: Bildunterschrift, widget: string, required: false }
+      - { name: body, label: Beschreibung, widget: markdown }
+
+  - name: daten
+    label: Einsätze & Termine
+    files:
+      - name: einsaetze
+        label: Einsatzticker
+        file: src/content/daten/einsaetze.json
+        fields:
+          - name: einsaetze
+            label: Einsätze (neuester zuerst)
+            widget: list
+            fields:
+              - { name: id, label: 'ID (z.B. 2026-07-06-2139)', widget: string }
+              - { name: datum, label: 'Datum (TT.MM.JJJJ)', widget: string }
+              - { name: zeit, label: 'Uhrzeit (HH:MM)', widget: string }
+              - { name: stichwort, label: Einsatzstichwort, widget: string }
+              - { name: art, label: Art, widget: select, options: [THL, Brand, Sonstige] }
+      - name: termine
+        label: Termine
+        file: src/content/daten/termine.json
+        fields:
+          - name: termine
+            label: Termine
+            widget: list
+            fields:
+              - { name: id, label: ID, widget: string }
+              - { name: datum, label: 'Datum (JJJJ-MM-TT)', widget: string }
+              - { name: titel, label: Titel, widget: string }
+              - { name: von, label: 'Beginn (HH:MM)', widget: string }
+              - { name: bis, label: 'Ende (HH:MM)', widget: string }

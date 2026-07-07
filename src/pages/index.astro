@@ -1,0 +1,164 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../layouts/Basis.astro';
+import Hero from '../components/Hero.astro';
+import Einsatzmonitor from '../components/Einsatzmonitor.astro';
+import Bereiche from '../components/Bereiche.astro';
+import Fahrzeughalle from '../components/Fahrzeughalle.astro';
+
+const einsaetze = (await getCollection('einsaetze'))
+  .map((e) => e.data)
+  .sort((a, b) => b.id.localeCompare(a.id)); // neuester zuerst
+
+const berichte = (await getCollection('berichte'))
+  .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime())
+  .slice(0, 5);
+
+const termine = (await getCollection('termine'))
+  .map((t) => t.data)
+  .sort((a, b) => a.datum.getTime() - b.datum.getTime());
+
+const fahrzeuge = (await getCollection('fahrzeuge'))
+  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge)
+  .map((f) => ({
+    id: f.id,
+    name: f.data.name,
+    typ: f.data.typ,
+    funkruf: f.data.funkruf,
+    bild: f.data.bild,
+  }));
+
+const monate = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+
+<Basis mitAlarm={true}>
+  <main>
+    <Hero />
+    <Einsatzmonitor einsaetze={einsaetze} />
+
+    <section class="zahlen">
+      <div class="wrap">
+        <div class="zahl reveal"><b><span class="zaehler" data-ziel="24">0</span><em>/7</em></b><span>Einsatzbereit</span></div>
+        <div class="zahl reveal"><b><span class="zaehler" data-ziel="6">0</span></b><span>Standorte</span></div>
+        <div class="zahl reveal"><b><span class="zaehler" data-ziel="30">0</span><em>+</em></b><span>Fahrzeuge &amp; Anhänger</span></div>
+        <div class="zahl reveal"><b><span class="zaehler" data-ziel="100">0</span><em>%</em></b><span>Ehrenamt</span></div>
+      </div>
+    </section>
+
+    <Bereiche />
+    <Fahrzeughalle fahrzeuge={fahrzeuge} />
+
+    <div class="notfall">
+      <div class="wrap">
+        <div class="n1">
+          <b class="display">112</b>
+          <span>Eine Nummer · rund um die Uhr · an 365 Tagen</span>
+        </div>
+        <div class="apps">
+          <a href="#">Warn-App KATWARN</a>
+          <a href="#">Warn-App NINA</a>
+          <a href="#">Notruf-Checkliste</a>
+        </div>
+      </div>
+    </div>
+
+    <section id="aktuelles">
+      <div class="wrap">
+        <div class="zweispalt">
+          <div>
+            <span class="eyebrow">Aktuelles</span>
+            <h2 class="titel display reveal">Neues aus der Wehr</h2>
+            <ul class="news reveal">
+              {
+                berichte.map((b) => (
+                  <li>
+                    <span class="meta">
+                      {datumsformat.format(b.data.datum)}
+                      <b>{b.data.ressort}</b>
+                    </span>
+                    <h3>
+                      <a href={`/berichte/${b.id}/`}>{b.data.titel}</a>
+                    </h3>
+                  </li>
+                ))
+              }
+            </ul>
+            <p style="margin-top:18px">
+              <a href="/berichte/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Alle Berichte ansehen →</a>
+            </p>
+          </div>
+          <div>
+            <span class="eyebrow">Termine</span>
+            <h2 class="titel display reveal" style="font-size:clamp(1.7rem,3vw,2.3rem)">Nächste Übungen</h2>
+            <ul class="termine reveal">
+              {
+                termine.map((t) => (
+                  <li class="termin">
+                    <div class="tag">
+                      <b>{t.datum.getDate()}</b>
+                      <span>{monate[t.datum.getMonth()]}</span>
+                    </div>
+                    <div class="info">
+                      <b>{t.titel}</b>
+                      <span>{t.von} – {t.bis}</span>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+            <p style="margin-top:18px">
+              <a href="#" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Kalender abonnieren →</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mitmachen" id="mitmachen">
+      <div class="wrap" style="padding-top:0">
+        <span class="eyebrow">Mitmachen</span>
+        <h2 class="titel display reveal">Dein Platz im Team</h2>
+        <p class="intro reveal">
+          Egal ob jung oder alt – in der Feuerwehr wird jede Hilfe gebraucht. Keine Vorkenntnisse
+          nötig, die Ausbildung übernehmen wir.
+        </p>
+        <div class="karten">
+          <a class="karte reveal" href="#">
+            <img src="/bilder/mitmachen/kinder.jpg" alt="Kinderfeuerwehr Weiden" loading="lazy" />
+            <span class="pfeil" aria-hidden="true">↗</span>
+            <span class="txt"><em>ab 6 Jahren</em><h3>Kinderfeuerwehr</h3><p>Spielerisch entdecken, was Feuerwehr bedeutet.</p></span>
+          </a>
+          <a class="karte reveal" href="#">
+            <img src="/bilder/mitmachen/jugend.jpg" alt="Jugendfeuerwehr Weiden" loading="lazy" />
+            <span class="pfeil" aria-hidden="true">↗</span>
+            <span class="txt"><em>ab 12 Jahren</em><h3>Jugendfeuerwehr</h3><p>Echte Ausbildung, echte Technik, echte Gemeinschaft.</p></span>
+          </a>
+          <a class="karte reveal" href="#">
+            <img src="/bilder/mitmachen/aktive.jpg" alt="Aktive Einsatzkräfte der Feuerwehr Weiden" loading="lazy" />
+            <span class="pfeil" aria-hidden="true">↗</span>
+            <span class="txt"><em>ab 18 Jahren</em><h3>Aktiver Dienst</h3><p>Quereinstieg jederzeit – wir bilden dich aus.</p></span>
+          </a>
+        </div>
+        <div class="cta reveal">
+          <a class="btn btn-rot" href="#kontakt">Unverbindlich vorbeischauen</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="standorte">
+      <div class="wrap" style="padding-top:0">
+        <span class="eyebrow">Standorte</span>
+        <h2 class="titel display reveal" style="font-size:clamp(1.9rem,4vw,2.8rem)">Eine Wehr, sechs Standorte</h2>
+        <div class="orte reveal">
+          <a class="ort haupt" href="#">Hauptfeuerwache</a>
+          <a class="ort" href="#">Frauenricht</a>
+          <a class="ort" href="#">Mallersricht</a>
+          <a class="ort" href="#">Muglhof</a>
+          <a class="ort" href="#">Neunkirchen</a>
+          <a class="ort" href="#">Rothenstadt</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>

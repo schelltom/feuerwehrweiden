@@ -1,0 +1,91 @@
+---
+interface Fahrzeug {
+  id: string;
+  name: string;
+  typ: string;
+  funkruf: string;
+  bild: string;
+}
+
+interface Props {
+  fahrzeuge: Fahrzeug[];
+}
+
+const { fahrzeuge } = Astro.props;
+const erstes = fahrzeuge[0];
+---
+
+<section id="fuhrpark">
+  <div class="wrap">
+    <span class="eyebrow">Fahrzeughalle · Hauptfeuerwache</span>
+    <h2 class="titel display reveal">Unser Fuhrpark</h2>
+    <p class="intro reveal">
+      Vom Kommandowagen bis zur 32-Meter-Drehleiter: Klick dich durch die Halle – jedes Fahrzeug
+      mit seinem Funkrufnamen. Über „Fahrzeugdetails“ geht’s zur Detailseite mit Beladung und
+      Galerie.
+    </p>
+
+    <div class="buehne reveal">
+      <div class="foto" id="buehnenfoto">
+        {
+          fahrzeuge.map((f, i) => (
+            <img src={f.bild} alt={`${f.name} – ${f.typ}`} class:list={[{ an: i === 0 }]} loading={i === 0 ? 'eager' : 'lazy'} />
+          ))
+        }
+      </div>
+      <a class="detaillink" id="bdetail" href={`/fuhrpark/${erstes.id}/`}>Fahrzeugdetails →</a>
+      <div class="daten">
+        <div>
+          <span class="typ" id="btyp">{erstes.typ}</span>
+          <h3 id="bname">{erstes.name}</h3>
+        </div>
+        <span class="funkruf" id="bfunk">{erstes.funkruf}</span>
+      </div>
+    </div>
+    <div class="garage" id="garage" role="tablist" aria-label="Fahrzeug wählen">
+      {
+        fahrzeuge.map((f, i) => (
+          <button role="tab" aria-label={f.name} aria-selected={i === 0} class:list={[{ aktiv: i === 0 }]} data-index={i}>
+            <img src={f.bild} alt="" loading="lazy" />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ fahrzeuge }}>
+  const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const bilder = document.querySelectorAll('#buehnenfoto img');
+  const knoepfe = document.querySelectorAll('#garage button');
+  const bname = document.getElementById('bname');
+  const btyp = document.getElementById('btyp');
+  const bfunk = document.getElementById('bfunk');
+  const bdetail = document.getElementById('bdetail');
+  let aktiv = 0;
+  let timer = null;
+
+  function zeige(i) {
+    aktiv = i;
+    bilder.forEach((img, j) => img.classList.toggle('an', j === i));
+    knoepfe.forEach((b, j) => {
+      b.classList.toggle('aktiv', j === i);
+      b.setAttribute('aria-selected', String(j === i));
+    });
+    bname.textContent = fahrzeuge[i].name;
+    btyp.textContent = fahrzeuge[i].typ;
+    bfunk.textContent = fahrzeuge[i].funkruf;
+    bdetail.href = `/fuhrpark/${fahrzeuge[i].id}/`;
+  }
+  function neuStarten() {
+    if (timer) clearInterval(timer);
+    if (!reduziert) timer = setInterval(() => zeige((aktiv + 1) % fahrzeuge.length), 5000);
+  }
+  knoepfe.forEach((b) =>
+    b.addEventListener('click', () => {
+      zeige(Number(b.dataset.index));
+      neuStarten();
+    })
+  );
+  neuStarten();
+</script>

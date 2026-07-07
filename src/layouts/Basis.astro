@@ -1,0 +1,179 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  titel?: string;
+  beschreibung?: string;
+  /** Alarm-Intro nur auf der Startseite abspielen */
+  mitAlarm?: boolean;
+}
+
+const {
+  titel = 'Freiwillige Feuerwehr Weiden i.d.OPf.',
+  beschreibung = '24 Stunden – 365 Tage für Ihre Sicherheit. Die Freiwillige Feuerwehr Weiden in der Oberpfalz.',
+  mitAlarm = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={beschreibung} />
+    <link rel="icon" href="/bilder/wappen.png" type="image/png" />
+    <title>{titel}</title>
+  </head>
+  <body>
+    {
+      mitAlarm && (
+        <div id="alarm" aria-hidden="true">
+          <div class="kern">
+            <div class="zeile1">ILS Nordoberpfalz · Alarmdepesche</div>
+            <div class="zeile2" id="tipptext" />
+            <div class="balken" />
+          </div>
+        </div>
+      )
+    }
+
+    <header class="nav" id="topnav">
+      <div class="wrap">
+        <a class="marke" href="/">
+          <img src="/bilder/wappen.png" alt="Wappen der Feuerwehr Weiden" width="40" height="48" />
+          <span class="name">Feuerwehr Weiden<small>FREIWILLIGE FEUERWEHR · i.d.OPf.</small></span>
+        </a>
+        <button class="burger" aria-expanded="false" aria-controls="menue" id="burger">
+          <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="2"/></svg>
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menü</span>
+        </button>
+        <nav class="menue" id="menue" aria-label="Hauptmenü">
+          <ul>
+            <li><a href="/fuhrpark/">Fuhrpark</a></li>
+            <li><a href="/#einsaetze">Einsätze</a></li>
+            <li><a href="/berichte/">Aktuelles</a></li>
+            <li><a href="/#mitmachen">Mitmachen</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a class="n112" href="tel:112">Notruf 112</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer id="kontakt">
+      <div class="wrap">
+        <div>
+          <h3>Freiwillige Feuerwehr Weiden i.d.OPf.</h3>
+          <address class="adresse">
+            Landgerichtsstraße 13 · 92637 Weiden<br />
+            Telefon: <a href="tel:+4996139160911">0961 / 391 609-11</a> und <a href="tel:+4996139160912">-12</a><br />
+            E-Mail: <a href="mailto:info.feuerwehr@weiden.de">info.feuerwehr@weiden.de</a><br />
+            Im Notfall: <strong style="color:#fff">Notruf 112</strong>
+          </address>
+        </div>
+        <div>
+          <h3>Service</h3>
+          <ul>
+            <li><a href="#">Atemschutz &amp; Schläuche</a></li>
+            <li><a href="#">Kalenderexport</a></li>
+            <li><a href="/fuhrpark/">Fuhrpark</a></li>
+            <li><a href="#">Chronik</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Rechtliches</h3>
+          <ul>
+            <li><a href="#">Impressum</a></li>
+            <li><a href="#">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="unten">
+        <div class="wrap">
+          <span>© 2026 FF Weiden i.d.OPf.</span>
+          <span>24 Stunden · 365 Tage · für Ihre Sicherheit</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Alarm-Intro (nur wenn vorhanden) + Startsignal für Hero-Animationen */
+      const alarm = document.getElementById('alarm');
+      const los = () => document.body.classList.add('los');
+      if (!alarm || reduziert) {
+        alarm?.remove();
+        los();
+      } else {
+        alarm.classList.add('laeuft');
+        const txt = 'ALARM FÜR FLORIAN WEIDEN — EINSATZ FÜR ALLE EINHEITEN';
+        const ziel = document.getElementById('tipptext')!;
+        let i = 0;
+        const tipp = setInterval(() => {
+          ziel.textContent = txt.slice(0, ++i);
+          if (i >= txt.length) clearInterval(tipp);
+        }, 20);
+        setTimeout(() => {
+          alarm.classList.add('weg');
+          los();
+        }, 1800);
+        setTimeout(() => alarm.remove(), 2600);
+      }
+
+      /* Burger-Menü */
+      const burger = document.getElementById('burger')!;
+      const menue = document.getElementById('menue')!;
+      burger.addEventListener('click', () => {
+        const offen = menue.classList.toggle('offen');
+        burger.setAttribute('aria-expanded', String(offen));
+      });
+
+      /* Navigation bei Scroll */
+      const nav = document.getElementById('topnav')!;
+      addEventListener('scroll', () => nav.classList.toggle('fest', scrollY > 40), { passive: true });
+
+      /* Sanftes Einblenden beim Scrollen */
+      const io = new IntersectionObserver(
+        (eintraege) => {
+          for (const e of eintraege) {
+            if (e.isIntersecting) {
+              e.target.classList.add('da');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      /* Zähler */
+      const zio = new IntersectionObserver(
+        (eintraege) => {
+          for (const e of eintraege) {
+            if (!e.isIntersecting) continue;
+            zio.unobserve(e.target);
+            const el = e.target as HTMLElement;
+            const ziel = Number(el.dataset.ziel);
+            if (reduziert) {
+              el.textContent = String(ziel);
+              continue;
+            }
+            let start: number | null = null;
+            const schritt = (t: number) => {
+              if (start === null) start = t;
+              const p = Math.min((t - start) / 1200, 1);
+              el.textContent = String(Math.round(ziel * (1 - Math.pow(1 - p, 3))));
+              if (p < 1) requestAnimationFrame(schritt);
+            };
+            requestAnimationFrame(schritt);
+          }
+        },
+        { threshold: 0.6 }
+      );
+      document.querySelectorAll('.zaehler').forEach((el) => zio.observe(el));
+    </script>
+  </body>
+</html>

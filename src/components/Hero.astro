@@ -1,0 +1,121 @@
+---
+const folien = [
+  { bild: '/bilder/header/absturz.jpg', titel: 'Absturzsicherung im Einsatz' },
+  { bild: '/bilder/header/drohne.jpg', titel: 'Drohnengruppe · Lage aus der Luft' },
+  { bild: '/bilder/header/feldbrand.jpg', titel: 'Vegetationsbrand · Einsatz im Sommer' },
+];
+---
+
+<section class="hero" id="start">
+  {
+    folien.map((f) => (
+      <div class="folie" data-titel={f.titel} style={`background-image:url(${f.bild})`} />
+    ))
+  }
+  <div class="duster"></div>
+  <div class="glut"></div>
+  <div class="inhalt">
+    <div class="wrap">
+      <div class="funkspruch"><i></i>Florian Weiden · einsatzbereit</div>
+      <h1 class="display">
+        <span><b>24 Stunden.</b></span>
+        <span><b>365 Tage.</b></span>
+        <span><b>Für Ihre Sicherheit.</b></span>
+      </h1>
+      <p class="sub">
+        Die Freiwillige Feuerwehr Weiden i.d.OPf. – Hauptfeuerwache und fünf Ortsteilwehren, rund
+        um die Uhr bereit für Brand, Unfall und Katastrophe.
+      </p>
+      <div class="cta">
+        <a class="btn btn-rot" href="/fuhrpark/">Unsere Fahrzeuge</a>
+        <a class="btn btn-glas" href="/#mitmachen">Teil des Teams werden</a>
+      </div>
+    </div>
+  </div>
+  <div class="steuer">
+    <span class="bildtitel" id="bildtitel"></span>
+    <div class="punkte" id="punkte" role="tablist" aria-label="Titelbild wählen"></div>
+  </div>
+  <div class="schlauch" aria-hidden="true">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+      <path
+        id="schlauchweg"
+        class="leitung"
+        pathLength="1"
+        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1148,50"></path>
+      <path
+        class="glanz"
+        pathLength="1"
+        d="M-20,59 C180,35 320,71 520,55 C700,41 840,67 1030,53 L1148,47"></path>
+      <g class="rolle">
+        <g>
+          <circle r="26" fill="none" stroke="#B00500" stroke-width="7"></circle>
+          <circle r="15" fill="none" stroke="#E10600" stroke-width="6"></circle>
+          <circle r="5.5" fill="#7E0400"></circle>
+          <animateTransform
+            attributeName="transform"
+            additive="sum"
+            type="scale"
+            from="1"
+            to="0.04"
+            begin="2.7s"
+            dur="3s"
+            fill="freeze"></animateTransform>
+          <animateTransform
+            attributeName="transform"
+            additive="sum"
+            type="rotate"
+            from="0"
+            to="-1080"
+            begin="2.7s"
+            dur="3s"
+            fill="freeze"></animateTransform>
+        </g>
+        <animateMotion begin="2.7s" dur="3s" fill="freeze" rotate="auto">
+          <mpath href="#schlauchweg"></mpath>
+        </animateMotion>
+      </g>
+      <g class="kupplung" opacity="0">
+        <rect x="-4" y="-9" width="22" height="18" rx="3" fill="#C9CCD6" stroke="#8A8F9C" stroke-width="1.5"></rect>
+        <rect x="14" y="-6.5" width="9" height="13" rx="2" fill="#AEB3BF"></rect>
+        <animateMotion begin="2.7s" dur="3s" fill="freeze" rotate="auto">
+          <mpath href="#schlauchweg"></mpath>
+        </animateMotion>
+        <animate attributeName="opacity" from="0" to="1" begin="5.5s" dur="0.4s" fill="freeze"></animate>
+      </g>
+    </svg>
+  </div>
+  <div class="verlauf"></div>
+</section>
+
+<script>
+  const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const folien = document.querySelectorAll<HTMLElement>('.hero .folie');
+  const punkte = document.getElementById('punkte')!;
+  const bildtitel = document.getElementById('bildtitel')!;
+  let aktuelle = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+
+  folien.forEach((f, i) => {
+    const p = document.createElement('button');
+    p.setAttribute('aria-label', `Bild ${i + 1}`);
+    p.addEventListener('click', () => {
+      zeige(i);
+      start();
+    });
+    punkte.appendChild(p);
+  });
+
+  function zeige(i: number) {
+    aktuelle = i;
+    folien.forEach((f, j) => f.classList.toggle('an', j === i));
+    punkte.querySelectorAll('button').forEach((b, j) => b.classList.toggle('an', j === i));
+    bildtitel.textContent = folien[i].dataset.titel ?? '';
+  }
+  function start() {
+    if (timer) clearInterval(timer);
+    if (!reduziert) timer = setInterval(() => zeige((aktuelle + 1) % folien.length), 6000);
+  }
+  zeige(0);
+  start();
+</script>
