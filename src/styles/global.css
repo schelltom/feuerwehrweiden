@@ -74,6 +74,10 @@
   .marke{display:flex;align-items:center;gap:13px;text-decoration:none}
   .marke img{width:40px;height:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
   .marke .name{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:1.02;font-size:1.2rem;letter-spacing:.04em}
+  .marke .skyline{display:flex;align-items:flex-end;margin-left:14px}
+  .marke .skyline svg{height:34px;width:auto;opacity:.5;transition:opacity .3s}
+  .marke:hover .skyline svg{opacity:.8}
+  @media (max-width:1120px){.marke .skyline{display:none}}
   .marke .name small{display:block;font-family:var(--mono);font-weight:400;text-transform:none;font-size:.62rem;letter-spacing:.14em;opacity:.65}
   nav.menue ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
   nav.menue a{
