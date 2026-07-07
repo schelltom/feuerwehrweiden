@@ -171,9 +171,11 @@ collections:
         options:
           - { label: 'Über uns', value: ueber-uns }
           - { label: Einheiten, value: einheiten }
+          - { label: Ortsteile, value: ortsteile }
       - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }
+      - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
       - name: kontakt
         label: 'Kontaktkarte (für Personenseiten)'
         widget: object
@@ -184,6 +186,7 @@ collections:
           - { name: telefon, label: Telefon, widget: string, required: false }
           - { name: fax, label: Telefax, widget: string, required: false }
           - { name: email, label: E-Mail, widget: string, required: false }
+          - { name: adresse, label: Adresse, widget: string, required: false }
           - { name: bild, label: Porträt, widget: image, required: false }
       - name: gruppenfoto
         label: Gruppenfoto

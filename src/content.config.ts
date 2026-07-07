@@ -113,16 +113,18 @@ const seiten = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/seiten' }),
   schema: z.object({
     titel: z.string(),
-    bereich: z.enum(['ueber-uns', 'einheiten']),
+    bereich: z.enum(['ueber-uns', 'einheiten', 'ortsteile']),
     reihenfolge: z.number().default(99),
     kurz: z.string().default(''),
     titelbild: z.string().optional(),
+    wappen: z.string().optional(),
     kontakt: z
       .object({
         name: z.string(),
         telefon: z.string().optional(),
         fax: z.string().optional(),
         email: z.string().optional(),
+        adresse: z.string().optional(),
         bild: z.string().optional(),
       })
       .optional(),

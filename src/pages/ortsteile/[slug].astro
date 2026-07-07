@@ -1,0 +1,349 @@
+---
+import { getCollection, render } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+
+export async function getStaticPaths() {
+  const orte = (await getCollection('seiten')).filter((s) => s.data.bereich === 'ortsteile');
+  return orte.map((s) => ({ params: { slug: s.id }, props: { seite: s } }));
+}
+
+const { seite } = Astro.props;
+const { Content } = await render(seite);
+const d = seite.data;
+
+/* Fahrzeuge & Anhänger dieser Wehr automatisch aus dem Fuhrpark */
+const fahrzeuge = (await getCollection('fahrzeuge'))
+  .filter((f) => f.data.standort === d.titel)
+  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+---
+
+<Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
+  <main>
+    <section class="subhero" style="min-height:48svh">
+      <div
+        class="bild"
+        style={d.titelbild
+          ? `background-image:url(${d.titelbild});background-position:center 40%`
+          : 'background:linear-gradient(160deg,#171A22,#0E1116)'}
+      >
+      </div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <a class="zurueck" href="/ortsteile/">← Ortsteile</a>
+          <span class="eyebrow">Ortsteilfeuerwehr</span>
+          <div class="kopfzeile">
+            {d.wappen && <img class="wappen" src={d.wappen} alt={`Wappen ${d.titel}`} />}
+            <h1 class="display">{d.titel}</h1>
+          </div>
+          {d.kurz && <p class="untertitel">{d.kurz}</p>}
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap schmal" style="padding-top:clamp(44px,6vw,72px)">
+        {
+          seite.body?.trim() && (
+            <div class="fliesstext reveal">
+              <Content />
+            </div>
+          )
+        }
+
+        {
+          d.kontakt && (
+            <div class="kontaktblock reveal">
+              <span class="eyebrow">Kontakt</span>
+              <ul>
+                <li><span>Ansprechpartner</span>{d.kontakt.name}</li>
+                {d.kontakt.telefon && (
+                  <li>
+                    <span>Telefon</span>
+                    <a href={`tel:${d.kontakt.telefon.replace(/[^+\d]/g, '')}`}>{d.kontakt.telefon}</a>
+                  </li>
+                )}
+                {d.kontakt.email && (
+                  <li>
+                    <span>E-Mail</span>
+                    <a href={`mailto:${d.kontakt.email}`}>{d.kontakt.email}</a>
+                  </li>
+                )}
+                {d.kontakt.adresse && <li><span>Gerätehaus</span>{d.kontakt.adresse}</li>}
+              </ul>
+            </div>
+          )
+        }
+
+        {
+          d.personen.length > 0 && (
+            <>
+              <span class="eyebrow">Wehrführung &amp; Vorstandschaft</span>
+              <div class="personen" style="margin:16px 0 44px">
+                {d.personen.map((p) => (
+                  <div class="person reveal">
+                    <div class="pdaten">
+                      {p.funktion && <em>{p.funktion}</em>}
+                      <b>{p.name}</b>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )
+        }
+
+        {
+          fahrzeuge.length > 0 && (
+            <>
+              <span class="eyebrow">Fuhrpark</span>
+              <div class="fahrzeuge">
+                {fahrzeuge.map((f) => (
+                  <a class="fz reveal" href={`/fuhrpark/${f.id}/`}>
+                    {f.data.bild && <img src={f.data.bild} alt={f.data.name} loading="lazy" />}
+                    <span class="schatten" aria-hidden="true" />
+                    <span class="txt">
+                      <em>{f.data.typ}</em>
+                      <b>{f.data.name}</b>
+                      {f.data.funkruf && <i>{f.data.funkruf}</i>}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </>
+          )
+        }
+
+        {
+          d.gruppenfoto && (
+            <figure class="gruppenfoto reveal">
+              <img src={d.gruppenfoto.bild} alt={d.gruppenfoto.text || d.titel} />
+              {d.gruppenfoto.text && <figcaption>{d.gruppenfoto.text}</figcaption>}
+            </figure>
+          )
+        }
+
+        {
+          d.galerie.length > 0 && (
+            <div class="galerie reveal" style="margin-top:44px">
+              {d.galerie.map((g) => (
+                <figure>
+                  <img src={g.bild} alt={g.text ?? d.titel} loading="lazy" />
+                  {g.text && <figcaption>{g.text}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .wrap.schmal {
+    max-width: 980px;
+  }
+  .kopfzeile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .kopfzeile .wappen {
+    width: clamp(54px, 7vw, 84px);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  }
+  .untertitel {
+    margin: 14px 0 0;
+    color: #e6e8ee;
+    font-size: 1.05rem;
+  }
+  .fliesstext {
+    max-width: 72ch;
+    color: #3a3f4c;
+    font-size: 1.04rem;
+    margin-bottom: 44px;
+  }
+  .fliesstext :global(h3) {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 1.6em 0 0.4em;
+  }
+
+  .kontaktblock {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-top: 3px solid var(--rot);
+    padding: clamp(18px, 3vw, 30px);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+    margin-bottom: 44px;
+  }
+  .kontaktblock ul {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .kontaktblock li {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--linie);
+    font-size: 1rem;
+  }
+  .kontaktblock li span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    padding-top: 4px;
+  }
+  .kontaktblock a {
+    color: var(--rot);
+    text-decoration: none;
+  }
+  .kontaktblock a:hover {
+    text-decoration: underline;
+  }
+
+  .personen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 820px) {
+    .personen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .personen {
+      grid-template-columns: 1fr;
+    }
+  }
+  .person {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
+  }
+  .person .pdaten {
+    padding: 14px 18px 16px;
+  }
+  .person em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rot);
+  }
+  .person b {
+    display: block;
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    line-height: 1.05;
+    margin-top: 4px;
+  }
+
+  .fahrzeuge {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 16px 0 44px;
+  }
+  @media (max-width: 820px) {
+    .fahrzeuge {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .fahrzeuge {
+      grid-template-columns: 1fr;
+    }
+  }
+  .fz {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    aspect-ratio: 16 / 10;
+    background: var(--dunkel2);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .fz:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(20, 22, 28, 0.2);
+  }
+  .fz img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .fz:hover img {
+    transform: scale(1.06);
+  }
+  .fz .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.88) 0%, transparent 55%);
+  }
+  .fz .txt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    display: grid;
+    gap: 2px;
+  }
+  .fz .txt em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silber);
+  }
+  .fz .txt b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+  .fz .txt i {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    color: #ffb300;
+  }
+
+  .gruppenfoto {
+    margin: 0 0 44px;
+    border: 1px solid var(--linie);
+    background: var(--karte);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+  }
+  .gruppenfoto img {
+    display: block;
+    width: 100%;
+  }
+  .gruppenfoto figcaption {
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: var(--tinte2);
+  }
+</style>

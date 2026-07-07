@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Basis from '../../../layouts/Basis.astro';
 
 export async function getStaticPaths() {
-  const seiten = await getCollection('seiten');
+  const seiten = (await getCollection('seiten')).filter((s) => s.data.bereich !== 'ortsteile');
   return seiten.map((s) => ({
     params: { bereich: s.data.bereich, slug: s.id },
     props: { seite: s },
