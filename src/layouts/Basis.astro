@@ -29,7 +29,7 @@ const {
       mitAlarm && (
         <div id="alarm" aria-hidden="true">
           <div class="kern">
-            <div class="zeile1">ILS Nordoberpfalz · Alarmdepesche</div>
+            <div class="zeile1">ILS Oberpfalz-Nord · Alarmdepesche</div>
             <div class="zeile2" id="tipptext" />
             <div class="balken" />
           </div>
@@ -43,11 +43,8 @@ const {
           <img src="/bilder/wappen.png" alt="Wappen der Feuerwehr Weiden" width="40" height="48" />
           <span class="name">Freiwillige Feuerwehr Weiden</span>
         </a>
-        <button class="burger" aria-expanded="false" aria-controls="menue" id="burger">
-          <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="2"/></svg>
-          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menü</span>
-        </button>
-        <nav class="menue" id="menue" aria-label="Hauptmenü">
+        <div class="navrechts">
+          <nav class="menue" id="menue" aria-label="Hauptmenü">
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/#bereiche">Feuerwehr</a></li>
@@ -57,7 +54,20 @@ const {
             <li><a href="/admin/index.html">Login</a></li>
             <li><a class="n112" href="tel:112">Notruf 112</a></li>
           </ul>
-        </nav>
+          </nav>
+          <div class="sozial">
+            <a class="fb" href="https://www.facebook.com/feuerwehrweiden/" target="_blank" rel="noopener" aria-label="Feuerwehr Weiden auf Facebook">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.4 21.9v-8.1h2.72l.41-3.16h-3.13V8.62c0-.91.25-1.53 1.56-1.53h1.67V4.26c-.29-.04-1.28-.12-2.43-.12-2.4 0-4.05 1.47-4.05 4.16v2.32H7.42v3.16h2.73v8.1h3.25z"/></svg>
+            </a>
+            <a class="ig" href="https://www.instagram.com/feuerwehr_weiden/" target="_blank" rel="noopener" aria-label="Feuerwehr Weiden auf Instagram">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor" stroke="none"></circle></svg>
+            </a>
+          </div>
+          <button class="burger" aria-expanded="false" aria-controls="menue" id="burger">
+            <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="2"/></svg>
+            <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menü</span>
+          </button>
+        </div>
       </div>
     </header>
 

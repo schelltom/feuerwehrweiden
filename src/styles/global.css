@@ -94,13 +94,41 @@
   }
   .n112::after{display:none}
   .n112:hover{background:var(--rot-hell)}
+  .navrechts{display:flex;align-items:center;gap:12px}
+  .sozial{display:flex;gap:8px}
+  .sozial a{
+    width:37px;height:37px;border-radius:50%;display:grid;place-items:center;
+    color:#fff;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.3);
+    backdrop-filter:blur(6px);transition:transform .2s,background .2s,border-color .2s,color .2s;
+  }
+  .sozial a:hover{transform:translateY(-2px);color:#fff}
+  .sozial a.fb:hover{background:#1877F2;border-color:#1877F2}
+  .sozial a.ig:hover{background:#D6249F;border-color:#D6249F}
+  header.nav.fest .sozial a{color:var(--tinte);background:#fff;border-color:var(--linie)}
+  header.nav.fest .sozial a:hover{color:#fff}
+  header.nav.fest .sozial a.fb:hover{background:#1877F2;border-color:#1877F2}
+  header.nav.fest .sozial a.ig:hover{background:#D6249F;border-color:#D6249F}
   .burger{
     display:none;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.35);
     border-radius:6px;color:inherit;padding:9px 11px;cursor:pointer;backdrop-filter:blur(8px);
   }
   header.nav.fest .burger{background:#fff;border-color:var(--linie)}
   @media (max-width:960px){
-    .burger{display:block}
+    .navrechts{display:flex;align-items:center;gap:12px}
+  .sozial{display:flex;gap:8px}
+  .sozial a{
+    width:37px;height:37px;border-radius:50%;display:grid;place-items:center;
+    color:#fff;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.3);
+    backdrop-filter:blur(6px);transition:transform .2s,background .2s,border-color .2s,color .2s;
+  }
+  .sozial a:hover{transform:translateY(-2px);color:#fff}
+  .sozial a.fb:hover{background:#1877F2;border-color:#1877F2}
+  .sozial a.ig:hover{background:#D6249F;border-color:#D6249F}
+  header.nav.fest .sozial a{color:var(--tinte);background:#fff;border-color:var(--linie)}
+  header.nav.fest .sozial a:hover{color:#fff}
+  header.nav.fest .sozial a.fb:hover{background:#1877F2;border-color:#1877F2}
+  header.nav.fest .sozial a.ig:hover{background:#D6249F;border-color:#D6249F}
+  .burger{display:block}
     nav.menue{
       display:none;position:absolute;left:0;right:0;top:100%;
       background:rgba(255,255,255,.97);backdrop-filter:blur(16px);color:var(--tinte);
@@ -143,7 +171,7 @@
     .hero p.sub{margin:14px 0 20px;font-size:.98rem;max-width:48ch}
     .hero .funkspruch{margin-bottom:12px}
     .hero .inhalt{padding-top:172px;padding-bottom:96px}
-    .hero .schlauch{top:54px}
+    .hero .schlauch{top:42px}
     .btn{padding:12px 24px;font-size:.92rem}
   }
   @media (max-height:700px){
@@ -203,17 +231,17 @@
   .hero .punkte button.an{background:var(--rot-hell)}
   @media (max-width:640px){.hero .bildtitel{display:none}.hero .steuer{margin-left:0}}
   .hero .schlauch{
-    position:absolute;left:0;right:0;top:clamp(58px,7vh,86px);z-index:2;pointer-events:none;
+    position:absolute;left:0;right:0;top:clamp(46px,5.5vh,70px);z-index:2;pointer-events:none;
   }
   .hero .schlauch svg{display:block;width:100%;height:90px}
   .hero .schlauch .leitung{
-    fill:none;stroke:var(--rot);stroke-width:9;stroke-linecap:round;
+    fill:none;stroke:var(--rot);stroke-width:7;stroke-linecap:round;
     filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));
-    stroke-dasharray:1;stroke-dashoffset:1;
+    stroke-dasharray:1 3;stroke-dashoffset:1;
   }
   .hero .schlauch .fuellung{
-    fill:none;stroke:#FF3B30;stroke-width:13;stroke-linecap:round;
-    stroke-dasharray:1;stroke-dashoffset:1;opacity:.92;
+    fill:none;stroke:#FF3B30;stroke-width:10;stroke-linecap:round;
+    stroke-dasharray:1 3;stroke-dashoffset:1;opacity:.92;
     filter:drop-shadow(0 3px 7px rgba(0,0,0,.4));
   }
   body.los .hero .schlauch .fuellung{
@@ -222,7 +250,7 @@
   @keyframes fuellen{to{stroke-dashoffset:0}}
   .hero .schlauch .glanz{
     fill:none;stroke:rgba(255,255,255,.4);stroke-width:2;stroke-linecap:round;
-    stroke-dasharray:1;stroke-dashoffset:1;
+    stroke-dasharray:1 3;stroke-dashoffset:1;
   }
   body.los .hero .schlauch .leitung,
   body.los .hero .schlauch .glanz{
