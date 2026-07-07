@@ -177,6 +177,12 @@ collections:
       - { name: titelbild, label: Titelbild, widget: image, required: false }
       - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
       - { name: extern, label: 'Externe Website (Karte verlinkt dorthin)', widget: string, required: false }
+      - name: kartenmotiv
+        label: 'Kartenmotiv statt Foto (optional)'
+        widget: select
+        required: false
+        options:
+          - { label: Gerätehaus-Silhouette, value: geraetehaus }
       - name: kontakt
         label: 'Kontaktkarte (für Personenseiten)'
         widget: object

@@ -35,12 +35,33 @@ const orte = (await getCollection('seiten'))
                 target={o.data.extern ? '_blank' : undefined}
                 rel={o.data.extern ? 'noopener' : undefined}
               >
-                {o.data.titelbild ? (
+                {o.data.kartenmotiv === 'geraetehaus' ? (
+                  <span class="motiv" aria-hidden="true">
+                    <svg viewBox="0 0 200 112" class="geraetehaus">
+                      <!-- Halle mit drei Toren und Schlauchturm -->
+                      <rect x="12" y="40" width="126" height="62" fill="#4A505E" />
+                      <polygon points="6,40 144,40 138,27 12,27" fill="#3A3F4C" />
+                      <rect x="146" y="12" width="34" height="90" fill="#4A505E" />
+                      <polygon points="142,12 184,12 180,4 146,4" fill="#3A3F4C" />
+                      <rect x="158" y="22" width="10" height="16" rx="2" fill="#E9EBF1" />
+                      <rect x="158" y="48" width="10" height="16" rx="2" fill="#E9EBF1" />
+                      <rect x="24" y="56" width="26" height="46" rx="2" fill="#E10600" />
+                      <rect x="62" y="56" width="26" height="46" rx="2" fill="#E10600" />
+                      <rect x="100" y="56" width="26" height="46" rx="2" fill="#E10600" />
+                      <g stroke="#B00500" stroke-width="1.6">
+                        <path d="M24,68 h26 M24,80 h26 M24,92 h26" />
+                        <path d="M62,68 h26 M62,80 h26 M62,92 h26" />
+                        <path d="M100,68 h26 M100,80 h26 M100,92 h26" />
+                      </g>
+                      <rect x="4" y="102" width="188" height="4" rx="2" fill="#3A3F4C" />
+                    </svg>
+                  </span>
+                ) : o.data.titelbild ? (
                   <img class="foto" src={o.data.titelbild} alt={o.data.titel} loading="lazy" />
                 ) : (
                   <span class="ohne" aria-hidden="true" />
                 )}
-                <span class="schatten" aria-hidden="true"></span>
+                {o.data.kartenmotiv !== 'geraetehaus' && <span class="schatten" aria-hidden="true" />}
                 {o.data.wappen && <img class="wappen" src={o.data.wappen} alt="" loading="lazy" />}
                 <span class="txt">
                   {o.data.kurz && <em>{o.data.kurz}</em>}
@@ -96,6 +117,31 @@ const orte = (await getCollection('seiten'))
   }
   .ortkarte:hover .foto {
     transform: scale(1.07);
+  }
+  .ortkarte .motiv {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(420px 220px at 50% 115%, rgba(225, 6, 0, 0.12), transparent 65%),
+      linear-gradient(165deg, #f2f3f7, #d9dce4);
+  }
+  .ortkarte .geraetehaus {
+    width: 52%;
+    max-width: 220px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 6px 14px rgba(20, 22, 28, 0.25));
+    transition: transform 0.3s ease;
+  }
+  .ortkarte:hover .geraetehaus {
+    transform: translateY(-4px) scale(1.04);
+  }
+  .ortkarte:has(.motiv) .txt b {
+    color: var(--tinte);
+  }
+  .ortkarte:has(.motiv) .txt em {
+    color: var(--tinte2);
   }
   .ortkarte .ohne {
     position: absolute;

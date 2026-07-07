@@ -4,6 +4,7 @@ bereich: "ortsteile"
 reihenfolge: 5
 kurz: "Gegründet 1873 · ca. 60 Aktive · eigene Jugendfeuerwehr"
 titelbild: "/bilder/fahrzeuge/f_roth_lf20.jpg"
+kartenmotiv: "geraetehaus"
 wappen: "/bilder/ortsteile/wappen-rothenstadt.png"
 kontakt:
   name: "Michael Hösl"

@@ -120,6 +120,8 @@ const seiten = defineCollection({
     wappen: z.string().optional(),
     /** Externer Auftritt (z.B. eigene Website einer Ortsteilwehr) */
     extern: z.string().optional(),
+    /** Gezeichnetes Motiv statt Foto auf der Übersichtskarte */
+    kartenmotiv: z.enum(['geraetehaus']).optional(),
     kontakt: z
       .object({
         name: z.string(),
