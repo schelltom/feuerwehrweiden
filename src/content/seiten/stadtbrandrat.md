@@ -3,7 +3,7 @@ titel: "Stadtbrandrat"
 bereich: "ueber-uns"
 reihenfolge: 1
 kurz: "Richard Schieder"
-titelbild: "/bilder/feuerwehr/sbr.jpg"
+titelbild: "/bilder/header/segnung.jpg"
 kontakt:
   name: "Richard Schieder"
   telefon: "0961 / 391609-13"

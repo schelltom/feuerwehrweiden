@@ -6,6 +6,9 @@ const seiten = (await getCollection('seiten')).sort(
   (a, b) => a.data.reihenfolge - b.data.reihenfolge
 );
 const ueberUns = seiten.filter((s) => s.data.bereich === 'ueber-uns');
+
+/** Statt Porträt: Helm mit Führungskennzeichnung (Anzahl roter Streifen) */
+const helme: Record<string, number> = { stadtbrandrat: 4, stadtbrandinspektor: 3 };
 const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
 ---
 
@@ -31,7 +34,29 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
             {
               ueberUns.map((s) => (
                 <a class="seitenkarte reveal" href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>
-                  {s.data.titelbild ? (
+                  {helme[s.id] ? (
+                    <span class="helmfeld" aria-hidden="true">
+                      <svg viewBox="0 0 100 82" class="helm">
+                        <!-- Bayerischer Feuerwehrhelm, Frontansicht -->
+                        <path
+                          d="M50,6 C27,6 10,25 10,50 C10,60 9,68 12,72 L88,72 C91,68 90,60 90,50 C90,25 73,6 50,6 Z"
+                          fill="#E4E9AE"
+                          stroke="#3A3F35"
+                          stroke-width="2"
+                        />
+                        <rect x="9" y="50" width="82" height="9" fill="#D6D9E0" stroke="#9AA0AD" stroke-width="1.2" />
+                        {Array.from({ length: helme[s.id] }, (_, i) => (
+                          <rect
+                            x={50 - (helme[s.id] * 5.5 + (helme[s.id] - 1) * 4) / 2 + i * 9.5}
+                            y="22"
+                            width="5.5"
+                            height="18"
+                            fill="#E10600"
+                          />
+                        ))}
+                      </svg>
+                    </span>
+                  ) : s.data.titelbild ? (
                     <img src={s.data.titelbild} alt={s.data.titel} loading="lazy" />
                   ) : (
                     <span class="ohne" aria-hidden="true" />
@@ -44,14 +69,6 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
                 </a>
               ))
             }
-            <a class="seitenkarte reveal" href="/feuerwehr/ueber-uns/kalender/">
-              <span class="ohne" aria-hidden="true"></span>
-              <span class="schatten" aria-hidden="true"></span>
-              <span class="txt">
-                <em>Übungen &amp; Veranstaltungen</em>
-                <b>Kalender</b>
-              </span>
-            </a>
           </div>
         </div>
 
@@ -129,6 +146,25 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
   }
   .seitenkarte:hover img {
     transform: scale(1.07);
+  }
+  .seitenkarte .helmfeld {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(420px 220px at 50% 110%, rgba(225, 6, 0, 0.22), transparent 65%),
+      var(--dunkel2);
+  }
+  .seitenkarte .helm {
+    width: 42%;
+    max-width: 190px;
+    margin-bottom: 26px;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45));
+    transition: transform 0.3s ease;
+  }
+  .seitenkarte:hover .helm {
+    transform: translateY(-4px) scale(1.05);
   }
   .seitenkarte .ohne {
     position: absolute;
