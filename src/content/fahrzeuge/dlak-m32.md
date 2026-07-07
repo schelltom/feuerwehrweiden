@@ -6,23 +6,17 @@ standort: Hauptfeuerwache
 bild: /bilder/fahrzeuge/dlak.jpg
 inHalle: true
 reihenfolge: 8
-specs:
-  - label: Rettungshöhe
-    wert: 32 Meter
-  - label: Korb
-    wert: RC 400 · 4 Personen
-  - label: Stromversorgung
-    wert: 3× 230 V · 1× 400 V
-ausstattungTitel: Korb RC 400
-ausstattung:
-  - 4-Personen-Korb, bis 400 kg Zuladung
-  - Rückhaltesystem für Einsatzkräfte
-  - Lasthaken im Korbboden
-  - Kamera an der Korbvorderseite
-  - LED-Scheinwerfer
-  - Krankentragenhalterung für schonende Patientenrettung
-  - "Stromversorgung im Korb: 3× 230 V, 1× 400 V"
 beladung:
+  - raum: "Korb RC 400"
+    bild: /bilder/fahrzeuge/dlak/dreh.jpg
+    inhalt:
+      - "4-Personen-Korb, bis 400 kg Zuladung"
+      - "Rückhaltesystem für Einsatzkräfte"
+      - "Lasthaken im Korbboden"
+      - "Kamera an der Korbvorderseite"
+      - "LED-Scheinwerfer"
+      - "Krankentragenhalterung für schonende Patientenrettung"
+      - "Stromversorgung im Korb: 3× 230 V, 1× 400 V"
   - raum: "Geräteraum 1"
     bild: /bilder/fahrzeuge/detail/dlak-m32-2.jpg
     inhalt:
@@ -89,13 +83,6 @@ beladung:
       - "Elektrolüfter"
       - "Drucklüfter wasserbetrieben"
       - "Wenderohr"
-galerie:
-  - bild: /bilder/fahrzeuge/dlak/dreh.jpg
-    text: Leiter ausgefahren
-  - bild: /bilder/fahrzeuge/dlak/normal.jpg
-    text: Seitenansicht
-  - bild: /bilder/fahrzeuge/dlak.jpg
-    text: Vor der Hauptfeuerwache
 ---
 
 Die Drehleiter DLA (K) M32 L-AT ist das Hubrettungsfahrzeug der Feuerwehr
