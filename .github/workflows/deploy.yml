@@ -16,6 +16,10 @@ jobs:
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
+      - name: GitHub Pages aktivieren
+        uses: actions/configure-pages@v4
+        with:
+          enablement: true
       - name: Website bauen
         uses: withastro/action@v3
         with:
