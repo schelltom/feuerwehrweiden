@@ -1,0 +1,169 @@
+---
+import Basis from '../../layouts/Basis.astro';
+
+const wFragen = [
+  { w: 'Wo', frage: 'ist es passiert?', detail: 'Ort, Straße, Hausnummer – bei Autobahn oder Feld: Fahrtrichtung, Kilometer, markante Punkte. Je genauer, desto schneller sind wir da.' },
+  { w: 'Was', frage: 'ist passiert?', detail: 'Brand, Verkehrsunfall, medizinischer Notfall, eingeklemmte Person, auslaufende Stoffe – kurz und knapp.' },
+  { w: 'Wie viele', frage: 'Betroffene gibt es?', detail: 'Anzahl der Verletzten oder betroffenen Personen. Bei Großlagen reicht eine Schätzung.' },
+  { w: 'Welche', frage: 'Verletzungen oder Gefahren?', detail: 'Bewusstlos? Eingeklemmt? Starke Blutung? Gefahrstoffe? Das entscheidet, welche Kräfte alarmiert werden.' },
+  { w: 'Warten', frage: 'auf Rückfragen!', detail: 'Nicht auflegen! Die Leitstelle beendet das Gespräch. Sie kann dir auch Erste-Hilfe-Anweisungen geben, bis Hilfe eintrifft.' },
+];
+
+const nummern = [
+  { nr: '112', wofuer: 'Feuerwehr & Rettungsdienst – bei jedem Notfall, europaweit, kostenlos' },
+  { nr: '110', wofuer: 'Polizei' },
+  { nr: '116 117', wofuer: 'Ärztlicher Bereitschaftsdienst – wenn es kein Notfall ist, aber nicht bis zum nächsten Werktag warten kann' },
+];
+---
+
+<Basis
+  titel="Notruf-Checkliste – Feuerwehr Weiden"
+  beschreibung="Richtig den Notruf 112 absetzen: die 5 W-Fragen, wichtige Rufnummern und Warn-Apps."
+>
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/nachtbrand.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <span class="eyebrow">Service · Im Notfall</span>
+          <h1 class="display">Notruf-Checkliste</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px);max-width:860px">
+        <p class="intro reveal" style="margin-bottom:36px">
+          Im Notfall zählt jede Sekunde – und ein guter Notruf spart wertvolle Zeit.
+          Wähle die <b>112</b> und beantworte ruhig die fünf W-Fragen. Keine Sorge:
+          Die Leitstelle führt dich durchs Gespräch, du kannst nichts falsch machen.
+          Der einzige Fehler wäre, nicht anzurufen.
+        </p>
+
+        <ol class="wliste">
+          {
+            wFragen.map((f, i) => (
+              <li class="wpunkt reveal">
+                <span class="nr">{i + 1}</span>
+                <div>
+                  <h2 class="display"><em>{f.w}</em> {f.frage}</h2>
+                  <p>{f.detail}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="nummern reveal">
+          <span class="eyebrow">Wichtige Rufnummern</span>
+          <ul>
+            {
+              nummern.map((n) => (
+                <li>
+                  <a class="rufnummer" href={`tel:${n.nr.replace(/\s/g, '')}`}>{n.nr}</a>
+                  <span>{n.wofuer}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="hinweisbox reveal" style="margin-top:32px">
+          <b>Gewarnt werden, bevor etwas passiert:</b> Die kostenlosen Warn-Apps
+          <a href="https://www.katwarn.de/" target="_blank" rel="noopener">KATWARN</a> und
+          <a href="https://www.bbk.bund.de/DE/Warnung-Vorsorge/Warn-App-NINA/warn-app-nina_node.html" target="_blank" rel="noopener">NINA</a>
+          melden amtliche Warnungen – von Unwetter bis Großbrand – direkt aufs Handy.
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .wliste {
+    list-style: none;
+    margin: 0 0 44px;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    counter-reset: w;
+  }
+  .wpunkt {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    align-items: start;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-left: 4px solid var(--rot);
+    padding: 20px 22px;
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.04);
+  }
+  .wpunkt .nr {
+    font-family: var(--display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--rot);
+    text-align: center;
+  }
+  .wpunkt h2 {
+    margin: 0 0 6px;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    line-height: 1.1;
+  }
+  .wpunkt h2 em {
+    color: var(--rot);
+  }
+  .wpunkt p {
+    margin: 0;
+    color: var(--tinte2);
+    font-size: 0.95rem;
+  }
+  @media (max-width: 560px) {
+    .wpunkt {
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      padding: 16px;
+    }
+    .wpunkt .nr {
+      font-size: 1.9rem;
+    }
+  }
+  .nummern ul {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .nummern li {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--linie);
+    padding-bottom: 10px;
+  }
+  .rufnummer {
+    font-family: var(--display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.7rem;
+    line-height: 1;
+    color: var(--rot);
+    text-decoration: none;
+    min-width: 110px;
+  }
+  .nummern span {
+    color: var(--tinte2);
+    font-size: 0.92rem;
+  }
+  .hinweisbox a {
+    color: var(--rot);
+  }
+</style>

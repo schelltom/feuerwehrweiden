@@ -78,8 +78,8 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
                         ))}
                       </svg>
                     </span>
-                  ) : s.data.titelbild ? (
-                    <img src={s.data.titelbild} alt={s.data.titel} loading="lazy" />
+                  ) : (s.data.kartenbild ?? s.data.titelbild) ? (
+                    <img src={s.data.kartenbild ?? s.data.titelbild} alt={s.data.titel} loading="lazy" />
                   ) : (
                     <span class="ohne" aria-hidden="true" />
                   )}

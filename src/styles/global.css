@@ -409,7 +409,7 @@
   .zahlen{background:var(--dunkel);color:#fff}
   .zahlen .wrap{
     padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(40px,5vw,64px);
-    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
   }
   .zahl{border-left:1px solid var(--hell-linie);padding:4px 26px}
   .zahl:first-child{border-left:0;padding-left:0}

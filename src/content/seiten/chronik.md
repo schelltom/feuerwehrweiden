@@ -19,6 +19,9 @@ zeitstrahl:
     titel: "Die Gerätehalle"
     text: "Um diese große Anzahl von Geräten unterzubringen, mußte auf Pfeiler verzichtet und eine freitragende Eisenbetondecke (Wayß & Freitag) verwendet werden, wodurch sich die Kosten um ungefähr 1000 Mark erhöhten. Die Halle mit den Ausmaßen 10,35 x 27,63 Meter hat Betonboden und weiß getünchte Innenwände. Die Zufahrt zu der Gerätehalle erfolgt durch sechs Tore mit Oberlichten. Auf der gegenüberliegenden Seite führt ein Tor in den Hof, in dem die Geräte gereinigt werden sollen. Die Beleuchtung der Halle geschieht durch sechs elektrische Lampen von je 50 Kerzen."
   - zeit: "1913"
+    titel: "Einweihung Des Feuerwehrhauses"
+    text: "Mit der Einweihung des Feuerwehrhauses im Jahr 1913 bezog die Feuerwehr ihren bis heute bestehenden Standort in der Landgerichtsstraße. Im Laufe der Jahrzehnte wurde die Feuerwache mehrfach erweitert und an die wachsenden Anforderungen des Feuerwehrdienstes angepasst."
+  - zeit: "1913"
     titel: "Der Schlauchturm"
     text: "Der Schlauchturm gestattet die Aufhängung der ganzen Schlauchlänge von 15 Metern. Die Abnahme der Schläuche zum Aufhängen kann direkt von der Schlauchhaspel weg erfolgen. Die Schläuche werden an zwei eiserne Schlauchtrommeln aufgehängt, deren jede mit einer Stahlseilwinde bedient wird. Der Aufstieg in das oberste Turmgeschoß erfolgt durch eiserne, quer über die Ecke gehende Sprossen. Im Dachgeschoß befindet sich ein Chargenzimmer von 55 Quadratmeter Größe, mit fließendem Wasser, elektrischem Licht, Ventilator und Ofenheizung, Brandtelefon, ein Gerätezimmer und Gerätekammer, für den Hallenwärter eine Wohnung mit zwei Zimmern, Bodenkammern, Waschküche und Spülabort.\" Stadtbauratz Josef Linhardt machte 1924 die Pläne für den Aufbau eines Obergeschosses, in dem der Schwurgerichtssaal mit Nebenräumen untergebracht wurden."
   - zeit: "1956-1961"
@@ -34,6 +37,10 @@ zeitstrahl:
     bild: "/bilder/feuerwehr/hauptwache-heute.jpg"
     bildtext: "Die Hauptfeuerwache heute · Foto: Tilman2007, Wikimedia Commons, CC BY-SA 3.0"
     titel: "Und So Sieht Unsere Hauptwache Heute Aus"
+    text: "Seit 1986 befindet sich die Hauptfeuerwache im Wesentlichen in ihrem heutigen baulichen Zustand und bildet die Grundlage für den täglichen Feuerwehrbetrieb."
+  - zeit: "2009"
+    titel: "Feuerwache 2 In Der Leuchtenberger Straße"
+    text: "Aufgrund des stetig steigenden Platzbedarfs wurde 2009 die Feuerwache 2 in der Leuchtenberger Straße in Betrieb genommen. Sie dient bis heute als Unterstellmöglichkeit für Sonderfahrzeuge, Einsatzmaterial und verschiedene Gerätschaften und entlastet damit die räumlichen Kapazitäten der Hauptfeuerwache."
 ---
 
 

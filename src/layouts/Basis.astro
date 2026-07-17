@@ -96,6 +96,7 @@ const {
         <div>
           <h3>Service</h3>
           <ul>
+            <li><a href="/service/notruf/">Notruf-Checkliste</a></li>
             <li><a href="/service/atemschutz/">Atemschutzpflegestelle</a></li>
             <li><a href="/feuerwehr/ueber-uns/kalender/">Kalender</a></li>
             <li><a href="/fuhrpark/">Fuhrpark</a></li>
@@ -189,15 +190,17 @@ const {
             zio.unobserve(e.target);
             const el = e.target as HTMLElement;
             const ziel = Number(el.dataset.ziel);
+            /* data-tausender: Anzeige mit Tausenderpunkt (10.500), Jahreszahlen bleiben ohne */
+            const fmt = (n: number) => ('tausender' in el.dataset ? n.toLocaleString('de-DE') : String(n));
             if (reduziert) {
-              el.textContent = String(ziel);
+              el.textContent = fmt(ziel);
               continue;
             }
             let start: number | null = null;
             const schritt = (t: number) => {
               if (start === null) start = t;
               const p = Math.min((t - start) / 1200, 1);
-              el.textContent = String(Math.round(ziel * (1 - Math.pow(1 - p, 3))));
+              el.textContent = fmt(Math.round(ziel * (1 - Math.pow(1 - p, 3))));
               if (p < 1) requestAnimationFrame(schritt);
             };
             requestAnimationFrame(schritt);
