@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Slideshow from '../../components/Slideshow.astro';
 
 export async function getStaticPaths() {
   const berichte = await getCollection('berichte');
@@ -56,6 +57,15 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
           <Content />
         </div>
 
+        {
+          d.galerie.length > 0 && (
+            <div class="artikel-galerie">
+              <span class="eyebrow">Bilder</span>
+              <Slideshow bilder={d.galerie} titel={d.titel} />
+            </div>
+          )
+        }
+
         <div class="artikel-ende reveal">
           <a class="zurueck" href="/berichte/" style="margin:0">← Alle Berichte</a>
           <a class="btn btn-rot" href="/#mitmachen">Lust bekommen? Mach mit!</a>
@@ -64,3 +74,13 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
     </section>
   </main>
 </Basis>
+
+<style>
+  .artikel-galerie {
+    margin-top: clamp(32px, 5vw, 52px);
+  }
+  .artikel-galerie .eyebrow {
+    display: block;
+    margin-bottom: 12px;
+  }
+</style>

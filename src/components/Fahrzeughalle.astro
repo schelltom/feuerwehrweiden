@@ -19,13 +19,9 @@ const erstes = fahrzeuge[0];
   <div class="wrap">
     <span class="eyebrow">Fahrzeughalle · Hauptfeuerwache</span>
     <h2 class="titel display reveal">Unser Fuhrpark</h2>
-    <p class="intro reveal">
-      Vom Kommandowagen bis zur 32-Meter-Drehleiter: Klick dich durch die Halle – jedes Fahrzeug
-      mit seinem Funkrufnamen. Über „Fahrzeugdetails“ geht’s zur Detailseite mit Beladung und
-      Galerie.
-    </p>
 
-    <div class="buehne reveal">
+    <div class="halle reveal">
+    <div class="buehne">
       <div class="foto" id="buehnenfoto">
         {
           fahrzeuge.map((f, i) => (
@@ -50,6 +46,7 @@ const erstes = fahrzeuge[0];
           </button>
         ))
       }
+    </div>
     </div>
   </div>
 </section>

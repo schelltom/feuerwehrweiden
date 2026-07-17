@@ -11,12 +11,27 @@ backend:
 # Für lokales Testen ohne Login (npx decap-server im Projektordner starten):
 local_backend: true
 
-media_folder: 'public/bilder/uploads'
-public_folder: '/bilder/uploads'
+# Upload-Ziel: Jahresordner – zum Jahreswechsel hier einfach das Jahr hochzählen
+media_folder: 'public/bilder/uploads/2026'
+public_folder: '/bilder/uploads/2026'
 
 locale: de
 
 collections:
+  - name: einsaetze
+    label: Einsätze
+    label_singular: Einsatz
+    folder: src/content/einsaetze
+    create: true
+    identifier_field: stichwort
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    summary: '{{fields.wann}} – {{fields.art}} – {{fields.stichwort}}'
+    sortable_fields: [wann]
+    fields:
+      - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
+      - { name: art, label: Einsatzart, widget: select, options: [THL, Brand, Sonstige], default: THL }
+      - { name: stichwort, label: Einsatzstichwort, widget: string, hint: 'z.B. Straße reinigen klein' }
+
   - name: berichte
     label: Berichte & News
     label_singular: Bericht
@@ -37,9 +52,24 @@ collections:
         label: 'Zahlen-Kacheln (optional)'
         widget: list
         required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.wert}} {{fields.label}}'
         fields:
           - { name: wert, label: Wert, widget: string }
           - { name: label, label: Beschriftung, widget: string }
+      - name: galerie
+        label: 'Bildergalerie (Slideshow unter dem Bericht)'
+        label_singular: Bild
+        widget: list
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.text}}'
+        hint: 'Beliebig viele Bilder hochladen – sie erscheinen als durchklickbare Slideshow unter dem Berichtstext.'
+        fields:
+          - { name: bild, label: Bild, widget: image }
+          - { name: text, label: 'Bildunterschrift (optional)', widget: string, required: false }
       - { name: body, label: Berichtstext, widget: markdown }
 
   - name: fahrzeuge
@@ -48,6 +78,12 @@ collections:
     folder: src/content/fahrzeuge
     create: true
     slug: '{{slug}}'
+    identifier_field: name
+    summary: '{{fields.name}} – {{fields.typ}}'
+    sortable_fields: [name, reihenfolge, standort]
+    view_filters:
+      - { label: Fahrzeuge, field: kategorie, pattern: fahrzeug }
+      - { label: Anhänger, field: kategorie, pattern: anhaenger }
     fields:
       - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
       - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
@@ -64,103 +100,135 @@ collections:
       - { name: bild, label: Hauptbild, widget: image, required: false }
       - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }
       - name: specs
-        label: Eckdaten
+        label: 'Eckdaten (kleine Steckbrief-Tabelle auf der Fahrzeugseite)'
+        label_singular: Eckdatum
         widget: list
         required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.label}}: {{fields.wert}}'
+        hint: 'Eine Zeile je Angabe – z.B. Bezeichnung "Baujahr", Wert "2023" oder "Besatzung" / "1/8".'
         fields:
           - { name: label, label: Bezeichnung, widget: string }
           - { name: wert, label: Wert, widget: string }
-      - { name: ausstattungTitel, label: 'Überschrift Ausstattung', widget: string, required: false }
+      - { name: ausstattungTitel, label: 'Überschrift über der Ausstattungs-Liste (optional)', widget: string, required: false, hint: 'z.B. "Besondere Ausstattung" – leer lassen für Standard' }
       - name: ausstattung
-        label: Ausstattung (Liste)
+        label: 'Ausstattung (einfache Aufzählung)'
+        label_singular: Eintrag
         widget: list
         required: false
+        collapsed: true
+        minimize_collapsed: true
+        hint: 'Ein Eintrag pro Zeile, z.B. "Seilwinde 5 t" – erscheint als Aufzählung auf der Fahrzeugseite.'
         field: { name: eintrag, label: Eintrag, widget: string }
       - name: beladung
-        label: Beladung nach Geräteräumen
+        label: 'Beladung – ein Eintrag je Geräteraum'
+        label_singular: Geräteraum
         widget: list
         required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.raum}}'
+        hint: 'Je Geräteraum (G1, G2, Dach …) ein Foto und die Liste der Ausrüstung. Erscheint als Aufklapp-Kasten auf der Fahrzeugseite.'
         fields:
-          - { name: raum, label: Geräteraum, widget: string }
-          - { name: bild, label: 'Foto des Geräteraums (erscheint im Aufklapp-Kasten)', widget: image, required: false }
+          - { name: raum, label: 'Geräteraum (z.B. G1 – links vorne)', widget: string }
+          - { name: bild, label: 'Foto des Geräteraums (optional)', widget: image, required: false }
           - name: inhalt
-            label: Inhalt
+            label: 'Ausrüstung in diesem Raum'
+            label_singular: Gegenstand
             widget: list
             required: false
-            field: { name: eintrag, label: Eintrag, widget: string }
+            collapsed: true
+            hint: 'Ein Eintrag pro Gegenstand, z.B. "Hydraulikaggregat".'
+            field: { name: eintrag, label: Gegenstand, widget: string }
       - name: galerie
         label: Bildergalerie
+        label_singular: Bild
         widget: list
         required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.text}}'
         fields:
           - { name: bild, label: Bild, widget: image }
           - { name: text, label: Bildunterschrift, widget: string, required: false }
       - { name: body, label: Beschreibung, widget: markdown }
 
-  - name: daten
-    label: Einsätze & Termine
-    files:
-      - name: einsaetze
-        label: Einsatzticker
-        file: src/content/daten/einsaetze.json
-        fields:
-          - name: einsaetze
-            label: Einsätze (neuester zuerst)
-            widget: list
-            fields:
-              - { name: id, label: 'ID (z.B. 2026-07-06-2139)', widget: string }
-              - { name: datum, label: 'Datum (TT.MM.JJJJ)', widget: string }
-              - { name: zeit, label: 'Uhrzeit (HH:MM)', widget: string }
-              - { name: stichwort, label: Einsatzstichwort, widget: string }
-              - { name: art, label: Art, widget: select, options: [THL, Brand, Sonstige] }
-      - name: termine
-        label: Termine
-        file: src/content/daten/termine.json
-        fields:
-          - name: termine
-            label: Termine
-            widget: list
-            fields:
-              - { name: id, label: ID, widget: string }
-              - { name: datum, label: 'Datum (JJJJ-MM-TT)', widget: string }
-              - { name: titel, label: Titel, widget: string }
-              - { name: von, label: 'Beginn (HH:MM)', widget: string }
-              - { name: bis, label: 'Ende (HH:MM)', widget: string }
-              - name: kategorie
-                label: Kategorie
-                widget: select
-                options: [Zugübung 1. Zug, Zugübung 2. Zug, Maschinisten, UG-ÖEL, Dienstgrade, Dienstversammlung, Vereinsveranstaltung, Atemschutz, Jugendfeuerwehr Weiden, Kinderfeuerwehr, Sonstiges]
-                default: Sonstiges
+  - name: termine
+    label: Termine
+    label_singular: Termin
+    folder: src/content/termine
+    create: true
+    identifier_field: titel
+    slug: '{{fields.datum}}-{{slug}}'
+    summary: '{{fields.datum}} – {{fields.titel}} ({{fields.kategorie}})'
+    sortable_fields: [datum, titel, kategorie]
+    fields:
+      - { name: titel, label: Name des Termins, widget: string, hint: 'z.B. Terrassenfest' }
+      - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false }
+      - { name: von, label: 'Beginn (HH:MM)', widget: string, default: '19:00', pattern: ['^([01][0-9]|2[0-3]):[0-5][0-9]$', 'Uhrzeit im Format HH:MM, z.B. 19:00'] }
+      - { name: bis, label: 'Ende (HH:MM)', widget: string, default: '21:00', pattern: ['^([01][0-9]|2[0-3]):[0-5][0-9]$', 'Uhrzeit im Format HH:MM, z.B. 21:00'] }
+      - name: kategorie
+        label: Kategorie
+        widget: relation
+        collection: terminkategorien
+        search_fields: [name]
+        display_fields: [name]
+        value_field: name
+        hint: 'Neue Kategorie? Erst unter "Terminkategorien" anlegen.'
 
-  - name: pflegestelle
-    label: Atemschutzpflegestelle
-    files:
-      - name: atemschutz
-        label: Anlieferungen & Status
-        file: src/content/daten/atemschutz.json
-        fields:
-          - name: vorgaenge
-            label: Vorgänge
-            label_singular: Vorgang
-            widget: list
-            summary: '{{fields.wehr}} – {{fields.artikel}} ({{fields.status}})'
-            fields:
-              - { name: id, label: 'ID (z.B. 2026-07-06-etzenricht)', widget: string }
-              - { name: wehr, label: Wehr, widget: string }
-              - { name: email, label: 'E-Mail der Wehr (für Benachrichtigung)', widget: string, required: false, default: '' }
-              - { name: artikel, label: 'Was wurde angeliefert?', widget: string, hint: 'z.B. 2 Geräte, 4 Masken, Flaschen TÜV' }
-              - name: status
-                label: Status
-                widget: select
-                options:
-                  - { label: 'Eingegangen', value: eingegangen }
-                  - { label: 'In Pflege', value: in-pflege }
-                  - { label: 'Abholbereit (löst E-Mail aus)', value: abholbereit }
-                  - { label: 'Abgeholt (verschwindet von der Seite)', value: abgeholt }
-                default: eingegangen
-              - { name: eingegangen, label: 'Angeliefert am (JJJJ-MM-TT)', widget: string }
-              - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
-              - { name: benachrichtigt, label: 'E-Mail wurde verschickt (setzt der Bot automatisch)', widget: boolean, default: false }
+  - name: terminkategorien
+    label: Terminkategorien
+    label_singular: Kategorie
+    folder: src/content/terminkategorien
+    create: true
+    identifier_field: name
+    slug: '{{slug}}'
+    summary: '{{fields.name}}'
+    fields:
+      - { name: name, label: Name, widget: string, hint: 'z.B. Jugend, UG-ÖEL, 1. Zug' }
+      - { name: farbe, label: 'Farbe (im Kalender)', widget: color, allowInput: true, default: '#5B6170' }
+
+  - name: pflege
+    label: Pflegestelle
+    label_singular: Anlieferung
+    folder: src/content/pflege
+    create: true
+    identifier_field: wehr
+    slug: '{{year}}-{{month}}-{{day}}-{{fields.wehr}}'
+    summary: '{{fields.wehr}} – abgegeben {{fields.abgegeben}}'
+    fields:
+      - name: wehr
+        label: Feuerwehr
+        widget: relation
+        collection: wehren
+        search_fields: [name]
+        display_fields: [name]
+        value_field: '{{slug}}'
+        hint: 'Wehr nicht in der Liste? Erst unter "Feuerwehren" anlegen – die E-Mail wird dort gepflegt.'
+      - { name: abgegeben, label: 'Abgegeben am', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
+      - { name: geraete, label: 'Anzahl Atemschutzgeräte', widget: number, value_type: int, min: 0, default: 0 }
+      - { name: masken, label: 'Anzahl Masken', widget: number, value_type: int, min: 0, default: 0 }
+      - { name: flaschen, label: 'Anzahl Flaschen', widget: number, value_type: int, min: 0, default: 0 }
+      - { name: schlaeucheB, label: 'Anzahl B-Schläuche', widget: number, value_type: int, min: 0, default: 0 }
+      - { name: schlaeucheC, label: 'Anzahl C-Schläuche', widget: number, value_type: int, min: 0, default: 0 }
+      - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
+      - { name: abholbereit, label: 'Geprüft & abholbereit (löst die E-Mail an die Wehr aus)', widget: boolean, default: false }
+      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
+      - { name: abholbereitSeit, widget: hidden, default: '' }
+      - { name: benachrichtigt, widget: hidden, default: false }
+
+  - name: wehren
+    label: Feuerwehren (Pflegestelle)
+    label_singular: Feuerwehr
+    folder: src/content/wehren
+    create: true
+    identifier_field: name
+    slug: '{{slug}}'
+    summary: '{{fields.name}} ({{fields.email}})'
+    fields:
+      - { name: name, label: Name, widget: string, hint: 'z.B. FF Etzenricht' }
+      - { name: email, label: 'E-Mail (für die Abholbereit-Benachrichtigung)', widget: string, required: false, default: '' }
 
   - name: seiten
     label: 'Feuerwehr-Seiten (Über uns & Einheiten)'

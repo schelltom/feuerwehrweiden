@@ -1,0 +1,119 @@
+---
+import { inhaltText, statusText, datum } from '../lib/pflege';
+
+interface Props {
+  vorgaenge: any[];
+  /** Wehr-Spalte zeigen (im Gesamt-Report), auf der Einzelseite nicht nötig */
+  mitWehr?: boolean;
+}
+
+const { vorgaenge, mitWehr = true } = Astro.props;
+const MENGEN = [
+  ['geraete', 'Geräte'],
+  ['masken', 'Masken'],
+  ['flaschen', 'Flaschen'],
+  ['schlaeucheB', 'B-Schläuche'],
+  ['schlaeucheC', 'C-Schläuche'],
+] as const;
+const summe = (feld: string) => vorgaenge.reduce((s, v) => s + v[feld], 0);
+---
+
+<div class="tabellenrahmen">
+  <table class="report">
+    <thead>
+      <tr>
+        {mitWehr && <th>Wehr</th>}
+        <th>Abgegeben</th>
+        {MENGEN.map(([, label]) => <th class="zahl">{label}</th>)}
+        <th>Status</th>
+        <th>Abholbereit seit</th>
+        <th>Hinweis</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        vorgaenge.map((v) => (
+          <tr>
+            {mitWehr && <td class="wehr">{v.wehrName}</td>}
+            <td>{datum(v.abgegeben)}</td>
+            {MENGEN.map(([feld]) => <td class="zahl">{v[feld] > 0 ? v[feld] : '–'}</td>)}
+            <td>{statusText(v)}</td>
+            <td>{v.abholbereitSeit ? datum(v.abholbereitSeit) : '–'}</td>
+            <td class="hinweis">{v.hinweis || ''}</td>
+          </tr>
+        ))
+      }
+      {vorgaenge.length === 0 && (
+        <tr><td colspan={mitWehr ? 10 : 9} class="leer">Keine Vorgänge vorhanden.</td></tr>
+      )}
+    </tbody>
+    {
+      vorgaenge.length > 0 && (
+        <tfoot>
+          <tr>
+            <td colspan={mitWehr ? 2 : 1}>Gesamt ({vorgaenge.length} {vorgaenge.length === 1 ? 'Vorgang' : 'Vorgänge'})</td>
+            {MENGEN.map(([feld]) => <td class="zahl">{summe(feld)}</td>)}
+            <td colspan="3" />
+          </tr>
+        </tfoot>
+      )
+    }
+  </table>
+</div>
+
+<style>
+  .tabellenrahmen {
+    overflow-x: auto;
+  }
+  .report {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--karte);
+    font-size: 0.88rem;
+  }
+  .report th,
+  .report td {
+    border: 1px solid var(--linie);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .report thead th {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    background: var(--grund);
+    white-space: nowrap;
+  }
+  .report .zahl {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .report .wehr {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .report .hinweis {
+    color: var(--tinte2);
+  }
+  .report .leer {
+    color: var(--tinte2);
+    text-align: center;
+  }
+  .report tfoot td {
+    font-weight: 700;
+    background: var(--grund);
+  }
+  @media print {
+    .report {
+      font-size: 9pt;
+    }
+    .report th,
+    .report td {
+      border-color: #999;
+    }
+  }
+</style>

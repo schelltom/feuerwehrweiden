@@ -2,9 +2,11 @@
 import SkylineWeiden from './SkylineWeiden.astro';
 
 interface Props {
-  ticker?: { datum: string; zeit: string; stichwort: string }[];
+  ticker?: { wann: Date; datum: string; zeit: string; stichwort: string }[];
 }
 const { ticker = [] } = Astro.props;
+/** "Neu" nur, wenn der Einsatz keine 6 Stunden her ist (Browser prüft zusätzlich nach) */
+const istNeu = (w: Date) => Date.now() - w.getTime() < 6 * 60 * 60 * 1000;
 
 const folien = [
   { bild: '/bilder/header/absturz.jpg', titel: 'Absturzsicherung im Einsatz' },
@@ -121,12 +123,15 @@ const folien = [
           <div class="spur">
             {[0, 1].map(() => (
               <span class="haelfte">
-                {[...ticker, ...ticker].map((e, idx) => (
-                  <span class:list={['eintrag', { neu: idx % ticker.length === 0 }]}>
-                    +++ {idx % ticker.length === 0 && <em class="neuchip">Neu</em>}
-                    <b>{e.datum} · {e.zeit}</b> · {e.stichwort}
-                  </span>
-                ))}
+                {[...ticker, ...ticker].map((e, idx) => {
+                  const zeigeNeu = idx % ticker.length === 0 && istNeu(e.wann);
+                  return (
+                    <span class:list={['eintrag', { neu: zeigeNeu }]} data-wann={zeigeNeu ? e.wann.toISOString() : undefined}>
+                      +++ {zeigeNeu && <em class="neuchip">Neu</em>}
+                      <b>{e.datum} · {e.zeit}</b> · {e.stichwort}
+                    </span>
+                  );
+                })}
               </span>
             ))}
           </div>
@@ -138,6 +143,15 @@ const folien = [
 </section>
 
 <script>
+  /* "Neu" im Lauftext entfernen, wenn der Einsatz beim Betrachten älter als 6 Stunden ist */
+  const neuGrenze = Date.now() - 6 * 60 * 60 * 1000;
+  document.querySelectorAll<HTMLElement>('.eintrag[data-wann]').forEach((el) => {
+    if (Date.parse(el.dataset.wann!) < neuGrenze) {
+      el.classList.remove('neu');
+      el.querySelector('.neuchip')?.remove();
+    }
+  });
+
   const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const folien = document.querySelectorAll<HTMLElement>('.hero .folie');
   const punkte = document.getElementById('punkte')!;

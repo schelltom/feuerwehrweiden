@@ -1,0 +1,343 @@
+---
+interface Props {
+  bilder: { bild: string; text?: string }[];
+  /** Für Alt-Texte ohne eigene Bildunterschrift */
+  titel?: string;
+}
+
+const { bilder, titel = 'Bericht' } = Astro.props;
+---
+
+<div class="slideshow reveal" role="group" aria-roledescription="Slideshow" aria-label={`Bildergalerie ${titel}`}>
+  {
+    bilder.map((b, i) => (
+      <figure class:list={[{ an: i === 0 }]}>
+        <img src={b.bild} alt={b.text ?? `${titel} – Bild ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} title="Zum Vergrößern klicken" />
+        {b.text && <figcaption>{b.text}</figcaption>}
+      </figure>
+    ))
+  }
+  <span class="wasserzeichen" aria-hidden="true">
+    <img src="/bilder/logo.jpg" alt="" width="28" height="28" loading="lazy" />
+    © Feuerwehr Weiden
+  </span>
+  <span class="stand">1 / {bilder.length}</span>
+  {
+    bilder.length > 1 && (
+      <>
+        <button class="spfeil zur" aria-label="Voriges Bild">←</button>
+        <button class="spfeil wei" aria-label="Nächstes Bild">→</button>
+        <div class="spunkte">
+          {bilder.map((_, i) => (
+            <button class:list={[{ an: i === 0 }]} data-i={i} aria-label={`Bild ${i + 1}`} />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  <dialog class="lightbox">
+    <button class="schliessen" aria-label="Schließen">×</button>
+    {bilder.length > 1 && <button class="lpfeil zur" aria-label="Voriges Bild">←</button>}
+    {bilder.length > 1 && <button class="lpfeil wei" aria-label="Nächstes Bild">→</button>}
+    <img src={bilder[0].bild} alt="" />
+    <span class="lstand">1 / {bilder.length}</span>
+    <span class="ltext"></span>
+    <span class="wasserzeichen" aria-hidden="true">
+      <img src="/bilder/logo.jpg" alt="" width="34" height="34" loading="lazy" />
+      © Feuerwehr Weiden
+    </span>
+  </dialog>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.slideshow').forEach((s) => {
+    const folien = s.querySelectorAll('figure');
+    const punkte = s.querySelectorAll<HTMLElement>('.spunkte button');
+    const stand = s.querySelector('.stand')!;
+    const lightbox = s.querySelector<HTMLDialogElement>('.lightbox')!;
+    const lbild = lightbox.querySelector('img')!;
+    const lstand = lightbox.querySelector('.lstand')!;
+    const ltext = lightbox.querySelector('.ltext')!;
+    let aktiv = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const zeige = (n: number) => {
+      aktiv = (n + folien.length) % folien.length;
+      folien.forEach((f, j) => f.classList.toggle('an', j === aktiv));
+      punkte.forEach((p, j) => p.classList.toggle('an', j === aktiv));
+      stand.textContent = `${aktiv + 1} / ${folien.length}`;
+      if (lightbox.open) {
+        const img = folien[aktiv].querySelector('img')!;
+        lbild.src = img.src;
+        lbild.alt = img.alt;
+        lstand.textContent = `${aktiv + 1} / ${folien.length}`;
+        ltext.textContent = folien[aktiv].querySelector('figcaption')?.textContent ?? '';
+      }
+    };
+    const stopp = () => timer && clearInterval(timer);
+    const neuStarten = () => {
+      stopp();
+      if (folien.length > 1 && !lightbox.open && !matchMedia('(prefers-reduced-motion: reduce)').matches)
+        timer = setInterval(() => zeige(aktiv + 1), 5000);
+    };
+
+    s.querySelector('.zur')?.addEventListener('click', () => { zeige(aktiv - 1); neuStarten(); });
+    s.querySelector('.wei')?.addEventListener('click', () => { zeige(aktiv + 1); neuStarten(); });
+    punkte.forEach((p) => p.addEventListener('click', () => { zeige(Number(p.dataset.i)); neuStarten(); }));
+    s.addEventListener('mouseenter', stopp);
+    s.addEventListener('mouseleave', neuStarten);
+
+    /* Popup (Lightbox) */
+    folien.forEach((f) =>
+      f.querySelector('img')!.addEventListener('click', () => {
+        stopp();
+        lightbox.showModal();
+        zeige(aktiv);
+      })
+    );
+    lightbox.querySelector('.schliessen')!.addEventListener('click', () => lightbox.close());
+    lightbox.querySelector('.lpfeil.zur')?.addEventListener('click', () => zeige(aktiv - 1));
+    lightbox.querySelector('.lpfeil.wei')?.addEventListener('click', () => zeige(aktiv + 1));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.close(); // Klick auf den Hintergrund
+    });
+    lightbox.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') zeige(aktiv - 1);
+      if (e.key === 'ArrowRight') zeige(aktiv + 1);
+    });
+    lightbox.addEventListener('close', neuStarten);
+
+    neuStarten();
+  });
+</script>
+
+<style>
+  .slideshow {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--dunkel);
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(14, 17, 22, 0.22);
+  }
+  figure {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+    pointer-events: none;
+  }
+  figure.an {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: zoom-in;
+  }
+  figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 44px 18px 40px;
+    background: linear-gradient(to top, rgba(14, 17, 22, 0.85), transparent);
+    color: #fff;
+    font-size: 0.88rem;
+    pointer-events: none;
+  }
+  .wasserzeichen {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(14, 17, 22, 0.4);
+    padding: 4px 10px 4px 5px;
+    border-radius: 999px;
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+  }
+  .wasserzeichen img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    opacity: 0.9;
+  }
+  .stand {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: #fff;
+    background: rgba(14, 17, 22, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 5px 10px;
+    backdrop-filter: blur(6px);
+  }
+  .spfeil {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(14, 17, 22, 0.5);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .spfeil:hover {
+    background: var(--rot);
+    border-color: var(--rot);
+  }
+  .spfeil.zur {
+    left: 14px;
+  }
+  .spfeil.wei {
+    right: 14px;
+  }
+  .spunkte {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .spunkte button {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .spunkte button.an {
+    background: #fff;
+    transform: scale(1.2);
+  }
+
+  /* ---- Popup ---- */
+  .lightbox {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox[open] {
+    display: flex;
+  }
+  .lightbox::backdrop {
+    background: rgba(8, 10, 14, 0.92);
+  }
+  .lightbox img {
+    max-width: 94vw;
+    max-height: 92vh;
+    object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+  .lightbox .wasserzeichen {
+    right: max(18px, 3vw);
+    bottom: max(18px, 3vh);
+    font-size: 0.7rem;
+  }
+  .lightbox .wasserzeichen img {
+    width: 34px;
+    height: 34px;
+  }
+  .lightbox .schliessen {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    z-index: 4;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(14, 17, 22, 0.6);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lightbox .schliessen:hover {
+    background: var(--rot);
+    border-color: var(--rot);
+  }
+  .lpfeil {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(14, 17, 22, 0.6);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .lpfeil:hover {
+    background: var(--rot);
+    border-color: var(--rot);
+  }
+  .lpfeil.zur {
+    left: max(14px, 2vw);
+  }
+  .lpfeil.wei {
+    right: max(14px, 2vw);
+  }
+  .lightbox .lstand {
+    position: absolute;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .lightbox .ltext {
+    position: absolute;
+    bottom: max(20px, 3vh);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 70vw;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+  }
+  .lightbox .ltext:empty {
+    display: none;
+  }
+</style>

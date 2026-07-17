@@ -2,7 +2,7 @@
 titel: "Nofi-Lauf 2026"
 datum: 2026-07-02
 ressort: Einsatzdienst
-titelbild: "/bilder/berichte/nofi-lauf-2026-1.jpg"
+titelbild: "/bilder/uploads/2026/nofi-lauf-2026-1.jpg"
 kurz: "Am gestrigen Tag begleiteten wir den Nofi-Lauf 2026, der turnusgemäß erneut in Weiden stattfand."
 ---
 
@@ -31,7 +31,7 @@ Somit blicken wir auf einen erfolgreichen und reibungslosen Veranstaltungstag zu
 Ein herzlicher Dank gilt allen eingesetzten Kräften sowie unseren Ortsteilfeuerwehren für die hervorragende Zusammenarbeit und Unterstützung.
 
 <div class="berichtbilder">
-  <figure><img src="/bilder/berichte/nofi-lauf-2026-2.jpg" alt="Nofi-Lauf 2026"></figure>
-  <figure><img src="/bilder/berichte/nofi-lauf-2026-3.jpg" alt="Nofi-Lauf 2026"></figure>
-  <figure><img src="/bilder/berichte/nofi-lauf-2026-4.jpg" alt="Nofi-Lauf 2026"></figure>
+  <figure><img src="/bilder/uploads/2026/nofi-lauf-2026-2.jpg" alt="Nofi-Lauf 2026"></figure>
+  <figure><img src="/bilder/uploads/2026/nofi-lauf-2026-3.jpg" alt="Nofi-Lauf 2026"></figure>
+  <figure><img src="/bilder/uploads/2026/nofi-lauf-2026-4.jpg" alt="Nofi-Lauf 2026"></figure>
 </div>

@@ -2,8 +2,16 @@
 titel: "Sonderübungen mit dem neuen HLF 20"
 datum: 2026-07-14
 ressort: Übungsdienst
-titelbild: "/bilder/berichte/sonderuebungen-hlf20-1.jpg"
+titelbild: "/bilder/uploads/2026/sonderuebungen-hlf20-1.jpg"
 kurz: "An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt."
+galerie:
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-2.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-3.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-4.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-5.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-6.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-7.jpg"
+  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-8.jpg"
 ---
 
 An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung (THL) mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt.
@@ -17,13 +25,3 @@ Das große Interesse an den Sonderübungen zeigte sich an allen drei Abenden: Da
 Ein herzliches Dankeschön gilt allen Teilnehmerinnen und Teilnehmern, die auch bei schweißtreibenden Temperaturen ihre Freizeit investiert haben, um ihr Wissen und ihre Fähigkeiten weiter auszubauen.
 
 Ein besonderer Dank geht an Wolfgang für die Organisation, Vorbereitung und Durchführung der Sonderübungen. Sein Engagement und seine langjährige Erfahrung haben maßgeblich zum Erfolg der Ausbildungsabende beigetragen.
-
-<div class="berichtbilder">
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-2.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-3.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-4.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-5.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-6.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-7.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-  <figure><img src="/bilder/berichte/sonderuebungen-hlf20-8.jpg" alt="Sonderübung THL mit dem HLF 20"></figure>
-</div>

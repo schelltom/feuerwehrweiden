@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob, file } from 'astro/loaders';
+import { glob } from 'astro/loaders';
 
 /**
  * Berichte / News – eine Markdown-Datei pro Beitrag.
@@ -15,6 +15,10 @@ const berichte = defineCollection({
     kurz: z.string().optional(),
     stats: z
       .array(z.object({ wert: z.string(), label: z.string() }))
+      .default([]),
+    /** Bildergalerie – wird unter dem Berichtstext als Slideshow gezeigt */
+    galerie: z
+      .array(z.object({ bild: z.string(), text: z.string().optional() }))
       .default([]),
   }),
 });
@@ -55,53 +59,76 @@ const fahrzeuge = defineCollection({
   }),
 });
 
-/** Einsatzticker – einfache Liste in src/content/daten/einsaetze.json */
+/**
+ * Einsatzticker – eine Markdown-Datei pro Einsatz (nur Frontmatter, kein Text).
+ * Neuer Einsatz = übers CMS unter /admin ("Einsätze" → "Neuer Einsatz").
+ */
 const einsaetze = defineCollection({
-  loader: file('./src/content/daten/einsaetze.json', {
-    parser: (text) => JSON.parse(text).einsaetze,
-  }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/einsaetze' }),
   schema: z.object({
-    id: z.string(),
-    datum: z.string(), // TT.MM.JJJJ
-    zeit: z.string(), // HH:MM
+    /** Datum & Uhrzeit, z.B. 2026-07-17T10:19 (ohne Zeitzone, lokal) */
+    wann: z.coerce.date(),
     stichwort: z.string(),
     art: z.enum(['THL', 'Brand', 'Sonstige']),
   }),
 });
 
-/** Termine – einfache Liste in src/content/daten/termine.json */
+/** Termine – eine Markdown-Datei pro Termin (übers CMS unter "Termine" pflegbar) */
 const termine = defineCollection({
-  loader: file('./src/content/daten/termine.json', {
-    parser: (text) => JSON.parse(text).termine,
-  }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/termine' }),
   schema: z.object({
-    id: z.string(),
-    datum: z.coerce.date(),
     titel: z.string(),
+    datum: z.coerce.date(),
     von: z.string(),
     bis: z.string(),
     kategorie: z.string().default('Sonstiges'),
   }),
 });
 
-/**
- * Atemschutzpflegestelle – Status je Anlieferung.
- * Beim Wechsel auf "abholbereit" verschickt die GitHub-Action
- * (.github/workflows/atemschutz-mail.yml) automatisch eine E-Mail an die Wehr.
- */
-const atemschutz = defineCollection({
-  loader: file('./src/content/daten/atemschutz.json', {
-    parser: (text) => JSON.parse(text).vorgaenge,
-  }),
+/** Termin-Kategorien (Name + Farbe) – im CMS frei anlegbar */
+const terminkategorien = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/terminkategorien' }),
   schema: z.object({
-    id: z.string(),
-    wehr: z.string(),
+    name: z.string(),
+    farbe: z.string().default('#5B6170'),
+  }),
+});
+
+/**
+ * Feuerwehren, die bei der Pflegestelle anliefern – Name + E-Mail für die
+ * Abholbereit-Benachrichtigung. Wird im CMS als Auswahlliste angeboten.
+ */
+const wehren = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/wehren' }),
+  schema: z.object({
+    name: z.string(),
     email: z.string().default(''),
-    artikel: z.string(),
-    status: z.enum(['eingegangen', 'in-pflege', 'abholbereit', 'abgeholt']),
-    eingegangen: z.string(),
+  }),
+});
+
+/**
+ * Atemschutz- & Schlauchpflegestelle – eine Datei pro Anlieferung.
+ * Setzt der Gerätewart den Haken "abholbereit", stempelt die GitHub-Action
+ * (.github/workflows/pflege-mail.yml) Datum/Uhrzeit und schickt die E-Mail
+ * an die bei der Wehr hinterlegte Adresse.
+ */
+const pflege = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pflege' }),
+  schema: z.object({
+    /** Verweis auf die Wehr (Dateiname in src/content/wehren) */
+    wehr: z.string(),
+    abgegeben: z.coerce.date(),
+    geraete: z.number().default(0),
+    masken: z.number().default(0),
+    flaschen: z.number().default(0),
+    schlaeucheB: z.number().default(0),
+    schlaeucheC: z.number().default(0),
     hinweis: z.string().default(''),
+    abholbereit: z.boolean().default(false),
+    /** Trägt der Bot beim E-Mail-Versand ein (ISO-Zeitstempel) */
+    abholbereitSeit: z.string().default(''),
     benachrichtigt: z.boolean().default(false),
+    abgeholt: z.boolean().default(false),
   }),
 });
 
@@ -176,4 +203,4 @@ const seiten = defineCollection({
   }),
 });
 
-export const collections = { berichte, fahrzeuge, einsaetze, termine, atemschutz, seiten };
+export const collections = { berichte, fahrzeuge, einsaetze, termine, terminkategorien, wehren, pflege, seiten };

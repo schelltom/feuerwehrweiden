@@ -1,5 +1,6 @@
 ---
 interface Einsatz {
+  wann: Date;
   datum: string;
   zeit: string;
   stichwort: string;
@@ -14,6 +15,8 @@ interface Props {
 
 const { einsaetze, kompakt = false } = Astro.props;
 const neuester = einsaetze[0];
+/** "Neu" nur, wenn der Einsatz keine 6 Stunden her ist (Browser prüft zusätzlich nach) */
+const istNeu = (w: Date) => Date.now() - w.getTime() < 6 * 60 * 60 * 1000;
 ---
 
 <div class:list={['monitorkarte', { kompakt }]} id="einsaetze">
@@ -30,7 +33,7 @@ const neuester = einsaetze[0];
           <span class="zeit">{e.datum} · {e.zeit}</span>
           <span class="was">
             <b class:list={['art', e.art === 'Brand' ? 'brand' : 'thl']}>{e.art}</b> – {e.stichwort}
-            {i === 0 && <em class="neu">Neu</em>}
+            {i === 0 && istNeu(e.wann) && <em class="neu" data-wann={e.wann.toISOString()}>Neu</em>}
           </span>
         </li>
       ))
@@ -41,3 +44,11 @@ const neuester = einsaetze[0];
     <span>Stand: {neuester?.datum}, {neuester?.zeit} Uhr</span>
   </div>
 </div>
+
+<script>
+  /* "Neu"-Schild entfernen, wenn der Einsatz beim Betrachten älter als 6 Stunden ist */
+  const grenze = Date.now() - 6 * 60 * 60 * 1000;
+  document.querySelectorAll<HTMLElement>('em.neu[data-wann]').forEach((el) => {
+    if (Date.parse(el.dataset.wann!) < grenze) el.remove();
+  });
+</script>

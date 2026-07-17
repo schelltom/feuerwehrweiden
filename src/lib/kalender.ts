@@ -1,4 +1,5 @@
 /** Gemeinsame Helfer für Kalenderansicht und iCal-Export */
+import { getCollection } from 'astro:content';
 
 export interface Termin {
   id: string;
@@ -23,6 +24,20 @@ export const KATEGORIE_FARBEN: Record<string, string> = {
   Kinderfeuerwehr: '#C2411C',
   Sonstiges: '#5B6170',
 };
+
+/** Alle Termine, chronologisch, mit dem Dateinamen als ID (für iCal-UIDs) */
+export async function ladeTermine(): Promise<Termin[]> {
+  return (await getCollection('termine'))
+    .map((t) => ({ ...t.data, id: t.id }))
+    .sort((a, b) => a.datum.getTime() - b.datum.getTime() || a.von.localeCompare(b.von));
+}
+
+/** Kategorie-Farben aus dem CMS (src/content/terminkategorien), Altbestand als Fallback */
+export async function ladeKategorieFarben(): Promise<Record<string, string>> {
+  const farben: Record<string, string> = { ...KATEGORIE_FARBEN };
+  for (const k of await getCollection('terminkategorien')) farben[k.data.name] = k.data.farbe;
+  return farben;
+}
 
 export function kategorieSlug(name: string): string {
   return name

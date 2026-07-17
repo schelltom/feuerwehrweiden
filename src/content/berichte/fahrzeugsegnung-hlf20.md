@@ -2,7 +2,7 @@
 titel: "Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"
 datum: 2026-05-17
 ressort: Fuhrpark
-titelbild: "/bilder/berichte/fahrzeugsegnung-hlf20-1.jpg"
+titelbild: "/bilder/uploads/2026/fahrzeugsegnung-hlf20-1.jpg"
 kurz: "Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs- Löschfahrzeugen"
 ---
 
@@ -27,7 +27,7 @@ Sein Dank galt auch den Abgeordneten des Landtages für die Förderung der Fahrz
 Nach dem Rückmarsch in die Feuerwache wurde der freudige Anlass noch gemeinsam bei einem Frühschoppen mit Weißwurstfrühstück gefeiert.
 
 <div class="berichtbilder">
-  <figure><img src="/bilder/berichte/fahrzeugsegnung-hlf20-2.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
-  <figure><img src="/bilder/berichte/fahrzeugsegnung-hlf20-3.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
-  <figure><img src="/bilder/berichte/fahrzeugsegnung-hlf20-4.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
+  <figure><img src="/bilder/uploads/2026/fahrzeugsegnung-hlf20-2.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
+  <figure><img src="/bilder/uploads/2026/fahrzeugsegnung-hlf20-3.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
+  <figure><img src="/bilder/uploads/2026/fahrzeugsegnung-hlf20-4.jpg" alt="Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs-Löschfahrzeugen"></figure>
 </div>

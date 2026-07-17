@@ -2,7 +2,7 @@
 titel: "Feuerwehr Weiden bei feierlicher Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen vertreten"
 datum: 2026-07-12
 ressort: Einsatzdienst
-titelbild: "/bilder/berichte/katastrophenschutz-gunzenhausen-1.jpg"
+titelbild: "/bilder/uploads/2026/katastrophenschutz-gunzenhausen-1.jpg"
 kurz: "Bei der feierlichen Übergabe von mehr als 110 neuen Katastrophenschutzfahrzeugen in Gunzenhausen war auch die Feuerwehr Weiden mit ihrem SW 2000 vertreten."
 ---
 
@@ -15,7 +15,7 @@ Die Feuerwehr Weiden war mit ihrem Schlauchwagen SW 2000 vor Ort. Das Fahrzeug i
 Mit der Bereitstellung der neuen Fahrzeuge wird der Katastrophen- und Zivilschutz in Bayern weiter gestärkt. Die Investition in moderne Einsatzmittel ist ein wichtiger Baustein, um die ehrenamtlichen Einsatzkräfte der Feuerwehren und Hilfsorganisationen bei ihren vielfältigen Aufgaben bestmöglich zu unterstützen.
 
 <div class="berichtbilder">
-  <figure><img src="/bilder/berichte/katastrophenschutz-gunzenhausen-2.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
-  <figure><img src="/bilder/berichte/katastrophenschutz-gunzenhausen-3.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
-  <figure><img src="/bilder/berichte/katastrophenschutz-gunzenhausen-4.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
+  <figure><img src="/bilder/uploads/2026/katastrophenschutz-gunzenhausen-2.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
+  <figure><img src="/bilder/uploads/2026/katastrophenschutz-gunzenhausen-3.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
+  <figure><img src="/bilder/uploads/2026/katastrophenschutz-gunzenhausen-4.jpg" alt="Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen"></figure>
 </div>

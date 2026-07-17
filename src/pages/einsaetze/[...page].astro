@@ -1,35 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
-
-export async function getStaticPaths({ paginate }) {
-  const einsaetze = (await getCollection('einsaetze'))
-    .map((e) => e.data)
-    .sort((a, b) => b.id.localeCompare(a.id)); // neuester zuerst
-
-  // "2× Gegenstand sichern" zählt in der Statistik als 2 Einsätze
-  const anzahlVon = (e) => {
-    const m = e.stichwort.match(/^(\d+)\s*×/);
-    return m ? Number(m[1]) : 1;
-  };
-  const zaehle = (art) =>
-    einsaetze.filter((e) => e.art === art).reduce((summe, e) => summe + anzahlVon(e), 0);
-
-  const statistik = {
-    arten: [
-      { name: 'THL', n: zaehle('THL'), farbe: '#2B54D4' },
-      { name: 'Brand', n: zaehle('Brand'), farbe: '#E10600' },
-      { name: 'Sonstige', n: zaehle('Sonstige'), farbe: '#B7791F' },
-    ],
-    seit: einsaetze[einsaetze.length - 1]?.datum,
-  };
-
-  return paginate(einsaetze, { pageSize: 15, props: { statistik } });
-}
-
-const { page, statistik } = Astro.props;
-const gesamt = statistik.arten.reduce((summe, a) => summe + a.n, 0);
-const slices = statistik.arten.filter((a) => a.n > 0);
+import { ladeEinsaetze, anzahlVon } from '../../lib/einsaetze';
 
 /* Donut-Segmente als SVG-Pfade (Start oben, im Uhrzeigersinn) */
 const MITTE = 120, R_AUSSEN = 100, R_INNEN = 60;
@@ -37,18 +8,67 @@ const punkt = (r, grad) => {
   const rad = ((grad - 90) * Math.PI) / 180;
   return `${(MITTE + r * Math.cos(rad)).toFixed(2)} ${(MITTE + r * Math.sin(rad)).toFixed(2)}`;
 };
-let winkel = 0;
-const segmente = slices.map((a) => {
-  const spanne = (a.n / gesamt) * 360;
-  const von = winkel, bis = winkel + Math.min(spanne, 359.98);
-  winkel += spanne;
-  const gross = spanne > 180 ? 1 : 0;
-  return {
-    ...a,
-    prozent: Math.round((a.n / gesamt) * 100),
-    d: `M ${punkt(R_AUSSEN, von)} A ${R_AUSSEN} ${R_AUSSEN} 0 ${gross} 1 ${punkt(R_AUSSEN, bis)} L ${punkt(R_INNEN, bis)} A ${R_INNEN} ${R_INNEN} 0 ${gross} 0 ${punkt(R_INNEN, von)} Z`,
+const segmenteFuer = (arten, gesamt) => {
+  let winkel = 0;
+  return arten
+    .filter((a) => a.n > 0)
+    .map((a) => {
+      const spanne = (a.n / gesamt) * 360;
+      const von = winkel, bis = winkel + Math.min(spanne, 359.98);
+      winkel += spanne;
+      const gross = spanne > 180 ? 1 : 0;
+      return {
+        ...a,
+        prozent: Math.round((a.n / gesamt) * 100),
+        d: `M ${punkt(R_AUSSEN, von)} A ${R_AUSSEN} ${R_AUSSEN} 0 ${gross} 1 ${punkt(R_AUSSEN, bis)} L ${punkt(R_INNEN, bis)} A ${R_INNEN} ${R_INNEN} 0 ${gross} 0 ${punkt(R_INNEN, von)} Z`,
+      };
+    });
+};
+
+export async function getStaticPaths({ paginate }) {
+  const einsaetze = await ladeEinsaetze();
+
+  const datumVon = (e) => new Date(e.wann.getFullYear(), e.wann.getMonth(), e.wann.getDate());
+
+  /* Wochengrenzen (Montag 0:00) – berechnet beim Build; die Seite wird
+     bei jedem neuen Einsatz ohnehin neu gebaut. */
+  const heute = new Date();
+  const montag = new Date(heute.getFullYear(), heute.getMonth(), heute.getDate() - ((heute.getDay() + 6) % 7));
+  const montagVorwoche = new Date(montag.getFullYear(), montag.getMonth(), montag.getDate() - 7);
+  const sonntag = new Date(montag.getFullYear(), montag.getMonth(), montag.getDate() + 6);
+  const sonntagVorwoche = new Date(montag.getFullYear(), montag.getMonth(), montag.getDate() - 1);
+
+  const kurz = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit' });
+  const lang = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+  const FARBEN = { THL: '#2B54D4', Brand: '#E10600', Sonstige: '#B7791F' };
+  const statsFuer = (titel, von, bis) => {
+    const imZeitraum = einsaetze.filter((e) => {
+      const d = datumVon(e);
+      return d >= von && d <= bis;
+    });
+    const arten = ['THL', 'Brand', 'Sonstige'].map((name) => ({
+      name,
+      farbe: FARBEN[name],
+      n: imZeitraum.filter((e) => e.art === name).reduce((summe, e) => summe + anzahlVon(e), 0),
+    }));
+    return {
+      titel,
+      zeitraum: `${kurz.format(von)} – ${lang.format(bis)}`,
+      arten,
+      gesamt: arten.reduce((summe, a) => summe + a.n, 0),
+    };
   };
-});
+
+  const wochen = [
+    statsFuer('Aktuelle Woche', montag, sonntag),
+    statsFuer('Letzte Woche', montagVorwoche, sonntagVorwoche),
+  ];
+
+  return paginate(einsaetze, { pageSize: 15, props: { wochen } });
+}
+
+const { page, wochen } = Astro.props;
 ---
 
 <Basis titel="Einsätze – Feuerwehr Weiden">
@@ -69,32 +89,38 @@ const segmente = slices.map((a) => {
         {
           page.currentPage === 1 && (
             <div class="statistik">
-              <div class="torte">
-                <svg viewBox="0 0 240 240" role="img" aria-label={`Tortengrafik: ${gesamt} Einsätze nach Art`}>
-                  {segmente.map((s) => (
-                    <path d={s.d} fill={s.farbe} stroke="var(--karte)" stroke-width="2">
-                      <title>{`${s.name}: ${s.n} (${s.prozent} %)`}</title>
-                    </path>
-                  ))}
-                </svg>
-                <div class="mitte">
-                  <b>{gesamt}</b>
-                  <span>Einsätze</span>
-                </div>
-              </div>
-              <div class="zahlen">
-                <span class="eyebrow">Einsatzstatistik{statistik.seit && ` · seit ${statistik.seit}`}</span>
-                <ul class="legende">
-                  {statistik.arten.map((a) => (
-                    <li>
-                      <i style={`background:${a.farbe}`} />
-                      <span class="wert">{a.n}</span>
-                      <span class="name">{a.name}</span>
-                      <span class="anteil">{gesamt ? Math.round((a.n / gesamt) * 100) : 0} %</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {wochen.map((w) => {
+                const segmente = segmenteFuer(w.arten, w.gesamt);
+                return (
+                  <div class="woche">
+                    <span class="eyebrow">{w.titel}</span>
+                    <span class="zeitraum">{w.zeitraum}</span>
+                    <div class="torte">
+                      <svg viewBox="0 0 240 240" role="img" aria-label={`${w.titel}: ${w.gesamt} Einsätze nach Art`}>
+                        {w.gesamt === 0 && <circle cx="120" cy="120" r="80" fill="none" stroke="var(--linie)" stroke-width="40" />}
+                        {segmente.map((s) => (
+                          <path d={s.d} fill={s.farbe} stroke="var(--karte)" stroke-width="2">
+                            <title>{`${s.name}: ${s.n} (${s.prozent} %)`}</title>
+                          </path>
+                        ))}
+                      </svg>
+                      <div class="mitte">
+                        <b>{w.gesamt}</b>
+                        <span>{w.gesamt === 1 ? 'Einsatz' : 'Einsätze'}</span>
+                      </div>
+                    </div>
+                    <ul class="legende">
+                      {w.arten.map((a) => (
+                        <li>
+                          <i style={`background:${a.farbe}`} />
+                          <span class="wert">{a.n}</span>
+                          <span class="name">{a.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
           )
         }
@@ -128,9 +154,8 @@ const segmente = slices.map((a) => {
 <style>
   .statistik {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: clamp(28px, 5vw, 56px);
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
     background: var(--karte);
     border: 1px solid var(--linie);
     border-radius: 18px;
@@ -140,12 +165,24 @@ const segmente = slices.map((a) => {
   @media (max-width: 640px) {
     .statistik {
       grid-template-columns: 1fr;
-      justify-items: center;
     }
+  }
+  .woche {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+  .woche .zeitraum {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--tinte2);
   }
   .torte {
     position: relative;
-    width: clamp(180px, 24vw, 240px);
+    width: clamp(150px, 20vw, 200px);
+    margin-top: 8px;
   }
   .torte svg {
     display: block;
@@ -165,46 +202,46 @@ const segmente = slices.map((a) => {
   }
   .mitte b {
     font-family: var(--display);
-    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-size: clamp(1.8rem, 3.4vw, 2.3rem);
     line-height: 1;
   }
   .mitte span {
     font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--tinte2);
   }
   .legende {
     list-style: none;
-    margin: 14px 0 0;
+    margin: 12px 0 0;
     padding: 0;
-    display: grid;
-    gap: 10px;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   .legende li {
-    display: grid;
-    grid-template-columns: 12px 3ch 1fr auto;
-    gap: 12px;
+    display: flex;
+    gap: 7px;
     align-items: center;
-    border-bottom: 1px solid var(--linie);
-    padding-bottom: 10px;
   }
   .legende i {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     border-radius: 4px;
   }
   .legende .wert {
     font-family: var(--display);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
   }
-  .legende .anteil {
+  .legende .name {
     font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
     color: var(--tinte2);
+    text-transform: uppercase;
   }
   .einsatzliste {
     list-style: none;

@@ -1,16 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
 import Basis from '../../../layouts/Basis.astro';
-import { KATEGORIE_FARBEN, kategorieSlug } from '../../../lib/kalender';
+import { ladeTermine, ladeKategorieFarben, kategorieSlug } from '../../../lib/kalender';
 
-const alleTermine = (await getCollection('termine'))
-  .map((t) => t.data)
-  .sort((a, b) => a.datum.getTime() - b.datum.getTime() || a.von.localeCompare(b.von));
+const alleTermine = await ladeTermine();
 
 const kategorien = [...new Set(alleTermine.map((t) => t.kategorie))];
-const farbe = (k: string) => KATEGORIE_FARBEN[k] ?? '#5B6170';
+const FARBEN = await ladeKategorieFarben();
+const farbe = (k: string) => FARBEN[k] ?? '#5B6170';
 
-/* Termine nach Monat gruppieren */
+/* Durchgehende Monatsfolge vom frühesten Termin (bzw. heute) bis zum spätesten
+   Termin (bzw. heute) – gezeigt wird ein Monat, geblättert wird per Pfeil. */
 const monatsnamen = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
 const wochentage = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
@@ -19,17 +18,25 @@ interface Monat {
   monat: number;
   termine: typeof alleTermine;
 }
-const monate: Monat[] = [];
+const jetzt = new Date();
+const alsMonat = (d: Date) => new Date(d.getFullYear(), d.getMonth(), 1);
+let start = alsMonat(jetzt);
+let ende = alsMonat(jetzt);
 for (const t of alleTermine) {
-  const jahr = t.datum.getFullYear();
-  const monat = t.datum.getMonth();
-  let m = monate.find((x) => x.jahr === jahr && x.monat === monat);
-  if (!m) {
-    m = { jahr, monat, termine: [] };
-    monate.push(m);
-  }
-  m.termine.push(t);
+  const m = alsMonat(t.datum);
+  if (m < start) start = m;
+  if (m > ende) ende = m;
 }
+const monate: Monat[] = [];
+for (let d = start; d <= ende; d = new Date(d.getFullYear(), d.getMonth() + 1, 1)) {
+  monate.push({
+    jahr: d.getFullYear(),
+    monat: d.getMonth(),
+    termine: alleTermine.filter((t) => t.datum.getFullYear() === d.getFullYear() && t.datum.getMonth() === d.getMonth()),
+  });
+}
+/* Beim Build aktueller Monat als Startansicht (der Browser springt beim Laden ggf. nach) */
+const startIndex = monate.findIndex((m) => m.jahr === jetzt.getFullYear() && m.monat === jetzt.getMonth());
 
 /* Kalender-Raster: führende Leerzellen (Wochenstart Montag) + Tage */
 function raster(jahr: number, monat: number) {
@@ -80,14 +87,23 @@ const exportDaten = alleTermine.map((t) => ({
           </div>
         </div>
 
+        <div class="monatsnav reveal">
+          <button class="pfeil" id="mzurueck" aria-label="Voriger Monat">←</button>
+          <h2 class="display" id="mtitel"><span id="mname"></span> <em id="mjahr"></em></h2>
+          <button class="pfeil" id="mweiter" aria-label="Nächster Monat">→</button>
+        </div>
+
         {
-          monate.map((m) => {
+          monate.map((m, i) => {
             const { fuehrend, tage } = raster(m.jahr, m.monat);
             return (
-              <div class="monat reveal">
-                <h2 class="display">
-                  {monatsnamen[m.monat]} <em>{m.jahr}</em>
-                </h2>
+              <div
+                class="monat"
+                data-monat={`${m.jahr}-${String(m.monat + 1).padStart(2, '0')}`}
+                data-titel={monatsnamen[m.monat]}
+                data-jahr={m.jahr}
+                hidden={i !== startIndex}
+              >
                 <div class="tage">
                   {wochentage.map((w) => (
                     <span class="wt">{w}</span>
@@ -109,25 +125,31 @@ const exportDaten = alleTermine.map((t) => ({
                             style={`--kf:${farbe(e.kategorie)}`}
                             title={`${e.titel} · ${e.von} – ${e.bis} Uhr`}
                           >
-                            {e.titel}
+                            <b class="evzeit">{e.von}</b> {e.titel}
                           </span>
                         ))}
                       </span>
                     );
                   })}
                 </div>
-                <ul class="mliste">
-                  {m.termine.map((e) => (
-                    <li class="ev" data-kat={kategorieSlug(e.kategorie)}>
-                      <span class="punkt" style={`background:${farbe(e.kategorie)}`} />
-                      <span class="datum">
-                        {String(e.datum.getDate()).padStart(2, '0')}.{String(m.monat + 1).padStart(2, '0')}.
-                      </span>
-                      <b>{e.titel}</b>
-                      <span class="zeit">{e.von} – {e.bis} Uhr</span>
-                    </li>
-                  ))}
-                </ul>
+                {
+                  m.termine.length > 0 ? (
+                    <ul class="mliste">
+                      {m.termine.map((e) => (
+                        <li class="ev" data-kat={kategorieSlug(e.kategorie)}>
+                          <span class="punkt" style={`background:${farbe(e.kategorie)}`} />
+                          <span class="datum">
+                            {String(e.datum.getDate()).padStart(2, '0')}.{String(m.monat + 1).padStart(2, '0')}.
+                          </span>
+                          <b>{e.titel}</b>
+                          <span class="zeit">{e.von} – {e.bis} Uhr</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p class="monatleer">Keine Termine in diesem Monat.</p>
+                  )
+                }
               </div>
             );
           })
@@ -187,6 +209,27 @@ const exportDaten = alleTermine.map((t) => ({
   const heute = new Date();
   const hs = `${heute.getFullYear()}-${String(heute.getMonth() + 1).padStart(2, '0')}-${String(heute.getDate()).padStart(2, '0')}`;
   document.querySelector(`.zelle[data-datum="${hs}"]`)?.classList.add('heute');
+
+  /* ---- Monatsblättern ---- */
+  const monate = [...document.querySelectorAll('.monat')];
+  const mname = document.getElementById('mname');
+  const mjahr = document.getElementById('mjahr');
+  const zurueck = document.getElementById('mzurueck');
+  const weiter = document.getElementById('mweiter');
+  let mIdx = Math.max(0, monate.findIndex((m) => !m.hidden));
+  function zeigeMonat(i) {
+    mIdx = i;
+    monate.forEach((m, j) => (m.hidden = j !== i));
+    mname.textContent = monate[i].dataset.titel;
+    mjahr.textContent = monate[i].dataset.jahr;
+    zurueck.disabled = i === 0;
+    weiter.disabled = i === monate.length - 1;
+  }
+  zurueck.addEventListener('click', () => zeigeMonat(mIdx - 1));
+  weiter.addEventListener('click', () => zeigeMonat(mIdx + 1));
+  /* Beim Laden zum tatsächlichen aktuellen Monat springen (falls der Build älter ist) */
+  const mHeute = monate.findIndex((m) => m.dataset.monat === hs.slice(0, 7));
+  zeigeMonat(mHeute >= 0 ? mHeute : mIdx);
 
   /* ---- Auswahl als iCal laden ---- */
   const slug = (s) =>
@@ -253,19 +296,55 @@ const exportDaten = alleTermine.map((t) => ({
     opacity: 0.38;
   }
 
+  /* ---- Monatsnavigation ---- */
+  .monatsnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .monatsnav h2 {
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 0;
+    text-align: center;
+  }
+  .monatsnav h2 em {
+    color: var(--tinte2);
+    font-size: 0.75em;
+  }
+  .pfeil {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--linie);
+    background: var(--karte);
+    color: var(--tinte);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .pfeil:hover:not(:disabled) {
+    color: var(--rot);
+    border-color: var(--rot);
+    transform: translateY(-1px);
+  }
+  .pfeil:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
   /* ---- Monat ---- */
   .monat {
     margin-bottom: clamp(40px, 6vw, 64px);
   }
-  .monat h2 {
-    font-style: italic;
-    text-transform: uppercase;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin: 0 0 14px;
-  }
-  .monat h2 em {
+  .monatleer {
     color: var(--tinte2);
-    font-size: 0.75em;
+    font-size: 0.92rem;
+    margin: 14px 0 0;
   }
   .tage {
     display: grid;
@@ -321,6 +400,12 @@ const exportDaten = alleTermine.map((t) => ({
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+  .zelle .ev .evzeit {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.58rem;
+    opacity: 0.85;
   }
 
   /* ---- Monatsliste ---- */
