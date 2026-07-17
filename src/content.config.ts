@@ -35,6 +35,10 @@ const fahrzeuge = defineCollection({
     funkruf: z.string().default(''),
     standort: z.string().default('Hauptfeuerwache'),
     kategorie: z.enum(['fahrzeug', 'anhaenger']).default('fahrzeug'),
+    /** Fachliche Gruppe für die Fuhrpark-Übersicht */
+    gruppe: z
+      .enum(['elw-kdow', 'loesch', 'hubrettung', 'ruest-geraete', 'sonstige', 'anhaenger', 'rollcontainer', 'ehemalige'])
+      .default('sonstige'),
     /** In der Fahrzeughalle auf der Startseite zeigen */
     inHalle: z.boolean().default(false),
     bild: z.string().default(''),

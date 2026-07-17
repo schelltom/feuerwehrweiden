@@ -149,6 +149,19 @@ collections:
           - { label: Fahrzeug, value: fahrzeug }
           - { label: Anhänger, value: anhaenger }
         default: fahrzeug
+      - name: gruppe
+        label: 'Gruppe (Fuhrpark-Übersicht)'
+        widget: select
+        options:
+          - { label: 'Einsatzleitwagen / Kommandowagen', value: elw-kdow }
+          - { label: 'Lösch- und Tanklöschfahrzeuge', value: loesch }
+          - { label: 'Hubrettungsfahrzeuge', value: hubrettung }
+          - { label: 'Rüst- und Gerätewagen', value: ruest-geraete }
+          - { label: 'Sonstige Fahrzeuge', value: sonstige }
+          - { label: 'Anhänger', value: anhaenger }
+          - { label: 'Rollcontainer', value: rollcontainer }
+          - { label: 'Ehemalige Fahrzeuge', value: ehemalige }
+        default: sonstige
       - { name: inHalle, label: 'In der Fahrzeughalle auf der Startseite zeigen', widget: boolean, default: false }
       - { name: bild, label: Hauptbild, widget: image, required: false }
       - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }

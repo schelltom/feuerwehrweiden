@@ -59,5 +59,6 @@ beladung:
       - "1x Sackkarre"
       - "1x Flipchart"
       - "2x Abdeckmatte"
+gruppe: anhaenger
 ---
 

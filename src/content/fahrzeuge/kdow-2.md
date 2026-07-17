@@ -17,5 +17,6 @@ beladung:
       - "Einsatz - Navigationssystem \"Selectric Columbus X\""
       - "Anhaltestab"
       - "HRT"
+gruppe: elw-kdow
 ---
 

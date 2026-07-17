@@ -62,5 +62,6 @@ beladung:
       - "Wassertank 4650 Liter"
       - "Schaumtank Brandklasse \"B\" 530 Liter"
       - "Schaumtank Brandklasse \"A\" 100 Liter"
+gruppe: loesch
 ---
 

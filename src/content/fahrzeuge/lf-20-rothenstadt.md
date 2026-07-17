@@ -106,5 +106,6 @@ beladung:
       - "Grobreinigungssatz"
       - "Kombinationsschaumrohr"
       - "Verteiler"
+gruppe: loesch
 ---
 

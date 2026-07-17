@@ -99,5 +99,6 @@ beladung:
       - "Aufstiegshilfen dreiteilig"
   - raum: "Lichtmast und Markise"
     bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-9.jpg"
+gruppe: ruest-geraete
 ---
 

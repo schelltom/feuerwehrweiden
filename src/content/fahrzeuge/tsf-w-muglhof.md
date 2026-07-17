@@ -53,5 +53,6 @@ beladung:
       - "Wassertank 750 Liter"
       - "Tragkraftspritze TS 8/8"
       - "Steckleitern"
+gruppe: loesch
 ---
 

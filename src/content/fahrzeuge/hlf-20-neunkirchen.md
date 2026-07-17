@@ -37,5 +37,6 @@ beladung:
       - "Pumpe"
       - "Saugkorb"
       - "Sammelstück"
+gruppe: loesch
 ---
 

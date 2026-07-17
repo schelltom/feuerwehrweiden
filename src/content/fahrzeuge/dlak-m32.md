@@ -83,4 +83,5 @@ beladung:
       - "Elektrolüfter"
       - "Drucklüfter wasserbetrieben"
       - "Wenderohr"
+gruppe: hubrettung
 ---

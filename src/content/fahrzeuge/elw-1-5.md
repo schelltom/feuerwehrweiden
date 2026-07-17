@@ -196,5 +196,6 @@ beladung:
       - "1x 230V Steckdose über Wechselrichter"
       - "2x RJ45 Netzwerkanschluss (Funk / LAN)"
       - "2x Schub für Bürobedarf"
+gruppe: elw-kdow
 ---
 

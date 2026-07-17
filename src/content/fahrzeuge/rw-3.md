@@ -97,5 +97,6 @@ beladung:
       - "nach hinten 31 Meter"
       - "Zugkraft nach vorne 60 kN"
       - "nach hinten 120 kN"
+gruppe: ruest-geraete
 ---
 

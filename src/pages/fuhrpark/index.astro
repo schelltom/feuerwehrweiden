@@ -3,93 +3,69 @@ import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
-const alle = (await getCollection('fahrzeuge')).sort(
-  (a, b) => a.data.reihenfolge - b.data.reihenfolge
-);
+const alle = await getCollection('fahrzeuge');
 
-const hauptwache = alle.filter(
-  (f) => f.data.kategorie === 'fahrzeug' && f.data.standort === 'Hauptfeuerwache'
-);
-const ortsteile = alle.filter(
-  (f) => f.data.kategorie === 'fahrzeug' && f.data.standort !== 'Hauptfeuerwache'
-);
-const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
+/* Fachliche Gruppen in fester Reihenfolge; innerhalb der Gruppe zuerst
+   Hauptwache/Wache 2, dann die Ortsteile – jeweils nach "reihenfolge". */
+const GRUPPEN = [
+  { id: 'elw-kdow', titel: 'Einsatzleitwagen / Kommandowagen' },
+  { id: 'loesch', titel: 'Lösch- und Tanklöschfahrzeuge' },
+  { id: 'hubrettung', titel: 'Hubrettungsfahrzeuge' },
+  { id: 'ruest-geraete', titel: 'Rüst- und Gerätewagen' },
+  { id: 'sonstige', titel: 'Sonstige Fahrzeuge' },
+  { id: 'anhaenger', titel: 'Anhänger' },
+  { id: 'rollcontainer', titel: 'Rollcontainer' },
+  { id: 'ehemalige', titel: 'Ehemalige Fahrzeuge' },
+] as const;
+
+const rang = (f: (typeof alle)[number]) => (f.data.standort === 'Hauptfeuerwache' ? 0 : 1);
+const gruppen = GRUPPEN.map((g) => ({
+  ...g,
+  fahrzeuge: alle
+    .filter((f) => f.data.gruppe === g.id)
+    .sort((a, b) => rang(a) - rang(b) || a.data.reihenfolge - b.data.reihenfolge),
+})).filter((g) => g.fahrzeuge.length > 0);
+
+const anzahlFahrzeuge = alle.filter((f) => f.data.kategorie === 'fahrzeug').length;
+const anzahlAnhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger').length;
 ---
 
 <Basis titel="Fuhrpark – Feuerwehr Weiden">
   <main>
-    <Seitenkopf titel="Unser Fuhrpark" krumen={[{ name: 'Start', href: '/' }, { name: `${hauptwache.length + ortsteile.length} Fahrzeuge · ${anhaenger.length} Anhänger` }]} />
+    <Seitenkopf titel="Unser Fuhrpark" krumen={[{ name: 'Start', href: '/' }, { name: `${anzahlFahrzeuge} Fahrzeuge · ${anzahlAnhaenger} Anhänger` }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
-        <div class="gruppe">
-          <span class="eyebrow">Standort Landgerichtsstraße</span>
-          <h2 class="titel display reveal">Hauptfeuerwache</h2>
-          <div class="mosaik">
-            {
-              hauptwache.map((f, i) => (
-                <a class="fzk reveal" href={`/fuhrpark/${f.id}/`}>
-                  <img src={f.data.bild} alt={f.data.name} loading={i < 3 ? 'eager' : 'lazy'} />
-                  <span class="schatten" aria-hidden="true" />
-                  <span class="txt">
-                    <em>{f.data.typ}</em>
-                    <b>{f.data.name}</b>
-                    {f.data.funkruf && <i>{f.data.funkruf}</i>}
-                  </span>
-                  <span class="pfeil" aria-hidden="true">↗</span>
-                </a>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="gruppe">
-          <span class="eyebrow">Frauenricht · Mallersricht · Muglhof · Neunkirchen · Rothenstadt</span>
-          <h2 class="titel display reveal">Ortsteilwehren</h2>
-          <div class="mosaik">
-            {
-              ortsteile.map((f) => (
-                <a class="fzk reveal" href={`/fuhrpark/${f.id}/`}>
-                  <img src={f.data.bild} alt={f.data.name} loading="lazy" />
-                  <span class="schatten" aria-hidden="true" />
-                  <span class="txt">
-                    <em>{f.data.standort}</em>
-                    <b>{f.data.name}</b>
-                    {f.data.funkruf && <i>{f.data.funkruf}</i>}
-                  </span>
-                  <span class="pfeil" aria-hidden="true">↗</span>
-                </a>
-              ))
-            }
-          </div>
-        </div>
-
-        <div class="gruppe" style="margin-bottom:0">
-          <span class="eyebrow">Sonderausrüstung auf Rädern</span>
-          <h2 class="titel display reveal">Anhänger</h2>
-          <div class="anhaengerband">
-            {
-              anhaenger.map((f) => (
-                <a class="anh reveal" href={`/fuhrpark/${f.id}/`}>
-                  {
-                    f.data.bild ? (
-                      <img src={f.data.bild} alt={f.data.name} loading="lazy" />
-                    ) : (
-                      <span class="ohne" aria-hidden="true">
-                        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15h13v-6a2 2 0 0 1 2-2h5M15 15h4m3 0h-3m-3.5 2.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M2 15v-4h6v4"/></svg>
-                      </span>
-                    )
-                  }
-                  <span class="schatten" aria-hidden="true"></span>
-                  <span class="txt">
-                    <em>{f.data.typ}</em>
-                    <b>{f.data.name}</b>
-                  </span>
-                </a>
-              ))
-            }
-          </div>
-        </div>
+        {
+          gruppen.map((g, gi) => (
+            <div class="gruppe" style={gi === gruppen.length - 1 ? 'margin-bottom:0' : undefined}>
+              <span class="eyebrow">{g.fahrzeuge.length} {g.fahrzeuge.length === 1 ? 'Fahrzeug' : 'Fahrzeuge'}</span>
+              <h2 class="titel display reveal">{g.titel}</h2>
+              <div class:list={[g.id === 'anhaenger' ? 'anhaengerband' : 'mosaik']}>
+                {g.fahrzeuge.map((f, i) => (
+                  <a class:list={[g.id === 'anhaenger' ? 'anh' : 'fzk', 'reveal']} href={`/fuhrpark/${f.id}/`}>
+                    {
+                      f.data.bild ? (
+                        <img src={f.data.bild} alt={f.data.name} loading={gi === 0 && i < 3 ? 'eager' : 'lazy'} />
+                      ) : (
+                        <span class="ohne" aria-hidden="true">
+                          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 15h13v-6a2 2 0 0 1 2-2h5M15 15h4m3 0h-3m-3.5 2.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/><path d="M2 15v-4h6v4"/></svg>
+                        </span>
+                      )
+                    }
+                    <span class="schatten" aria-hidden="true" />
+                    <span class="txt">
+                      <em>{f.data.standort === 'Hauptfeuerwache' ? f.data.typ : f.data.standort}</em>
+                      <b>{f.data.name}</b>
+                      {f.data.funkruf && <i>{f.data.funkruf}</i>}
+                    </span>
+                    {g.id !== 'anhaenger' && <span class="pfeil" aria-hidden="true">↗</span>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
   </main>
@@ -104,7 +80,7 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
     margin-bottom: 26px;
   }
 
-  /* ---- Einheitliches Raster: 4 nebeneinander ---- */
+  /* ---- Einheitliches Raster ---- */
   .mosaik {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -194,6 +170,9 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
     border-color: var(--rot);
     transform: rotate(45deg);
   }
+  .fzk:hover .txt i {
+    text-shadow: 0 0 14px rgba(255, 179, 0, 0.8);
+  }
 
   /* ---- Anhänger: kompaktes Band ---- */
   .anhaengerband {
@@ -227,7 +206,8 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
   .anh:hover img {
     transform: scale(1.06);
   }
-  .anh .ohne {
+  .anh .ohne,
+  .fzk .ohne {
     position: absolute;
     inset: 0;
     display: grid;

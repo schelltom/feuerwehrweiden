@@ -15,5 +15,6 @@ beladung:
     bild: "/bilder/fahrzeuge/detail/dekon-p-3.jpg"
   - raum: "Seitenansicht"
     bild: "/bilder/fahrzeuge/detail/dekon-p-4.jpg"
+gruppe: sonstige
 ---
 

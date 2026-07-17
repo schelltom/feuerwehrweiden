@@ -15,5 +15,6 @@ beladung:
       - "Transportbehälter Feuerlöscher Blitzer"
   - raum: "Fahrer"
     bild: "/bilder/fahrzeuge/detail/mzf-3.jpg"
+gruppe: sonstige
 ---
 

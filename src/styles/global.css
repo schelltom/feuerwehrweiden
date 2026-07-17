@@ -779,8 +779,10 @@
   }
   .alarmintro .mix .kern{width:min(640px,90vw);max-width:none}
   .alarmintro .mbild{
-    display:block;max-width:min(52vw,640px);max-height:44svh;width:auto;height:auto;
-    filter:drop-shadow(0 20px 50px rgba(0,0,0,.55));
+    display:block;max-width:min(56vw,680px);max-height:44svh;width:auto;height:auto;
+    /* Ränder lösen sich weich im roten Hintergrund auf */
+    -webkit-mask-image:radial-gradient(115% 100% at 50% 50%,#000 52%,transparent 88%);
+    mask-image:radial-gradient(115% 100% at 50% 50%,#000 52%,transparent 88%);
   }
   @media (max-width:720px){
     .alarmintro .mbild{max-width:88vw}

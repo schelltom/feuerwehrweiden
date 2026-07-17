@@ -17,5 +17,6 @@ beladung:
       - "Verkehrsleitkegel"
       - "Verkehrswarnleuchten Euroblitz"
       - "Handlampen Adalit"
+gruppe: sonstige
 ---
 
