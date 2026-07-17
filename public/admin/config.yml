@@ -1,12 +1,14 @@
 # Decap CMS – Konfiguration der Redaktions-Oberfläche
 #
-# Voraussetzung fürs Live-System: Hosting bei Netlify mit aktiviertem
-# "Identity" + "Git Gateway" (kostenlos). Bis dahin kann lokal mit
-# `npx decap-server` + backend: name: proxy gearbeitet werden.
+# Live-Login: GitHub-OAuth über den Cloudflare Worker (sveltia-cms-auth).
+# Redakteure brauchen einen GitHub-Account mit Schreibrechten auf das Repo.
+# Lokal ohne Login arbeiten: `npx decap-server` starten (local_backend).
 
 backend:
-  name: git-gateway
+  name: github
+  repo: schelltom/feuerwehrweiden
   branch: main
+  base_url: https://ffw-cms-auth.thomas-schell.workers.dev
 
 # Für lokales Testen ohne Login (npx decap-server im Projektordner starten):
 local_backend: true
