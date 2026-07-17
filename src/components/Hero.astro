@@ -38,7 +38,7 @@ const folien = [
       <h1 class="display">
         <span><b>24 Stunden.</b></span>
         <span><b>365 Tage.</b></span>
-        <span><b>Für Ihre Sicherheit.</b></span>
+        <span class="sicherheit"><b>Für Ihre Sicherheit.</b></span>
       </h1>
       <p class="sub">Herzlich Willkommen bei der Freiwilligen Feuerwehr Weiden i. d. OPf.</p>
       <div class="cta">
@@ -210,24 +210,56 @@ const folien = [
   zeige(abfolge[0]);
   start();
 
-  /* Druckstoß: sporadisch (alle ~35–90 s) füllt sich der Schlauch sichtbar neu */
+  /* Schlauchfarbe pro Besuch zufällig: rot, leuchtgelb oder weiß –
+     "Für Ihre Sicherheit." färbt sich passend mit */
+  const heroEl = document.querySelector<HTMLElement>('.hero');
+  if (heroEl) {
+    const farben = [
+      // rot (bisher): Zeilen weiß, "Für Ihre Sicherheit." rot
+      { basis: 'var(--rot)', fuell: '#FF3B30', tief: '#B00500', kern: '#7E0400', zeilen: '#fff', sicherheit: '#FF3B30' },
+      // leuchtgelb: Zeilen weiß, Sicherheit gelb
+      { basis: '#D8CE00', fuell: '#F2FF00', tief: '#A89A00', kern: '#756B00', zeilen: '#fff', sicherheit: '#F2FF00' },
+      // weiß: 24 Stunden / 365 Tage rot, Sicherheit weiß
+      { basis: '#C9CDD6', fuell: '#FFFFFF', tief: '#9AA0AD', kern: '#6E7480', zeilen: '#FF3B30', sicherheit: '#FFFFFF' },
+    ];
+    const wahl = farben[Math.floor(Math.random() * farben.length)];
+    heroEl.style.setProperty('--schlauch-basis', wahl.basis);
+    heroEl.style.setProperty('--schlauch-fuell', wahl.fuell);
+    heroEl.style.setProperty('--schlauch-tief', wahl.tief);
+    heroEl.style.setProperty('--schlauch-kern', wahl.kern);
+    heroEl.style.setProperty('--zeilen-farbe', wahl.zeilen);
+    heroEl.style.setProperty('--sicherheit-farbe', wahl.sicherheit);
+  }
+
+  /* Druckstoß: sporadisch (alle ~35–90 s) füllt sich der Schlauch sichtbar neu.
+     Direkt nach dem Intro spritzt nur die Düse (die Füllung läuft da gerade
+     zum ersten Mal durch) – sonst setzt der Puls die Befüllung mittendrin zurück. */
   const schlauchEl = document.querySelector<HTMLElement>('.hero .schlauch');
   const fuellung = schlauchEl?.querySelector<SVGPathElement>('.fuellung');
   if (schlauchEl && fuellung && !reduziert) {
+    const spritz = () => {
+      schlauchEl.classList.remove('pulsiert');
+      void schlauchEl.offsetWidth;
+      schlauchEl.classList.add('pulsiert');
+    };
     const puls = () => {
-      // Füll-Animation vom Intro erneut abspielen (Web Animations API
-      // überlagert die CSS-Animation und startet sauber neu)
+      // Füll-Animation erneut abspielen (Web Animations API überlagert die
+      // CSS-Animation und startet sauber neu), Düse spritzt wenn der Druck ankommt
       fuellung.animate(
         [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
         { duration: 3200, easing: 'ease-in', fill: 'forwards' }
       );
-      // Düse spritzt, sobald der Druck ankommt
-      schlauchEl.classList.remove('pulsiert');
-      void schlauchEl.offsetWidth;
-      schlauchEl.classList.add('pulsiert');
+      spritz();
       setTimeout(puls, 35000 + Math.random() * 55000);
     };
-    setTimeout(puls, document.body.classList.contains('sofort') ? 7000 : 18000);
+    const start = () => {
+      // Erste Füllung kommt vom Intro (CSS, 10,6s + 3,6s nach "los"):
+      // dann nur spritzen, die Puls-Kette folgt deutlich später
+      setTimeout(spritz, document.body.classList.contains('sofort') ? 2500 : 14300);
+      setTimeout(puls, 45000 + Math.random() * 45000);
+    };
+    if (document.body.classList.contains('los')) start();
+    else addEventListener('feuerwehr:los', start, { once: true });
   }
 
   /* Schlauch-Ticker: je 1 Durchlauf (aktuellste 4 Meldungen), dann 60 s Pause – endlos */
