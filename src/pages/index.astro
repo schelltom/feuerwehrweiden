@@ -78,7 +78,7 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
             </p>
           </div>
           <div style="display:grid;gap:38px;align-content:start">
-            <Einsatzmonitor einsaetze={einsaetze} kompakt />
+            <Einsatzmonitor einsaetze={einsaetze.slice(0, 5)} kompakt />
             <div>
               <span class="eyebrow">Termine</span>
               <h2 class="titel display reveal" style="font-size:clamp(1.5rem,2.6vw,2rem)">Nächste Übungen</h2>

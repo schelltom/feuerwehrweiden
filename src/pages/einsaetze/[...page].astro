@@ -1,0 +1,279 @@
+---
+import { getCollection } from 'astro:content';
+import Basis from '../../layouts/Basis.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const einsaetze = (await getCollection('einsaetze'))
+    .map((e) => e.data)
+    .sort((a, b) => b.id.localeCompare(a.id)); // neuester zuerst
+
+  // "2× Gegenstand sichern" zählt in der Statistik als 2 Einsätze
+  const anzahlVon = (e) => {
+    const m = e.stichwort.match(/^(\d+)\s*×/);
+    return m ? Number(m[1]) : 1;
+  };
+  const zaehle = (art) =>
+    einsaetze.filter((e) => e.art === art).reduce((summe, e) => summe + anzahlVon(e), 0);
+
+  const statistik = {
+    arten: [
+      { name: 'THL', n: zaehle('THL'), farbe: '#2B54D4' },
+      { name: 'Brand', n: zaehle('Brand'), farbe: '#E10600' },
+      { name: 'Sonstige', n: zaehle('Sonstige'), farbe: '#B7791F' },
+    ],
+    seit: einsaetze[einsaetze.length - 1]?.datum,
+  };
+
+  return paginate(einsaetze, { pageSize: 15, props: { statistik } });
+}
+
+const { page, statistik } = Astro.props;
+const gesamt = statistik.arten.reduce((summe, a) => summe + a.n, 0);
+const slices = statistik.arten.filter((a) => a.n > 0);
+
+/* Donut-Segmente als SVG-Pfade (Start oben, im Uhrzeigersinn) */
+const MITTE = 120, R_AUSSEN = 100, R_INNEN = 60;
+const punkt = (r, grad) => {
+  const rad = ((grad - 90) * Math.PI) / 180;
+  return `${(MITTE + r * Math.cos(rad)).toFixed(2)} ${(MITTE + r * Math.sin(rad)).toFixed(2)}`;
+};
+let winkel = 0;
+const segmente = slices.map((a) => {
+  const spanne = (a.n / gesamt) * 360;
+  const von = winkel, bis = winkel + Math.min(spanne, 359.98);
+  winkel += spanne;
+  const gross = spanne > 180 ? 1 : 0;
+  return {
+    ...a,
+    prozent: Math.round((a.n / gesamt) * 100),
+    d: `M ${punkt(R_AUSSEN, von)} A ${R_AUSSEN} ${R_AUSSEN} 0 ${gross} 1 ${punkt(R_AUSSEN, bis)} L ${punkt(R_INNEN, bis)} A ${R_INNEN} ${R_INNEN} 0 ${gross} 0 ${punkt(R_INNEN, von)} Z`,
+  };
+});
+---
+
+<Basis titel="Einsätze – Feuerwehr Weiden">
+  <main>
+    <section class="subhero" style="min-height:44svh">
+      <div class="bild" style="background-image:url(/bilder/header/nachtbrand.jpg)"></div>
+      <div class="duster"></div>
+      <div class="inhalt">
+        <div class="wrap">
+          <span class="eyebrow">Einsätze{page.lastPage > 1 && ` · Seite ${page.currentPage} von ${page.lastPage}`}</span>
+          <h1 class="display">Einsätze &amp; Statistik</h1>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:900px">
+        {
+          page.currentPage === 1 && (
+            <div class="statistik">
+              <div class="torte">
+                <svg viewBox="0 0 240 240" role="img" aria-label={`Tortengrafik: ${gesamt} Einsätze nach Art`}>
+                  {segmente.map((s) => (
+                    <path d={s.d} fill={s.farbe} stroke="var(--karte)" stroke-width="2">
+                      <title>{`${s.name}: ${s.n} (${s.prozent} %)`}</title>
+                    </path>
+                  ))}
+                </svg>
+                <div class="mitte">
+                  <b>{gesamt}</b>
+                  <span>Einsätze</span>
+                </div>
+              </div>
+              <div class="zahlen">
+                <span class="eyebrow">Einsatzstatistik{statistik.seit && ` · seit ${statistik.seit}`}</span>
+                <ul class="legende">
+                  {statistik.arten.map((a) => (
+                    <li>
+                      <i style={`background:${a.farbe}`} />
+                      <span class="wert">{a.n}</span>
+                      <span class="name">{a.name}</span>
+                      <span class="anteil">{gesamt ? Math.round((a.n / gesamt) * 100) : 0} %</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+
+        <ul class="einsatzliste">
+          {
+            page.data.map((e) => (
+              <li>
+                <span class="zeit">{e.datum} · {e.zeit} Uhr</span>
+                <b class:list={['art', e.art.toLowerCase()]}>{e.art}</b>
+                <span class="stichwort">{e.stichwort}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        {
+          page.lastPage > 1 && (
+            <nav class="blaettern" aria-label="Seiten">
+              {page.url.prev ? <a href={page.url.prev}>← Neuere Einsätze</a> : <span />}
+              <span class="stand">Seite {page.currentPage} / {page.lastPage}</span>
+              {page.url.next ? <a href={page.url.next}>Ältere Einsätze →</a> : <span />}
+            </nav>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .statistik {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-radius: 18px;
+    padding: clamp(24px, 4vw, 40px);
+    margin-bottom: clamp(36px, 5vw, 56px);
+  }
+  @media (max-width: 640px) {
+    .statistik {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+  }
+  .torte {
+    position: relative;
+    width: clamp(180px, 24vw, 240px);
+  }
+  .torte svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .torte path:hover {
+    opacity: 0.85;
+  }
+  .mitte {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .mitte b {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    line-height: 1;
+  }
+  .mitte span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+  }
+  .legende {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .legende li {
+    display: grid;
+    grid-template-columns: 12px 3ch 1fr auto;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid var(--linie);
+    padding-bottom: 10px;
+  }
+  .legende i {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+  }
+  .legende .wert {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .legende .anteil {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--tinte2);
+  }
+  .einsatzliste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .einsatzliste li {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 14px;
+    align-items: baseline;
+    padding: 12px 2px;
+    border-bottom: 1px solid var(--linie);
+  }
+  @media (max-width: 560px) {
+    .einsatzliste li {
+      grid-template-columns: auto 1fr;
+    }
+    .einsatzliste .zeit {
+      grid-column: 1 / -1;
+    }
+  }
+  .einsatzliste .zeit {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: var(--tinte2);
+    white-space: nowrap;
+  }
+  .einsatzliste .art {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 6px;
+    color: #fff;
+  }
+  .einsatzliste .art.thl { background: #2b54d4; }
+  .einsatzliste .art.brand { background: #e10600; }
+  .einsatzliste .art.sonstige { background: #b7791f; }
+  .blaettern {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linie);
+  }
+  .blaettern a {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--tinte);
+  }
+  .blaettern a:hover {
+    color: var(--rot);
+  }
+  .blaettern a:last-child {
+    text-align: right;
+  }
+  .blaettern .stand {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--tinte2);
+  }
+</style>
