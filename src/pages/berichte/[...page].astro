@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths({ paginate }) {
   const berichte = (await getCollection('berichte')).sort(
@@ -15,16 +16,7 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
 
 <Basis titel="Aktuelles – Feuerwehr Weiden">
   <main>
-    <section class="subhero" style="min-height:44svh">
-      <div class="bild" style="background-image:url(/bilder/header/drohne.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Aktuelles{page.lastPage > 1 && ` · Seite ${page.currentPage} von ${page.lastPage}`}</span>
-          <h1 class="display">Neues aus der Wehr</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Neues aus der Wehr" krumen={[{ name: 'Start', href: '/' }, { name: page.lastPage > 1 ? `Aktuelles · Seite ${page.currentPage} von ${page.lastPage}` : 'Aktuelles' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:900px">

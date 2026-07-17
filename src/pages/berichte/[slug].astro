@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 import Slideshow from '../../components/Slideshow.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
   const berichte = await getCollection('berichte');
@@ -20,21 +21,15 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
 
 <Basis titel={`${d.titel} – Feuerwehr Weiden`}>
   <main>
-    <section class="subhero">
-      <div
-        class="bild"
-        style={`background-image:url(${d.titelbild ?? '/bilder/header/feldbrand.jpg'});background-position:center 30%`}
-      >
-      </div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <a class="zurueck" href="/berichte/">← Alle Berichte</a>
-          <span class="eyebrow">{d.ressort} · {monatsformat.format(d.datum)}</span>
-          <h1 class="display" style="max-width:18ch">{d.titel}</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf
+      titel={d.titel}
+      krumen={[
+        { name: 'Start', href: '/' },
+        { name: 'Berichte', href: '/berichte/' },
+        { name: `${d.ressort} · ${monatsformat.format(d.datum)}` },
+      ]}
+      bild={d.titelbild}
+    />
 
     <section>
       <div class="artikel" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px)">
@@ -68,7 +63,7 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
 
         <div class="artikel-ende reveal">
           <a class="zurueck" href="/berichte/" style="margin:0">← Alle Berichte</a>
-          <a class="btn btn-rot" href="/#mitmachen">Lust bekommen? Mach mit!</a>
+          <a class="btn btn-rot" href="/feuerwehr/ueber-uns/mitglied-werden/">Lust bekommen? Mach mit!</a>
         </div>
       </div>
     </section>

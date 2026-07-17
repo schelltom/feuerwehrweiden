@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 const seiten = (await getCollection('seiten')).sort(
   (a, b) => a.data.reihenfolge - b.data.reihenfolge
@@ -14,16 +15,7 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
 
 <Basis titel="Feuerwehr – Feuerwehr Weiden">
   <main>
-    <section class="subhero" style="min-height:44svh">
-      <div class="bild" style="background-image:url(/bilder/header/segnung.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Über uns · Einheiten</span>
-          <h1 class="display">Unsere Feuerwehr</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Unsere Feuerwehr" krumen={[{ name: 'Start', href: '/' }, { name: 'Über uns · Einheiten' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">

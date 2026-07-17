@@ -1,5 +1,0 @@
----
-wann: 2026-07-15T10:35
-art: THL
-stichwort: "2× Gegenstand sichern"
----

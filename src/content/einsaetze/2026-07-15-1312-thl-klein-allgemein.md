@@ -1,5 +1,6 @@
 ---
 wann: 2026-07-15T13:12
+stichwort: "THL"
+details: "klein allgemein"
 art: THL
-stichwort: "THL klein allgemein"
 ---

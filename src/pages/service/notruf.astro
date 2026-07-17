@@ -1,5 +1,6 @@
 ---
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 const wFragen = [
   { w: 'Wo', frage: 'ist es passiert?', detail: 'Ort, Straße, Hausnummer – bei Autobahn oder Feld: Fahrtrichtung, Kilometer, markante Punkte. Je genauer, desto schneller sind wir da.' },
@@ -21,16 +22,7 @@ const nummern = [
   beschreibung="Richtig den Notruf 112 absetzen: die 5 W-Fragen, wichtige Rufnummern und Warn-Apps."
 >
   <main>
-    <section class="subhero" style="min-height:44svh">
-      <div class="bild" style="background-image:url(/bilder/header/nachtbrand.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Service · Im Notfall</span>
-          <h1 class="display">Notruf-Checkliste</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Notruf-Checkliste" krumen={[{ name: 'Start', href: '/' }, { name: 'Service' }, { name: 'Im Notfall' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px);max-width:860px">

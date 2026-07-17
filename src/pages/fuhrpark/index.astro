@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 const alle = (await getCollection('fahrzeuge')).sort(
   (a, b) => a.data.reihenfolge - b.data.reihenfolge
@@ -17,16 +18,7 @@ const anhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger');
 
 <Basis titel="Fuhrpark – Feuerwehr Weiden">
   <main>
-    <section class="subhero" style="min-height:48svh">
-      <div class="bild" style="background-image:url(/bilder/fahrzeuge/dlak.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">{hauptwache.length + ortsteile.length} Fahrzeuge · {anhaenger.length} Anhänger</span>
-          <h1 class="display">Unser Fuhrpark</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Unser Fuhrpark" krumen={[{ name: 'Start', href: '/' }, { name: `${hauptwache.length + ortsteile.length} Fahrzeuge · ${anhaenger.length} Anhänger` }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">

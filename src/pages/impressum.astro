@@ -1,19 +1,11 @@
 ---
 import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
 ---
 
 <Basis titel="Impressum – Feuerwehr Weiden">
   <main>
-    <section class="subhero" style="min-height:34svh">
-      <div class="bild" style="background:linear-gradient(160deg,#171A22,#0E1116)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Rechtliches</span>
-          <h1 class="display">Impressum</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Impressum" krumen={[{ name: 'Start', href: '/' }, { name: 'Rechtliches' }]} />
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:820px;padding-bottom:clamp(64px,8vw,110px)">
         <div class="rechtstext">

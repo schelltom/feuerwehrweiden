@@ -14,6 +14,7 @@ const {
   beschreibung = '24 Stunden – 365 Tage für Ihre Sicherheit. Die Freiwillige Feuerwehr Weiden in der Oberpfalz.',
   mitAlarm = false,
 } = Astro.props;
+
 ---
 
 <!doctype html>
@@ -28,11 +29,15 @@ const {
   <body>
     {
       mitAlarm && (
-        <div id="alarm" aria-hidden="true">
-          <div class="kern">
-            <div class="zeile1">ILS Oberpfalz-Nord · Alarmdepesche</div>
-            <div class="zeile2" id="tipptext" />
-            <div class="balken" />
+        <div class="alarmintro" aria-hidden="true">
+          <div class="mix">
+            <div class="kern">
+              <div class="zeile1">ILS Oberpfalz-Nord · Alarmdepesche</div>
+              <div class="zeile2" id="tipptext" />
+              <div class="balken" />
+            </div>
+            <img class="mbild" src="/bilder/intro-start.jpg" alt="" />
+            <b id="countzahl">5</b>
           </div>
         </div>
       )
@@ -79,6 +84,12 @@ const {
 
     <slot />
 
+    <dialog id="bildpopup">
+      <button id="bpZu" aria-label="Schließen">×</button>
+      <img alt="" />
+      <span id="bpText"></span>
+    </dialog>
+
     <footer id="kontakt">
       <div class="wrap">
         <div class="mitlogo">
@@ -123,25 +134,31 @@ const {
       const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* Alarm-Intro (nur wenn vorhanden) + Startsignal für Hero-Animationen */
-      const alarm = document.getElementById('alarm');
+      const alarm = document.querySelector<HTMLElement>('.alarmintro');
       if (alarm && !location.hash) {
         // Beim Neuladen nicht an alter Scrollposition weitermachen, sondern oben mit dem Intro starten
         history.scrollRestoration = 'manual';
         scrollTo(0, 0);
       }
-      const los = () => document.body.classList.add('los');
+      const los = () => {
+        document.body.classList.add('los');
+        /* Signal an den Hero: Schlauchrolle synchron zur Leitung starten */
+        dispatchEvent(new CustomEvent('feuerwehr:los'));
+      };
       /* Logo-Klick (?direkt): Startseite sofort zeigen – ohne Depesche, Schlauch fertig ausgerollt */
       const direkt = new URLSearchParams(location.search).has('direkt');
       if (direkt) {
         document.body.classList.add('sofort');
-        history.replaceState(null, '', '/');
+        history.replaceState(null, '', '/' + location.hash);
       }
-      if (!alarm || reduziert || direkt) {
+      /* Sprungmarken-Links (z.B. /#mitmachen aus einem Bericht): Intro überspringen */
+      if (!alarm || reduziert || direkt || location.hash) {
         alarm?.remove();
         los();
       } else {
         alarm.classList.add('laeuft');
 
+        /* Depesche tippt oben, darunter zählt der Countdown von 5 zurück */
         const txt = 'ALARM FÜR FLORIAN WEIDEN — EINSATZ FÜR ALLE EINHEITEN';
         const ziel = document.getElementById('tipptext')!;
         let i = 0;
@@ -149,11 +166,24 @@ const {
           ziel.textContent = txt.slice(0, ++i);
           if (i >= txt.length) clearInterval(tipp);
         }, 42); // Tippgeschwindigkeit
-        setTimeout(() => {
-          alarm.classList.add('weg');
-          los();
-        }, 5600); // Standzeit der Depesche
-        setTimeout(() => alarm.remove(), 6400);
+
+        const zahl = document.getElementById('countzahl')!;
+        let n = 5;
+        const tick = setInterval(() => {
+          n--;
+          if (n < 1) {
+            clearInterval(tick);
+            clearInterval(tipp);
+            alarm.classList.add('weg');
+            los();
+            setTimeout(() => alarm.remove(), 800);
+            return;
+          }
+          zahl.textContent = String(n);
+          zahl.classList.remove('tick');
+          void (zahl as HTMLElement).offsetWidth; // Animation neu starten
+          zahl.classList.add('tick');
+        }, 1000);
       }
 
       /* Burger-Menü */
@@ -209,6 +239,33 @@ const {
         { threshold: 0.6 }
       );
       document.querySelectorAll('.zaehler').forEach((el) => zio.observe(el));
+
+      /* Bild-Popup: jedes Inhaltsbild lässt sich per Klick vergrößern.
+         Ausgenommen: Bilder in Links/Buttons, Hero-Diashow und die
+         Berichts-Slideshow (hat ihren eigenen Popup) sowie Kleinkram < 90px. */
+      const popup = document.getElementById('bildpopup') as HTMLDialogElement;
+      const popupBild = popup.querySelector('img')!;
+      const popupText = document.getElementById('bpText')!;
+      document.querySelectorAll<HTMLImageElement>('main img').forEach((b) => {
+        if (b.closest('a, button, .slideshow, .hero')) return;
+        const pruefe = () => {
+          if (b.clientWidth >= 90) b.classList.add('zoombar');
+        };
+        b.complete ? pruefe() : b.addEventListener('load', pruefe);
+      });
+      document.querySelector('main')?.addEventListener('click', (e) => {
+        const bild = (e.target as HTMLElement).closest('img');
+        if (!bild || !bild.classList.contains('zoombar')) return;
+        popupBild.src = bild.src;
+        popupBild.alt = bild.alt;
+        popupText.textContent =
+          bild.alt || bild.closest('figure')?.querySelector('figcaption')?.textContent || '';
+        popup.showModal();
+      });
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) popup.close();
+      });
+      document.getElementById('bpZu')!.addEventListener('click', () => popup.close());
     </script>
   </body>
 </html>

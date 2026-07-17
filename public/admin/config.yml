@@ -32,7 +32,58 @@ collections:
     fields:
       - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
       - { name: art, label: Einsatzart, widget: select, options: [THL, Brand, Sonstige], default: THL }
-      - { name: stichwort, label: Einsatzstichwort, widget: string, hint: 'z.B. Straße reinigen klein' }
+      - name: stichwort
+        label: Alarmstichwort
+        widget: select
+        default: 'THL 1'
+        options:
+          - B 1
+          - B 2
+          - B 2 PERSON
+          - B 3
+          - B 3 PERSON
+          - B 4
+          - THL 1
+          - THL 2
+          - THL 3
+          - THL 4
+          - THL 5
+          - THL BELEUCHTUNG
+          - THL BOMBENDROHUNG
+          - THL BOMBENFUND
+          - THL ERKUNDUNG
+          - THL FIRST RESPONDER
+          - THL GEBÄUDEEINSTURZ
+          - THL GROßTIERRETTUNG
+          - THL HUBSCHRAUBERLANDUNG
+          - THL P AUFZUG
+          - THL P EINGESCHLOSSEN
+          - THL P RETTUNG H / T
+          - THL P STRAßENBAHN
+          - THL P STROM
+          - THL P U-BAHN
+          - THL P VERSCHÜTTET
+          - THL P ZUG
+          - THL RETTUNGSKORB
+          - THL SCHIENE
+          - THL TRAGEHILFE
+          - THL UNWETTER
+          - THL WASSER
+          - ABC 1
+          - ABC 2
+          - ABC 3
+          - ABC B
+          - ABC B ATOM
+          - ABC B BIO / CHEMIE
+          - ABC EXPLOSION
+          - ABC GEFAHRSTOFFMELDEANLAGE
+          - ABC KRAFTSTOFF
+          - ABC ÖL LAND
+          - ABC ÖL WASSER
+          - ABC THL ATOM
+          - ABC THL BIO / CHEMIE
+          - Sonstiges
+      - { name: details, label: 'Zusatz (optional)', widget: string, required: false, default: '', hint: 'z.B. "Straße reinigen klein" – erscheint als "THL 1 – Straße reinigen klein"' }
 
   - name: berichte
     label: Berichte & News

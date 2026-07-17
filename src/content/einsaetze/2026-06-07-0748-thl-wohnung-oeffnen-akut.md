@@ -1,0 +1,6 @@
+---
+wann: 2026-06-07T07:48
+stichwort: "THL"
+details: "Wohnung öffnen akut"
+art: THL
+---

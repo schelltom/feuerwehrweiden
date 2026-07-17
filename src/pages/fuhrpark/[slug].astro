@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
   const fahrzeuge = await getCollection('fahrzeuge');
@@ -14,30 +15,19 @@ const d = fahrzeug.data;
 
 <Basis titel={`${d.name} – Fuhrpark – Feuerwehr Weiden`}>
   <main>
-    <section class="subhero">
-      <div
-        class="bild"
-        style={d.bild
-          ? `background-image:url(${d.bild})`
-          : 'background:linear-gradient(160deg,#171A22,#0E1116)'}
-      >
-      </div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <a class="zurueck" href="/fuhrpark/">← Zurück zum Fuhrpark</a>
-          <span class="eyebrow">{d.typ} · {d.standort}</span>
-          <h1 class="display">{d.name}</h1>
-          {
-            d.funkruf && (
-              <div class="zeile">
-                <span class="funkruf">{d.funkruf}</span>
-              </div>
-            )
-          }
-        </div>
-      </div>
-    </section>
+    <Seitenkopf
+      titel={d.name}
+      krumen={[
+        { name: 'Start', href: '/' },
+        { name: 'Fuhrpark', href: '/fuhrpark/' },
+        { name: `${d.typ} · ${d.standort}` },
+      ]}
+      bild={d.bild || undefined}
+      kenburns
+      gerade
+    >
+      {d.funkruf && <div style="margin-top:14px"><span class="funkruf">{d.funkruf}</span></div>}
+    </Seitenkopf>
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">

@@ -68,7 +68,10 @@ const einsaetze = defineCollection({
   schema: z.object({
     /** Datum & Uhrzeit, z.B. 2026-07-17T10:19 (ohne Zeitzone, lokal) */
     wann: z.coerce.date(),
+    /** Alarmstichwort aus dem Katalog (ältere Einträge: Freitext) */
     stichwort: z.string(),
+    /** Optionaler Zusatz, wird als " – Zusatz" angehängt */
+    details: z.string().default(''),
     art: z.enum(['THL', 'Brand', 'Sonstige']),
   }),
 });

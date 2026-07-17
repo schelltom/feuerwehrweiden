@@ -1,0 +1,229 @@
+---
+/**
+ * Kompakter Seitenkopf für Unterseiten (Muster: Berichte + Stadtbrandrat):
+ * schmaler dunkler Balken hinter der Navigation mit gerader roter Linie
+ * als Abschluss, darunter Breadcrumb + Titel links und optional ein
+ * Einleitungsbild rechts. Rückbau: Seiten wieder auf .subhero umstellen.
+ */
+interface Krume {
+  name: string;
+  href?: string;
+}
+
+interface Props {
+  titel: string;
+  krumen?: Krume[];
+  untertitel?: string;
+  /** Einleitungsbild rechts neben dem Titel (Berichte, Fahrzeuge) */
+  bild?: string;
+  /** Ken-Burns-Effekt: das Bild zoomt und wandert langsam im Rahmen (Standard: an) */
+  kenburns?: boolean;
+  /** Gerader Zuschnitt (Standard) – false ergibt den Parallelogramm-Schnitt */
+  gerade?: boolean;
+  /** Kleines Wappen links neben dem Titel (Ortsteile) */
+  wappen?: string;
+}
+
+const { titel, krumen = [], untertitel, bild, kenburns = true, gerade = true, wappen } = Astro.props;
+---
+
+<header class="seitenkopf">
+  <div class="balken" aria-hidden="true"></div>
+
+  <div class="wrap zeile">
+    <div class="ktext">
+      {
+        krumen.length > 0 && (
+          <nav class="krumen" aria-label="Pfad">
+            {krumen.map((k, i) => (
+              <>
+                {i > 0 && <span class="teiler" aria-hidden="true" />}
+                {k.href ? <a href={k.href}>{k.name}</a> : <b>{k.name}</b>}
+              </>
+            ))}
+          </nav>
+        )
+      }
+      <div class="titelzeile">
+        {wappen && <img class="kwappen" src={wappen} alt="" loading="eager" />}
+        <h1 class="display">{titel}</h1>
+      </div>
+      {untertitel && <p class="unter">{untertitel}</p>}
+      <slot />
+    </div>
+    {
+      bild && (
+        <span class:list={['kfoto', { kenburns, gerade }]}>
+          <span class="kausschnitt">
+            <img class="kbild" src={bild} alt="" loading="eager" />
+          </span>
+        </span>
+      )
+    }
+  </div>
+</header>
+
+<style>
+  .balken {
+    background: var(--dunkel);
+    height: 84px;
+    border-bottom: 12px solid var(--rot);
+  }
+  .zeile {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding-top: clamp(28px, 4vw, 44px);
+    padding-bottom: 10px;
+  }
+  .krumen {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .krumen a {
+    color: var(--tinte2);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .krumen a:hover {
+    color: var(--rot);
+  }
+  .krumen b {
+    font-weight: 400;
+    color: var(--rot);
+  }
+  .krumen .teiler {
+    width: 14px;
+    height: 2px;
+    background: var(--silber);
+    transform: skewX(-30deg);
+  }
+  .titelzeile {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 10px;
+  }
+  .kwappen {
+    width: 52px;
+    height: auto;
+    flex: none;
+    filter: drop-shadow(0 3px 8px rgba(20, 22, 28, 0.25));
+  }
+  .ktext h1 {
+    margin: 0;
+    font-style: italic;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 0.94;
+    letter-spacing: 0.01em;
+  }
+  .unter {
+    margin: 12px 0 0;
+    color: var(--tinte2);
+    max-width: 56ch;
+    font-size: 0.98rem;
+  }
+  /* Einleitungsbild: Parallelogramm-Schnitt mit rotem Tiefen-Balken,
+     schwebt beim Laden ein, Glanzlauf + leichter Zoom beim Hover */
+  .kfoto.gerade {
+    --schnitt: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .kfoto {
+    --schnitt: polygon(30px 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+    position: relative;
+    justify-self: end;
+    width: min(430px, 40vw);
+    margin-top: 2px; /* Oberkante bündig mit der Breadcrumb-Zeile */
+    animation: kfoto-rein 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .kfoto::before {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: -18px;
+    bottom: -14px;
+    left: 18px;
+    background: linear-gradient(115deg, var(--rot), var(--rot-tief));
+    clip-path: var(--schnitt);
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .kausschnitt {
+    position: relative;
+    z-index: 1;
+    display: block;
+    clip-path: var(--schnitt);
+    filter: drop-shadow(0 18px 34px rgba(20, 22, 28, 0.3));
+  }
+  .kbild {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .kfoto.kenburns .kbild {
+    animation: kenburns-kopf 12s ease-in-out infinite alternate;
+  }
+  @keyframes kenburns-kopf {
+    from {
+      transform: scale(1) translate(0, 0);
+    }
+    to {
+      transform: scale(1.14) translate(-2.5%, 1.5%);
+    }
+  }
+  .kfoto::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    clip-path: var(--schnitt);
+    background: linear-gradient(115deg, transparent 32%, rgba(255, 255, 255, 0.35) 46%, transparent 60%);
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+  .kfoto:hover .kbild {
+    transform: scale(1.035);
+  }
+  .kfoto:hover::before {
+    transform: translate(7px, 6px);
+  }
+  .kfoto:hover::after {
+    transition: transform 0.8s ease;
+    transform: translateX(130%);
+  }
+  @keyframes kfoto-rein {
+    from {
+      opacity: 0;
+      transform: translateX(44px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .kfoto {
+      animation: none;
+    }
+  }
+  @media (max-width: 680px) {
+    .zeile {
+      grid-template-columns: 1fr;
+    }
+    .kfoto {
+      width: calc(100% - 14px);
+      justify-self: stretch;
+      margin-top: 8px;
+      order: 2;
+    }
+  }
+</style>

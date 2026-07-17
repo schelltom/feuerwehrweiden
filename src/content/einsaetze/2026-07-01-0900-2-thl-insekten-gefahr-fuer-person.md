@@ -1,0 +1,6 @@
+---
+wann: 2026-07-01T09:00
+stichwort: "2× THL"
+details: "Insekten Gefahr für Person"
+art: THL
+---

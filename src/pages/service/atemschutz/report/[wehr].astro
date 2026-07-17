@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Basis from '../../../../layouts/Basis.astro';
+import Seitenkopf from '../../../../components/Seitenkopf.astro';
 import PflegeReport from '../../../../components/PflegeReport.astro';
 import { ladePflege } from '../../../../lib/pflege';
 
@@ -19,16 +20,7 @@ const stand = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle:
 
 <Basis titel={`Report ${wehrName} – Pflegestelle Feuerwehr Weiden`}>
   <main>
-    <section class="subhero keindruck" style="min-height:32svh">
-      <div class="bild" style="background-image:url(/bilder/header/absturz.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Service · Pflegestelle · Report</span>
-          <h1 class="display">{wehrName}</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel={wehrName} krumen={[{ name: 'Start', href: '/' }, { name: 'Pflegestelle', href: '/service/atemschutz/' }, { name: 'Report', href: '/service/atemschutz/report/' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(36px,5vw,56px);padding-bottom:64px">
@@ -92,6 +84,7 @@ const stand = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle:
   }
   @media print {
     .keindruck,
+    :global(.seitenkopf),
     :global(header.nav),
     :global(footer) {
       display: none !important;

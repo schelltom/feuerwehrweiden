@@ -1,5 +1,6 @@
 ---
 import Basis from '../../../layouts/Basis.astro';
+import Seitenkopf from '../../../components/Seitenkopf.astro';
 import { ladeTermine, ladeKategorieFarben, kategorieSlug } from '../../../lib/kalender';
 
 const alleTermine = await ladeTermine();
@@ -59,17 +60,7 @@ const exportDaten = alleTermine.map((t) => ({
 
 <Basis titel="Kalender – Feuerwehr Weiden" beschreibung="Übungen und Veranstaltungen der Feuerwehr Weiden – mit iCal-Export für den eigenen Kalender.">
   <main>
-    <section class="subhero" style="min-height:44svh">
-      <div class="bild" style="background-image:url(/bilder/header/feldbrand.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <a class="zurueck" href="/feuerwehr/">← Feuerwehr</a>
-          <span class="eyebrow">Übungen &amp; Veranstaltungen</span>
-          <h1 class="display">Kalender</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Kalender" krumen={[{ name: 'Start', href: '/' }, { name: 'Feuerwehr', href: '/feuerwehr/' }, { name: 'Übungen & Veranstaltungen' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:1000px">

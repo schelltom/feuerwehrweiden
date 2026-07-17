@@ -10,14 +10,15 @@ export async function ladeEinsaetze() {
   return (await getCollection('einsaetze'))
     .map((e) => ({
       ...e.data,
+      stichwort: e.data.details ? `${e.data.stichwort} – ${e.data.details}` : e.data.stichwort,
       datum: datumsformat.format(e.data.wann),
       zeit: zeitformat.format(e.data.wann),
     }))
     .sort((a, b) => b.wann.getTime() - a.wann.getTime());
 }
 
-/** "2× Gegenstand sichern" zählt in der Statistik als 2 Einsätze */
+/** "2× Gegenstand sichern" (auch im Zusatz: "THL 1 – 2× …") zählt in der Statistik als 2 Einsätze */
 export function anzahlVon(e: { stichwort: string }) {
-  const m = e.stichwort.match(/^(\d+)\s*×/);
+  const m = e.stichwort.match(/(?:^|–\s*)(\d+)\s*×/);
   return m ? Number(m[1]) : 1;
 }

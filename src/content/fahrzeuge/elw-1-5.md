@@ -1,5 +1,5 @@
 ---
-name: "ELW 1/5"
+name: "ELW 1,5"
 typ: "Einsatzleitwagen"
 funkruf: "KATER WEIDEN 1/12/1"
 standort: "Hauptfeuerwache"

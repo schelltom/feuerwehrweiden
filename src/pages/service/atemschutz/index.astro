@@ -1,5 +1,6 @@
 ---
 import Basis from '../../../layouts/Basis.astro';
+import Seitenkopf from '../../../components/Seitenkopf.astro';
 import { ladePflege, inhaltText, datum } from '../../../lib/pflege';
 
 const vorgaenge = (await ladePflege()).filter((v) => !v.abgeholt);
@@ -12,16 +13,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
   beschreibung="Aktueller Status der Atemschutz- und Schlauchpflegestelle: Welche Geräte, Masken, Flaschen und Schläuche sind abholbereit?"
 >
   <main>
-    <section class="subhero" style="min-height:44svh">
-      <div class="bild" style="background-image:url(/bilder/header/absturz.jpg)"></div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <span class="eyebrow">Service · Pflegestelle</span>
-          <h1 class="display">Atemschutz- &amp; Schlauch&shy;pflegestelle</h1>
-        </div>
-      </div>
-    </section>
+    <Seitenkopf titel="Atemschutz- & Schlauchpflegestelle" krumen={[{ name: 'Start', href: '/' }, { name: 'Service' }, { name: 'Pflegestelle' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">

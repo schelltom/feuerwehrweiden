@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
   const orte = (await getCollection('seiten')).filter((s) => s.data.bereich === 'ortsteile');
@@ -19,27 +20,16 @@ const fahrzeuge = (await getCollection('fahrzeuge'))
 
 <Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
   <main>
-    <section class="subhero" style="min-height:48svh">
-      <div
-        class="bild"
-        style={d.titelbild
-          ? `background-image:url(${d.titelbild});background-position:center 40%`
-          : 'background:linear-gradient(160deg,#171A22,#0E1116)'}
-      >
-      </div>
-      <div class="duster"></div>
-      <div class="inhalt">
-        <div class="wrap">
-          <a class="zurueck" href="/ortsteile/">← Ortsteile</a>
-          <span class="eyebrow">Ortsteilfeuerwehr</span>
-          <div class="kopfzeile">
-            {d.wappen && <img class="wappen" src={d.wappen} alt={`Wappen ${d.titel}`} />}
-            <h1 class="display">{d.titel}</h1>
-          </div>
-          {d.kurz && <p class="untertitel">{d.kurz}</p>}
-        </div>
-      </div>
-    </section>
+    <Seitenkopf
+      titel={d.titel}
+      krumen={[
+        { name: 'Start', href: '/' },
+        { name: 'Ortsteile', href: '/ortsteile/' },
+        { name: 'Ortsteilfeuerwehr' },
+      ]}
+      untertitel={d.kurz}
+      wappen={d.wappen}
+    />
 
     <section>
       <div class="wrap schmal" style="padding-top:clamp(44px,6vw,72px)">
