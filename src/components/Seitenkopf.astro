@@ -11,7 +11,8 @@ interface Krume {
 }
 
 interface Props {
-  titel: string;
+  /** Ohne Titel bleibt nur die Breadcrumb-Zeile (z.B. Einsatzbilanz-Seite) */
+  titel?: string;
   krumen?: Krume[];
   untertitel?: string;
   /** Einleitungsbild rechts neben dem Titel (Berichte, Fahrzeuge) */
@@ -24,7 +25,7 @@ interface Props {
   wappen?: string;
 }
 
-const { titel, krumen = [], untertitel, bild, kenburns = true, gerade = true, wappen } = Astro.props;
+const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = true, wappen } = Astro.props;
 ---
 
 <header class="seitenkopf">
@@ -44,10 +45,14 @@ const { titel, krumen = [], untertitel, bild, kenburns = true, gerade = true, wa
           </nav>
         )
       }
-      <div class="titelzeile">
-        {wappen && <img class="kwappen" src={wappen} alt="" loading="eager" />}
-        <h1 class="display">{titel}</h1>
-      </div>
+      {
+        titel && (
+          <div class="titelzeile">
+            {wappen && <img class="kwappen" src={wappen} alt="" loading="eager" />}
+            <h1 class="display">{titel}</h1>
+          </div>
+        )
+      }
       {untertitel && <p class="unter">{untertitel}</p>}
       <slot />
     </div>

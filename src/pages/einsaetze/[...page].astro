@@ -13,7 +13,7 @@ const { page } = Astro.props;
 
 <Basis titel="Einsätze – Feuerwehr Weiden">
   <main>
-    <Seitenkopf titel="Einsatzbilanz" krumen={[{ name: 'Start', href: '/' }, { name: page.lastPage > 1 ? `Einsätze · Seite ${page.currentPage} von ${page.lastPage}` : 'Einsätze' }]} />
+    <Seitenkopf krumen={[{ name: 'Start', href: '/' }, { name: page.lastPage > 1 ? `Einsätze · Seite ${page.currentPage} von ${page.lastPage}` : 'Einsätze' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);max-width:980px">
