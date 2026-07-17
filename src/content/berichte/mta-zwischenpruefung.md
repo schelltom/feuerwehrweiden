@@ -1,7 +1,7 @@
 ---
 titel: "Erfolgreiche Zwischenprüfung im MTA-Basismodul"
 datum: 2026-07-12
-ressort: Feuerwehr
+ressort: Übungsdienst
 titelbild: "/bilder/berichte/mta-zwischenpruefung-1.jpg"
 kurz: "Zehn Kameradinnen und Kameraden aus dem Stadtgebiet Weiden legten die Zwischenprüfung des MTA-Basismoduls erfolgreich ab."
 ---

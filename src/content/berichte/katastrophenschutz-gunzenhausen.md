@@ -1,7 +1,7 @@
 ---
 titel: "Feuerwehr Weiden bei feierlicher Übergabe neuer Katastrophenschutzfahrzeuge in Gunzenhausen vertreten"
 datum: 2026-07-12
-ressort: Feuerwehr
+ressort: Einsatzdienst
 titelbild: "/bilder/berichte/katastrophenschutz-gunzenhausen-1.jpg"
 kurz: "Bei der feierlichen Übergabe von mehr als 110 neuen Katastrophenschutzfahrzeugen in Gunzenhausen war auch die Feuerwehr Weiden mit ihrem SW 2000 vertreten."
 ---

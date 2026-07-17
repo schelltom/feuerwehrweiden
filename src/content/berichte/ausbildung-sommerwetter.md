@@ -1,7 +1,7 @@
 ---
 titel: "Ausbildung bei bestem Sommerwetter"
 datum: 2026-07-11
-ressort: Feuerwehr
+ressort: Übungsdienst
 titelbild: "/bilder/berichte/ausbildung-sommerwetter-1.jpg"
 kurz: "Für unsere Maschinisten stand ein intensiver Ausbildungstag auf dem Programm – der Schwerpunkt lag auf der Ausbildung an unseren beiden Drehleitern."
 ---

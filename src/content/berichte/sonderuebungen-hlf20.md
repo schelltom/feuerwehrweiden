@@ -1,7 +1,7 @@
 ---
 titel: "Sonderübungen mit dem neuen HLF 20"
 datum: 2026-07-14
-ressort: Feuerwehr
+ressort: Übungsdienst
 titelbild: "/bilder/berichte/sonderuebungen-hlf20-1.jpg"
 kurz: "An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt."
 ---

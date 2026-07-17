@@ -29,7 +29,7 @@ collections:
       - name: ressort
         label: Ressort
         widget: select
-        options: [Einsatzdienst, Feuerwehrverein, Fuhrpark, Verein, Jugend, Feuerwehr]
+        options: [Einsatzdienst, Übungsdienst, Feuerwehrverein, Fuhrpark, Verein, Jugend, Feuerwehr]
         default: Feuerwehr
       - { name: titelbild, label: Titelbild, widget: image, required: false }
       - { name: kurz, label: 'Kurzfassung (1 Satz)', widget: text, required: false }
