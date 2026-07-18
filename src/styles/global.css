@@ -120,6 +120,16 @@
     border-radius:6px;color:inherit;padding:9px 11px;cursor:pointer;backdrop-filter:blur(8px);
   }
   header.nav.fest .burger{background:#fff;border-color:var(--linie)}
+  /* Schmale Desktop-Breiten (z.B. iPad quer, 1024×768): Platz wird knapp –
+     Notruf-Knopf raus, Markenname einzeilig und etwas kleiner, Menü kompakter
+     (ab 1280px passt alles wieder in voller Größe nebeneinander) */
+  @media (min-width:961px) and (max-width:1279px){
+    .wechsel .n112{display:none}
+    .marke .name{font-size:.95rem;white-space:nowrap}
+    nav.menue a{padding:9px 9px;font-size:.85rem}
+    .nav .wrap{gap:12px}
+    .sozial a{width:34px;height:34px}
+  }
   @media (max-width:960px){
     .navrechts{display:flex;align-items:center;gap:12px}
   .navskyline{display:none;align-items:flex-end;padding:0 6px}
@@ -222,7 +232,7 @@
   body.los .hero h1 span:nth-child(3) b{animation-delay:.28s}
   /* Schlagzeilen-Farben folgen dem Schlauch-Farbschema (Zufall pro Besuch) */
   .hero h1 span:not(.sicherheit) b{color:var(--zeilen-farbe,#fff)}
-  .hero h1 span.sicherheit b{color:var(--sicherheit-farbe,var(--rot-hell));text-shadow:0 0 40px currentColor}
+  .hero h1 span.sicherheit b{color:var(--sicherheit-farbe,var(--rot-hell))}
   @keyframes aufstieg{to{transform:translateY(0)}}
   .hero .sub,.hero .cta{opacity:0;transform:translateY(20px)}
   body.los .hero .sub{animation:sanft .7s ease .5s forwards}
