@@ -261,6 +261,11 @@
   .hero .schlauch{
     position:absolute;left:0;right:0;top:clamp(15px,2.5vh,35px);z-index:2;pointer-events:none;
   }
+  /* Kleine Bildschirme (Handys, Tablets bis ~9 Zoll): ohne Schlauch –
+     greift in der Mobil-Variante (Burger-Menü) und bei Handys im Querformat */
+  @media (max-width:960px),(max-height:620px){
+    .hero .schlauch{display:none}
+  }
   .hero .schlauch svg{display:block;width:100%;height:90px}
   /* Schlauchfarbe: wird pro Besuch zufällig gesetzt (rot / leuchtgelb / weiß) */
   .hero{--schlauch-basis:var(--rot);--schlauch-fuell:#FF3B30;--schlauch-tief:#B00500;--schlauch-kern:#7E0400}
@@ -421,7 +426,7 @@
   .zahlen{background:var(--dunkel);color:#fff}
   .zahlen .wrap{
     padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(40px,5vw,64px);
-    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;
   }
   .zahl{border-left:1px solid var(--hell-linie);padding:4px 26px}
   .zahl:first-child{border-left:0;padding-left:0}
@@ -436,9 +441,12 @@
     display:block;margin-top:10px;
     font-family:var(--mono);font-size:.64rem;letter-spacing:.26em;
     text-transform:uppercase;color:var(--silber);
+    hyphens:auto;overflow-wrap:anywhere;
   }
-  @media (max-width:820px){
-    .zahlen .wrap{grid-template-columns:repeat(2,1fr);row-gap:32px}
+  /* Unter 960px reichen 5 Spalten nicht mehr für die langen Beschriftungen
+     (z.B. Handy im Querformat) – daher früher aufs 2-Spalten-Raster wechseln */
+  @media (max-width:960px){
+    .zahlen .wrap{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
     .zahl{padding:4px 20px}
     .zahl:nth-child(odd){border-left:0;padding-left:0}
   }
@@ -550,11 +558,14 @@
 
   /* ============ News + Termine ============ */
   .zweispalt{display:grid;grid-template-columns:2.05fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+  /* Spalten dürfen schmaler werden als ihr längstes Wort – sonst sprengt
+     z.B. "Katastrophenschutzfahrzeuge" auf dem Handy den Viewport */
+  .zweispalt>*{min-width:0}
   @media (max-width:900px){.zweispalt{grid-template-columns:1fr}}
   .news{list-style:none;margin:0;padding:0}
   .news li{
     border-bottom:1px solid var(--linie);padding:16px 0;position:relative;
-    display:grid;grid-template-columns:168px 1fr;gap:18px;align-items:center;
+    display:grid;grid-template-columns:168px minmax(0,1fr);gap:18px;align-items:center;
     transition:padding-left .25s;
   }
   .news .thumb{
@@ -562,7 +573,7 @@
     border:1px solid var(--linie);background:var(--dunkel2);
   }
   @media (max-width:560px){
-    .news li{grid-template-columns:120px 1fr;gap:14px}
+    .news li{grid-template-columns:120px minmax(0,1fr);gap:14px}
     .news .thumb{width:120px;height:80px}
   }
   .news .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
@@ -580,7 +591,7 @@
   .news li:hover::before{width:14px}
   .news .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte2)}
   .news .meta b{color:var(--rot);font-weight:400;margin-left:12px}
-  .news h3{margin:8px 0 0;font-size:1.12rem;line-height:1.4;font-weight:600}
+  .news h3{margin:8px 0 0;font-size:1.12rem;line-height:1.4;font-weight:600;hyphens:auto;overflow-wrap:anywhere}
   .news h3 a{text-decoration:none}
   .news h3 a:hover{color:var(--rot)}
   .termine{list-style:none;margin:0;padding:0;display:grid;gap:12px}
@@ -783,8 +794,9 @@
   .alarmintro .mix{
     display:flex;flex-direction:column;align-items:center;
     gap:clamp(18px,3.5svh,34px);padding:24px;width:100%;
+    box-sizing:border-box; /* sonst ragt 100% + Padding rechts aus dem Handy-Display */
   }
-  .alarmintro .mix .kern{width:min(640px,90vw);max-width:none}
+  .alarmintro .mix .kern{width:min(640px,100%);max-width:none;box-sizing:border-box}
   .alarmintro .mbild{
     display:block;max-width:min(56vw,680px);max-height:44svh;width:auto;height:auto;
     /* Ränder lösen sich weich im roten Hintergrund auf */

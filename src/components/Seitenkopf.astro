@@ -82,6 +82,17 @@ const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = tru
     padding-top: clamp(28px, 4vw, 44px);
     padding-bottom: 10px;
   }
+  /* Textspalte darf schmaler werden als ihr längstes Wort, lange Titel
+     ("Atemschutzpflegestelle") trennen sich – sonst wächst auf dem Handy
+     die ganze Seite über den rechten Rand hinaus */
+  .ktext {
+    min-width: 0;
+  }
+  .ktext h1,
+  .krumen b {
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
   .krumen {
     font-family: var(--mono);
     font-size: 0.68rem;
