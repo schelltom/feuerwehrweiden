@@ -26,43 +26,54 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
             {
               ueberUns.map((s) => (
                 <a
-                  class:list={['seitenkarte', 'reveal', { hell: helme[s.id] || s.id === 'vorstandschaft' }]}
+                  class:list={['seitenkarte', 'reveal', { grafik: helme[s.id] || s.id === 'vorstandschaft' }]}
                   href={`/feuerwehr/${s.data.bereich}/${s.id}/`}
                 >
                   {s.id === 'vorstandschaft' ? (
                     <span class="grafikfeld" aria-hidden="true">
                       <svg viewBox="0 0 140 78" class="koepfe">
-                        <!-- schattierte Köpfe: Vorstand als Gruppe -->
-                        <g fill="#C9CDD6">
+                        <!-- Vorstand als Gruppe: Silhouetten, Mitte hervorgehoben -->
+                        <g fill="#4A505E">
                           <circle cx="38" cy="26" r="13" />
                           <path d="M18,78 C18,54 27,45 38,45 C49,45 58,54 58,78 Z" />
                         </g>
-                        <g fill="#9AA0AD">
+                        <g fill="#6E7480">
                           <circle cx="102" cy="26" r="13" />
                           <path d="M82,78 C82,54 91,45 102,45 C113,45 122,54 122,78 Z" />
                         </g>
-                        <g fill="#4A505E">
+                        <g fill="#C9CDD6">
                           <circle cx="70" cy="22" r="15" />
                           <path d="M47,78 C47,52 57,42 70,42 C83,42 93,52 93,78 Z" />
                         </g>
-                        <rect x="47" y="14" width="46" height="4.5" rx="2" fill="#E10600" opacity="0" />
                       </svg>
                     </span>
                   ) : helme[s.id] ? (
                     <span class="helmfeld" aria-hidden="true">
-                      <svg viewBox="0 0 100 82" class="helm">
-                        <!-- Bayerischer Feuerwehrhelm, Frontansicht -->
+                      <svg viewBox="0 0 100 96" class="helm">
+                        <!-- Bayerischer DIN-Helm (Frontansicht, nach Vorbild der amtlichen
+                             Funktionsabzeichen): Nackenschutz, ausgestellter Rand,
+                             Reflexstreifen, rote Balken = Führungskennzeichnung -->
                         <path
-                          d="M50,6 C27,6 10,25 10,50 C10,60 9,68 12,72 L88,72 C91,68 90,60 90,50 C90,25 73,6 50,6 Z"
-                          fill="#E4E9AE"
-                          stroke="#3A3F35"
+                          d="M15,63 C11,77 25,90 50,90 C75,90 89,77 85,63 Z"
+                          fill="#242933"
+                          stroke="#4A505E"
+                          stroke-width="1.5"
+                        />
+                        <path d="M20,66 C30,80 62,84 80,68" fill="none" stroke="#4A505E" stroke-width="2" />
+                        <path d="M80,66 C70,80 38,84 20,68" fill="none" stroke="#4A505E" stroke-width="2" />
+                        <path
+                          d="M50,5 C29,5 15,20 14,40 L14,46 C11,52 8,58 6,63 Q50,70 94,63 C92,58 89,52 86,46 L86,40 C85,20 71,5 50,5 Z"
+                          fill="#EDE94F"
+                          stroke="#23261C"
                           stroke-width="2"
                         />
-                        <rect x="9" y="50" width="82" height="9" fill="#D6D9E0" stroke="#9AA0AD" stroke-width="1.2" />
+                        <path d="M13,45 Q50,51 87,45 L87,52 Q50,58 13,52 Z" fill="#FAFBFD" />
+                        <circle cx="16" cy="42" r="2" fill="#EDE94F" stroke="#8A8F55" stroke-width="1.2" />
+                        <circle cx="84" cy="42" r="2" fill="#EDE94F" stroke="#8A8F55" stroke-width="1.2" />
                         {Array.from({ length: helme[s.id] }, (_, i) => (
                           <rect
-                            x={50 - (helme[s.id] * 5.5 + (helme[s.id] - 1) * 4) / 2 + i * 9.5}
-                            y="22"
+                            x={50 - (helme[s.id] * 5.5 + (helme[s.id] - 1) * 3.5) / 2 + i * 9}
+                            y="24"
                             width="5.5"
                             height="18"
                             fill="#E10600"
@@ -83,17 +94,17 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
                 </a>
               ))
             }
-            <a class="seitenkarte reveal hell" href="/feuerwehr/ueber-uns/kalender/">
+            <a class="seitenkarte reveal grafik" href="/feuerwehr/ueber-uns/kalender/">
               <span class="grafikfeld" aria-hidden="true">
                 <svg viewBox="0 0 140 78" class="koepfe">
-                  <!-- Kalenderblatt -->
-                  <rect x="42" y="12" width="56" height="56" rx="6" fill="#fff" stroke="#9AA0AD" stroke-width="2" />
+                  <!-- Kalenderblatt als Line-Art, Übungstag in Rot markiert -->
+                  <rect x="42" y="12" width="56" height="56" rx="6" fill="#1B1F27" stroke="#C9CDD6" stroke-width="2" />
                   <path d="M42,18 a6,6 0 0 1 6,-6 h44 a6,6 0 0 1 6,6 v10 h-56 z" fill="#E10600" />
-                  <rect x="54" y="6" width="4.5" height="12" rx="2" fill="#4A505E" />
-                  <rect x="82" y="6" width="4.5" height="12" rx="2" fill="#4A505E" />
+                  <rect x="54" y="6" width="4.5" height="12" rx="2" fill="#8A8F9C" />
+                  <rect x="82" y="6" width="4.5" height="12" rx="2" fill="#8A8F9C" />
                   {Array.from({ length: 3 }, (_, z) =>
                     Array.from({ length: 4 }, (_, s2) => (
-                      <rect x={50 + s2 * 11} y={35 + z * 10} width="7" height="6" rx="1.5" fill={z === 1 && s2 === 2 ? '#E10600' : '#C9CDD6'} />
+                      <rect x={50 + s2 * 11} y={35 + z * 10} width="7" height="6" rx="1.5" fill={z === 1 && s2 === 2 ? '#E10600' : '#4A505E'} />
                     ))
                   )}
                 </svg>
@@ -205,8 +216,9 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
     display: grid;
     place-items: center;
     background:
-      radial-gradient(420px 220px at 50% 115%, rgba(225, 6, 0, 0.12), transparent 65%),
-      linear-gradient(165deg, #f2f3f7, #d9dce4);
+      radial-gradient(420px 240px at 82% -12%, rgba(225, 6, 0, 0.3), transparent 65%),
+      repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.025) 0 18px, transparent 18px 36px),
+      var(--dunkel2);
   }
   .seitenkarte .koepfe {
     width: 40%;
@@ -235,10 +247,11 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
       radial-gradient(400px 200px at 80% 0%, rgba(225, 6, 0, 0.25), transparent 65%),
       var(--dunkel2);
   }
+  /* Kräftigerer Verlauf: weiße Beschriftung bleibt auch auf hellen Fotos lesbar */
   .seitenkarte .schatten {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 12, 16, 0.88) 0%, rgba(10, 12, 16, 0.2) 50%, transparent 75%);
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.94) 0%, rgba(10, 12, 16, 0.42) 46%, transparent 78%);
   }
   .seitenkarte .txt {
     position: absolute;
@@ -255,7 +268,8 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
     font-size: 0.62rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--silber);
+    color: #d6d9e0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
   }
   .seitenkarte .txt b {
     font-family: var(--display);
@@ -263,18 +277,10 @@ const einheiten = seiten.filter((s) => s.data.bereich === 'einheiten');
     text-transform: uppercase;
     font-size: clamp(1.3rem, 2.2vw, 1.8rem);
     line-height: 1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
   }
-  /* Helle Grafik-Karten: kein dunkler Verlauf, dunkle Beschriftung */
-  .seitenkarte.hell {
-    background: linear-gradient(165deg, #f2f3f7, #d9dce4);
-  }
-  .seitenkarte.hell .schatten {
-    display: none;
-  }
-  .seitenkarte.hell .txt b {
-    color: var(--tinte);
-  }
-  .seitenkarte.hell .txt em {
-    color: var(--tinte2);
+  /* Grafik-Karten (Helme, Vorstand, Kalender): dezenter Verlauf reicht */
+  .seitenkarte.grafik .schatten {
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.7) 0%, transparent 55%);
   }
 </style>

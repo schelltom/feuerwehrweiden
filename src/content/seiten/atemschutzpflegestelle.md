@@ -4,7 +4,20 @@ bereich: "ueber-uns"
 reihenfolge: 7
 kurz: "Reinigung, Prüfung und Wartung der Atemschutztechnik – rund 10.500 Prüfungen im Jahr"
 titelbild: "/bilder/header/absturz.jpg"
-kartenbild: "/bilder/uploads/2026/atemschutzpflegestelle.jpg"
+kartenbild: "/bilder/uploads/2026/atemschutzpflegestelle-kachel.jpg"
+galerie:
+  - bild: "/bilder/uploads/2026/atemschutz-annahme.jpg"
+    text: "Annahme der angelieferten Geräte"
+  - bild: "/bilder/uploads/2026/atemschutz-reinigung.jpg"
+    text: "Reinigung und Desinfektion"
+  - bild: "/bilder/uploads/2026/atemschutz-werkstatt.jpg"
+    text: "Werkstatt mit Prüfplätzen"
+  - bild: "/bilder/uploads/2026/atemschutz-pruefkopf.jpg"
+    text: "Prüfkopf für Masken und Lungenautomaten"
+  - bild: "/bilder/uploads/2026/atemschutz-fuellanlage.jpg"
+    text: "Füllanlage für Atemluftflaschen"
+  - bild: "/bilder/uploads/2026/atemschutz-ausgabe.jpg"
+    text: "Ausgabe der geprüften Geräte"
 ---
 
 Die Atemschutzpflegestelle der Hauptfeuerwache Weiden ist für die Reinigung, Pflege, Prüfung und Wartung der Atemschutztechnik verantwortlich. Sie stellt sicher, dass alle Atemschutzgeräte jederzeit den geltenden Vorschriften sowie den Herstellervorgaben entsprechen und für den Einsatz bereitstehen.
@@ -41,4 +54,4 @@ Darüber hinaus betreut die Atemschutzpflegestelle 63 Freiwillige Feuerwehren, W
 - 31 AlphaBELT-Systeme
 - 47 Chemikalienschutzanzüge
 
-**Aktueller Status für anliefernde Wehren:** [Zur Pflegestelle mit Live-Status →](/service/atemschutz/)
+[Zur Pflegestelle →](/service/atemschutz/)

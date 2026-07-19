@@ -801,6 +801,25 @@
     color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;
   }
   #bildpopup #bpZu:hover{background:var(--rot);border-color:var(--rot)}
+  /* Blättern durch alle Bilder der Seite: runde Knöpfe wie das Schließen-X,
+     links und rechts neben dem Bild */
+  #bildpopup[open]{gap:16px}
+  #bildpopup .blaettern{
+    flex:none;width:46px;height:46px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.35);background:rgba(14,17,22,.6);
+    color:#fff;font-size:1.5rem;line-height:1;cursor:pointer;padding:0 0 3px;
+  }
+  #bildpopup .blaettern:hover{background:var(--rot);border-color:var(--rot)}
+  #bildpopup .blaettern[hidden]{display:none}
+  #bildpopup img{max-width:min(94vw,calc(100vw - 176px))}
+  #bildpopup:has(.blaettern[hidden]) img{max-width:94vw}
+  /* Handy: Pfeile über den Bildrändern, damit das Bild die Breite behält */
+  @media (max-width:640px){
+    #bildpopup .blaettern{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+    #bildpopup #bpZurueck{left:10px}
+    #bildpopup #bpVor{right:10px}
+    #bildpopup img{max-width:94vw}
+  }
 
   /* ============ Intro-Zusatz: Startmotiv + Countdown unter der Depesche ============ */
   .alarmintro .mix{

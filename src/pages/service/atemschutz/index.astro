@@ -1,7 +1,7 @@
 ---
 import Basis from '../../../layouts/Basis.astro';
 import Seitenkopf from '../../../components/Seitenkopf.astro';
-import { ladePflege, inhaltText, datum } from '../../../lib/pflege';
+import { ladePflege, kategorieText, datum } from '../../../lib/pflege';
 
 const vorgaenge = (await ladePflege()).filter((v) => !v.abgeholt);
 const abholbereit = vorgaenge.filter((v) => v.abholbereit);
@@ -13,7 +13,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
   beschreibung="Aktueller Status der Atemschutz- und Schlauchpflegestelle: Welche Geräte, Masken, Flaschen und Schläuche sind abholbereit?"
 >
   <main>
-    <Seitenkopf titel="Atemschutz- & Schlauchpflegestelle" krumen={[{ name: 'Start', href: '/' }, { name: 'Service' }, { name: 'Pflegestelle' }]} />
+    <Seitenkopf krumen={[{ name: 'Start', href: '/' }, { name: 'Service' }, { name: 'Pflegestelle' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
@@ -38,7 +38,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
                   <li class="vorgang bereit">
                     <div>
                       <b>{v.wehrName}</b>
-                      <span>{inhaltText(v)}</span>
+                      <span>{kategorieText(v)}</span>
                       {v.hinweis && <em class="hinweis">⚠ {v.hinweis}</em>}
                     </div>
                     <time>seit {datum(v.abholbereitSeit || v.abgegeben)}</time>
@@ -52,7 +52,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
         <div class="statusblock reveal">
           <h2 class="display statuskopf pflege">
             <span class="punkt" aria-hidden="true"></span>
-            In Pflege <em>({inPflege.length})</em>
+            Angeliefert <em>({inPflege.length})</em>
           </h2>
           {
             inPflege.length === 0 ? (
@@ -63,10 +63,10 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
                   <li class="vorgang pflege">
                     <div>
                       <b>{v.wehrName}</b>
-                      <span>{inhaltText(v)}</span>
+                      <span>{kategorieText(v)}</span>
                       {v.hinweis && <em class="hinweis">⚠ {v.hinweis}</em>}
                     </div>
-                    <time>abgegeben {datum(v.abgegeben)}</time>
+                    <time>seit {datum(v.abgegeben)}</time>
                   </li>
                 ))}
               </ul>

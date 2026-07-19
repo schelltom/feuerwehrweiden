@@ -86,7 +86,9 @@ const {
 
     <dialog id="bildpopup">
       <button id="bpZu" aria-label="Schließen">×</button>
+      <button class="blaettern" id="bpZurueck" aria-label="Vorheriges Bild">‹</button>
       <img alt="" />
+      <button class="blaettern" id="bpVor" aria-label="Nächstes Bild">›</button>
       <span id="bpText"></span>
     </dialog>
 
@@ -253,14 +255,36 @@ const {
         };
         b.complete ? pruefe() : b.addEventListener('load', pruefe);
       });
-      document.querySelector('main')?.addEventListener('click', (e) => {
-        const bild = (e.target as HTMLElement).closest('img');
-        if (!bild || !bild.classList.contains('zoombar')) return;
+      /* Blättern: alle zoombaren Bilder der Seite in Dokument-Reihenfolge */
+      const zoomListe = () => [...document.querySelectorAll<HTMLImageElement>('main img.zoombar')];
+      let popupIndex = -1;
+      const zeigeImPopup = (bild: HTMLImageElement) => {
         popupBild.src = bild.src;
         popupBild.alt = bild.alt;
         popupText.textContent =
           bild.alt || bild.closest('figure')?.querySelector('figcaption')?.textContent || '';
+      };
+      document.querySelector('main')?.addEventListener('click', (e) => {
+        const bild = (e.target as HTMLElement).closest('img');
+        if (!bild || !bild.classList.contains('zoombar')) return;
+        const liste = zoomListe();
+        popupIndex = liste.indexOf(bild as HTMLImageElement);
+        zeigeImPopup(bild as HTMLImageElement);
+        /* Pfeile nur zeigen, wenn es auf der Seite mehr als ein Bild gibt */
+        popup.querySelectorAll<HTMLButtonElement>('.blaettern').forEach((b) => (b.hidden = liste.length < 2));
         popup.showModal();
+      });
+      const blaettere = (schritt: number) => {
+        const liste = zoomListe();
+        if (liste.length < 2 || popupIndex < 0) return;
+        popupIndex = (popupIndex + schritt + liste.length) % liste.length;
+        zeigeImPopup(liste[popupIndex]);
+      };
+      document.getElementById('bpZurueck')!.addEventListener('click', () => blaettere(-1));
+      document.getElementById('bpVor')!.addEventListener('click', () => blaettere(1));
+      popup.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') blaettere(-1);
+        if (e.key === 'ArrowRight') blaettere(1);
       });
       popup.addEventListener('click', (e) => {
         if (e.target === popup) popup.close();
