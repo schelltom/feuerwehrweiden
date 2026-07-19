@@ -27,7 +27,7 @@ function basisPfad() {
           const datei = path.join(wurzel, rel);
           const alt = await readFile(datei, 'utf8');
           const neu = alt
-            .replace(/(href|src|content|action|srcset)="\/(?!\/)/g, `$1="${BASIS}/`)
+            .replace(/(href|src|content|action|srcset|data-quelle)="\/(?!\/)/g, `$1="${BASIS}/`)
             .replace(/url\(\/(?!\/)/g, `url(${BASIS}/`);
           if (neu !== alt) await writeFile(datei, neu);
         }

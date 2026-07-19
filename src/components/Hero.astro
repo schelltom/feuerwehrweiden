@@ -119,7 +119,7 @@ const folien = [
     </svg>
     {
       ticker.length > 0 && (
-        <div class="schlauchticker">
+        <div class="schlauchticker" data-quelle="/einsaetze.json" data-stand={ticker[0].wann.toISOString()}>
           <div class="spur">
             {[0, 1].map(() => (
               <span class="haelfte">
@@ -143,6 +143,8 @@ const folien = [
 </section>
 
 <script>
+  import { beobachteEinsaetze, esc, istNeu, type EinsatzLive } from '../lib/einsatz-live';
+
   /* "Neu" im Lauftext entfernen, wenn der Einsatz beim Betrachten älter als 6 Stunden ist */
   const neuGrenze = Date.now() - 6 * 60 * 60 * 1000;
   document.querySelectorAll<HTMLElement>('.eintrag[data-wann]').forEach((el) => {
@@ -151,6 +153,28 @@ const folien = [
       el.querySelector('.neuchip')?.remove();
     }
   });
+
+  /* Frische Einsätze nachladen – die Startseite kommt oft noch bis zu
+     10 Minuten aus dem Cache, der Lauftext soll trotzdem aktuell sein */
+  const laufband = document.querySelector<HTMLElement>('.schlauchticker[data-quelle]');
+  if (laufband) {
+    const haelften = laufband.querySelectorAll<HTMLElement>('.haelfte');
+    const anzahl = Math.max(1, Math.round((haelften[0]?.querySelectorAll('.eintrag').length ?? 8) / 2));
+    beobachteEinsaetze(laufband.dataset.quelle!, laufband.dataset.stand ?? '', (einsaetze: EinsatzLive[]) => {
+      const auswahl = einsaetze.slice(0, anzahl);
+      const inhalt = [...auswahl, ...auswahl]
+        .map((e, idx) => {
+          const zeigeNeu = idx % auswahl.length === 0 && istNeu(e.wann);
+          return (
+            `<span class="eintrag${zeigeNeu ? ' neu' : ''}"${zeigeNeu ? ` data-wann="${esc(e.wann)}"` : ''}>` +
+            `+++ ${zeigeNeu ? '<em class="neuchip">Neu</em>' : ''}` +
+            `<b>${esc(e.datum)} · ${esc(e.zeit)}</b> · ${esc(e.stichwort)}</span>`
+          );
+        })
+        .join('');
+      haelften.forEach((h) => (h.innerHTML = inhalt));
+    });
+  }
 
   const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
