@@ -1,0 +1,4 @@
+---
+name: "Schätzlerbad"
+email: ""
+---

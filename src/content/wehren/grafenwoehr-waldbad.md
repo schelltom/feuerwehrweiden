@@ -1,0 +1,4 @@
+---
+name: "Grafenwöhr Waldbad"
+email: ""
+---
