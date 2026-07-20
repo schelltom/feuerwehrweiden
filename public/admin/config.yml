@@ -34,7 +34,7 @@ collections:
     summary: '{{fields.wann}} – {{fields.stichwort}}'
     sortable_fields: [wann]
     fields:
-      - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
+      - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', default: '{{now}}', hint: 'Ist mit jetzt vorbelegt' }
       - name: stichwort
         label: Alarmstichwort
         widget: select
@@ -94,14 +94,14 @@ collections:
     folder: src/content/berichte
     create: true
     slug: '{{slug}}'
-    # Eigener Bilder-Ordner je Bericht, aufgeteilt nach Jahr (aus dem Datum-Feld).
-    # Wichtig für Redakteure: erst das Datum setzen, dann Bilder hochladen –
-    # sonst fehlt das Jahr und der Upload landet im allgemeinen public/bilder.
-    media_folder: '/public/bilder/berichte/{{fields.datum | date("YYYY")}}'
-    public_folder: '/bilder/berichte/{{fields.datum | date("YYYY")}}'
+    # Bilder-Ordner je Jahr. Decap kann im media_folder KEIN Jahr aus dem
+    # Datum ableiten (nur direkte Feldverweise werden ersetzt, Filter/{{year}}
+    # nicht) – daher fest hinterlegt und zum Jahreswechsel hochzählen.
+    media_folder: '/public/bilder/berichte/2026'
+    public_folder: '/bilder/berichte/2026'
     fields:
       - { name: titel, label: Titel, widget: string }
-      - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', time_format: false }
+      - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
       - name: ressort
         label: Ressort
         widget: select
