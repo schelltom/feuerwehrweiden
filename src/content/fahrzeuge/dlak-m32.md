@@ -3,12 +3,12 @@ name: DLAK M32 L-AT
 typ: Drehleiter · 32 m Rettungshöhe
 funkruf: FLORIAN WEIDEN 1/30/1
 standort: Hauptfeuerwache
-bild: /bilder/fahrzeuge/dlak.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/dlak.jpg
 inHalle: true
 reihenfolge: 8
 beladung:
   - raum: "Korb RC 400"
-    bild: /bilder/fahrzeuge/dlak/dreh.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/dlak/dreh.jpg
     inhalt:
       - "4-Personen-Korb, bis 400 kg Zuladung"
       - "Rückhaltesystem für Einsatzkräfte"
@@ -18,7 +18,7 @@ beladung:
       - "Krankentragenhalterung für schonende Patientenrettung"
       - "Stromversorgung im Korb: 3× 230 V, 1× 400 V"
   - raum: "Geräteraum 1"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-2.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-2.jpg
     inhalt:
       - "Schleifkorbtrage Satz Rollgliss"
       - "Absturzsicherungssatz"
@@ -26,7 +26,7 @@ beladung:
       - "Safety-Peak Halterung"
       - "Druckluftschlauch 15m"
   - raum: "Geräteraum 2"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-3.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-3.jpg
     inhalt:
       - "Atemschutzgeräte"
       - "Atemanschlüsse"
@@ -39,7 +39,7 @@ beladung:
       - "Feuerwehrleinen"
       - "Fluchthauben"
   - raum: "Geräteraum 3"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-4.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-4.jpg
     inhalt:
       - "Motorsäge mit Zubehör"
       - "Doppelkanister"
@@ -47,7 +47,7 @@ beladung:
       - "Elektrokettensäge mit Zubehör"
       - "Reservekanister"
   - raum: "Geräteraum 4"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-5.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-5.jpg
     inhalt:
       - "C-Schläuche"
       - "B-Schläuche"
@@ -58,25 +58,25 @@ beladung:
       - "Verteiler"
       - "Strahlrohr"
   - raum: "Geräteraum 5"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-6.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-6.jpg
     inhalt:
       - "Feuerlöscher"
       - "Sturmleinen"
       - "Bohlen für Abstützung"
   - raum: "Geräteraum 6"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-7.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-7.jpg
     inhalt:
       - "Verkehrsleitkegel"
       - "Bohlen für Abstützung"
       - "Verbandskasten"
       - "Absperrband"
   - raum: "Podium"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-8.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-8.jpg
     inhalt:
       - "Stromerzeuger mit Fernstart/Stopp Einrichtung"
       - "Abgasschlauch"
   - raum: "Drehkranz"
-    bild: /bilder/fahrzeuge/detail/dlak-m32-9.jpg
+    bild: /feuerwehrweiden/bilder/fahrzeuge/detail/dlak-m32-9.jpg
     inhalt:
       - "Aufstiegsleiter"
       - "Schlauchfenster"

@@ -4,11 +4,11 @@ typ: "Löschgruppenfahrzeug"
 funkruf: "FLORIAN ROTHENSTADT 41/1"
 standort: "FF Rothenstadt"
 kategorie: fahrzeug
-bild: /bilder/fahrzeuge/f_roth_lf20.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/f_roth_lf20.jpg
 reihenfolge: 25
 beladung:
   - raum: "Mannschaftsraum vordere Sitzbank"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-1.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-1.jpg"
     inhalt:
       - "Wärmebildkamera"
       - "HRT"
@@ -16,18 +16,18 @@ beladung:
       - "Notfallrucksack"
       - "Pressluftatmer"
   - raum: "Mannschaftsraum hintere Sitzbank"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-2.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-2.jpg"
     inhalt:
       - "Pressluftatmer"
       - "Anhaltestab"
   - raum: "Heck"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-3.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-3.jpg"
     inhalt:
       - "Schaumzumischanlage"
       - "Füllschlauch 5m"
       - "Kupplungsschlüssel"
   - raum: "Geräteraum 1"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-4.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-4.jpg"
     inhalt:
       - "Bügelsäge"
       - "Spalthammer"
@@ -42,7 +42,7 @@ beladung:
       - "Reservekanister"
       - "Kabeltrommeln"
   - raum: "Geräteraum 3"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-5.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-5.jpg"
     inhalt:
       - "Sprungpolster SP16"
       - "HI-CAFS - Löscher"
@@ -51,7 +51,7 @@ beladung:
       - "Mulden"
       - "B-Schlauch"
   - raum: "Geräteraum 5"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-6.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-6.jpg"
     inhalt:
       - "B-Schläuche"
       - "Hohlstrahlrohr C"
@@ -62,7 +62,7 @@ beladung:
       - "Rauchschutzvorhang"
       - "Verteiler"
   - raum: "Geräteraum 2"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-7.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-7.jpg"
     inhalt:
       - "Druckschlauche C"
       - "Faltsignale"
@@ -79,7 +79,7 @@ beladung:
       - "Sperrwerkzeugsatz"
       - "Überdrucklüfter"
   - raum: "Geräteraum 4"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-8.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-8.jpg"
     inhalt:
       - "Verkehrsleitkegel"
       - "Hygienebord"
@@ -87,7 +87,7 @@ beladung:
       - "Kanister Ölbindemittel"
       - "Verkehrswarnleuchten \"Euroblitz\""
   - raum: "Geräteraum 6"
-    bild: "/bilder/fahrzeuge/detail/lf-20-rothenstadt-9.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/lf-20-rothenstadt-9.jpg"
     inhalt:
       - "Druckschläuche B"
       - "Mehrzweckleinen"

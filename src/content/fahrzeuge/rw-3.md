@@ -5,11 +5,11 @@ funkruf: "FLORIAN WEIDEN 1/61/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
 inHalle: true
-bild: /bilder/fahrzeuge/rw3.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/rw3.jpg
 reihenfolge: 10
 beladung:
   - raum: "Geräteraum 1"
-    bild: "/bilder/fahrzeuge/detail/rw-3-1.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-1.jpg"
     inhalt:
       - "Flutlichtstrahler mit Stativ"
       - "Tauchpumpe"
@@ -19,7 +19,7 @@ beladung:
       - "Rettungsboot"
       - "Schwimmwesten"
   - raum: "Geräteraum 2"
-    bild: "/bilder/fahrzeuge/detail/rw-3-2.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-2.jpg"
     inhalt:
       - "Handlampen"
       - "Mehrzweckzug Z 32"
@@ -30,7 +30,7 @@ beladung:
       - "Warnleuchten"
       - "Faltsignale"
   - raum: "Geräteraum 3"
-    bild: "/bilder/fahrzeuge/detail/rw-3-3.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-3.jpg"
     inhalt:
       - "Wassersauger mit Zubehör"
       - "Sperrwerkzeug"
@@ -38,7 +38,7 @@ beladung:
       - "Rettungssäge \"Wimutec\""
       - "Zubehör für Hebekissen"
   - raum: "Geräteraum 4"
-    bild: "/bilder/fahrzeuge/detail/rw-3-4.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-4.jpg"
     inhalt:
       - "Beladung G4 Rettungsspreizer SP 45"
       - "Rettungsschere S 260"
@@ -47,7 +47,7 @@ beladung:
       - "Folien"
       - "Räumgerät"
   - raum: "Geräteraum 5"
-    bild: "/bilder/fahrzeuge/detail/rw-3-5.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-5.jpg"
     inhalt:
       - "Unterbaumaterial"
       - "Hebekissen"
@@ -55,14 +55,14 @@ beladung:
       - "Schleiftragekorb"
       - "Dreibock für Rollgliss"
   - raum: "Geräteraum 6"
-    bild: "/bilder/fahrzeuge/detail/rw-3-6.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-6.jpg"
     inhalt:
       - "Stromerzeuger 23 kVA"
       - "Lichtmaststeuerung"
       - "Verkehrsleitkegel"
       - "Starthilfekabel"
   - raum: "Geräteraum 7"
-    bild: "/bilder/fahrzeuge/detail/rw-3-7.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-7.jpg"
     inhalt:
       - "Pressluftflaschen"
       - "Hebesatz H2"
@@ -70,7 +70,7 @@ beladung:
       - "Plasmaschneidgerät"
       - "Anschlagmaterial"
   - raum: "Geräteraum 8"
-    bild: "/bilder/fahrzeuge/detail/rw-3-8.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-8.jpg"
     inhalt:
       - "Unterlegkeile"
       - "Schäkel"
@@ -82,7 +82,7 @@ beladung:
       - "Akkuschrauber"
       - "Bohrhammer"
   - raum: "Heck"
-    bild: "/bilder/fahrzeuge/detail/rw-3-9.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-9.jpg"
     inhalt:
       - "Holzbohlen"
       - "Kanalstreben"
@@ -91,7 +91,7 @@ beladung:
       - "Arbeitsleinen"
       - "Feuerwehrleinen"
   - raum: "Seilwinde"
-    bild: "/bilder/fahrzeuge/detail/rw-3-10.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/rw-3-10.jpg"
     inhalt:
       - "Fa. HPC, Seillänge nach vorne 62 Meter"
       - "nach hinten 31 Meter"

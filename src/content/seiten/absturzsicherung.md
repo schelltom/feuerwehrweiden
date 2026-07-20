@@ -3,9 +3,9 @@ titel: "Absturzsicherung"
 bereich: "einheiten"
 reihenfolge: 6
 kurz: "Rettung aus Höhen und Tiefen"
-titelbild: "/bilder/header/absturz.jpg"
+titelbild: "/feuerwehrweiden/bilder/header/absturz.jpg"
 galerie:
-  - bild: "/bilder/feuerwehr/absturz-uebung.jpg"
+  - bild: "/feuerwehrweiden/bilder/feuerwehr/absturz-uebung.jpg"
     text: "Übung der Absturzsicherung"
 ---
 

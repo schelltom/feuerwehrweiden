@@ -5,11 +5,11 @@ funkruf: "KATER WEIDEN 1/12/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
 inHalle: true
-bild: /bilder/fahrzeuge/elw.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/elw.jpg
 reihenfolge: 3
 beladung:
   - raum: "Technische Daten"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-1.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-1.jpg"
     inhalt:
       - "Fahrgestell Mercedes Benz Sprinter 519CDI"
       - "Baujahr 2020"
@@ -24,7 +24,7 @@ beladung:
       - "Fahrzeugbreite 2250 mm"
       - "Fahrzeughöhe 3050 m"
   - raum: "Fahrerkabine"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-2.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-2.jpg"
     inhalt:
       - "Freisprecheinrichtung Tetra Funk"
       - "Freisprecheinrichtung Telefon im Radio integriert"
@@ -42,7 +42,7 @@ beladung:
       - "2 x Adalit L-3000 LED Handlampe"
       - "CAN edsc Kontrollsystem"
   - raum: "Sondersignalanlage"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-3.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-3.jpg"
     inhalt:
       - "Blaulichtbalken Hänsch DBS 3000 LED mit Powerblitz"
       - "Elektrohorn mit Stadt / Land Schaltung"
@@ -50,7 +50,7 @@ beladung:
       - "Frontblitzer mit Kreuzungsblitzer"
       - "Heckblaulicht Hänsch Sputnik SL"
   - raum: "Kofferaufbau"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-4.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-4.jpg"
     inhalt:
       - "400V + Netzwerk Einspeisedose Fa. Pölz"
       - "Drei Seiten LED Umfeldbeleuchtung"
@@ -66,16 +66,16 @@ beladung:
       - "Satellitenanlage AutoSat IP Drive Away ES PRO"
       - "Dect Antenne für Schnurloses Telefon"
   - raum: "Traversenkasten links vorn G1"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-5.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-5.jpg"
     inhalt:
       - "Zubehör Markise (Seitenteile)"
   - raum: "Traversenkasten links hinten G3"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-6.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-6.jpg"
     inhalt:
       - "Zubehör Stromerzeuger (Betankungsset, Trichter, Lappen)"
       - "Kabelroller 50m 16A 400V"
   - raum: "Traversenkasten rechts vorn G2"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-7.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-7.jpg"
     inhalt:
       - "Schneeketten"
       - "Radschuh"
@@ -83,12 +83,12 @@ beladung:
       - "Erdungsspieß"
       - "Hydraulikpumpe für 4-Punktabstützung"
   - raum: "Traversenkasten rechts hinten G4"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-8.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-8.jpg"
     inhalt:
       - "Kabelroller Netzwerk 50m"
       - "1x Kabelroller Netzwerk 90m"
   - raum: "Laderaum Heck"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-9.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-9.jpg"
     inhalt:
       - "Schnelleinsatzzelt Gybe Humanity 5000 + Zubehör"
       - "1x Teleskop Bockleiter"
@@ -123,14 +123,14 @@ beladung:
       - "1x Zeltgarnitur 1600 mm x 500 mm"
       - "TETRA Funkantenne Masten"
   - raum: "Auszug Stromerzeuger"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-10.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-10.jpg"
     inhalt:
       - "1x Stromerzeuger Eisemann BSKA 14 E RSS Cube"
       - "1x Abgasschlauch Stromerzeuger"
       - "1x 20 l Nato Benzinkanister"
       - "1x Kabelroller 50 m 230V"
   - raum: "Ausseneinspeisekasten"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-11.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-11.jpg"
     inhalt:
       - "4x 230v Steckdose (nur über externe Stromeinspeisung)"
       - "1x RJ45 LAN Eingang"
@@ -141,7 +141,7 @@ beladung:
       - "1x 12V Steckdose"
       - "1x Erdungspunkt"
   - raum: "Arbeitsraum"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-12.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-12.jpg"
     inhalt:
       - "1x Sitzplatz mit Dreipunktgurt"
       - "1x Tablet mit Android Betriebssystem (Rettungskarten, Atemschutzüberwachung, Sonstiges)"
@@ -160,7 +160,7 @@ beladung:
       - "1x Webasto Standheizung"
       - "1x Dometic Unterbauklimaanlage"
   - raum: "Technikschrank 19 Zoll"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-13.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-13.jpg"
     inhalt:
       - "NAS-Server Synology Rack Station RS820+ mit 4 x 4TB SSD Festplatten"
       - "Radio"
@@ -175,7 +175,7 @@ beladung:
       - "230V USV für Netzwerktechnik und PC"
       - "Server MECC Funktechnik"
   - raum: "Funkarbeitsplatz 1"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-14.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-14.jpg"
     inhalt:
       - "PC Arbeitsplatz(3x 22“ TFT Bildschirme, 1x Tastatur + Maus (Kabelgebunden))"
       - "1x MECC Funksprechstelle (1x Schwanenhals, 1x Hörer, 1x Headset, 1x Touch Bildschirm"
@@ -186,7 +186,7 @@ beladung:
       - "2x RJ45 Netzwerkanschluss (Funk / LAN)"
       - "2x Schub für Bürobedarf"
   - raum: "Funkarbeitsplatz 2"
-    bild: "/bilder/fahrzeuge/detail/elw-1-5-15.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/elw-1-5-15.jpg"
     inhalt:
       - "PC Arbeitsplatz(3x 22“ TFT Bildschirme, 1x Tastatur + Maus (Kabelgebunden))"
       - "1x MECC Funksprechstelle (1x Schwanenhals, 1x Hörer, 1x Headset, 1x Touch Bildschirm"

@@ -2,16 +2,16 @@
 titel: "Sonderübungen mit dem neuen HLF 20"
 datum: 2026-07-14
 ressort: Übungsdienst
-titelbild: "/bilder/uploads/2026/sonderuebungen-hlf20-1.jpg"
+titelbild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-1.jpg"
 kurz: "An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt."
 galerie:
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-2.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-3.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-4.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-5.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-6.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-7.jpg"
-  - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-8.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-2.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-3.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-4.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-5.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-6.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-7.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/sonderuebungen-hlf20-8.jpg"
 ---
 
 An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung (THL) mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt.

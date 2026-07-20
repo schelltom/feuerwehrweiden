@@ -3,9 +3,9 @@ titel: "Mitglied werden"
 bereich: "ueber-uns"
 reihenfolge: 6
 kurz: "Dein Weg zur Feuerwehr Weiden"
-titelbild: "/bilder/feuerwehr/team112.jpg"
+titelbild: "/feuerwehrweiden/bilder/feuerwehr/team112.jpg"
 galerie:
-  - bild: "/bilder/feuerwehr/team112.jpg"
+  - bild: "/feuerwehrweiden/bilder/feuerwehr/team112.jpg"
     text: "#team112 – die aktuelle Kampagne des LFV Bayern"
 ---
 

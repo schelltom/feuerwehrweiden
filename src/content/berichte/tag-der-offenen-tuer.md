@@ -2,7 +2,7 @@
 titel: Riesenerfolg beim „Tag der offenen Tür“ in der Hauptfeuerwache Weiden
 datum: 2026-05-18
 ressort: Feuerwehrverein
-titelbild: /bilder/uploads/2026/modenschau.jpg
+titelbild: /feuerwehrweiden/bilder/uploads/2026/modenschau.jpg
 kurz: Nach der Segnung der beiden neuen HLF 20 öffnete die Hauptfeuerwache ihre Tore – und ganz Weiden kam.
 stats:
   - wert: "4.000"
@@ -30,9 +30,9 @@ wurde hervorragend angenommen – und die Popcorn- und Zuckerwattemaschinen
 liefen den gesamten Nachmittag im Dauereinsatz.
 
 <div class="berichtbilder">
-  <figure class="breit"><img src="/bilder/uploads/2026/fettexplosion.jpg" alt="Vorführung einer Fettexplosion vor Publikum"><figcaption>Vorführung: Fettexplosion auf dem Vorplatz</figcaption></figure>
-  <figure><img src="/bilder/uploads/2026/jugendbereich.jpg" alt="Spielstände der Kinder- und Jugendfeuerwehr"><figcaption>Kinder- &amp; Jugendbereich</figcaption></figure>
-  <figure><img src="/bilder/uploads/2026/modellausstellung.jpg" alt="Feuerwehr-Modellausstellung"><figcaption>Modellausstellung der Familie Seider</figcaption></figure>
+  <figure class="breit"><img src="/feuerwehrweiden/bilder/uploads/2026/fettexplosion.jpg" alt="Vorführung einer Fettexplosion vor Publikum"><figcaption>Vorführung: Fettexplosion auf dem Vorplatz</figcaption></figure>
+  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/jugendbereich.jpg" alt="Spielstände der Kinder- und Jugendfeuerwehr"><figcaption>Kinder- &amp; Jugendbereich</figcaption></figure>
+  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/modellausstellung.jpg" alt="Feuerwehr-Modellausstellung"><figcaption>Modellausstellung der Familie Seider</figcaption></figure>
 </div>
 
 Fast jede volle Stunde fand auf dem Vorplatz eine Vorführung statt: Eine
@@ -58,6 +58,6 @@ und konnten sich am Ende über eine rundum gelungene Veranstaltung mit etwa
 4.000 Besuchern freuen.
 
 <div class="berichtbilder">
-  <figure><img src="/bilder/uploads/2026/kaffee.jpg" alt="Kaffeestube im Lehrsaal"><figcaption>Kaffeestube im Lehrsaal</figcaption></figure>
-  <figure><img src="/bilder/fahrzeuge/dlak.jpg" alt="Fahrzeugausstellung vor der Wache"><figcaption>Fahrzeugschau auf dem Vorplatz</figcaption></figure>
+  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/kaffee.jpg" alt="Kaffeestube im Lehrsaal"><figcaption>Kaffeestube im Lehrsaal</figcaption></figure>
+  <figure><img src="/feuerwehrweiden/bilder/fahrzeuge/dlak.jpg" alt="Fahrzeugausstellung vor der Wache"><figcaption>Fahrzeugschau auf dem Vorplatz</figcaption></figure>
 </div>

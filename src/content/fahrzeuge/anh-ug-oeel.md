@@ -3,11 +3,11 @@ name: "Anhänger UG-ÖEL"
 typ: "Unterstützungsgruppe Örtliche Einsatzleitung"
 standort: "Hauptfeuerwache"
 kategorie: anhaenger
-bild: /bilder/fahrzeuge/a_ug.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/a_ug.jpg
 reihenfolge: 30
 beladung:
   - raum: "Beladung Seite Fahrtrichtung rechts"
-    bild: "/bilder/fahrzeuge/detail/anh-ug-oeel-1.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/anh-ug-oeel-1.jpg"
     inhalt:
       - "Zubehör Schnelleinsatzzelt"
       - "Verlängerungskabel 5m, 10m, 15m, 25m"
@@ -26,7 +26,7 @@ beladung:
       - "Standfüße für Moderationstafeln"
       - "Funktionswesten (ÖEL, S1-S6)"
   - raum: "Beladung Seite Fahrtrichtung links"
-    bild: "/bilder/fahrzeuge/detail/anh-ug-oeel-2.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/anh-ug-oeel-2.jpg"
     inhalt:
       - "Leiter"
       - "Fahrrad"
@@ -39,7 +39,7 @@ beladung:
       - "Zeltheizung"
       - "Schnelleinsatzzelt Gybe Humanity 5000"
   - raum: "Beladung Heck"
-    bild: "/bilder/fahrzeuge/detail/anh-ug-oeel-3.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/anh-ug-oeel-3.jpg"
     inhalt:
       - "20 x Verkehrsleitkegel 700 mm"
       - "20 x Absperreisen"

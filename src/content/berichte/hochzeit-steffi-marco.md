@@ -2,16 +2,16 @@
 titel: "Herzlichen Glückwunsch, Steffi & Marco!"
 datum: 2026-07-11T11:00:00
 ressort: Feuerwehrverein
-titelbild: "/bilder/uploads/2026/hochzeit-steffi-marco-3.jpg"
+titelbild: "/feuerwehrweiden/bilder/uploads/2026/hochzeit-steffi-marco-3.jpg"
 kurz: "Unsere Kameradin Steffi und ihr Marco haben in Rothenstadt kirchlich geheiratet – wir durften ihnen mit einer Abordnung und der Drehleiter gratulieren."
 galerie:
-  - bild: "/bilder/uploads/2026/hochzeit-steffi-marco-1.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/hochzeit-steffi-marco-1.jpg"
     text: "Schlauchspalier vor der St. Marien Kirche"
-  - bild: "/bilder/uploads/2026/hochzeit-steffi-marco-2.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/hochzeit-steffi-marco-2.jpg"
     text: "Gratulation der Abordnung"
-  - bild: "/bilder/uploads/2026/hochzeit-steffi-marco-4.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/hochzeit-steffi-marco-4.jpg"
     text: "Hoch hinaus mit der Drehleiter"
-  - bild: "/bilder/uploads/2026/hochzeit-steffi-marco-5.jpg"
+  - bild: "/feuerwehrweiden/bilder/uploads/2026/hochzeit-steffi-marco-5.jpg"
     text: "Das Brautpaar bei strahlendem Sonnenschein"
 ---
 

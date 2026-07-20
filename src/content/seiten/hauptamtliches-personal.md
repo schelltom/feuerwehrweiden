@@ -3,9 +3,9 @@ titel: "Hauptamtliches Personal"
 bereich: "ueber-uns"
 reihenfolge: 4
 kurz: "12 hauptamtliche Kräfte in der Hauptfeuerwache"
-titelbild: "/bilder/feuerwehr/personal-gruppe.jpg"
+titelbild: "/feuerwehrweiden/bilder/feuerwehr/personal-gruppe.jpg"
 gruppenfoto:
-  bild: "/bilder/feuerwehr/personal-gruppe.jpg"
+  bild: "/feuerwehrweiden/bilder/feuerwehr/personal-gruppe.jpg"
   text: "hintere Reihe von links: Bernhard Wager, Michael Wirth, Hans-Michael Scharnagl, Stefan Hirmer, Klaus Heimann, Eva Kraus, vordere Reihe von links: Sebastian Teichmann, Ludwig Grasser, Stefanie Träger (Katastrophenschutz), Michael Zielbauer, Ronny Pressl, Manuel Kraus"
 personen:
   - name: "Michael Wirth"
@@ -16,7 +16,7 @@ personen:
       - "Feuerbeschau (FBV)"
     telefon: "0961 / 391 609-26 · 0152 / 52175537"
     email: "michael.wirth@weiden.de"
-    bild: "/bilder/feuerwehr/wirth.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/wirth.jpg"
   - name: "Ludwig Grasser"
     sachgebiete:
       - "Vertreter Dienststellenleitung"
@@ -25,7 +25,7 @@ personen:
       - "Ausbilder Motorsäge"
     telefon: "0961 / 391 609-14"
     email: "ludwig.grasser@weiden.de"
-    bild: "/bilder/feuerwehr/grasser.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/grasser.jpg"
   - name: "Bernhard Wager"
     sachgebiete:
       - "Leiter Maschinistenausbildung"
@@ -33,7 +33,7 @@ personen:
       - "EDV-Fachbetreuer"
     telefon: "0961 / 391 609-24"
     email: "bernhard.wager@weiden.de"
-    bild: "/bilder/feuerwehr/wager.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/wager.jpg"
   - name: "Klaus Heimann"
     sachgebiete:
       - "Leiter des Atemschutzes nach FwDV 7"
@@ -41,21 +41,21 @@ personen:
       - "Ausbilder Atemschutz"
     telefon: "0961 / 391 609-27"
     email: "klaus.heimann@weiden.de"
-    bild: "/bilder/feuerwehr/heimann.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/heimann.jpg"
   - name: "Eva Kraus"
     sachgebiete:
       - "Schichtbesetzung Einsatzzentrale"
       - "Leiterin Schutz- u. Dienstkleidung"
     telefon: "0961 / 391 609-23"
     email: "eva.kraus@weiden.de"
-    bild: "/bilder/feuerwehr/krause.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/krause.jpg"
   - name: "Ronny Preßl"
     sachgebiete:
       - "Leiter Kreiseinsatzzentrale"
       - "Stellvertretender Leiter u. Ausbilder UG-ÖEL"
     telefon: "0961 / 391 609-25"
     email: "ronny.pressl@weiden.de"
-    bild: "/bilder/feuerwehr/pressl.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/pressl.jpg"
   - name: "Sebastian Teichmann"
     sachgebiete:
       - "Schichtbesetzung Einsatzzentrale"
@@ -63,7 +63,7 @@ personen:
       - "Leiter Schlauchpflegestelle"
     telefon: "0961 / 391 609-21"
     email: "sebastian.teichmann@weiden.de"
-    bild: "/bilder/feuerwehr/teichmann.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/teichmann.jpg"
   - name: "Hans Michael Scharnagl"
     sachgebiete:
       - "Einsatzbesetzung Einsatzzentrale"
@@ -71,7 +71,7 @@ personen:
       - "Verwaltungsaufgaben"
     telefon: "0961 / 391 609-22"
     email: "michael.scharnagl@weiden.de"
-    bild: "/bilder/feuerwehr/scharnagl.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/scharnagl.jpg"
   - name: "Manuel Kraus"
     sachgebiete:
       - "Stellvertreter Schichtbesetzung Einsatzzentrale"
@@ -79,7 +79,7 @@ personen:
       - "Wartung von Defibrillatoren"
     telefon: "0961 / 391 609-29"
     email: "manuel.kraus@weiden.de"
-    bild: "/bilder/feuerwehr/krausm.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/krausm.jpg"
   - name: "Stefan Hirmer"
     sachgebiete:
       - "Stellvertreter Schichtbesetzung Einsatzzentrale"
@@ -87,7 +87,7 @@ personen:
       - "Hallen u. Werkstattdienst"
     telefon: "0961 / 391 609-30"
     email: "stefan.hirmer@weiden.de"
-    bild: "/bilder/feuerwehr/hirmer.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/hirmer.jpg"
   - name: "Michael Zielbauer"
     sachgebiete:
       - "Stellvertreter Schichtbesetzung Einsatzzentrale"
@@ -95,12 +95,12 @@ personen:
       - "Schlauchwerkstätte"
     telefon: "0961 / 391 609-28"
     email: "michael.zielbauer2@weiden.de"
-    bild: "/bilder/feuerwehr/zielbauerm.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/zielbauerm.jpg"
   - name: "Simon Götz"
     sachgebiete:
       - "Stellvertreter Schichtbesetzung Einsatzzentrale"
       - "Hallen u. Werkstattdienst"
       - "Wartung medizinische Produkte"
     telefon: "0961 / 391 609-62"
-    bild: "/bilder/feuerwehr/goetz.jpg"
+    bild: "/feuerwehrweiden/bilder/feuerwehr/goetz.jpg"
 ---

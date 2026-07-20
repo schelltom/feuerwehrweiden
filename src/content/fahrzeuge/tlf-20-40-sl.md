@@ -5,11 +5,11 @@ funkruf: "FLORIAN WEIDEN 1/23/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
 inHalle: true
-bild: /bilder/fahrzeuge/tlf.jpg
+bild: /feuerwehrweiden/bilder/fahrzeuge/tlf.jpg
 reihenfolge: 7
 beladung:
   - raum: "Geräteraum 1"
-    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-1.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/tlf-20-40-sl-1.jpg"
     inhalt:
       - "Atemschutzgeräte"
       - "Atemschutzmasken"
@@ -25,7 +25,7 @@ beladung:
       - "Verbandskasten"
       - "Räumgeräte"
   - raum: "Geräteraum 2"
-    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-2.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/tlf-20-40-sl-2.jpg"
     inhalt:
       - "Euroblitz"
       - "Feuerlöscher PG 6"
@@ -39,7 +39,7 @@ beladung:
       - "Kabeltrommeln"
       - "Flutlichtstrahler mit Zubehör"
   - raum: "Geräteraum 3"
-    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-3.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/tlf-20-40-sl-3.jpg"
     inhalt:
       - "Sammelstück"
       - "Saugkorb"
@@ -48,7 +48,7 @@ beladung:
       - "Verteiler"
       - "Schlauchtragekörbe"
   - raum: "Geräteraum 4"
-    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-4.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/tlf-20-40-sl-4.jpg"
     inhalt:
       - "Standrohr"
       - "Schnellangriff-Schlauch"
@@ -56,7 +56,7 @@ beladung:
       - "Strahlrohre"
       - "Stützkrümmer"
   - raum: "Heckansicht / Pumpenbedienstand"
-    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-5.jpg"
+    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/tlf-20-40-sl-5.jpg"
     inhalt:
       - "Druckluftschaumanlage PRO 24"
       - "Wassertank 4650 Liter"
