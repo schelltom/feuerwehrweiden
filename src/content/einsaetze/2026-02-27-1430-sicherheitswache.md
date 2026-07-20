@@ -2,5 +2,4 @@
 wann: 2026-02-27T14:30
 stichwort: "Sicherheitswache"
 details: ""
-art: Sonstige
 ---

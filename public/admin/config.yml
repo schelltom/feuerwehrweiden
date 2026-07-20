@@ -31,11 +31,10 @@ collections:
     create: true
     identifier_field: stichwort
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-    summary: '{{fields.wann}} – {{fields.art}} – {{fields.stichwort}}'
+    summary: '{{fields.wann}} – {{fields.stichwort}}'
     sortable_fields: [wann]
     fields:
       - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
-      - { name: art, label: Einsatzart, widget: select, options: [THL, Brand, Sonstige], default: THL }
       - name: stichwort
         label: Alarmstichwort
         widget: select

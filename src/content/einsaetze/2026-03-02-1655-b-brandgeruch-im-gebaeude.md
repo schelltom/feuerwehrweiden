@@ -2,5 +2,4 @@
 wann: 2026-03-02T16:55
 stichwort: "B"
 details: "Brandgeruch im Gebäude"
-art: Brand
 ---

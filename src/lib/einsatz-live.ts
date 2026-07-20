@@ -10,7 +10,7 @@ export interface EinsatzLive {
   datum: string;
   zeit: string;
   stichwort: string;
-  art: 'THL' | 'Brand' | 'Sonstige';
+  art: 'Brand' | 'THL' | 'ABC' | 'Sonstige';
 }
 
 type Melder = (einsaetze: EinsatzLive[]) => void;

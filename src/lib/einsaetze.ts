@@ -1,8 +1,29 @@
 import { getCollection } from 'astro:content';
 
+export type Einsatzart = 'Brand' | 'THL' | 'ABC' | 'Sonstige';
+
+/**
+ * Einsatzart automatisch aus dem Alarmstichwort ableiten (für die
+ * Einsatzbilanz und die Farb-/Symbol-Zuordnung). Es gibt kein eigenes
+ * Feld mehr – die Kategorie ergibt sich allein aus dem Stichwort:
+ *   B …   → Brand   (B 1, B 3 Person, B-BMA …)
+ *   THL … → THL     (auch "2× THL")
+ *   ABC … → ABC     (ABC Explosion, ABC Öl …)
+ *   alles andere → Sonstige (inkl. ältere Freitext-Stichwörter)
+ * Eine führende Mengenangabe ("2× …") wird vorher entfernt.
+ */
+export function artVonStichwort(stichwort: string): Einsatzart {
+  const s = stichwort.trim().replace(/^\d+\s*[×x]\s*/i, '').toUpperCase();
+  if (s === 'B' || /^B[\s\-\d]/.test(s)) return 'Brand';
+  if (s.startsWith('THL')) return 'THL';
+  if (s.startsWith('ABC')) return 'ABC';
+  return 'Sonstige';
+}
+
 /**
  * Einsätze laden, neuester zuerst, mit fertig formatiertem Datum/Uhrzeit
- * fürs Anzeigen (Ticker, Monitor, Einsatzliste).
+ * fürs Anzeigen (Ticker, Monitor, Einsatzliste). Die Einsatzart wird aus
+ * dem (rohen) Stichwort abgeleitet.
  */
 export async function ladeEinsaetze() {
   const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
@@ -10,6 +31,7 @@ export async function ladeEinsaetze() {
   return (await getCollection('einsaetze'))
     .map((e) => ({
       ...e.data,
+      art: artVonStichwort(e.data.stichwort),
       stichwort: e.data.details ? `${e.data.stichwort} – ${e.data.details}` : e.data.stichwort,
       datum: datumsformat.format(e.data.wann),
       zeit: zeitformat.format(e.data.wann),

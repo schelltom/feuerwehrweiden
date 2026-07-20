@@ -76,7 +76,8 @@ const einsaetze = defineCollection({
     stichwort: z.string(),
     /** Optionaler Zusatz, wird als " – Zusatz" angehängt */
     details: z.string().default(''),
-    art: z.enum(['THL', 'Brand', 'Sonstige']),
+    /* Einsatzart: kein eigenes Feld mehr – wird in lib/einsaetze.ts
+       (artVonStichwort) automatisch aus dem Stichwort abgeleitet. */
   }),
 });
 
