@@ -13,9 +13,13 @@ backend:
 # Für lokales Testen ohne Login (npx decap-server im Projektordner starten):
 local_backend: true
 
-# Upload-Ziel: Jahresordner – zum Jahreswechsel hier einfach das Jahr hochzählen
-media_folder: 'public/bilder/uploads/2026'
-public_folder: '/bilder/uploads/2026'
+# Medien-Wurzel = gesamter Bilder-Ordner, damit das CMS ALLE vorhandenen
+# Bilder (auch header/, fahrzeuge/ …) als eigene Medien erkennt und in der
+# Vorschau direkt aus dem Repo einbettet. Sonst greift der kaputte URL-Fallback
+# (Unterpfad /feuerwehrweiden fehlt in den Vorschau-URLs → 404).
+# Neue Uploads landen dadurch direkt in public/bilder/ (nicht mehr im Jahresordner).
+media_folder: 'public/bilder'
+public_folder: '/bilder'
 
 locale: de
 
@@ -91,6 +95,11 @@ collections:
     folder: src/content/berichte
     create: true
     slug: '{{slug}}'
+    # Eigener Bilder-Ordner je Bericht, aufgeteilt nach Jahr (aus dem Datum-Feld).
+    # Wichtig für Redakteure: erst das Datum setzen, dann Bilder hochladen –
+    # sonst fehlt das Jahr und der Upload landet im allgemeinen public/bilder.
+    media_folder: '/public/bilder/berichte/{{fields.datum | date("YYYY")}}'
+    public_folder: '/bilder/berichte/{{fields.datum | date("YYYY")}}'
     fields:
       - { name: titel, label: Titel, widget: string }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', time_format: false }
@@ -131,6 +140,9 @@ collections:
     folder: src/content/fahrzeuge
     create: true
     slug: '{{slug}}'
+    # Fahrzeug-Bilder gemeinsam in einem Ordner (kein Jahr)
+    media_folder: '/public/bilder/fahrzeuge'
+    public_folder: '/bilder/fahrzeuge'
     identifier_field: name
     summary: '{{fields.name}} – {{fields.typ}}'
     sortable_fields: [name, reihenfolge, standort]
@@ -302,6 +314,10 @@ collections:
     folder: src/content/seiten
     create: true
     slug: '{{slug}}'
+    # Bilder je Bereich getrennt (ueber-uns / einheiten / ortsteile –
+    # aus dem Feld "bereich"). Erst Bereich wählen, dann Bilder hochladen.
+    media_folder: '/public/bilder/{{fields.bereich}}'
+    public_folder: '/bilder/{{fields.bereich}}'
     fields:
       - { name: titel, label: Titel, widget: string }
       - name: bereich
