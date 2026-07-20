@@ -72,14 +72,14 @@ Fotos per Drag & Drop). Zum Aktivieren im Live-Betrieb:
 Lokal testen ohne Login: `npx decap-server` starten, dann `npm run dev`
 und <http://localhost:4321/admin> öffnen.
 
-## Atemschutzpflegestelle
+## Atemschutzwerkstatt
 
 Status-Workflow mit automatischer Benachrichtigung:
 
 - **Daten:** `src/content/daten/atemschutz.json` – ein Eintrag pro
   Anlieferung mit Status `eingegangen` → `in-pflege` → `abholbereit` →
   `abgeholt`. Pflege am einfachsten über das CMS (`/admin`, Bereich
-  „Atemschutzpflegestelle“).
+  „Atemschutzwerkstatt“).
 - **Öffentliche Seite:** `/service/atemschutz/` zeigt alle offenen
   Vorgänge gruppiert nach Status („abgeholt“ wird ausgeblendet).
 - **E-Mail bei „abholbereit“:** Die GitHub-Action

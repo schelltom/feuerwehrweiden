@@ -32,7 +32,7 @@ Unsere Feuerwache in der Landgerichtsstraße ist seit vielen Jahrzehnten das Her
 
 ## Ausstattung der Hauptfeuerwache
 
-In der Hauptfeuerwache befinden sich unter anderem die Atemschutzpflegestelle, die Schlauchpflegestelle, verschiedene Werkstätten, Schulungs- und Ausbildungsräume, zwei Fahrzeughallen, die Kreiseinsatzzentrale sowie ein Jugendraum. Den Kameradinnen und Kameraden steht außerdem eine Terrasse und ein Aufenthaltsraum zur Verfügung.
+In der Hauptfeuerwache befinden sich unter anderem die Atemschutzwerkstatt, die Schlauchpflegestelle, verschiedene Werkstätten, Schulungs- und Ausbildungsräume, zwei Fahrzeughallen, die Kreiseinsatzzentrale sowie ein Jugendraum. Den Kameradinnen und Kameraden steht außerdem eine Terrasse und ein Aufenthaltsraum zur Verfügung.
 
 ## Hauptberufliche Feuerwehrangehörige
 

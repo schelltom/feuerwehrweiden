@@ -1,10 +1,10 @@
 ---
-titel: "Atemschutzpflegestelle"
+titel: "Atemschutzwerkstatt"
 bereich: "ueber-uns"
 reihenfolge: 7
 kurz: "Reinigung, Prüfung und Wartung der Atemschutztechnik – rund 10.500 Prüfungen im Jahr"
 titelbild: "/bilder/header/absturz.jpg"
-kartenbild: "/bilder/uploads/2026/atemschutzpflegestelle-kachel.jpg"
+kartenbild: "/bilder/uploads/2026/atemschutzwerkstatt-kachel.jpg"
 galerie:
   - bild: "/bilder/uploads/2026/atemschutz-annahme.jpg"
     text: "Annahme der angelieferten Geräte"
@@ -20,17 +20,17 @@ galerie:
     text: "Ausgabe der geprüften Geräte"
 ---
 
-Die Atemschutzpflegestelle der Hauptfeuerwache Weiden ist für die Reinigung, Pflege, Prüfung und Wartung der Atemschutztechnik verantwortlich. Sie stellt sicher, dass alle Atemschutzgeräte jederzeit den geltenden Vorschriften sowie den Herstellervorgaben entsprechen und für den Einsatz bereitstehen.
+Die Atemschutzwerkstatt der Hauptfeuerwache Weiden ist für die Reinigung, Pflege, Prüfung und Wartung der Atemschutztechnik verantwortlich. Sie stellt sicher, dass alle Atemschutzgeräte jederzeit den geltenden Vorschriften sowie den Herstellervorgaben entsprechen und für den Einsatz bereitstehen.
 
 Nach jedem Einsatz werden die verwendeten Pressluftatmer und Atemschutzmasken fachgerecht gereinigt, desinfiziert und auf ihre einwandfreie Funktion geprüft. Anschließend werden die Atemschutzflaschen wieder befüllt und die Geräte für den nächsten Einsatz vorbereitet.
 
 Neben der Einsatznachbereitung werden regelmäßige Wartungs- und Prüfungsarbeiten nach den Herstellervorgaben durchgeführt. Sämtliche Arbeiten werden sorgfältig dokumentiert und gewährleisten so einen sicheren und zuverlässigen Betrieb der Atemschutztechnik.
 
-Die Atemschutzpflegestelle betreut nicht nur die Atemschutzgeräte der Feuerwehr Weiden, sondern übernimmt diese Aufgaben auch für zahlreiche Freiwillige Feuerwehren, Werkfeuerwehren, das Technische Hilfswerk sowie verschiedene Betriebe in der Region.
+Die Atemschutzwerkstatt betreut nicht nur die Atemschutzgeräte der Feuerwehr Weiden, sondern übernimmt diese Aufgaben auch für zahlreiche Freiwillige Feuerwehren, Werkfeuerwehren, das Technische Hilfswerk sowie verschiedene Betriebe in der Region.
 
 ## Kennzahlen
 
-Jährlich werden in der Atemschutzpflegestelle rund **10.500 Prüfungen** durchgeführt.
+Jährlich werden in der Atemschutzwerkstatt rund **10.500 Prüfungen** durchgeführt.
 
 ### Feuerwehr Weiden
 
@@ -45,7 +45,7 @@ Für die Hauptfeuerwache und die Stadtteilfeuerwehren der Stadt Weiden werden de
 
 ### Externe Betreuung
 
-Darüber hinaus betreut die Atemschutzpflegestelle 63 Freiwillige Feuerwehren, Werkfeuerwehren, das Technische Hilfswerk sowie verschiedene Betriebe. Hierzu zählen insgesamt:
+Darüber hinaus betreut die Atemschutzwerkstatt 63 Freiwillige Feuerwehren, Werkfeuerwehren, das Technische Hilfswerk sowie verschiedene Betriebe. Hierzu zählen insgesamt:
 
 - 534 Pressluftatmer
 - 632 Lungenautomaten
@@ -54,4 +54,4 @@ Darüber hinaus betreut die Atemschutzpflegestelle 63 Freiwillige Feuerwehren, W
 - 31 AlphaBELT-Systeme
 - 47 Chemikalienschutzanzüge
 
-[Zur Pflegestelle →](/service/atemschutz/)
+[Zur Atemschutzwerkstatt & Schlauchpflegestelle →](/service/atemschutz/)

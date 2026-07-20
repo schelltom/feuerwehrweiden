@@ -1,4 +1,4 @@
-name: Pflegestelle – Abholbereit-Benachrichtigung
+name: Atemschutzwerkstatt & Schlauchpflegestelle – Abholbereit-Benachrichtigung
 
 on:
   push:
@@ -36,6 +36,6 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add src/content/pflege
           if ! git diff --cached --quiet; then
-            git commit -m "Pflegestelle: abholbereit vermerkt / E-Mail verschickt"
+            git commit -m "Atemschutzwerkstatt & Schlauchpflegestelle: abholbereit vermerkt / E-Mail verschickt"
             git push
           fi

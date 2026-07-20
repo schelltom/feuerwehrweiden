@@ -256,7 +256,7 @@ collections:
       - { name: farbe, label: 'Farbe (im Kalender)', widget: color, allowInput: true, default: '#5B6170' }
 
   - name: pflege
-    label: Pflegestelle
+    label: Atemschutzwerkstatt & Schlauchpflegestelle
     label_singular: Anlieferung
     folder: src/content/pflege
     create: true
@@ -285,7 +285,7 @@ collections:
       - { name: benachrichtigt, widget: hidden, default: false }
 
   - name: wehren
-    label: Feuerwehren (Pflegestelle)
+    label: Feuerwehren (Atemschutzwerkstatt & Schlauchpflegestelle)
     label_singular: Feuerwehr
     folder: src/content/wehren
     create: true

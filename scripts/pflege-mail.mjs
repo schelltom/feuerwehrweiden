@@ -1,5 +1,5 @@
 /**
- * Pflegestelle: verschickt die Abholbereit-E-Mail und stempelt den Zeitpunkt.
+ * Atemschutzwerkstatt & Schlauchpflegestelle: verschickt die Abholbereit-E-Mail und stempelt den Zeitpunkt.
  *
  * Läuft in der GitHub-Action .github/workflows/pflege-mail.yml bei jedem Push,
  * der src/content/pflege/** berührt. Verarbeitet alle Vorgänge mit
@@ -87,14 +87,14 @@ for (const datei of readdirSync(PFLEGE).filter((d) => d.endsWith('.md'))) {
     await transport.sendMail({
       from: process.env.MAIL_FROM || process.env.SMTP_USER,
       to: wehr.email,
-      subject: `Pflegestelle Feuerwehr Weiden: abholbereit für ${wehr.name}`,
+      subject: `Atemschutzwerkstatt & Schlauchpflegestelle Feuerwehr Weiden: abholbereit für ${wehr.name}`,
       text:
         `Hallo ${wehr.name},\n\n` +
         `eure Anlieferung${abgegeben ? ` vom ${abgegeben}` : ''} ist geprüft und abholbereit: ${inhaltText(v)}.\n` +
         (v.hinweis ? `\nHinweis: ${v.hinweis}\n` : '') +
         `\nAbholung zu den Öffnungszeiten der Hauptfeuerwache, Landgerichtsstraße 13, 92637 Weiden.\n` +
         `Fragen: 0961 / 391 609-11\n\n` +
-        `Mit kameradschaftlichen Grüßen\nAtemschutz- & Schlauchpflegestelle\nFeuerwehr Weiden i.d.OPf.\n\n` +
+        `Mit kameradschaftlichen Grüßen\nAtemschutzwerkstatt & Schlauchpflegestelle\nFeuerwehr Weiden i.d.OPf.\n\n` +
         `(Diese E-Mail wurde automatisch versendet.)`,
     });
     text = setzeFeld(text, 'benachrichtigt', 'true');

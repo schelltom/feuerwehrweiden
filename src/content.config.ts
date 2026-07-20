@@ -102,7 +102,7 @@ const terminkategorien = defineCollection({
 });
 
 /**
- * Feuerwehren, die bei der Pflegestelle anliefern – Name + E-Mail für die
+ * Feuerwehren, die bei der Atemschutzwerkstatt & Schlauchpflegestelle anliefern – Name + E-Mail für die
  * Abholbereit-Benachrichtigung. Wird im CMS als Auswahlliste angeboten.
  */
 const wehren = defineCollection({
@@ -114,7 +114,7 @@ const wehren = defineCollection({
 });
 
 /**
- * Atemschutz- & Schlauchpflegestelle – eine Datei pro Anlieferung.
+ * Atemschutzwerkstatt & Schlauchpflegestelle – eine Datei pro Anlieferung.
  * Setzt der Gerätewart den Haken "abholbereit", stempelt die GitHub-Action
  * (.github/workflows/pflege-mail.yml) Datum/Uhrzeit und schickt die E-Mail
  * an die bei der Wehr hinterlegte Adresse.

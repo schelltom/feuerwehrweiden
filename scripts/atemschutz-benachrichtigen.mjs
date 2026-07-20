@@ -1,5 +1,5 @@
 /**
- * Atemschutzpflegestelle: E-Mail-Benachrichtigung.
+ * Atemschutzwerkstatt: E-Mail-Benachrichtigung.
  *
  * Sucht in src/content/daten/atemschutz.json alle Vorgänge mit
  * status "abholbereit", die noch nicht benachrichtigt wurden, schickt der
@@ -8,7 +8,7 @@
  * Versand über https://resend.com (kostenlos bis 100 Mails/Tag).
  * Benötigte Umgebungsvariablen:
  *   RESEND_API_KEY  – API-Schlüssel von Resend
- *   MAIL_VON        – Absender, z.B. "Atemschutzpflegestelle <pflegestelle@feuerwehr-weiden.de>"
+ *   MAIL_VON        – Absender, z.B. "Atemschutzwerkstatt <pflegestelle@feuerwehr-weiden.de>"
  *
  * Aufruf: node scripts/atemschutz-benachrichtigen.mjs
  * (läuft automatisch über .github/workflows/atemschutz-mail.yml)
@@ -62,7 +62,7 @@ for (const v of faellig) {
         'https://feuerwehr-weiden.de/service/atemschutz/',
         '',
         'Mit kameradschaftlichen Grüßen',
-        'Atemschutzpflegestelle der Feuerwehr Weiden',
+        'Atemschutzwerkstatt der Feuerwehr Weiden',
       ]
         .filter((zeile) => zeile !== null)
         .join('\n'),

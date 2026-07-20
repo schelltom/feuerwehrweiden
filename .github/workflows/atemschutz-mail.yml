@@ -1,11 +1,11 @@
 # Verschickt automatisch eine E-Mail an die betroffene Wehr, sobald die
-# Pflegestelle einen Vorgang auf "abholbereit" stellt (im CMS oder per Datei).
+# Atemschutzwerkstatt & Schlauchpflegestelle einen Vorgang auf "abholbereit" stellt (im CMS oder per Datei).
 #
 # Einrichtung (einmalig, sobald das Repo auf GitHub liegt):
 #   1. Kostenloses Konto bei https://resend.com anlegen, Domain verifizieren
 #   2. Im GitHub-Repo unter Settings → Secrets → Actions anlegen:
 #        RESEND_API_KEY  = API-Schlüssel von Resend
-#        MAIL_VON        = Atemschutzpflegestelle <pflegestelle@feuerwehr-weiden.de>
+#        MAIL_VON        = Atemschutzwerkstatt <pflegestelle@feuerwehr-weiden.de>
 
 name: Atemschutz-Benachrichtigung
 

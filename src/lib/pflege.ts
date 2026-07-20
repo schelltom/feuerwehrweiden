@@ -1,6 +1,6 @@
 import { getCollection } from 'astro:content';
 
-/** Vorgänge der Pflegestelle, neueste zuerst, mit aufgelöstem Wehr-Namen. */
+/** Vorgänge der Atemschutzwerkstatt & Schlauchpflegestelle, neueste zuerst, mit aufgelöstem Wehr-Namen. */
 export async function ladePflege() {
   const wehren = new Map((await getCollection('wehren')).map((w) => [w.id, w.data]));
   return (await getCollection('pflege'))
