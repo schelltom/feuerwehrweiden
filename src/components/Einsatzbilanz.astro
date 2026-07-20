@@ -49,9 +49,11 @@ const wochen = [
 
 const jahr = heute.getFullYear();
 /* Im alten Kalender waren nicht alle Einsätze erfasst: offizieller Stand am
-   17.07.2026 war 433, importiert wurden 376 – die Differenz kommt obendrauf.
+   17.07.2026 (letzter Einsatz) war 451, importiert/erfasst sind 376 –
+   die Differenz (75) kommt obendrauf. Neue Einsätze werden ab jetzt einzeln
+   erfasst und erhöhen die Summe zusätzlich.
    Ab 2027 auf 0 setzen (dann zählt nur noch der eigene Datenbestand). */
-const NICHT_ERFASST = 57;
+const NICHT_ERFASST = 75;
 const gesamtJahr =
   einsaetze
     .filter((e) => e.wann.getFullYear() === jahr)
