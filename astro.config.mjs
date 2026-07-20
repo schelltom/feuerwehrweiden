@@ -27,8 +27,10 @@ function basisPfad() {
           const datei = path.join(wurzel, rel);
           const alt = await readFile(datei, 'utf8');
           const neu = alt
-            .replace(/(href|src|content|action|srcset|data-quelle)="\/(?!\/)/g, `$1="${BASIS}/`)
-            .replace(/url\(\/(?!\/)/g, `url(${BASIS}/`);
+            // Bereits mit /feuerwehrweiden versehene Pfade (z.B. CMS-Bilduploads,
+            // deren public_folder den Unterpfad enthält) NICHT erneut voranstellen.
+            .replace(/(href|src|content|action|srcset|data-quelle)="\/(?!\/|feuerwehrweiden\/)/g, `$1="${BASIS}/`)
+            .replace(/url\(\/(?!\/|feuerwehrweiden\/)/g, `url(${BASIS}/`);
           if (neu !== alt) await writeFile(datei, neu);
         }
       },

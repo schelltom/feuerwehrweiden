@@ -13,13 +13,13 @@ backend:
 # Für lokales Testen ohne Login (npx decap-server im Projektordner starten):
 local_backend: true
 
-# Medien-Wurzel = gesamter Bilder-Ordner, damit das CMS ALLE vorhandenen
-# Bilder (auch header/, fahrzeuge/ …) als eigene Medien erkennt und in der
-# Vorschau direkt aus dem Repo einbettet. Sonst greift der kaputte URL-Fallback
-# (Unterpfad /feuerwehrweiden fehlt in den Vorschau-URLs → 404).
-# Neue Uploads landen dadurch direkt in public/bilder/ (nicht mehr im Jahresordner).
+# Medien-Wurzel = gesamter Bilder-Ordner (Dateisystem-Pfad im Repo).
+# public_folder enthält den Unterpfad /feuerwehrweiden, damit die CMS-Vorschau
+# die Bilder findet (das CMS baut Vorschau-URLs relativ zur Domain-Wurzel;
+# ohne Unterpfad → 404). Der Build-Rewrite (astro.config.mjs) lässt bereits
+# mit /feuerwehrweiden versehene Pfade unangetastet.
 media_folder: 'public/bilder'
-public_folder: '/bilder'
+public_folder: '/feuerwehrweiden/bilder'
 
 locale: de
 
@@ -98,7 +98,7 @@ collections:
     # Datum ableiten (nur direkte Feldverweise werden ersetzt, Filter/{{year}}
     # nicht) – daher fest hinterlegt und zum Jahreswechsel hochzählen.
     media_folder: '/public/bilder/berichte/2026'
-    public_folder: '/bilder/berichte/2026'
+    public_folder: '/feuerwehrweiden/bilder/berichte/2026'
     fields:
       - { name: titel, label: Titel, widget: string }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
@@ -141,7 +141,7 @@ collections:
     slug: '{{slug}}'
     # Fahrzeug-Bilder gemeinsam in einem Ordner (kein Jahr)
     media_folder: '/public/bilder/fahrzeuge'
-    public_folder: '/bilder/fahrzeuge'
+    public_folder: '/feuerwehrweiden/bilder/fahrzeuge'
     identifier_field: name
     summary: '{{fields.name}} – {{fields.typ}}'
     sortable_fields: [name, reihenfolge, standort]
@@ -316,7 +316,7 @@ collections:
     # Bilder je Bereich getrennt (ueber-uns / einheiten / ortsteile –
     # aus dem Feld "bereich"). Erst Bereich wählen, dann Bilder hochladen.
     media_folder: '/public/bilder/{{fields.bereich}}'
-    public_folder: '/bilder/{{fields.bereich}}'
+    public_folder: '/feuerwehrweiden/bilder/{{fields.bereich}}'
     fields:
       - { name: titel, label: Titel, widget: string }
       - name: bereich
