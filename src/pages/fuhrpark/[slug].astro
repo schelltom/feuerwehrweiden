@@ -42,12 +42,6 @@ const d = fahrzeug.data;
               <b>{d.funkruf.toLowerCase()}</b>
             </div>
           )}
-          {d.specs.map((s) => (
-            <div class="spec">
-              <span>{s.label}</span>
-              <b>{s.wert}</b>
-            </div>
-          ))}
         </div>
 
         {
@@ -95,7 +89,7 @@ const d = fahrzeug.data;
               <div class="korb">
                 <span class="eyebrow">Ausstattung</span>
                 <h2 class="titel display reveal" style="font-size:clamp(1.8rem,3.5vw,2.6rem)">
-                  {d.ausstattungTitel ?? 'Highlights'}
+                  Highlights
                 </h2>
                 <ul class="reveal">
                   {d.ausstattung.map((a) => (

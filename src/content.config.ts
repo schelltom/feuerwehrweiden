@@ -43,10 +43,6 @@ const fahrzeuge = defineCollection({
     inHalle: z.boolean().default(false),
     bild: z.string().default(''),
     reihenfolge: z.number().default(99),
-    specs: z
-      .array(z.object({ label: z.string(), wert: z.string() }))
-      .default([]),
-    ausstattungTitel: z.string().optional(),
     ausstattung: z.array(z.string()).default([]),
     beladung: z
       .array(

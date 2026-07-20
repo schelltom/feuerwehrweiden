@@ -176,19 +176,6 @@ collections:
       - { name: inHalle, label: 'In der Fahrzeughalle auf der Startseite zeigen', widget: boolean, default: false }
       - { name: bild, label: Hauptbild, widget: image, required: false }
       - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }
-      - name: specs
-        label: 'Eckdaten (kleine Steckbrief-Tabelle auf der Fahrzeugseite)'
-        label_singular: Eckdatum
-        widget: list
-        required: false
-        collapsed: true
-        minimize_collapsed: true
-        summary: '{{fields.label}}: {{fields.wert}}'
-        hint: 'Eine Zeile je Angabe – z.B. Bezeichnung "Baujahr", Wert "2023" oder "Besatzung" / "1/8".'
-        fields:
-          - { name: label, label: Bezeichnung, widget: string }
-          - { name: wert, label: Wert, widget: string }
-      - { name: ausstattungTitel, label: 'Überschrift über der Ausstattungs-Liste (optional)', widget: string, required: false, hint: 'z.B. "Besondere Ausstattung" – leer lassen für Standard' }
       - name: ausstattung
         label: 'Ausstattung (einfache Aufzählung)'
         label_singular: Eintrag
