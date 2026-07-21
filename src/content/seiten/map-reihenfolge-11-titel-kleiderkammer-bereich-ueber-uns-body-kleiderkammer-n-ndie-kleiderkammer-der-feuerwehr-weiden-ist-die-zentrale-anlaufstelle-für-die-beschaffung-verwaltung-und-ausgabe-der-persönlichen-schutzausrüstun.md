@@ -21,7 +21,6 @@ Zum Aufgabenbereich gehören die Ausstattung neuer Einsatzkräfte, die Ausgabe u
 * 84 Jugendfeuerwehrhelme
 * 4 Schnittschutzjacken
 * 23 Schnittschutzhosen
-* 2 Paar Schnittschutzhandschuhe
 
 Neben der Verwaltung des Bestands werden jährlich rund **226 Kleidungsstücke** extern gereinigt und anschließend wieder in den Bestand übernommen. Zudem werden im Bereich der Kleiderkammer jährlich rund **650 Prüfungen** an Schutz- und Einsatzbekleidung durchgeführt. Diese regelmäßigen Kontrollen tragen dazu bei, Mängel frühzeitig zu erkennen und die Sicherheit der Einsatzkräfte dauerhaft zu gewährleisten.
 
