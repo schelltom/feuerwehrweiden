@@ -135,6 +135,7 @@ collections:
     label_singular: Bericht
     folder: src/content/berichte
     create: true
+    identifier_field: titel
     slug: '{{slug}}'
     # Neueste Berichte automatisch oben; "Datum" bleibt als Sortier-Option klickbar.
     sortable_fields:
@@ -362,6 +363,7 @@ collections:
     label_singular: Seite
     folder: src/content/seiten
     create: true
+    identifier_field: titel
     slug: '{{slug}}'
     # Bilder je Bereich getrennt (ueber-uns / einheiten / ortsteile –
     # aus dem Feld "bereich"). Erst Bereich wählen, dann Bilder hochladen.
@@ -379,6 +381,7 @@ collections:
       - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }
+      - { name: kopfbild, label: 'Titelbild groß im Seitenkopf zeigen', widget: boolean, default: false, hint: 'Aus = Titelbild wird nur für die Übersichtskachel genutzt, nicht als großes Kopfbild.' }
       - { name: kartenbild, label: 'Bild für die Übersichtskarte (falls anders als Titelbild)', widget: image, required: false }
       - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
       - { name: extern, label: 'Externe Website (Karte verlinkt dorthin)', widget: string, required: false }

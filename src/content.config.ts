@@ -165,6 +165,8 @@ const seiten = defineCollection({
     reihenfolge: z.number().default(99),
     kurz: z.string().default(''),
     titelbild: z.string().optional(),
+    /** Titelbild zusätzlich groß im Seitenkopf zeigen (sonst nur als Kachelbild) */
+    kopfbild: z.boolean().default(false),
     /** Abweichendes Bild für die Übersichtskarte (Standard: titelbild) */
     kartenbild: z.string().optional(),
     wappen: z.string().optional(),
