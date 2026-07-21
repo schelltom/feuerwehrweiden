@@ -3,25 +3,25 @@ titel: "Jugendfeuerwehr"
 bereich: "einheiten"
 reihenfolge: 4
 kurz: "34 Mitglieder · rund 30 Übungen im Jahr"
-titelbild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3597.jpg"
+titelbild: "/bilder/feuerwehr/jugend-3597.jpg"
 personen:
   - name: "Jonas Huber"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3625.jpg"
+    bild: "/bilder/feuerwehr/jugend-3625.jpg"
     funktion: "Jugendsprecher"
   - name: "Leopold Reichl"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3632.jpg"
+    bild: "/bilder/feuerwehr/jugend-3632.jpg"
     funktion: "Jugendkassier"
   - name: "Moritz Reindl"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3645.jpg"
+    bild: "/bilder/feuerwehr/jugend-3645.jpg"
     funktion: "1. Jugendwart"
   - name: "Michael Zielbauer"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3610.jpg"
+    bild: "/bilder/feuerwehr/jugend-3610.jpg"
     funktion: "Stv. Jugendwart"
   - name: "Quirin Huber"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3617.jpg"
+    bild: "/bilder/feuerwehr/jugend-3617.jpg"
     funktion: "Interims-Jugendwart"
   - name: "Jan Chmelnizki"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/jugend-3629.jpg"
+    bild: "/bilder/feuerwehr/jugend-3629.jpg"
     funktion: "Interims-Jugendwart · Stv. Stadtjugendwart"
 uebungsplan:
   - tag: "Samstag"
@@ -149,4 +149,4 @@ alle zwei Wochen am Samstag statt (siehe Übungsplan oben). Schreib uns
 einfach an [jugendfeuerwehr@weiden.de](mailto:jugendfeuerwehr@weiden.de)
 oder komm vorbei – wir freuen uns auf dich!
 
-![Werde Mitglied bei der Jugendfeuerwehr Weiden](/feuerwehrweiden/bilder/feuerwehr/jugend-werde-mitglied.jpg)
+![Werde Mitglied bei der Jugendfeuerwehr Weiden](/bilder/feuerwehr/jugend-werde-mitglied.jpg)

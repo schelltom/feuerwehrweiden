@@ -14,12 +14,9 @@ backend:
 local_backend: true
 
 # Medien-Wurzel = gesamter Bilder-Ordner (Dateisystem-Pfad im Repo).
-# public_folder enthält den Unterpfad /feuerwehrweiden, damit die CMS-Vorschau
-# die Bilder findet (das CMS baut Vorschau-URLs relativ zur Domain-Wurzel;
-# ohne Unterpfad → 404). Der Build-Rewrite (astro.config.mjs) lässt bereits
-# mit /feuerwehrweiden versehene Pfade unangetastet.
+# public_folder = URL-Pfad an der Domain-Wurzel (Custom-Domain, kein Unterpfad).
 media_folder: 'public/bilder'
-public_folder: '/feuerwehrweiden/bilder'
+public_folder: '/bilder'
 
 locale: de
 
@@ -98,7 +95,7 @@ collections:
     # Datum ableiten (nur direkte Feldverweise werden ersetzt, Filter/{{year}}
     # nicht) – daher fest hinterlegt und zum Jahreswechsel hochzählen.
     media_folder: '/public/bilder/berichte/2026'
-    public_folder: '/feuerwehrweiden/bilder/berichte/2026'
+    public_folder: '/bilder/berichte/2026'
     fields:
       - { name: titel, label: Titel, widget: string }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
@@ -141,7 +138,7 @@ collections:
     slug: '{{slug}}'
     # Fahrzeug-Bilder gemeinsam in einem Ordner (kein Jahr)
     media_folder: '/public/bilder/fahrzeuge'
-    public_folder: '/feuerwehrweiden/bilder/fahrzeuge'
+    public_folder: '/bilder/fahrzeuge'
     identifier_field: name
     summary: '{{fields.name}} – {{fields.typ}}'
     sortable_fields: [name, reihenfolge, standort]
@@ -303,7 +300,7 @@ collections:
     # Bilder je Bereich getrennt (ueber-uns / einheiten / ortsteile –
     # aus dem Feld "bereich"). Erst Bereich wählen, dann Bilder hochladen.
     media_folder: '/public/bilder/{{fields.bereich}}'
-    public_folder: '/feuerwehrweiden/bilder/{{fields.bereich}}'
+    public_folder: '/bilder/{{fields.bereich}}'
     fields:
       - { name: titel, label: Titel, widget: string }
       - name: bereich

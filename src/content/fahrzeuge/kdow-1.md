@@ -4,13 +4,13 @@ typ: "Kommandowagen"
 funkruf: "FLORIAN WEIDEN 1/10/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
-bild: /feuerwehrweiden/bilder/fahrzeuge/f_kdow1.jpg
+bild: /bilder/fahrzeuge/f_kdow1.jpg
 reihenfolge: 1
 beladung:
   - raum: "Heck"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/kdow-1-1.jpg"
+    bild: "/bilder/fahrzeuge/detail/kdow-1-1.jpg"
   - raum: "Fahrerseite"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/kdow-1-2.jpg"
+    bild: "/bilder/fahrzeuge/detail/kdow-1-2.jpg"
 gruppe: elw-kdow
 ---
 

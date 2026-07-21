@@ -3,7 +3,7 @@ titel: "Chronik"
 bereich: "ueber-uns"
 reihenfolge: 5
 kurz: "Von der Turnerfeuerwehr 1861 bis heute"
-titelbild: "/feuerwehrweiden/bilder/header/segnung.jpg"
+titelbild: "/bilder/header/segnung.jpg"
 zeitstrahl:
   - zeit: "20. Mai 1861"
     titel: "Gründung Der Turnerfeuerwehr Weiden"
@@ -34,7 +34,7 @@ zeitstrahl:
     titel: "Neubau Der Weidener Feuerwache"
     text: "Ein großer und denkwürdiger Tag in der Geschichte der Weidener Feuerwehr. Am Donnerstag, 12. Juni 1986, konnte das Richtfest für den Neubau der Weidener Feuerwache in der Landgerichtstraße gefeiert werden. Zu dem festlichen Ereignis waren zahlreiche Ehrengäste, die Mitglieder der Freiwilligen Feuerwehr der Stadt Weiden und Abordnungen der Werkfeuerwehren und Stadtteilfeuerwehren unserer Heimatstadt erschienen."
   - zeit: "2008"
-    bild: "/feuerwehrweiden/bilder/feuerwehr/hauptwache-heute.jpg"
+    bild: "/bilder/feuerwehr/hauptwache-heute.jpg"
     bildtext: "Die Hauptfeuerwache heute · Foto: Tilman2007, Wikimedia Commons, CC BY-SA 3.0"
     titel: "Und So Sieht Unsere Hauptwache Heute Aus"
     text: "Seit 1986 befindet sich die Hauptfeuerwache im Wesentlichen in ihrem heutigen baulichen Zustand und bildet die Grundlage für den täglichen Feuerwehrbetrieb."

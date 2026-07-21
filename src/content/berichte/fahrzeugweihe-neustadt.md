@@ -2,7 +2,7 @@
 titel: "Fahrzeugweihe bei unserer Patenfeuerwehr Neustadt/WN"
 datum: 2026-07-11T15:00:00
 ressort: Feuerwehrverein
-titelbild: "/feuerwehrweiden/bilder/uploads/2026/fahrzeugweihe-neustadt-1.jpg"
+titelbild: "/bilder/uploads/2026/fahrzeugweihe-neustadt-1.jpg"
 kurz: "Gemeinsam mit zahlreichen Gästen durften wir die feierliche Fahrzeugweihe des neuen HLF 20 unserer Patenfeuerwehr Neustadt/WN miterleben."
 ---
 
@@ -17,6 +17,6 @@ Allzeit gute und unfallfreie Fahrt – kommt von euren Einsätzen immer gesund u
 Vielen Dank für die Einladung und auf weiterhin gute Kameradschaft und Zusammenarbeit!
 
 <div class="berichtbilder">
-  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/fahrzeugweihe-neustadt-2.jpg" alt="Fahrzeugweihe des neuen HLF 20 in Neustadt/WN"></figure>
-  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/fahrzeugweihe-neustadt-3.jpg" alt="Fahrzeugweihe des neuen HLF 20 in Neustadt/WN"></figure>
+  <figure><img src="/bilder/uploads/2026/fahrzeugweihe-neustadt-2.jpg" alt="Fahrzeugweihe des neuen HLF 20 in Neustadt/WN"></figure>
+  <figure><img src="/bilder/uploads/2026/fahrzeugweihe-neustadt-3.jpg" alt="Fahrzeugweihe des neuen HLF 20 in Neustadt/WN"></figure>
 </div>

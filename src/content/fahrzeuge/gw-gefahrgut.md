@@ -5,11 +5,11 @@ funkruf: "FLORIAN WEIDEN 2/52/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
 inHalle: true
-bild: /feuerwehrweiden/bilder/fahrzeuge/gwg.jpg
+bild: /bilder/fahrzeuge/gwg.jpg
 reihenfolge: 12
 beladung:
   - raum: "Geräteraum 1"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-1.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-1.jpg"
     inhalt:
       - "Rettungsplattform"
       - "Stromerzeuger 14 KVA"
@@ -21,7 +21,7 @@ beladung:
       - "Beleuchtungssatz"
       - "Auffangwannen"
   - raum: "Geräteraum 2"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-2.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-2.jpg"
     inhalt:
       - "Sicherheitsstiefel - Gefahrgut"
       - "Schutzkleidung Form II"
@@ -34,7 +34,7 @@ beladung:
       - "Erste Hilfe Ausstattung"
       - "Verkehrswarnleuchten \"Euroblitz\""
   - raum: "Geräteraum 3"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-3.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-3.jpg"
     inhalt:
       - "Chemikalienschutzanzüge Form III"
       - "Gebläsefilterhauben"
@@ -44,7 +44,7 @@ beladung:
       - "Leitungsroller 400 V und 230V"
       - "Gefahrgutumfüllpumpe als Kreiselpumpe"
   - raum: "Geräteraum 4"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-4.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-4.jpg"
     inhalt:
       - "Atemschutzgeräte mit Masken und Filter"
       - "Ablagetische"
@@ -56,7 +56,7 @@ beladung:
       - "Koffer mit ABC Messkonzept \"Bayern\""
       - "Überdrucklüfter \"EX\""
   - raum: "Geräteraum 5"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-5.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-5.jpg"
     inhalt:
       - "Auffangbehälter"
       - "Saug- und Drucklutten"
@@ -67,7 +67,7 @@ beladung:
       - "Fasskarre"
       - "Rollplattform"
   - raum: "Geräteraum 6"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-6.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-6.jpg"
     inhalt:
       - "Schnellangriff Strom"
       - "Schnellangriff Luft"
@@ -82,14 +82,14 @@ beladung:
       - "Quecksilberaufnahmeset"
       - "HRT - ATEX"
   - raum: "Heck"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-7.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-7.jpg"
     inhalt:
       - "Rollcontainer \"Erstangriff\""
       - "Rollcontainer \"Auffangen Pumpen leicht\""
       - "Rollcontainer \"Umpumpen\""
       - "Rollcontainer \"Dekontamination\""
   - raum: "Heck ohne Rollcontainer"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-8.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-8.jpg"
     inhalt:
       - "Gefahrgutschläuche"
       - "Folienschlauch"
@@ -98,7 +98,7 @@ beladung:
       - "Abgasschlauch"
       - "Aufstiegshilfen dreiteilig"
   - raum: "Lichtmast und Markise"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/gw-gefahrgut-9.jpg"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-9.jpg"
 gruppe: ruest-geraete
 ---
 

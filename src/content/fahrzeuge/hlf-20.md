@@ -5,11 +5,11 @@ funkruf: "FLORIAN WEIDEN 1/40/1"
 standort: "Hauptfeuerwache"
 kategorie: fahrzeug
 inHalle: true
-bild: /feuerwehrweiden/bilder/fahrzeuge/hlf.jpg
+bild: /bilder/fahrzeuge/hlf.jpg
 reihenfolge: 4
 beladung:
   - raum: "Geräteraum 1"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-1.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-1.jpg"
     inhalt:
       - "Rettungsspreizer"
       - "Rettungsschere"
@@ -26,7 +26,7 @@ beladung:
       - "Hebekissen"
       - "Rettungsbrett"
   - raum: "Geräteraum 2"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-2.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-2.jpg"
     inhalt:
       - "Stromerzeuger"
       - "Kabeltrommeln"
@@ -36,7 +36,7 @@ beladung:
       - "Anschlagmittel"
       - "Mehrzweckzug"
   - raum: "Geräteraum 3"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-3.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-3.jpg"
     inhalt:
       - "Unterbaumaterial"
       - "Sprungpolster SP 16"
@@ -44,7 +44,7 @@ beladung:
       - "Verkehrsunfall Einsatzkoffer"
       - "Absturzsicherungssatz"
   - raum: "Geräteraum 4"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-4.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-4.jpg"
     inhalt:
       - "Standrohr mit Zubehör"
       - "Wassersauger mit Zubehör"
@@ -53,7 +53,7 @@ beladung:
       - "Elektrowerkzeug"
       - "Chemiekalienschutzanzüge"
   - raum: "Geräteraum 5"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-5.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-5.jpg"
     inhalt:
       - "Verteiler mit B-Schlauch"
       - "Mulden"
@@ -65,7 +65,7 @@ beladung:
       - "Ölbindemittel"
       - "Faltleitkegel"
   - raum: "Geräteraum 6"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-6.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-6.jpg"
     inhalt:
       - "Strahlrohre"
       - "Stützkrümmer"
@@ -77,7 +77,7 @@ beladung:
       - "Hygieneboard"
       - "Kanister"
   - raum: "Heckansicht / Pumpenbedienstand"
-    bild: "/feuerwehrweiden/bilder/fahrzeuge/detail/hlf-20-7.jpg"
+    bild: "/bilder/fahrzeuge/detail/hlf-20-7.jpg"
     inhalt:
       - "Druckluftschaumanlage"
       - "Wassertank 1650 Liter"

@@ -2,7 +2,7 @@
 titel: "Herausfordernder Gebäudebrand"
 datum: 2026-02-20
 ressort: Einsatzdienst
-titelbild: "/feuerwehrweiden/bilder/uploads/2026/gebaeudebrand-februar-1.jpg"
+titelbild: "/bilder/uploads/2026/gebaeudebrand-februar-1.jpg"
 kurz: "Mit dem Einsatzstichwort „Zimmerbrand im Obergeschoss eines Wohngebäudes im Sauerdornweg“, wurden die Feuerwehren Neunkirchen und Weiden am Freitag, den 20.02.2"
 ---
 
@@ -23,5 +23,5 @@ Während der gesamten Zeit stand auch dankenswerter Weise ein Rettungswagen des 
 Im Einsatz waren insgesamt 36 Einsatzkräfte der Feuerwehr mit 8 Fahrzeugen.
 
 <div class="berichtbilder">
-  <figure><img src="/feuerwehrweiden/bilder/uploads/2026/gebaeudebrand-februar-2.jpg" alt="Herausfordernder Gebäudebrand"></figure>
+  <figure><img src="/bilder/uploads/2026/gebaeudebrand-februar-2.jpg" alt="Herausfordernder Gebäudebrand"></figure>
 </div>

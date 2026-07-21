@@ -3,8 +3,8 @@ titel: "Kreiseinsatzzentrale / Wachzentrale"
 bereich: "ueber-uns"
 reihenfolge: 9
 kurz: "Führungs- und Kommunikationszentrale – rund um die Uhr besetzt"
-titelbild: "/feuerwehrweiden/bilder/header/ugoeel-waldbrand.jpg"
-kartenbild: "/feuerwehrweiden/bilder/uploads/2026/kreiseinsatzzentrale.jpeg"
+titelbild: "/bilder/header/ugoeel-waldbrand.jpg"
+kartenbild: "/bilder/uploads/2026/kreiseinsatzzentrale.jpeg"
 ---
 
 Die Kreiseinsatzzentrale (KEZ) der Stadt Weiden befindet sich in der Hauptfeuerwache und dient als Führungs- und Kommunikationszentrale für besondere Einsatzlagen. Sie unterstützt die Integrierte Leitstelle Oberpfalz-Nord und übernimmt bei Bedarf Aufgaben der Einsatzkoordination sowie der Führungsunterstützung.
