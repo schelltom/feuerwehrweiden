@@ -19,7 +19,7 @@ const zeigeLead = !!d.kurz && !norm(bericht.body ?? '').startsWith(norm(d.kurz).
 const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'numeric' });
 ---
 
-<Basis titel={`${d.titel} – Feuerwehr Weiden`}>
+<Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz} bild={d.titelbild}>
   <main>
     <Seitenkopf
       titel={d.titel}

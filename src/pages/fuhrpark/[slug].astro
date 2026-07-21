@@ -11,9 +11,11 @@ export async function getStaticPaths() {
 const { fahrzeug } = Astro.props;
 const { Content } = await render(fahrzeug);
 const d = fahrzeug.data;
+
+const beschreibung = `${d.name} – ${d.typ}, Standort ${d.standort}${d.funkruf ? `, Funkrufname ${d.funkruf}` : ''}. Fahrzeug der Freiwilligen Feuerwehr Weiden i.d.OPf.`;
 ---
 
-<Basis titel={`${d.name} – Fuhrpark – Feuerwehr Weiden`}>
+<Basis titel={`${d.name} – Fuhrpark – Feuerwehr Weiden`} beschreibung={beschreibung} bild={d.bild || undefined}>
   <main>
     <Seitenkopf
       titel={d.name}

@@ -5,6 +5,8 @@ import SkylineWeiden from '../components/SkylineWeiden.astro';
 interface Props {
   titel?: string;
   beschreibung?: string;
+  /** Vorschaubild für Social-Media/Open-Graph (wurzel-relativer Pfad, z.B. /bilder/…) */
+  bild?: string;
   /** Alarm-Intro nur auf der Startseite abspielen */
   mitAlarm?: boolean;
 }
@@ -12,9 +14,13 @@ interface Props {
 const {
   titel = 'Freiwillige Feuerwehr Weiden i.d.OPf.',
   beschreibung = '24 Stunden – 365 Tage für Ihre Sicherheit. Die Freiwillige Feuerwehr Weiden in der Oberpfalz.',
+  bild,
   mitAlarm = false,
 } = Astro.props;
 
+// Absolute URLs für Canonical und Open Graph (basieren auf `site` in astro.config.mjs).
+const kanonisch = new URL(Astro.url.pathname, Astro.site);
+const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
 ---
 
 <!doctype html>
@@ -23,8 +29,22 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={beschreibung} />
+    <link rel="canonical" href={kanonisch.href} />
     <link rel="icon" href="/bilder/wappen.png" type="image/png" />
     <title>{titel}</title>
+
+    <!-- Open Graph / Social-Media-Vorschau (Facebook, WhatsApp, …) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Freiwillige Feuerwehr Weiden i.d.OPf." />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={titel} />
+    <meta property="og:description" content={beschreibung} />
+    <meta property="og:url" content={kanonisch.href} />
+    <meta property="og:image" content={vorschaubild.href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titel} />
+    <meta name="twitter:description" content={beschreibung} />
+    <meta name="twitter:image" content={vorschaubild.href} />
   </head>
   <body>
     {
