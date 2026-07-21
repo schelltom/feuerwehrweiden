@@ -11,6 +11,8 @@ const berichte = defineCollection({
     titel: z.string(),
     datum: z.coerce.date(),
     ressort: z.string().default('Feuerwehr'),
+    /** Entwurf – auf der Website überall ausgeblendet, bis abgehakt */
+    entwurf: z.boolean().default(false),
     titelbild: z.string().optional(),
     kurz: z.string().optional(),
     stats: z

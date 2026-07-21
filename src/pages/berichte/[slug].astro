@@ -5,7 +5,7 @@ import Slideshow from '../../components/Slideshow.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
-  const berichte = await getCollection('berichte');
+  const berichte = (await getCollection('berichte')).filter((b) => !b.data.entwurf);
   return berichte.map((b) => ({ params: { slug: b.id }, props: { bericht: b } }));
 }
 

@@ -149,6 +149,7 @@ collections:
     fields:
       - { name: titel, label: Titel, widget: string }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
       - name: ressort
         label: Ressort
         widget: select

@@ -4,9 +4,9 @@ import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths({ paginate }) {
-  const berichte = (await getCollection('berichte')).sort(
-    (a, b) => b.data.datum.getTime() - a.data.datum.getTime()
-  );
+  const berichte = (await getCollection('berichte'))
+    .filter((b) => !b.data.entwurf)
+    .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime());
   return paginate(berichte, { pageSize: 6 });
 }
 

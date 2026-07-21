@@ -12,6 +12,7 @@ import AbholStreifen from '../components/AbholStreifen.astro';
 const einsaetze = await ladeEinsaetze();
 
 const berichte = (await getCollection('berichte'))
+  .filter((b) => !b.data.entwurf)
   .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime())
   .slice(0, 5);
 
