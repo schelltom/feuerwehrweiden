@@ -57,7 +57,7 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
               <div class="balken" />
             </div>
             <img class="mbild" src="/bilder/intro-start.jpg" alt="" />
-            <b id="countzahl">5</b>
+            <b id="countzahl">3</b>
           </div>
         </div>
       )
@@ -190,7 +190,7 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
         }, 42); // Tippgeschwindigkeit
 
         const zahl = document.getElementById('countzahl')!;
-        let n = 5;
+        let n = 3;
         const tick = setInterval(() => {
           n--;
           if (n < 1) {

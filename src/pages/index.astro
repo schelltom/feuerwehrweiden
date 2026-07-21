@@ -19,7 +19,7 @@ const termine = (await getCollection('termine'))
   .map((t) => t.data)
   .filter((t) => t.datum >= heute)
   .sort((a, b) => a.datum.getTime() - b.datum.getTime())
-  .slice(0, 4);
+  .slice(0, 5);
 
 const fahrzeuge = (await getCollection('fahrzeuge'))
   .filter((f) => f.data.inHalle)
