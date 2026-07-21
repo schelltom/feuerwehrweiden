@@ -2,6 +2,9 @@
 import Basis from '../../../layouts/Basis.astro';
 import Seitenkopf from '../../../components/Seitenkopf.astro';
 import { ladePflege, inhaltText, datum } from '../../../lib/pflege';
+import texte from '../../../data/service.json';
+
+const tel = (n: string) => 'tel:+49' + n.replace(/\D/g, '').replace(/^0/, '');
 
 const vorgaenge = (await ladePflege()).filter((v) => !v.abgeholt);
 const abholbereit = vorgaenge.filter((v) => v.abholbereit);
@@ -17,12 +20,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
-        <p class="intro reveal" style="margin-bottom:36px">
-          Die zentrale Atemschutzwerkstatt in der Hauptfeuerwache pflegt und prüft
-          Atemschutzgeräte, Masken und Flaschen für die Wehren der Umgebung.
-          Hier seht ihr jederzeit den aktuellen Stand eurer Anlieferung – sobald etwas
-          abholbereit ist, bekommt eure Wehr automatisch eine E-Mail.
-        </p>
+        <p class="intro reveal" style="margin-bottom:36px">{texte.atemschutz_intro}</p>
 
         <div class="statusblock reveal">
           <h2 class="display statuskopf bereit">
@@ -75,8 +73,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
         </div>
 
         <div class="hinweisbox">
-          Anlieferung und Abholung zu den Öffnungszeiten der Hauptfeuerwache,
-          Landgerichtsstraße 13 · Fragen: <a href="tel:+4996139160911">0961 / 391 609-11</a>
+          {texte.kontakt_adresse} · Fragen: <a href={tel(texte.telefon_atemschutz)}>{texte.telefon_atemschutz}</a>
         </div>
 
         <p style="margin-top:28px;display:flex;gap:28px;flex-wrap:wrap">

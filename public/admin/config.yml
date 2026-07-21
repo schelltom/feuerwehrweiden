@@ -450,3 +450,21 @@ collections:
           - { name: bild, label: Bild, widget: image }
           - { name: text, label: Bildunterschrift, widget: string, required: false }
       - { name: body, label: Seitentext, widget: markdown, required: false }
+
+  # Feste Texte der Service-/Abholung-Seiten (Einleitungen + Kontaktzeile).
+  # Die Seiten selbst sind Vorlagen; nur diese Texte sind hier pflegbar.
+  - name: service_texte
+    label: 'Service-Seiten (Texte)'
+    editor:
+      preview: false
+    files:
+      - name: texte
+        label: 'Einleitungen & Kontakt'
+        file: src/data/service.json
+        fields:
+          - { name: uebersicht_intro, label: 'Service-Übersicht – Einleitung', widget: text }
+          - { name: atemschutz_intro, label: 'Atemschutzwerkstatt – Einleitung', widget: text }
+          - { name: schlaeuche_intro, label: 'Schlauchpflegestelle – Einleitung', widget: text }
+          - { name: kontakt_adresse, label: 'Kontaktzeile – Adresse/Öffnungszeiten (beide Seiten)', widget: text }
+          - { name: telefon_atemschutz, label: 'Telefon Atemschutzwerkstatt', widget: string, hint: 'z.B. 0961 / 391 609-11' }
+          - { name: telefon_schlaeuche, label: 'Telefon Schlauchpflegestelle', widget: string, hint: 'z.B. 0961 / 391 609-0' }

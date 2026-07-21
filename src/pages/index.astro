@@ -7,6 +7,7 @@ import Einsatzmonitor from '../components/Einsatzmonitor.astro';
 import Warnlage from '../components/Warnlage.astro';
 import Bereiche from '../components/Bereiche.astro';
 import Fahrzeughalle from '../components/Fahrzeughalle.astro';
+import AbholStreifen from '../components/AbholStreifen.astro';
 
 const einsaetze = await ladeEinsaetze();
 
@@ -40,6 +41,8 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
 <Basis mitAlarm={true}>
   <main>
     <Hero ticker={einsaetze.slice(0, 4)} />
+
+    <AbholStreifen />
 
     <section id="aktuelles">
       <div class="wrap" style="padding-top:clamp(40px,5vw,64px)">

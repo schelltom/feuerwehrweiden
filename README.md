@@ -72,24 +72,25 @@ Fotos per Drag & Drop). Zum Aktivieren im Live-Betrieb:
 Lokal testen ohne Login: `npx decap-server` starten, dann `npm run dev`
 und <http://localhost:4321/admin> öffnen.
 
-## Atemschutzwerkstatt
+## Atemschutzwerkstatt & Schlauchpflegestelle
 
-Status-Workflow mit automatischer Benachrichtigung:
+Zwei getrennte Stationen mit Status-Anzeige, gepflegt über das CMS:
 
-- **Daten:** `src/content/daten/atemschutz.json` – ein Eintrag pro
-  Anlieferung mit Status `eingegangen` → `in-pflege` → `abholbereit` →
-  `abgeholt`. Pflege am einfachsten über das CMS (`/admin`, Bereich
-  „Atemschutzwerkstatt“).
-- **Öffentliche Seite:** `/service/atemschutz/` zeigt alle offenen
-  Vorgänge gruppiert nach Status („abgeholt“ wird ausgeblendet).
-- **E-Mail bei „abholbereit“:** Die GitHub-Action
-  `.github/workflows/atemschutz-mail.yml` läuft bei jeder Änderung der
-  Datei, verschickt über [Resend](https://resend.com) (kostenlos bis
-  100 Mails/Tag) eine E-Mail an die hinterlegte Adresse der Wehr und setzt
-  danach `benachrichtigt: true`. Einmalige Einrichtung: Resend-Konto +
-  Domain verifizieren, dann im GitHub-Repo die Secrets `RESEND_API_KEY`
-  und `MAIL_VON` hinterlegen. Ohne Secrets passiert einfach nichts –
-  die Statusseite funktioniert trotzdem.
+- **Daten:** je eine Markdown-Datei pro Anlieferung in `src/content/pflege`
+  (Atemschutzwerkstatt) bzw. `src/content/schlaeuche` (Schlauchpflegestelle).
+  Pflege über `/admin` (Menüpunkte „Atemschutzwerkstatt“ und „Schlauchpflegestelle“).
+  Beide teilen die Feuerwehren-Liste (`src/content/wehren`).
+- **Öffentliche Seiten:** `/service/atemschutz/` (Abholbereit + Angeliefert) und
+  `/service/schlaeuche/` (nur Abholbereit). Übersicht mit Kacheln unter `/service/`;
+  die Startseite blendet einen Streifen ein, sobald etwas abholbereit ist. Die
+  festen Texte dieser Seiten sind im CMS unter „Service-Seiten (Texte)“ pflegbar.
+- **E-Mail bei „abholbereit“ (nur Atemschutz):** Die GitHub-Action
+  `.github/workflows/pflege-mail.yml` läuft bei jeder Änderung in
+  `src/content/pflege/**`, verschickt per SMTP eine E-Mail an die hinterlegte
+  Adresse der Wehr und setzt danach `benachrichtigt: true`. Repo-Secrets:
+  `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`. Ohne Secrets
+  wird nur gestempelt – die Statusseiten funktionieren trotzdem. Für die
+  Schlauchpflegestelle gibt es bewusst keine E-Mail.
 
 ## Offene Punkte
 

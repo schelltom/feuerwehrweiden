@@ -164,6 +164,27 @@
     .n112{margin:10px 26px 0;display:inline-block;clip-path:none}
   }
 
+  /* ============ Service-Aufklapp-Menü ============ */
+  .hat-untermenue > a .caret{font-size:.7em;opacity:.7;margin-left:3px}
+  .untermenue{list-style:none;margin:0;padding:0}
+  @media (min-width:961px){
+    .hat-untermenue{position:relative}
+    .hat-untermenue > .untermenue{
+      display:none;position:absolute;left:0;top:100%;min-width:250px;z-index:60;
+      flex-direction:column;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);
+      border:1px solid var(--linie);box-shadow:0 20px 44px rgba(20,22,28,.20);
+    }
+    .hat-untermenue:hover > .untermenue,
+    .hat-untermenue:focus-within > .untermenue{display:flex}
+    .hat-untermenue > .untermenue a{color:var(--tinte);padding:12px 20px;white-space:nowrap;font-size:.82rem}
+    .hat-untermenue > .untermenue a::after{left:20px;right:20px;bottom:8px}
+    .hat-untermenue > .untermenue a:hover{background:rgba(20,22,28,.05);opacity:1}
+  }
+  @media (max-width:960px){
+    .hat-untermenue > .untermenue a{padding-left:48px;font-size:.98rem;opacity:.82}
+    .hat-untermenue > a .caret{display:none}
+  }
+
   /* ============ Hero ============ */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-start;overflow:hidden;color:#fff}
   .hero .folie{

@@ -1,19 +1,20 @@
 ---
 import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
+import texte from '../../data/service.json';
 
 const karten = [
   {
     href: '/service/atemschutz/',
     bild: '/bilder/uploads/2026/atemschutzwerkstatt-kachel.jpg',
-    eyebrow: 'Prüfung & Pflege',
-    titel: 'Atemschutzwerkstatt',
+    eyebrow: 'Atemschutzwerkstatt',
+    titel: 'Atemschutz abholbereit',
   },
   {
     href: '/service/schlaeuche/',
     bild: '/bilder/uploads/2026/schlauchpflegestelle.jpg',
-    eyebrow: 'Reinigung & Prüfung',
-    titel: 'Schlauchpflegestelle',
+    eyebrow: 'Schlauchpflegestelle',
+    titel: 'Schläuche abholbereit',
   },
   {
     href: '/service/notruf/',
@@ -33,10 +34,7 @@ const karten = [
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
-        <p class="intro reveal" style="margin-bottom:36px">
-          Zentrale Dienstleistungen der Hauptfeuerwache für die Wehren der Umgebung –
-          und Hilfe für den Ernstfall.
-        </p>
+        <p class="intro reveal" style="margin-bottom:36px">{texte.uebersicht_intro}</p>
         <div class="serviceraster">
           {
             karten.map((k) => (

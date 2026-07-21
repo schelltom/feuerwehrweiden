@@ -78,7 +78,14 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
             <li><a href="/feuerwehr/">Feuerwehr</a></li>
             <li><a href="/fuhrpark/">Fuhrpark</a></li>
             <li><a href="/ortsteile/">Ortsteile</a></li>
-            <li><a href="/service/">Service</a></li>
+            <li class="hat-untermenue">
+              <a href="/service/">Service <span class="caret" aria-hidden="true">▾</span></a>
+              <ul class="untermenue">
+                <li><a href="/service/atemschutz/">Atemschutz abholbereit</a></li>
+                <li><a href="/service/schlaeuche/">Schläuche abholbereit</a></li>
+                <li><a href="/service/notruf/">Notruf-Checkliste</a></li>
+              </ul>
+            </li>
             <li><a href="/admin/index.html">Login</a></li>
             <li class="wechsel">
               <a class="n112" href="tel:112">Notruf 112</a>
