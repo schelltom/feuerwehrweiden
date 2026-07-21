@@ -3,7 +3,6 @@ name: "KdoW 2"
 typ: "Kommandowagen"
 funkruf: "FLORIAN WEIDEN 1/10/2"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_kdow2.jpg
 reihenfolge: 2
 beladung:

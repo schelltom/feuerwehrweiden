@@ -1,5 +1,6 @@
 ---
 wann: 2026-05-20T08:00
-stichwort: "Freiwillige Tätigkeit"
+stichwort: "Sonstiges"
 details: ""
+anzahl: 1
 ---

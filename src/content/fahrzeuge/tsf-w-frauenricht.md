@@ -3,7 +3,6 @@ name: "TSF-W"
 typ: "Tragkraftspritzenfahrzeug"
 funkruf: "FLORIAN FRAUENRICH 46/1"
 standort: "FF Frauenricht"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_frauenricht.jpg
 reihenfolge: 20
 beladung:

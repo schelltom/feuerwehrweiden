@@ -2,4 +2,5 @@
 wann: 2026-07-11T18:30
 stichwort: "Sonstiges"
 details: "Sicherheitswache"
+anzahl: 1
 ---

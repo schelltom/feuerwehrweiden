@@ -2,4 +2,5 @@
 wann: 2026-02-23T12:58
 stichwort: "THL 1"
 details: "Straße reinigen klein"
+anzahl: 1
 ---

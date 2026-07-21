@@ -3,7 +3,6 @@ name: "TLF 20/40-SL"
 typ: "Tanklöschfahrzeug"
 funkruf: "FLORIAN WEIDEN 1/23/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/tlf.jpg
 reihenfolge: 7

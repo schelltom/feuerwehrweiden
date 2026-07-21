@@ -3,7 +3,6 @@ name: "LF 20"
 typ: "Löschgruppenfahrzeug"
 funkruf: "FLORIAN ROTHENSTADT 41/1"
 standort: "FF Rothenstadt"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_roth_lf20.jpg
 reihenfolge: 25
 beladung:

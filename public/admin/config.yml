@@ -29,20 +29,73 @@ collections:
     identifier_field: stichwort
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     summary: '{{fields.wann}} – {{fields.stichwort}}'
-    sortable_fields: [wann]
+    # Neueste Einsätze automatisch oben; "wann" bleibt als Sortier-Option klickbar.
+    sortable_fields:
+      - field: wann
+        default_sort: desc
     fields:
       - { name: wann, label: 'Datum & Uhrzeit', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', default: '{{now}}', hint: 'Ist mit jetzt vorbelegt' }
       - name: stichwort
-        label: Alarmstichwort
+        label: Einsatzstichwort
         widget: select
         default: 'THL 1'
         options:
+          - ABC 1
+          - ABC 2
+          - ABC 3
+          - ABC B
+          - ABC B ATOM
+          - ABC B BIO / CHEMIE
+          - ABC EXPLOSION
+          - ABC GEFAHRSTOFFMELDEANLAGE
+          - ABC KRAFTSTOFF
+          - ABC ÖL LAND
+          - ABC ÖL WASSER
+          - ABC THL ATOM
+          - ABC THL BIO / CHEMIE
           - B 1
           - B 2
           - B 2 PERSON
           - B 3
           - B 3 PERSON
           - B 4
+          - B BMA
+          - B BOOT
+          - B ELEKTROANLAGE
+          - B SCHIENENTUNNEL
+          - B SCHIFF
+          - B STRAßENTUNNEL
+          - B WALD
+          - B ZUG
+          - FW
+          - INF ABNAHME BMA
+          - INF APOTHEKENAUSKUNFT
+          - INF AUSFALL
+          - INF BMA PROBE
+          - INF BMA STÖRUNG
+          - INF EIGENUNFALL
+          - INF GIFTNOTRUF
+          - INF HOCHWASSERMELDUNG
+          - INF KASSENÄRZTLICHER BEREITSCHAFTSDIENST
+          - INF LUFTBEOBACHTUNG
+          - INF ÖFFENTLICHKEITSARBEIT
+          - INF PROBEALARM
+          - INF SAN-DIENST
+          - INF SICHERHEITSWACHE
+          - INF UNWETTERWARNUNG
+          - INF VERKEHRSSICHERUNG
+          - INF WACHBESETZUNG
+          - SON BELEUCHTUNG
+          - SON EINGLEISEN
+          - SON HILFE / SONSTIGES
+          - SON HUBSCHRAUBERLANDUNG
+          - SON MOTORRADSTREIFE
+          - SON PSNV (B)
+          - SON PSNV (E)
+          - SON THW BEREITSCHAFT
+          - SON TRAGEHILFE
+          - SON ÜBERÖRTLICHER EINSATZ
+          - Sonstiges
           - THL 1
           - THL 2
           - THL 3
@@ -68,22 +121,14 @@ collections:
           - THL SCHIENE
           - THL TRAGEHILFE
           - THL UNWETTER
+          - THL VU FLUGZEUG 1
+          - THL VU FLUGZEUG 2
+          - THL VU SCHIFF KOLLISION
+          - THL VU SCHIFF LECK
+          - THL VU ZUG
           - THL WASSER
-          - ABC 1
-          - ABC 2
-          - ABC 3
-          - ABC B
-          - ABC B ATOM
-          - ABC B BIO / CHEMIE
-          - ABC EXPLOSION
-          - ABC GEFAHRSTOFFMELDEANLAGE
-          - ABC KRAFTSTOFF
-          - ABC ÖL LAND
-          - ABC ÖL WASSER
-          - ABC THL ATOM
-          - ABC THL BIO / CHEMIE
-          - Sonstiges
       - { name: details, label: 'Zusatz (optional)', widget: string, required: false, default: '', hint: 'z.B. "Straße reinigen klein" – erscheint als "THL 1 – Straße reinigen klein"' }
+      - { name: anzahl, label: 'Anzahl (zählt so oft in der Bilanz)', widget: number, value_type: int, min: 1, default: 1, hint: 'Ein Eintrag für mehrere gleichartige Einsätze – z.B. an einem Unwettertag 20× THL Unwetter: hier 20 eintragen.' }
 
   - name: berichte
     label: Berichte & News
@@ -91,6 +136,11 @@ collections:
     folder: src/content/berichte
     create: true
     slug: '{{slug}}'
+    # Neueste Berichte automatisch oben; "Datum" bleibt als Sortier-Option klickbar.
+    sortable_fields:
+      - field: datum
+        default_sort: desc
+      - field: titel
     # Bilder-Ordner je Jahr. Decap kann im media_folder KEIN Jahr aus dem
     # Datum ableiten (nur direkte Feldverweise werden ersetzt, Filter/{{year}}
     # nicht) – daher fest hinterlegt und zum Jahreswechsel hochzählen.
@@ -142,21 +192,16 @@ collections:
     identifier_field: name
     summary: '{{fields.name}} – {{fields.typ}}'
     sortable_fields: [name, reihenfolge, standort]
+    # Fahrzeug/Anhänger wird aus der Gruppe abgeleitet (Gruppe "Anhänger" = Anhänger,
+    # alles andere = Fahrzeug) – daher kein eigenes Kategorie-Feld mehr.
     view_filters:
-      - { label: Fahrzeuge, field: kategorie, pattern: fahrzeug }
-      - { label: Anhänger, field: kategorie, pattern: anhaenger }
+      - { label: Fahrzeuge, field: gruppe, pattern: '^(?!anhaenger$).+' }
+      - { label: Anhänger, field: gruppe, pattern: anhaenger }
     fields:
       - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
       - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
       - { name: funkruf, label: Funkrufname, widget: string, required: false, hint: 'z.B. FLORIAN WEIDEN 1/40/1 (Anhänger: leer lassen)' }
       - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache, hint: 'Hauptfeuerwache oder z.B. FF Rothenstadt' }
-      - name: kategorie
-        label: Kategorie
-        widget: select
-        options:
-          - { label: Fahrzeug, value: fahrzeug }
-          - { label: Anhänger, value: anhaenger }
-        default: fahrzeug
       - name: gruppe
         label: 'Gruppe (Fuhrpark-Übersicht)'
         widget: select

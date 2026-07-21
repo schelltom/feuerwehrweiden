@@ -34,8 +34,7 @@ const fahrzeuge = defineCollection({
     typ: z.string(),
     funkruf: z.string().default(''),
     standort: z.string().default('Hauptfeuerwache'),
-    kategorie: z.enum(['fahrzeug', 'anhaenger']).default('fahrzeug'),
-    /** Fachliche Gruppe für die Fuhrpark-Übersicht */
+    /** Fachliche Gruppe für die Fuhrpark-Übersicht; daraus wird auch Fahrzeug/Anhänger abgeleitet */
     gruppe: z
       .enum(['elw-kdow', 'loesch', 'hubrettung', 'ruest-geraete', 'sonstige', 'anhaenger', 'rollcontainer', 'ehemalige'])
       .default('sonstige'),
@@ -72,6 +71,8 @@ const einsaetze = defineCollection({
     stichwort: z.string(),
     /** Optionaler Zusatz, wird als " – Zusatz" angehängt */
     details: z.string().default(''),
+    /** Wie oft dieser eine Einsatz in der Bilanz zählt (z.B. 20× THL Unwetter an einem Tag). Vorgabe 1. */
+    anzahl: z.number().int().min(1).default(1),
     /* Einsatzart: kein eigenes Feld mehr – wird in lib/einsaetze.ts
        (artVonStichwort) automatisch aus dem Stichwort abgeleitet. */
   }),

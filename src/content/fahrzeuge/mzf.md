@@ -3,7 +3,6 @@ name: "MZF"
 typ: "Mehrzweckfahrzeug"
 funkruf: "FLORIAN WEIDEN 1/11/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_mzf.jpg
 reihenfolge: 16
 beladung:

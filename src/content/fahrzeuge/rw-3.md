@@ -3,7 +3,6 @@ name: "RW 3"
 typ: "Rüstwagen · schwere technische Hilfe"
 funkruf: "FLORIAN WEIDEN 1/61/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/rw3.jpg
 reihenfolge: 10

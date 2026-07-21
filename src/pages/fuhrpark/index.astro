@@ -26,8 +26,9 @@ const gruppen = GRUPPEN.map((g) => ({
     .sort((a, b) => rang(a) - rang(b) || a.data.reihenfolge - b.data.reihenfolge),
 })).filter((g) => g.fahrzeuge.length > 0);
 
-const anzahlFahrzeuge = alle.filter((f) => f.data.kategorie === 'fahrzeug').length;
-const anzahlAnhaenger = alle.filter((f) => f.data.kategorie === 'anhaenger').length;
+/* Fahrzeug/Anhänger wird aus der Gruppe abgeleitet: Gruppe "Anhänger" = Anhänger, alles andere = Fahrzeug */
+const anzahlAnhaenger = alle.filter((f) => f.data.gruppe === 'anhaenger').length;
+const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
 ---
 
 <Basis titel="Fuhrpark – Feuerwehr Weiden">

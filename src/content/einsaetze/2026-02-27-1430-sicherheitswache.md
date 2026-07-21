@@ -1,5 +1,6 @@
 ---
 wann: 2026-02-27T14:30
-stichwort: "Sicherheitswache"
+stichwort: "INF SICHERHEITSWACHE"
 details: ""
+anzahl: 1
 ---

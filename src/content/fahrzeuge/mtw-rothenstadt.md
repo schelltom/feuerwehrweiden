@@ -3,7 +3,6 @@ name: "MTW"
 typ: "Mannschaftstransportwagen"
 funkruf: "FLORIAN ROTHENSTADT 14/1"
 standort: "FF Rothenstadt"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_roth_mtw.jpg
 reihenfolge: 26
 beladung:

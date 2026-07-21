@@ -3,7 +3,6 @@ name: "TSF-W"
 typ: "Tragkraftspritzenfahrzeug"
 funkruf: "FLORIAN MALLERSRICHT 46/1"
 standort: "FF Mallersricht"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_mallersricht.jpg
 reihenfolge: 21
 beladung:

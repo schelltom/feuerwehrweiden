@@ -1,5 +1,6 @@
 ---
 wann: 2026-02-02T07:31
-stichwort: "THL P"
+stichwort: "THL P AUFZUG"
 details: "Rettungskorb"
+anzahl: 1
 ---

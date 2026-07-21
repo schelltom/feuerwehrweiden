@@ -191,14 +191,23 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
 
         const zahl = document.getElementById('countzahl')!;
         let n = 3;
+
+        /* Intro beenden – vom Countdown-Ende ODER per Klick/Tastendruck ausgelöst */
+        let beendet = false;
+        const fertig = () => {
+          if (beendet) return;
+          beendet = true;
+          clearInterval(tick);
+          clearInterval(tipp);
+          alarm.classList.add('weg');
+          los();
+          setTimeout(() => alarm.remove(), 800);
+        };
+
         const tick = setInterval(() => {
           n--;
           if (n < 1) {
-            clearInterval(tick);
-            clearInterval(tipp);
-            alarm.classList.add('weg');
-            los();
-            setTimeout(() => alarm.remove(), 800);
+            fertig();
             return;
           }
           zahl.textContent = String(n);
@@ -206,6 +215,10 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
           void (zahl as HTMLElement).offsetWidth; // Animation neu starten
           zahl.classList.add('tick');
         }, 1000);
+
+        /* Klick (Maus/Touch) oder beliebige Taste überspringt den Countdown sofort */
+        alarm.addEventListener('pointerdown', fertig);
+        addEventListener('keydown', fertig);
       }
 
       /* Burger-Menü */

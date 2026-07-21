@@ -3,7 +3,6 @@ name: "GW-Strom"
 typ: "Versorgungs-Lkw Strom Bayern"
 funkruf: "FLORIAN WEIDEN 2/56/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_gwstrom.jpg
 reihenfolge: 13
 beladung:

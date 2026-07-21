@@ -3,7 +3,6 @@ name: "LF 16-TS"
 typ: "Löschgruppenfahrzeug"
 funkruf: "FLORIAN WEIDEN 1/48/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_lf16ts.jpg
 reihenfolge: 6
 beladung:

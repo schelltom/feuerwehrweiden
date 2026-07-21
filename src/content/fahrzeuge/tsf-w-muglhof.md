@@ -3,7 +3,6 @@ name: "TSF-W"
 typ: "Tragkraftspritzenfahrzeug"
 funkruf: "FLORIAN MUGLHOF 46/1"
 standort: "FF Muglhof"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_muglhof.jpg
 reihenfolge: 22
 beladung:

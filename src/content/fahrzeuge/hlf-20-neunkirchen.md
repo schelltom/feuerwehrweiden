@@ -3,7 +3,6 @@ name: "HLF 20"
 typ: "Hilfeleistungslöschgruppenfahrzeug"
 funkruf: "FLORIAN NEUNKIRCHEN 40/1"
 standort: "FF Neunkirchen"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_nk_hlf.jpg
 reihenfolge: 23
 beladung:

@@ -39,8 +39,13 @@ export async function ladeEinsaetze() {
     .sort((a, b) => b.wann.getTime() - a.wann.getTime());
 }
 
-/** "2× Gegenstand sichern" (auch im Zusatz: "THL 1 – 2× …") zählt in der Statistik als 2 Einsätze */
-export function anzahlVon(e: { stichwort: string }) {
+/**
+ * Wie oft ein Eintrag in der Bilanz zählt. Maßgeblich ist das Feld "anzahl"
+ * (z.B. 20× THL Unwetter an einem Tag = 1 Eintrag, zählt 20). Für ältere
+ * Freitext-Einträge greift ersatzweise das alte "N×"-Muster im Stichwort/Zusatz.
+ */
+export function anzahlVon(e: { stichwort: string; anzahl?: number }) {
+  if (e.anzahl && e.anzahl > 1) return e.anzahl;
   const m = e.stichwort.match(/(?:^|–\s*)(\d+)\s*×/);
   return m ? Number(m[1]) : 1;
 }

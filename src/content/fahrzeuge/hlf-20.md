@@ -3,7 +3,6 @@ name: "HLF 20"
 typ: "Hilfeleistungslöschgruppenfahrzeug"
 funkruf: "FLORIAN WEIDEN 1/40/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/hlf.jpg
 reihenfolge: 4

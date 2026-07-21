@@ -3,7 +3,6 @@ name: "Dekon-P"
 typ: "Dekontamination Personen"
 funkruf: "FLORIAN WEIDEN 2/97/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 bild: /bilder/fahrzeuge/f_dekon.jpg
 reihenfolge: 14
 beladung:

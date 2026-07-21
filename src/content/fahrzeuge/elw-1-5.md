@@ -3,7 +3,6 @@ name: "ELW 1,5"
 typ: "Einsatzleitwagen"
 funkruf: "KATER WEIDEN 1/12/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/elw.jpg
 reihenfolge: 3

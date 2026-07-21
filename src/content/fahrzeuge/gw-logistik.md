@@ -3,7 +3,6 @@ name: "GW-Logistik"
 typ: "Gerätewagen Logistik"
 funkruf: "FLORIAN WEIDEN 1/55/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/gwl.jpg
 reihenfolge: 11

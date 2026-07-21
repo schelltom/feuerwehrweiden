@@ -3,7 +3,6 @@ name: "GW-Gefahrgut"
 typ: "Gerätewagen Gefahrgut"
 funkruf: "FLORIAN WEIDEN 2/52/1"
 standort: "Hauptfeuerwache"
-kategorie: fahrzeug
 inHalle: true
 bild: /bilder/fahrzeuge/gwg.jpg
 reihenfolge: 12

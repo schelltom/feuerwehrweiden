@@ -2,7 +2,6 @@
 name: "Anhänger UG-ÖEL"
 typ: "Unterstützungsgruppe Örtliche Einsatzleitung"
 standort: "Hauptfeuerwache"
-kategorie: anhaenger
 bild: /bilder/fahrzeuge/a_ug.jpg
 reihenfolge: 30
 beladung:
