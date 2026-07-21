@@ -1,0 +1,130 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+
+const karten = [
+  {
+    href: '/service/atemschutz/',
+    bild: '/bilder/uploads/2026/atemschutzwerkstatt-kachel.jpg',
+    eyebrow: 'Prüfung & Pflege',
+    titel: 'Atemschutzwerkstatt',
+  },
+  {
+    href: '/service/schlaeuche/',
+    bild: '/bilder/uploads/2026/schlauchpflegestelle.jpg',
+    eyebrow: 'Reinigung & Prüfung',
+    titel: 'Schlauchpflegestelle',
+  },
+  {
+    href: '/service/notruf/',
+    bild: '/bilder/feuerwehr/team112.jpg',
+    eyebrow: 'Im Notfall',
+    titel: 'Notruf 112',
+  },
+];
+---
+
+<Basis
+  titel="Service – Feuerwehr Weiden"
+  beschreibung="Service der Feuerwehr Weiden: Atemschutzwerkstatt, Schlauchpflegestelle und Notruf-Checkliste."
+>
+  <main>
+    <Seitenkopf titel="Service" krumen={[{ name: 'Start', href: '/' }, { name: 'Service' }]} />
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
+        <p class="intro reveal" style="margin-bottom:36px">
+          Zentrale Dienstleistungen der Hauptfeuerwache für die Wehren der Umgebung –
+          und Hilfe für den Ernstfall.
+        </p>
+        <div class="serviceraster">
+          {
+            karten.map((k) => (
+              <a class="servicekarte reveal" href={k.href}>
+                <img class="foto" src={k.bild} alt={k.titel} loading="lazy" />
+                <span class="schatten" aria-hidden="true" />
+                <span class="txt">
+                  <em>{k.eyebrow}</em>
+                  <b>{k.titel}</b>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .serviceraster {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 820px) {
+    .serviceraster {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .serviceraster {
+      grid-template-columns: 1fr;
+    }
+  }
+  .servicekarte {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    aspect-ratio: 16 / 10;
+    background: var(--dunkel2);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .servicekarte:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 48px rgba(20, 22, 28, 0.22);
+  }
+  .servicekarte .foto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .servicekarte:hover .foto {
+    transform: scale(1.07);
+  }
+  .servicekarte .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.9) 0%, rgba(10, 12, 16, 0.2) 50%, transparent 75%);
+  }
+  .servicekarte .txt {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 18px;
+    display: grid;
+    gap: 3px;
+  }
+  .servicekarte .txt em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silber);
+  }
+  .servicekarte .txt b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+    line-height: 1;
+  }
+</style>

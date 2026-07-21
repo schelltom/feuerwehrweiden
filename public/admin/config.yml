@@ -296,7 +296,7 @@ collections:
       - { name: farbe, label: 'Farbe (im Kalender)', widget: color, allowInput: true, default: '#5B6170' }
 
   - name: pflege
-    label: Atemschutzwerkstatt & Schlauchpflegestelle
+    label: Atemschutzwerkstatt
     label_singular: Anlieferung
     folder: src/content/pflege
     create: true
@@ -316,13 +316,33 @@ collections:
       - { name: geraete, label: 'Anzahl Atemschutzgeräte', widget: number, value_type: int, min: 0, default: 0 }
       - { name: masken, label: 'Anzahl Masken', widget: number, value_type: int, min: 0, default: 0 }
       - { name: flaschen, label: 'Anzahl Flaschen', widget: number, value_type: int, min: 0, default: 0 }
-      - { name: schlaeucheB, label: 'Anzahl B-Schläuche', widget: number, value_type: int, min: 0, default: 0 }
-      - { name: schlaeucheC, label: 'Anzahl C-Schläuche', widget: number, value_type: int, min: 0, default: 0 }
       - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
       - { name: abholbereit, label: 'Geprüft & abholbereit (löst die E-Mail an die Wehr aus)', widget: boolean, default: false }
       - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
       - { name: abholbereitSeit, widget: hidden, default: '' }
       - { name: benachrichtigt, widget: hidden, default: false }
+
+  - name: schlaeuche
+    label: Schlauchpflegestelle
+    label_singular: Anlieferung
+    folder: src/content/schlaeuche
+    create: true
+    identifier_field: wehr
+    slug: '{{year}}-{{month}}-{{day}}-{{fields.wehr}}'
+    summary: '{{fields.wehr}} – abgegeben {{fields.abgegeben}}'
+    fields:
+      - name: wehr
+        label: Feuerwehr
+        widget: relation
+        collection: wehren
+        search_fields: [name]
+        display_fields: [name]
+        value_field: '{{slug}}'
+        hint: 'Wehr nicht in der Liste? Erst unter "Feuerwehren" anlegen.'
+      - { name: abgegeben, label: 'Abgegeben am', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
+      - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
+      - { name: abholbereit, label: 'Geprüft & abholbereit', widget: boolean, default: false }
+      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
 
   - name: wehren
     label: Feuerwehren (Atemschutzwerkstatt & Schlauchpflegestelle)

@@ -10,20 +10,20 @@ const wehren = (await getCollection('wehren')).sort((a, b) => a.data.name.locale
 const stand = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
 ---
 
-<Basis titel="Report Atemschutzwerkstatt & Schlauchpflegestelle – Feuerwehr Weiden">
+<Basis titel="Report Atemschutzwerkstatt – Feuerwehr Weiden">
   <main>
-    <Seitenkopf titel="Report" krumen={[{ name: 'Start', href: '/' }, { name: 'Atemschutzwerkstatt & Schlauchpflegestelle', href: '/service/atemschutz/' }, { name: 'Report' }]} />
+    <Seitenkopf titel="Report" krumen={[{ name: 'Start', href: '/' }, { name: 'Atemschutzwerkstatt', href: '/service/atemschutz/' }, { name: 'Report' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(36px,5vw,56px);padding-bottom:64px">
         <div class="reportkopf">
           <div>
-            <h2 class="display drucktitel">Atemschutzwerkstatt &amp; Schlauchpflegestelle – Gesamtreport</h2>
+            <h2 class="display drucktitel">Atemschutzwerkstatt – Gesamtreport</h2>
             <span class="stand">Stand: {stand}</span>
           </div>
           <div class="aktionen keindruck">
             <button class="btn btn-rot" onclick="window.print()">Drucken</button>
-            <a class="zurueck" href="/service/atemschutz/">← zur Atemschutzwerkstatt & Schlauchpflegestelle</a>
+            <a class="zurueck" href="/service/atemschutz/">← zur Atemschutzwerkstatt</a>
           </div>
         </div>
 

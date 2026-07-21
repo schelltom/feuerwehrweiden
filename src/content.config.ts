@@ -126,13 +126,26 @@ const pflege = defineCollection({
     geraete: z.number().default(0),
     masken: z.number().default(0),
     flaschen: z.number().default(0),
-    schlaeucheB: z.number().default(0),
-    schlaeucheC: z.number().default(0),
     hinweis: z.string().default(''),
     abholbereit: z.boolean().default(false),
     /** Trägt der Bot beim E-Mail-Versand ein (ISO-Zeitstempel) */
     abholbereitSeit: z.string().default(''),
     benachrichtigt: z.boolean().default(false),
+    abgeholt: z.boolean().default(false),
+  }),
+});
+
+/**
+ * Schlauchpflegestelle – eigene Anlieferungen, ohne Stückzahlen und ohne E-Mail.
+ * Nutzt dieselbe Wehren-Liste wie die Atemschutzwerkstatt.
+ */
+const schlaeuche = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/schlaeuche' }),
+  schema: z.object({
+    wehr: z.string(),
+    abgegeben: z.coerce.date(),
+    hinweis: z.string().default(''),
+    abholbereit: z.boolean().default(false),
     abgeholt: z.boolean().default(false),
   }),
 });
@@ -208,4 +221,4 @@ const seiten = defineCollection({
   }),
 });
 
-export const collections = { berichte, fahrzeuge, einsaetze, termine, terminkategorien, wehren, pflege, seiten };
+export const collections = { berichte, fahrzeuge, einsaetze, termine, terminkategorien, wehren, pflege, schlaeuche, seiten };

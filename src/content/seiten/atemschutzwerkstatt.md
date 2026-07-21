@@ -54,4 +54,4 @@ Darüber hinaus betreut die Atemschutzwerkstatt 63 Freiwillige Feuerwehren, Werk
 - 31 AlphaBELT-Systeme
 - 47 Chemikalienschutzanzüge
 
-[Zur Atemschutzwerkstatt & Schlauchpflegestelle →](/service/atemschutz/)
+[Zur Abholung – aktueller Stand →](/service/atemschutz/)

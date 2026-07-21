@@ -18,15 +18,15 @@ const vorgaenge = (await ladePflege()).filter((v) => v.wehr === wehr);
 const stand = new Intl.DateTimeFormat('de-DE', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
 ---
 
-<Basis titel={`Report ${wehrName} – Atemschutzwerkstatt & Schlauchpflegestelle Feuerwehr Weiden`}>
+<Basis titel={`Report ${wehrName} – Atemschutzwerkstatt Feuerwehr Weiden`}>
   <main>
-    <Seitenkopf titel={wehrName} krumen={[{ name: 'Start', href: '/' }, { name: 'Atemschutzwerkstatt & Schlauchpflegestelle', href: '/service/atemschutz/' }, { name: 'Report', href: '/service/atemschutz/report/' }]} />
+    <Seitenkopf titel={wehrName} krumen={[{ name: 'Start', href: '/' }, { name: 'Atemschutzwerkstatt', href: '/service/atemschutz/' }, { name: 'Report', href: '/service/atemschutz/report/' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(36px,5vw,56px);padding-bottom:64px">
         <div class="reportkopf">
           <div>
-            <h2 class="display drucktitel">Atemschutzwerkstatt & Schlauchpflegestelle – Report {wehrName}</h2>
+            <h2 class="display drucktitel">Atemschutzwerkstatt – Report {wehrName}</h2>
             <span class="stand">Stand: {stand}</span>
           </div>
           <div class="aktionen keindruck">

@@ -1,27 +1,25 @@
 ---
 import Basis from '../../../layouts/Basis.astro';
 import Seitenkopf from '../../../components/Seitenkopf.astro';
-import { ladePflege, inhaltText, datum } from '../../../lib/pflege';
+import { ladeSchlaeuche, datum } from '../../../lib/pflege';
 
-const vorgaenge = (await ladePflege()).filter((v) => !v.abgeholt);
+const vorgaenge = (await ladeSchlaeuche()).filter((v) => !v.abgeholt);
 const abholbereit = vorgaenge.filter((v) => v.abholbereit);
-const inPflege = vorgaenge.filter((v) => !v.abholbereit);
 ---
 
 <Basis
-  titel="Atemschutzwerkstatt – Feuerwehr Weiden"
-  beschreibung="Aktueller Status der Atemschutzwerkstatt: Welche Geräte, Masken und Flaschen sind abholbereit?"
+  titel="Schlauchpflegestelle – Feuerwehr Weiden"
+  beschreibung="Aktueller Status der Schlauchpflegestelle: Welche Schläuche sind geprüft und abholbereit?"
 >
   <main>
-    <Seitenkopf krumen={[{ name: 'Start', href: '/' }, { name: 'Service', href: '/service/' }, { name: 'Atemschutzwerkstatt' }]} />
+    <Seitenkopf krumen={[{ name: 'Start', href: '/' }, { name: 'Service', href: '/service/' }, { name: 'Schlauchpflegestelle' }]} />
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
         <p class="intro reveal" style="margin-bottom:36px">
-          Die zentrale Atemschutzwerkstatt in der Hauptfeuerwache pflegt und prüft
-          Atemschutzgeräte, Masken und Flaschen für die Wehren der Umgebung.
-          Hier seht ihr jederzeit den aktuellen Stand eurer Anlieferung – sobald etwas
-          abholbereit ist, bekommt eure Wehr automatisch eine E-Mail.
+          Die zentrale Schlauchpflegestelle in der Hauptfeuerwache reinigt, prüft und pflegt
+          die Feuerwehrschläuche der Wehren der Umgebung. Hier seht ihr, welche Anlieferungen
+          geprüft und abholbereit sind.
         </p>
 
         <div class="statusblock reveal">
@@ -38,32 +36,7 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
                   <li class="vorgang bereit">
                     <div>
                       <b>{v.wehrName}</b>
-                      <span>{inhaltText(v)}</span>
-                      {v.hinweis && <em class="hinweis">⚠ {v.hinweis}</em>}
-                    </div>
-                    <time>seit {datum(v.abholbereitSeit || v.abgegeben)}</time>
-                  </li>
-                ))}
-              </ul>
-            )
-          }
-        </div>
-
-        <div class="statusblock reveal">
-          <h2 class="display statuskopf pflege">
-            <span class="punkt" aria-hidden="true"></span>
-            Angeliefert <em>({inPflege.length})</em>
-          </h2>
-          {
-            inPflege.length === 0 ? (
-              <p class="leer">Derzeit nichts in Bearbeitung.</p>
-            ) : (
-              <ul class="vorgaenge">
-                {inPflege.map((v) => (
-                  <li class="vorgang pflege">
-                    <div>
-                      <b>{v.wehrName}</b>
-                      <span>{inhaltText(v)}</span>
+                      <span>Schläuche</span>
                       {v.hinweis && <em class="hinweis">⚠ {v.hinweis}</em>}
                     </div>
                     <time>seit {datum(v.abgegeben)}</time>
@@ -74,15 +47,14 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
           }
         </div>
 
+        <p style="margin:28px 0">
+          <a href="/feuerwehr/ueber-uns/schlauchpflegestelle/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Was ist die Schlauchpflegestelle? →</a>
+        </p>
+
         <div class="hinweisbox">
           Anlieferung und Abholung zu den Öffnungszeiten der Hauptfeuerwache,
           Landgerichtsstraße 13 · Fragen: <a href="tel:+4996139160911">0961 / 391 609-11</a>
         </div>
-
-        <p style="margin-top:28px;display:flex;gap:28px;flex-wrap:wrap">
-          <a href="/feuerwehr/ueber-uns/atemschutzwerkstatt/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Was ist die Atemschutzwerkstatt? →</a>
-          <a href="/service/atemschutz/report/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Report &amp; Druckansicht →</a>
-        </p>
       </div>
     </section>
   </main>
@@ -116,9 +88,6 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
     background: #1a9b4e;
     box-shadow: 0 0 10px rgba(26, 155, 78, 0.7);
   }
-  .statuskopf.pflege .punkt {
-    background: #e8a300;
-  }
   .vorgaenge {
     list-style: none;
     margin: 0;
@@ -140,9 +109,6 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
   }
   .vorgang.bereit {
     border-left-color: #1a9b4e;
-  }
-  .vorgang.pflege {
-    border-left-color: #e8a300;
   }
   .vorgang b {
     font-family: var(--display);

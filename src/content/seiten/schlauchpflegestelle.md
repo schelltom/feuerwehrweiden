@@ -42,3 +42,5 @@ Darüber hinaus übernimmt die Schlauchpflegestelle die Prüfung und Instandhalt
 
 - Prüfung von 704 Druckschläuchen
 - 20 Schlauchreparaturen
+
+[Zur Abholung – aktueller Stand →](/service/schlaeuche/)
