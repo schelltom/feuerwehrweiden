@@ -1,4 +1,0 @@
----
-name: "Drahtwerke Waidhaus"
-email: ""
----
