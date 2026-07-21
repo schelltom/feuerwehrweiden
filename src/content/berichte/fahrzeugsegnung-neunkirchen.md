@@ -1,11 +1,10 @@
 ---
-titel: "Fahrzeugsegnung bei der Feuerwehr Neunkirchen"
+titel: Fahrzeugsegnung bei der Feuerwehr Neunkirchen
 datum: 2026-07-18
 ressort: Fuhrpark
-titelbild: "/bilder/uploads/2026/fahrzeugsegnung-neunkirchen-1.jpg"
+titelbild: /bilder/uploads/2026/fahrzeugsegnung-neunkirchen-1.jpg
 ---
-
-Am Samstag, den 18.07., waren wir zu Gast bei unserer Stadtteilfeuerwehr Neunkirchen. Auf dem Dorfplatz wurde das neue Hilfeleistungslöschgruppenfahrzeug (HLF 20) im Rahmen einer feierlichen Veranstaltung gesegnet.
+Am Samstag, den 18.07., waren wir zu Gast bei unserer Stadtteilfeuerwehr Neunkirchen. Auf dem Dorfplatz wurde das neue Hilfeleistungslöschgruppenfahrzeug (HLF 20) feierlich gesegnet.
 
 Bereits im Rahmen unseres Wachfestes wurden beide neuen HLF 20 offiziell gesegnet und an die jeweiligen Einheiten übergeben. Mit der Fahrzeugsegnung in Neunkirchen bot sich nun die Gelegenheit, das neue Einsatzfahrzeug auch den Bürgerinnen und Bürgern im Ort vorzustellen und gemeinsam diesen besonderen Anlass zu feiern.
 
