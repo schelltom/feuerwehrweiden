@@ -9,6 +9,6 @@ schlaeucheC: 0
 hinweis: ""
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-07-21T17:29"
 benachrichtigt: false
 ---
