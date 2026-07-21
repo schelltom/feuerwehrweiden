@@ -1,0 +1,98 @@
+---
+import Basis from '../layouts/Basis.astro';
+---
+
+<Basis
+  titel="Seite nicht gefunden (404) – Feuerwehr Weiden"
+  beschreibung="Diese Seite konnte nicht gefunden werden. Zurück zur Startseite der Freiwilligen Feuerwehr Weiden."
+>
+  <main class="fehler">
+    <section>
+      <div class="wrap">
+        <span class="eyebrow">Fehlalarm · 404</span>
+        <div class="grosszahl" aria-hidden="true">404</div>
+        <h1 class="titel display">Kein Einsatzort gefunden</h1>
+        <p>
+          Diese Seite existiert nicht (mehr) – vielleicht wurde sie verschoben oder die Adresse
+          hat sich vertippt. Kein Grund zur Sorge: Hier geht's zurück zur Wache.
+        </p>
+        <div class="wege">
+          <a class="weg haupt" href="/">Zur Startseite</a>
+          <a class="weg" href="/berichte/">Berichte</a>
+          <a class="weg" href="/fuhrpark/">Fuhrpark</a>
+          <a class="weg notruf" href="tel:112">Notruf 112</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .fehler section {
+    min-height: 62vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: clamp(56px, 9vw, 120px) 0;
+  }
+  .fehler .grosszahl {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(6rem, 22vw, 15rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--rot);
+    margin: 6px 0 4px;
+  }
+  .fehler h1 {
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    margin: 0 0 14px;
+  }
+  .fehler p {
+    max-width: 46ch;
+    margin: 0 auto 30px;
+    color: var(--tinte2, #3a3f4c);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .wege {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .weg {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--tinte, #1a1d24);
+    padding: 12px 22px;
+    border: 1px solid var(--linie, rgba(0, 0, 0, 0.15));
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .weg:hover {
+    border-color: var(--rot);
+    color: var(--rot);
+  }
+  .weg.haupt {
+    background: var(--rot);
+    border-color: var(--rot);
+    color: #fff;
+  }
+  .weg.haupt:hover {
+    background: var(--rot-tief);
+    border-color: var(--rot-tief);
+    color: #fff;
+  }
+  .weg.notruf {
+    border-color: var(--rot);
+    color: var(--rot);
+    font-weight: 700;
+  }
+  .weg.notruf:hover {
+    background: var(--rot);
+    color: #fff;
+  }
+</style>
