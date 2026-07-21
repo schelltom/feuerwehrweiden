@@ -4,6 +4,7 @@ import { ladeEinsaetze } from '../lib/einsaetze';
 import Basis from '../layouts/Basis.astro';
 import Hero from '../components/Hero.astro';
 import Einsatzmonitor from '../components/Einsatzmonitor.astro';
+import Warnlage from '../components/Warnlage.astro';
 import Bereiche from '../components/Bereiche.astro';
 import Fahrzeughalle from '../components/Fahrzeughalle.astro';
 
@@ -19,7 +20,7 @@ const termine = (await getCollection('termine'))
   .map((t) => t.data)
   .filter((t) => t.datum >= heute)
   .sort((a, b) => a.datum.getTime() - b.datum.getTime())
-  .slice(0, 5);
+  .slice(0, 4);
 
 const fahrzeuge = (await getCollection('fahrzeuge'))
   .filter((f) => f.data.inHalle)
@@ -101,6 +102,7 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
                 <a href="/feuerwehr/ueber-uns/kalender/" style="font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)">Zum Kalender →</a>
               </p>
             </div>
+            <Warnlage />
           </div>
         </div>
       </div>

@@ -1,0 +1,138 @@
+---
+// Live-Warnlage: amtliche DWD-Wetterwarnungen für Weiden i.d.OPf.
+// Quelle: Bright Sky (api.brightsky.dev) – offene DWD-Daten, cookielos, ohne Schlüssel.
+// Abruf client-seitig beim Laden. Bei Fehler/keinem Netz wird das Widget still entfernt.
+const LAT = '49.6764';
+const LON = '12.1626';
+---
+
+<aside class="warnlage" data-lat={LAT} data-lon={LON} aria-live="polite">
+  <span class="eyebrow">Warnlage · Weiden</span>
+  <div class="warn-inhalt" data-status="laden">
+    <p class="warn-laden">Wetterwarnungen werden geladen …</p>
+  </div>
+  <p class="warn-quelle">Amtliche Warnungen · Deutscher Wetterdienst</p>
+</aside>
+
+<style is:global>
+  .warnlage {
+    border: 1px solid var(--linie, rgba(0, 0, 0, 0.14));
+    padding: 16px 18px;
+    background: var(--dunkel2, #12151c);
+    color: #fff;
+  }
+  .warnlage .eyebrow {
+    display: block;
+    margin-bottom: 12px;
+  }
+  .warnlage .warn-laden {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .warnlage .warn-frei {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+    padding-left: 12px;
+    border-left: 3px solid #2fbf5e;
+  }
+  .warnlage .warn-frei b {
+    color: #4fd97e;
+  }
+  .warnlage .warn-karte {
+    display: block;
+    padding: 11px 13px;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #999;
+  }
+  .warnlage .warn-karte:first-child {
+    margin-top: 0;
+  }
+  .warnlage .warn-karte b {
+    display: block;
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+  .warnlage .warn-karte span {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.72);
+    margin-top: 3px;
+  }
+  .warnlage .warn-karte time {
+    display: block;
+    font-family: var(--mono, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.55);
+    margin-top: 6px;
+  }
+  .warnlage .warn-gelb { border-left-color: #ffd21e; }
+  .warnlage .warn-gelb b { color: #ffe27a; }
+  .warnlage .warn-orange { border-left-color: #ff9500; }
+  .warnlage .warn-orange b { color: #ffb14d; }
+  .warnlage .warn-rot { border-left-color: #ff4133; }
+  .warnlage .warn-rot b { color: #ff7a70; }
+  .warnlage .warn-violett { border-left-color: #c06cff; }
+  .warnlage .warn-violett b { color: #d9a6ff; }
+  .warnlage .warn-quelle {
+    margin: 13px 0 0;
+    font-family: var(--mono, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+</style>
+
+<script>
+  const box = document.querySelector<HTMLElement>('.warnlage');
+  if (box) {
+    const lat = box.dataset.lat;
+    const lon = box.dataset.lon;
+    const ziel = box.querySelector<HTMLElement>('.warn-inhalt')!;
+    const stufe: Record<string, number> = { minor: 1, moderate: 2, severe: 3, extreme: 4 };
+    const farbe: Record<number, string> = { 1: 'gelb', 2: 'orange', 3: 'rot', 4: 'violett' };
+    const esc = (s: unknown) =>
+      String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+    const fmt = (iso: string) => {
+      try {
+        return new Intl.DateTimeFormat('de-DE', {
+          day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+        }).format(new Date(iso));
+      } catch {
+        return '';
+      }
+    };
+
+    fetch(`https://api.brightsky.dev/alerts?lat=${lat}&lon=${lon}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => {
+        const alerts = (d.alerts || []).filter((a: any) => a && a.severity);
+        if (!alerts.length) {
+          ziel.dataset.status = 'frei';
+          ziel.innerHTML =
+            '<p class="warn-frei"><b>Keine amtlichen Warnungen.</b> Für Weiden liegen aktuell keine Wetterwarnungen vor.</p>';
+          return;
+        }
+        alerts.sort((a: any, b: any) => (stufe[b.severity] || 0) - (stufe[a.severity] || 0));
+        ziel.dataset.status = 'warnung';
+        ziel.innerHTML = alerts
+          .map((a: any) => {
+            const lvl = stufe[a.severity] || 1;
+            const titel = esc(a.event_de || a.event_en || a.headline_de || 'Wetterwarnung');
+            const kopf = a.headline_de && a.headline_de !== a.event_de ? `<span>${esc(a.headline_de)}</span>` : '';
+            const bis = a.expires ? `<time>gültig bis ${esc(fmt(a.expires))} Uhr</time>` : '';
+            return `<div class="warn-karte warn-${farbe[lvl]}"><b>${titel}</b>${kopf}${bis}</div>`;
+          })
+          .join('');
+      })
+      .catch(() => {
+        // Kein Netz / Dienst nicht erreichbar: Widget still ausblenden
+        box.remove();
+      });
+  }
+</script>
