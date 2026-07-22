@@ -14,7 +14,7 @@ const einsaetze = await ladeEinsaetze();
 const berichte = (await getCollection('berichte'))
   .filter((b) => !b.data.entwurf)
   .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime())
-  .slice(0, 5);
+  .slice(0, 6);
 
 const heute = new Date();
 heute.setHours(0, 0, 0, 0);
