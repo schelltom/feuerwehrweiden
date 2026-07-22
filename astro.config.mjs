@@ -9,6 +9,6 @@ import sitemap from '@astrojs/sitemap';
 // `site` bestimmt Canonical-URLs, Sitemap und Open-Graph-URLs – beim
 // Domain-Umzug hier auf https://feuerwehr-weiden.de umstellen.
 export default defineConfig({
-  site: 'https://stadtfeuerwehrverband-weiden.de',
+  site: 'https://feuerwehr-weiden.de',
   integrations: [sitemap()],
 });
