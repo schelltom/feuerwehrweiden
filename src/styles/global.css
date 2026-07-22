@@ -621,8 +621,8 @@
   }
   .news li:hover{padding-left:22px}
   .news li:hover::before{width:14px}
-  .news .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte2)}
-  .news .meta b{color:var(--rot);font-weight:400;margin-left:12px}
+  .news .meta{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte2);display:flex;flex-wrap:wrap;gap:2px 12px;overflow-wrap:anywhere}
+  .news .meta b{color:var(--rot);font-weight:400}
   .news h3{margin:8px 0 0;font-size:1.12rem;line-height:1.4;font-weight:600;hyphens:auto;overflow-wrap:anywhere}
   .news h3 a{text-decoration:none}
   .news h3 a:hover{color:var(--rot)}
