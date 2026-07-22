@@ -4,7 +4,7 @@ bereich: ueber-uns
 reihenfolge: 10
 kurz: Das Herz der Feuerwehr Weiden – die Feuerwache in der Landgerichtsstraße
 titelbild: /bilder/uploads/2026/feuerwache-halle1.jpg
-kopfbild: true
+kopfbild: false
 kartenbild: /bilder/uploads/2026/feuerwache-saal.jpg
 galerie:
   - bild: /bilder/uploads/2026/feuerwache-halle1.jpg
