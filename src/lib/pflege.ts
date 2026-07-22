@@ -4,7 +4,7 @@ async function wehrenMap() {
   return new Map((await getCollection('wehren')).map((w) => [w.id, w.data]));
 }
 
-/** Vorgänge der Atemschutzwerkstatt, neueste zuerst, mit aufgelöstem Wehr-Namen. */
+/** Vorgänge der Atemschutzwerkstatt, alphabetisch nach Wehr-Name, mit aufgelöstem Wehr-Namen. */
 export async function ladePflege() {
   const wehren = await wehrenMap();
   return (await getCollection('pflege'))
@@ -13,10 +13,10 @@ export async function ladePflege() {
       id: v.id,
       wehrName: wehren.get(v.data.wehr)?.name ?? v.data.wehr,
     }))
-    .sort((a, b) => b.abgegeben.getTime() - a.abgegeben.getTime());
+    .sort((a, b) => a.wehrName.localeCompare(b.wehrName, 'de'));
 }
 
-/** Vorgänge der Schlauchpflegestelle, neueste zuerst, mit aufgelöstem Wehr-Namen. */
+/** Vorgänge der Schlauchpflegestelle, alphabetisch nach Wehr-Name, mit aufgelöstem Wehr-Namen. */
 export async function ladeSchlaeuche() {
   const wehren = await wehrenMap();
   return (await getCollection('schlaeuche'))
@@ -25,7 +25,7 @@ export async function ladeSchlaeuche() {
       id: v.id,
       wehrName: wehren.get(v.data.wehr)?.name ?? v.data.wehr,
     }))
-    .sort((a, b) => b.abgegeben.getTime() - a.abgegeben.getTime());
+    .sort((a, b) => a.wehrName.localeCompare(b.wehrName, 'de'));
 }
 
 type Mengen = { geraete: number; masken: number; flaschen: number };
