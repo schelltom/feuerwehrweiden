@@ -4,6 +4,7 @@ bereich: "einheiten"
 reihenfolge: 4
 kurz: "34 Mitglieder · rund 30 Übungen im Jahr"
 titelbild: "/bilder/feuerwehr/jugend-3597.jpg"
+kopfbild: false
 personen:
   - name: "Jonas Huber"
     bild: "/bilder/feuerwehr/jugend-3625.jpg"

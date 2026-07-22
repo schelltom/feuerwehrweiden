@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 4
 kurz: "12 hauptamtliche Kräfte in der Hauptfeuerwache"
 titelbild: "/bilder/feuerwehr/personal-gruppe.jpg"
+kopfbild: false
 gruppenfoto:
   bild: "/bilder/feuerwehr/personal-gruppe.jpg"
   text: "hintere Reihe von links: Bernhard Wager, Michael Wirth, Hans-Michael Scharnagl, Stefan Hirmer, Klaus Heimann, Eva Kraus, vordere Reihe von links: Sebastian Teichmann, Ludwig Grasser, Stefanie Träger (Katastrophenschutz), Michael Zielbauer, Ronny Pressl, Manuel Kraus"

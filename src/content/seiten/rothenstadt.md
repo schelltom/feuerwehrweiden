@@ -4,6 +4,7 @@ bereich: "ortsteile"
 reihenfolge: 5
 kurz: "Ortsteilfeuerwehr der Stadt Weiden"
 titelbild: "/bilder/fahrzeuge/f_roth_lf20.jpg"
+kopfbild: false
 kartenmotiv: "geraetehaus"
 wappen: "/bilder/ortsteile/wappen-rothenstadt.png"
 kontakt:

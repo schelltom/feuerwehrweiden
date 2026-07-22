@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 6
 kurz: "Dein Weg zur Feuerwehr Weiden"
 titelbild: "/bilder/feuerwehr/team112.jpg"
+kopfbild: false
 galerie:
   - bild: "/bilder/feuerwehr/team112.jpg"
     text: "#team112 – die aktuelle Kampagne des LFV Bayern"

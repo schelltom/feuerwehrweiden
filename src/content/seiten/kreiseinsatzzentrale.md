@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 9
 kurz: "Führungs- und Kommunikationszentrale – rund um die Uhr besetzt"
 titelbild: "/bilder/header/ugoeel-waldbrand.jpg"
+kopfbild: false
 kartenbild: "/bilder/uploads/2026/kreiseinsatzzentrale.jpeg"
 ---
 

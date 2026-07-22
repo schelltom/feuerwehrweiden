@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 5
 kurz: "Von der Turnerfeuerwehr 1861 bis heute"
 titelbild: "/bilder/header/segnung.jpg"
+kopfbild: false
 zeitstrahl:
   - zeit: "20. Mai 1861"
     titel: "Gründung Der Turnerfeuerwehr Weiden"

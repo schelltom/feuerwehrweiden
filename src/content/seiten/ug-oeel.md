@@ -4,6 +4,7 @@ bereich: "einheiten"
 reihenfolge: 5
 kurz: "Unterstützungsgruppe Örtliche Einsatzleitung"
 titelbild: "/bilder/fahrzeuge/elw.jpg"
+kopfbild: false
 kontakt:
   name: "UG-ÖEL der Stadt Weiden i.d.OPf."
   telefon: "0961 / 391609-0"

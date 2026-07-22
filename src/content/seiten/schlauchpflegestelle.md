@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 8
 kurz: "Reinigung, Prüfung und Instandhaltung der Feuerwehrschläuche – rund 1.456 Prüfungen im Jahr"
 titelbild: "/bilder/header/feldbrand.jpg"
+kopfbild: false
 kartenbild: "/bilder/uploads/2026/schlauchpflegestelle.jpg"
 ---
 

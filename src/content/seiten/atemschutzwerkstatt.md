@@ -4,6 +4,7 @@ bereich: "ueber-uns"
 reihenfolge: 7
 kurz: "Reinigung, Prüfung und Wartung der Atemschutztechnik – rund 10.500 Prüfungen im Jahr"
 titelbild: "/bilder/header/absturz.jpg"
+kopfbild: false
 kartenbild: "/bilder/uploads/2026/atemschutzwerkstatt-kachel.jpg"
 galerie:
   - bild: "/bilder/uploads/2026/atemschutz-annahme.jpg"
