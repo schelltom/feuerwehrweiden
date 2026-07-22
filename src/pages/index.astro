@@ -43,8 +43,6 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
   <main>
     <Hero ticker={einsaetze.slice(0, 4)} />
 
-    <AbholStreifen />
-
     <section id="aktuelles">
       <div class="wrap" style="padding-top:clamp(40px,5vw,64px)">
         <div class="zweispalt">
@@ -82,6 +80,7 @@ const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '
             </p>
           </div>
           <div style="display:grid;gap:38px;align-content:start">
+            <AbholStreifen />
             <Einsatzmonitor einsaetze={einsaetze.slice(0, 5)} kompakt />
             <div>
               <span class="eyebrow">Termine</span>

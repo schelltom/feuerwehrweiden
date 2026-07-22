@@ -13,7 +13,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
 {
   atemschutz + schlaeuche > 0 && (
     <div class="abholstreifen">
-      <div class="wrap">
+      <div class="ab-innen">
         <span class="ab-label">
           <span class="ab-punkt" aria-hidden="true" />
           Abholbereit
@@ -21,7 +21,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
         <div class="ab-links">
           {atemschutz > 0 && (
             <a href="/service/atemschutz/" class="ab-pill">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="8" y="7" width="8" height="14" rx="4" />
                 <path d="M10 7V4h4v3" />
                 <path d="M9.5 4h5" />
@@ -34,7 +34,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
           )}
           {schlaeuche > 0 && (
             <a href="/service/schlaeuche/" class="ab-pill">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="11" cy="12" r="8" />
                 <circle cx="11" cy="12" r="3.2" />
                 <path d="M19 12h3" />
@@ -54,16 +54,14 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
 <style>
   .abholstreifen {
     background: var(--karte);
-    border-top: 1px solid var(--linie);
-    border-bottom: 1px solid var(--linie);
+    border: 1px solid var(--linie);
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
   }
-  .abholstreifen .wrap {
+  .ab-innen {
     display: flex;
-    align-items: center;
-    gap: 14px 28px;
-    flex-wrap: wrap;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 16px;
   }
   .ab-label {
     display: inline-flex;
@@ -89,23 +87,25 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
   }
   .ab-links {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 8px;
   }
   .ab-pill {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 7px;
+    box-sizing: border-box;
+    max-width: 100%;
     text-decoration: none;
     color: var(--tinte);
     background: #fff;
     border: 1px solid var(--linie);
-    border-left: 4px solid #1a9b4e;
-    padding: 9px 16px;
+    border-left: 3px solid #1a9b4e;
+    padding: 6px 11px;
     font-family: var(--display);
     font-style: italic;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -119,6 +119,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
   }
   .ab-pill b {
     font-size: 1.05em;
+    margin-right: 0.2em;
   }
   .ab-pfeil {
     color: #1a9b4e;
