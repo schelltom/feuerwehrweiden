@@ -1,29 +1,30 @@
 ---
-titel: "Unsere Räumlichkeiten"
-bereich: "ueber-uns"
+titel: Unsere Räumlichkeiten
+bereich: ueber-uns
 reihenfolge: 10
-kurz: "Das Herz der Feuerwehr Weiden – die Feuerwache in der Landgerichtsstraße"
-titelbild: "/bilder/uploads/2026/feuerwache-halle1.jpg"
-kartenbild: "/bilder/uploads/2026/feuerwache-saal.jpg"
+kurz: Das Herz der Feuerwehr Weiden – die Feuerwache in der Landgerichtsstraße
+titelbild: /bilder/uploads/2026/feuerwache-halle1.jpg
+kopfbild: true
+kartenbild: /bilder/uploads/2026/feuerwache-saal.jpg
 galerie:
-  - bild: "/bilder/uploads/2026/feuerwache-halle1.jpg"
-    text: "Fahrzeughalle der Hauptfeuerwache"
-  - bild: "/bilder/uploads/2026/feuerwache-halle1_1.jpg"
-    text: "Fahrzeughalle mit Blick zur Landgerichtsstraße"
-  - bild: "/bilder/uploads/2026/feuerwache-halle2.jpg"
-    text: "Zweite Fahrzeughalle"
-  - bild: "/bilder/uploads/2026/feuerwache-kleinersaal.jpg"
-    text: "Schulungs- und Ausbildungsraum"
-  - bild: "/bilder/uploads/2026/feuerwache-saal.jpg"
-    text: "Großer Saal"
-  - bild: "/bilder/uploads/2026/feuerwache-terasse.jpg"
-    text: "Terrasse"
-  - bild: "/bilder/uploads/2026/feuerwache-florianstueberl.jpg"
-    text: "Florianstüberl – Aufenthaltsraum"
-  - bild: "/bilder/uploads/2026/feuerwache-fahne.jpg"
-    text: "Historische Vereinsfahne im Eingangsbereich"
-  - bild: "/bilder/uploads/2026/feuerwache-florian.jpg"
-    text: "Heiliger Florian – Schutzpatron der Feuerwehr"
+  - bild: /bilder/uploads/2026/feuerwache-halle1.jpg
+    text: Fahrzeughalle der Hauptfeuerwache
+  - bild: /bilder/uploads/2026/feuerwache-halle1_1.jpg
+    text: Fahrzeughalle mit Blick zur Luitpoldstrasse
+  - bild: /bilder/uploads/2026/feuerwache-halle2.jpg
+    text: Zweite Fahrzeughalle
+  - bild: /bilder/uploads/2026/feuerwache-kleinersaal.jpg
+    text: Schulungs- und Ausbildungsraum
+  - bild: /bilder/uploads/2026/feuerwache-saal.jpg
+    text: Großer Saal
+  - bild: /bilder/uploads/2026/feuerwache-terasse.jpg
+    text: Terrasse
+  - bild: /bilder/uploads/2026/feuerwache-florianstueberl.jpg
+    text: Florianstüberl – Aufenthaltsraum
+  - bild: /bilder/uploads/2026/feuerwache-fahne.jpg
+    text: Historische Vereinsfahne im Eingangsbereich
+  - bild: /bilder/uploads/2026/feuerwache-florian.jpg
+    text: Heiliger Florian – Schutzpatron der Feuerwehr
 ---
 
 ## Das Herz der Feuerwehr Weiden
