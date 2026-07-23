@@ -6,7 +6,7 @@ masken: 0
 flaschen: 0
 hinweis: ""
 abholbereit: true
+abgeholt: true
 abholbereitSeit: ""
 benachrichtigt: true
-abgeholt: false
 ---
