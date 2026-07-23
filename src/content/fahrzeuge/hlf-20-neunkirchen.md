@@ -37,5 +37,6 @@ beladung:
       - "Saugkorb"
       - "Sammelstück"
 gruppe: loesch
+entwurf: false
 ---
 

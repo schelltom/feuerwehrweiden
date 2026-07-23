@@ -84,4 +84,5 @@ beladung:
       - "Drucklüfter wasserbetrieben"
       - "Wenderohr"
 gruppe: hubrettung
+entwurf: false
 ---

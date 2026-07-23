@@ -59,5 +59,6 @@ beladung:
       - "1x Flipchart"
       - "2x Abdeckmatte"
 gruppe: anhaenger
+entwurf: false
 ---
 

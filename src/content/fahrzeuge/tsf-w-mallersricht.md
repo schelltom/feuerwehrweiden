@@ -53,5 +53,6 @@ beladung:
       - "Tragkraftspritze TS 8/8"
       - "Steckleitern"
 gruppe: loesch
+entwurf: false
 ---
 

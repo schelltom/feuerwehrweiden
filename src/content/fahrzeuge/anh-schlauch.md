@@ -4,5 +4,6 @@ typ: "Anhänger"
 standort: "Hauptfeuerwache"
 reihenfolge: 37
 gruppe: anhaenger
+entwurf: false
 ---
 

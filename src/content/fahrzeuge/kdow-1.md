@@ -11,5 +11,6 @@ beladung:
   - raum: "Fahrerseite"
     bild: "/bilder/fahrzeuge/detail/kdow-1-2.jpg"
 gruppe: elw-kdow
+entwurf: false
 ---
 

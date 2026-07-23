@@ -4,6 +4,7 @@ datum: 2026-07-11T15:00:00
 ressort: Feuerwehrverein
 titelbild: "/bilder/uploads/2026/fahrzeugweihe-neustadt-1.jpg"
 kurz: "Gemeinsam mit zahlreichen Gästen durften wir die feierliche Fahrzeugweihe des neuen HLF 20 unserer Patenfeuerwehr Neustadt/WN miterleben."
+entwurf: false
 ---
 
 Nach einem ereignisreichen Feuerwehrsamstag besuchten wir am Nachmittag unsere Patenfeuerwehr Neustadt/WN. Gemeinsam mit zahlreichen Gästen durften wir die feierliche Fahrzeugweihe des neuen HLF 20 miterleben.

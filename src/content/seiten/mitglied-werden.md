@@ -8,6 +8,7 @@ kopfbild: false
 galerie:
   - bild: "/bilder/feuerwehr/team112.jpg"
     text: "#team112 – die aktuelle Kampagne des LFV Bayern"
+entwurf: false
 ---
 
 ### Der Weg zur Feuerwehr

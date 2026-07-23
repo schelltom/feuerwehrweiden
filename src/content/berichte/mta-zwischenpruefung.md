@@ -4,6 +4,7 @@ datum: 2026-07-12
 ressort: Übungsdienst
 titelbild: "/bilder/uploads/2026/mta-zwischenpruefung-1.jpg"
 kurz: "Zehn Kameradinnen und Kameraden aus dem Stadtgebiet Weiden legten die Zwischenprüfung des MTA-Basismoduls erfolgreich ab."
+entwurf: false
 ---
 
 Am Samstag, den 11.07.2026, legten zehn Kameradinnen und Kameraden aus dem Stadtgebiet Weiden die Zwischenprüfung des MTA-Basismoduls erfolgreich ab. Nach acht Wochen intensiver Ausbildung, die abwechselnd bei den Feuerwehren im Stadtgebiet Weiden stattfand, stellten sie ihr Können unter Beweis.

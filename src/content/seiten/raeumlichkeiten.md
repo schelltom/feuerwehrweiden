@@ -25,6 +25,7 @@ galerie:
     text: Historische Vereinsfahne im Eingangsbereich
   - bild: /bilder/uploads/2026/feuerwache-florian.jpg
     text: Heiliger Florian – Schutzpatron der Feuerwehr
+entwurf: false
 ---
 
 ## Das Herz der Feuerwehr Weiden

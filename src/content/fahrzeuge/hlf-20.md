@@ -83,5 +83,6 @@ beladung:
       - "Schaumtank Brandklasse \"B\" 150 Liter"
       - "Schaumtank Brandklasse \"A\" 50 Liter"
 gruppe: loesch
+entwurf: false
 ---
 

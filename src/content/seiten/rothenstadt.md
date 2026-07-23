@@ -31,6 +31,7 @@ personen:
     funktion: "Schriftführer"
   - name: "Domenic Lehner"
     funktion: "Gerätewart"
+entwurf: false
 ---
 
 Die Freiwillige Feuerwehr Rothenstadt wurde im Jahr 1873 gegründet und ist

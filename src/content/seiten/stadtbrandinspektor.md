@@ -11,4 +11,5 @@ kontakt:
   fax: "0961 / 391609-19"
   email: "sbi@weiden.de"
   bild: "/bilder/feuerwehr/sbi.jpg"
+entwurf: false
 ---

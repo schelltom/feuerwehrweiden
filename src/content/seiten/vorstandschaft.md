@@ -18,6 +18,7 @@ personen:
     funktion: "Kassier"
   - name: "Alexander Kraus"
     funktion: "Schriftführer"
+entwurf: false
 ---
 
 

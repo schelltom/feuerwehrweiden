@@ -8,6 +8,7 @@ kopfbild: false
 galerie:
   - bild: "/bilder/feuerwehr/logo.png"
     text: "Logo der Kinderfeuerwehr Weiden"
+entwurf: false
 ---
 
 Weitere Informationen folgen in Kürze.

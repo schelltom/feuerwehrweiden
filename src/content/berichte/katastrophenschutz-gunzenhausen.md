@@ -4,6 +4,7 @@ datum: 2026-07-12
 ressort: Einsatzdienst
 titelbild: "/bilder/uploads/2026/katastrophenschutz-gunzenhausen-1.jpg"
 kurz: "Bei der feierlichen Übergabe von mehr als 110 neuen Katastrophenschutzfahrzeugen in Gunzenhausen war auch die Feuerwehr Weiden mit ihrem SW 2000 vertreten."
+entwurf: false
 ---
 
 Am Samstag, den 11.07., fand in Gunzenhausen die feierliche Übergabe neuer Fahrzeuge für den Katastrophen- und Zivilschutz statt. Im Rahmen des Festaktes übergaben der Bayerische Staatsminister des Innern, für Sport und Integration, Joachim Herrmann, MdL, sowie Bundesinnenminister Alexander Dobrindt, MdB, insgesamt mehr als 110 Einsatzfahrzeuge an freiwillige Hilfsorganisationen, Feuerwehren und Einsatzkräfte.

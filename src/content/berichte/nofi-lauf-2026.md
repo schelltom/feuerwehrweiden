@@ -4,6 +4,7 @@ datum: 2026-07-02
 ressort: Einsatzdienst
 titelbild: "/bilder/uploads/2026/nofi-lauf-2026-1.jpg"
 kurz: "Am gestrigen Tag begleiteten wir den Nofi-Lauf 2026, der turnusgemäß erneut in Weiden stattfand."
+entwurf: false
 ---
 
 Am gestrigen Tag begleiteten wir den Nofi-Lauf 2026, der turnusgemäß erneut in Weiden stattfand.

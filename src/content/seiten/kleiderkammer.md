@@ -5,6 +5,7 @@ reihenfolge: 11
 kurz: Persönliche Schutzausrüstung - zentral verwaltet, jederzeit einsatzbereit
 titelbild: /bilder/ueber-uns/304cbab0-40ee-4a38-bc46-1ff847789811.jpeg
 kopfbild: true
+entwurf: false
 ---
 # **Kleiderkammer**
 

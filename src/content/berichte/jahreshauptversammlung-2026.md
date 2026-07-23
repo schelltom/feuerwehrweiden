@@ -4,6 +4,7 @@ datum: 2026-03-14
 ressort: Verein
 titelbild: "/bilder/uploads/2026/jahreshauptversammlung-2026-1.jpg"
 kurz: "Zur Jahreshauptversammlung der Freiwilligen Feuerwehr Weiden konnte Vereinsvorsitzender Peter Stahl rund 80 Mitglieder und Gäste im großen Lehrsaal der Feuerwache Weiden begrüßen."
+entwurf: false
 ---
 
 Zur Jahreshauptversammlung der Freiwilligen Feuerwehr Weiden konnte Vereinsvorsitzender Peter Stahl rund 80 Mitglieder und Gäste im großen Lehrsaal der Feuerwache Weiden begrüßen.

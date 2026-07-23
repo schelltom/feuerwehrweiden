@@ -42,6 +42,7 @@ zeitstrahl:
   - zeit: "2009"
     titel: "Feuerwache 2 In Der Leuchtenberger Straße"
     text: "Aufgrund des stetig steigenden Platzbedarfs wurde 2009 die Feuerwache 2 in der Leuchtenberger Straße in Betrieb genommen. Sie dient bis heute als Unterstellmöglichkeit für Sonderfahrzeuge, Einsatzmaterial und verschiedene Gerätschaften und entlastet damit die räumlichen Kapazitäten der Hauptfeuerwache."
+entwurf: false
 ---
 
 

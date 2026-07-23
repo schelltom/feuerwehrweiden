@@ -3,6 +3,7 @@ titel: "Schwerer Verkehrsunfall bei Latsch"
 datum: 2026-01-24
 ressort: Einsatzdienst
 kurz: "Zu einem schweren Verkehrsunfall wurden die Feuerwehren Neunkirchen und Weiden am Samstag, den 24.01.25 gerufen."
+entwurf: false
 ---
 
 Zu einem schweren Verkehrsunfall wurden die Feuerwehren Neunkirchen und Weiden am Samstag, den 24.01.25 gerufen.

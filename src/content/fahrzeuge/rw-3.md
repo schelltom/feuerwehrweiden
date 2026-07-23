@@ -97,5 +97,6 @@ beladung:
       - "Zugkraft nach vorne 60 kN"
       - "nach hinten 120 kN"
 gruppe: ruest-geraete
+entwurf: false
 ---
 

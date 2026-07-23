@@ -6,6 +6,7 @@ kurz: "Reinigung, Prüfung und Instandhaltung der Feuerwehrschläuche – rund 1
 titelbild: "/bilder/header/feldbrand.jpg"
 kopfbild: false
 kartenbild: "/bilder/uploads/2026/schlauchpflegestelle.jpg"
+entwurf: false
 ---
 
 Die Schlauchpflegestelle der Hauptfeuerwache Weiden ist für die Reinigung, Prüfung und Instandhaltung der Feuerwehrschläuche verantwortlich. Sie stellt sicher, dass sämtliche Schläuche den geltenden Vorschriften entsprechen und jederzeit einsatzbereit sind.

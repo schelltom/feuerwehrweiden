@@ -19,6 +19,7 @@ galerie:
     text: "Füllanlage für Atemluftflaschen"
   - bild: "/bilder/uploads/2026/atemschutz-ausgabe.jpg"
     text: "Ausgabe der geprüften Geräte"
+entwurf: false
 ---
 
 Die Atemschutzwerkstatt der Hauptfeuerwache Weiden ist für die Reinigung, Pflege, Prüfung und Wartung der Atemschutztechnik verantwortlich. Sie stellt sicher, dass alle Atemschutzgeräte jederzeit den geltenden Vorschriften sowie den Herstellervorgaben entsprechen und für den Einsatz bereitstehen.

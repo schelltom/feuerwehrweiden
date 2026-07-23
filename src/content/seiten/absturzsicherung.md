@@ -8,6 +8,7 @@ kopfbild: false
 galerie:
   - bild: "/bilder/feuerwehr/absturz-uebung.jpg"
     text: "Übung der Absturzsicherung"
+entwurf: false
 ---
 
 Weitere Informationen folgen in Kürze.

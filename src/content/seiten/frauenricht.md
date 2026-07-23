@@ -9,4 +9,5 @@ wappen: "/bilder/ortsteile/wappen-frauenricht.png"
 gruppenfoto:
   bild: "/bilder/ortsteile/geraetehaus-frauenricht.jpg"
   text: "Gerätehaus der Feuerwehr Frauenricht"
+entwurf: false
 ---

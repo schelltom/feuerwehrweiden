@@ -11,6 +11,7 @@ stats:
     label: Helferinnen & Helfer
   - wert: 60 m²
     label: Modellausstellung
+entwurf: false
 ---
 
 Unmittelbar nach den Feierlichkeiten zur Fahrzeugsegnung und

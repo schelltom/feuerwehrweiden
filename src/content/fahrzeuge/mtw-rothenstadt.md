@@ -17,5 +17,6 @@ beladung:
       - "Verkehrswarnleuchten Euroblitz"
       - "Handlampen Adalit"
 gruppe: sonstige
+entwurf: false
 ---
 

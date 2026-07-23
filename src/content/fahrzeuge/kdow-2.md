@@ -17,5 +17,6 @@ beladung:
       - "Anhaltestab"
       - "HRT"
 gruppe: elw-kdow
+entwurf: false
 ---
 

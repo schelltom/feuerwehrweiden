@@ -52,5 +52,6 @@ beladung:
   - raum: "Vorbaupumpe"
     bild: "/bilder/fahrzeuge/detail/lf-16-ts-6.jpg"
 gruppe: loesch
+entwurf: false
 ---
 

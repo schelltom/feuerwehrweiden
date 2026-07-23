@@ -4,6 +4,7 @@ datum: 2026-02-20
 ressort: Einsatzdienst
 titelbild: "/bilder/uploads/2026/gebaeudebrand-februar-1.jpg"
 kurz: "Mit dem Einsatzstichwort „Zimmerbrand im Obergeschoss eines Wohngebäudes im Sauerdornweg“, wurden die Feuerwehren Neunkirchen und Weiden am Freitag, den 20.02.2"
+entwurf: false
 ---
 
 Mit dem Einsatzstichwort „Zimmerbrand im Obergeschoss eines Wohngebäudes im Sauerdornweg“, wurden die Feuerwehren Neunkirchen und Weiden am Freitag, den 20.02.26, nachts um kurz vor 03.00 Uhr alarmiert.

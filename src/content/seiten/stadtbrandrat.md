@@ -11,4 +11,5 @@ kontakt:
   fax: "0961 / 391609-19"
   email: "sbr@weiden.de"
   bild: "/bilder/feuerwehr/sbr.jpg"
+entwurf: false
 ---

@@ -13,6 +13,7 @@ galerie:
     text: "Hoch hinaus mit der Drehleiter"
   - bild: "/bilder/uploads/2026/hochzeit-steffi-marco-5.jpg"
     text: "Das Brautpaar bei strahlendem Sonnenschein"
+entwurf: false
 ---
 
 Am Samstag, den 11.07., haben unsere Kameradin Steffi und ihr Marco in der St. Marien Kirche in Rothenstadt ihre kirchliche Trauung gefeiert. Nachdem beide bereits im vergangenen Jahr standesamtlich geheiratet haben, folgte nun der kirchliche Segen für ihren gemeinsamen Lebensweg.

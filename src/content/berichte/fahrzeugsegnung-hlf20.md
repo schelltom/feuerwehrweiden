@@ -4,6 +4,7 @@ datum: 2026-05-17
 ressort: Fuhrpark
 titelbild: "/bilder/uploads/2026/fahrzeugsegnung-hlf20-1.jpg"
 kurz: "Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs- Löschfahrzeugen"
+entwurf: false
 ---
 
 Feierstunde mit Segnung und Indienststellung von zwei neuen Hilfeleistungs- Löschfahrzeugen

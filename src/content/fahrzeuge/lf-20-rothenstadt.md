@@ -106,5 +106,6 @@ beladung:
       - "Kombinationsschaumrohr"
       - "Verteiler"
 gruppe: loesch
+entwurf: false
 ---
 

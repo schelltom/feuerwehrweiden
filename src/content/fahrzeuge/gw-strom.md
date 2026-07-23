@@ -15,5 +15,6 @@ beladung:
   - raum: "Seite rechts"
     bild: "/bilder/fahrzeuge/detail/gw-strom-4.jpg"
 gruppe: ruest-geraete
+entwurf: false
 ---
 

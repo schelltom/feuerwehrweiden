@@ -4,6 +4,7 @@ datum: 2026-07-11
 ressort: Übungsdienst
 titelbild: "/bilder/uploads/2026/ausbildung-sommerwetter-1.jpg"
 kurz: "Für unsere Maschinisten stand ein intensiver Ausbildungstag auf dem Programm – der Schwerpunkt lag auf der Ausbildung an unseren beiden Drehleitern."
+entwurf: false
 ---
 
 Am Samstag, den 11.07., stand für unsere Maschinisten ein intensiver Ausbildungstag auf dem Programm. Der Schwerpunkt lag auf der Ausbildung an unseren beiden Drehleitern. Geübt und vertieft wurden unter anderem: Notbetrieb, Leiterbrücke und Anbauteile. Zusätzlich wurde unser neues HLF 20 nochmals intensiv geschult, damit im Einsatz jeder Handgriff sitzt.

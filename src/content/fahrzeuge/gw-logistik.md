@@ -54,5 +54,6 @@ beladung:
       - "Faltkegel"
       - "Verkehrswarnleuchten \"Euroblitz\""
 gruppe: ruest-geraete
+entwurf: false
 ---
 

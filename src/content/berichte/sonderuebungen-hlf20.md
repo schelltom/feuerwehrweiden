@@ -12,6 +12,7 @@ galerie:
   - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-6.jpg"
   - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-7.jpg"
   - bild: "/bilder/uploads/2026/sonderuebungen-hlf20-8.jpg"
+entwurf: false
 ---
 
 An drei freiwilligen Sonderübungsabenden stand die Technische Hilfeleistung (THL) mit den neuen Gerätschaften unseres HLF 20 im Mittelpunkt.

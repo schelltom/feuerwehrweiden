@@ -196,5 +196,6 @@ beladung:
       - "2x RJ45 Netzwerkanschluss (Funk / LAN)"
       - "2x Schub für Bürobedarf"
 gruppe: elw-kdow
+entwurf: false
 ---
 

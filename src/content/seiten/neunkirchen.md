@@ -10,4 +10,5 @@ wappen: "/bilder/ortsteile/wappen-neunkirchen.png"
 gruppenfoto:
   bild: "/bilder/ortsteile/geraetehaus-neunkirchen.jpg"
   text: "Gerätehaus der Feuerwehr Neunkirchen"
+entwurf: false
 ---

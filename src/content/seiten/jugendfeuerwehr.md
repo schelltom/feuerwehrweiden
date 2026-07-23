@@ -97,6 +97,7 @@ uebungsplan:
     datum: "12.12."
     zeit: "19:00 Uhr"
     thema: "Weihnachtsfeier"
+entwurf: false
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der

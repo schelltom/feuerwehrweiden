@@ -6,5 +6,6 @@ standort: "FF Neunkirchen"
 bild: /bilder/fahrzeuge/f_nk_mtf.jpg
 reihenfolge: 24
 gruppe: sonstige
+entwurf: false
 ---
 
