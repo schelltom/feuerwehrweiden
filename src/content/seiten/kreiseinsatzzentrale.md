@@ -18,7 +18,7 @@ galerie:
   - bild: /bilder/uploads/2026/kez5.jpg
     text: Zusätzliche Arbeitsplätze für erhöhtes Einsatzaufkommen
   - bild: /bilder/uploads/2026/kez6.jpg
-    text: Weitere Arbeitsplätze der Führungsunterstützung
+    text: Zusätzliche Funkarbeitsplätze
 ---
 
 Die Kreiseinsatzzentrale (KEZ) der Stadt Weiden befindet sich in der Hauptfeuerwache und dient als Führungs- und Kommunikationszentrale für besondere Einsatzlagen. Sie unterstützt die Integrierte Leitstelle Oberpfalz-Nord und übernimmt bei Bedarf Aufgaben der Einsatzkoordination sowie der Führungsunterstützung.
