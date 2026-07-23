@@ -10,7 +10,7 @@ kontakt:
   name: UG-ÖEL der Stadt Weiden i.d.OPf.
   telefon: 0961 / 391609-0
   fax: 0961 / 813889
-  email: ugwen@weiden.de
+  email: ugoeel@weiden.de
   adresse: Städt. Feuerwache · Landgerichtsstraße 13 · 92637 Weiden
 personen:
   - name: Thomas Schell
