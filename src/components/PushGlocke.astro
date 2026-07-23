@@ -216,6 +216,11 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
 </script>
 
 <style>
+  /* hidden-Attribut muss die display-Regeln unten schlagen (sonst zeigen
+     sich versteckte Zustände / das Einsatz-Häkchen trotz hidden). */
+  .pushglocke [hidden] {
+    display: none !important;
+  }
   .pushglocke {
     max-width: 30rem;
     margin: 0 auto;
