@@ -1,0 +1,15 @@
+{
+  "name": "Freiwillige Feuerwehr Weiden",
+  "short_name": "FF Weiden",
+  "description": "Freiwillige Feuerwehr Weiden – Berichte, Einsätze und Service.",
+  "lang": "de",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b1060f",
+  "icons": [
+    { "src": "/bilder/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/bilder/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

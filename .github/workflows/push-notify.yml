@@ -1,0 +1,60 @@
+name: Push-Benachrichtigung bei neuem Bericht/Einsatz
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/berichte/**'
+      - 'src/content/einsaetze/**'
+
+permissions:
+  contents: read
+
+jobs:
+  benachrichtigen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Neu hinzugekommene Beiträge ermitteln
+        id: neu
+        run: |
+          BEFORE="${{ github.event.before }}"
+          SHA="${{ github.sha }}"
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            LIST=$(git diff-tree --no-commit-id --diff-filter=A --name-only -r "$SHA")
+          else
+            LIST=$(git diff --diff-filter=A --name-only "$BEFORE" "$SHA")
+          fi
+          FILES=$(echo "$LIST" | grep -E '^src/content/(berichte|einsaetze)/.*\.md$' || true)
+          # mehrzeilig für die nächsten Steps bereitstellen
+          {
+            echo 'files<<EOF'
+            echo "$FILES"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+          echo "Gefundene neue Dateien:"; echo "$FILES"
+
+      - name: Node einrichten
+        if: steps.neu.outputs.files != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Push-Bibliotheken installieren
+        if: steps.neu.outputs.files != ''
+        run: npm install --no-save web-push gray-matter
+
+      - name: Benachrichtigungen verschicken
+        if: steps.neu.outputs.files != ''
+        env:
+          VAPID_PUBLIC: ${{ secrets.VAPID_PUBLIC }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+          PUSH_WORKER_URL: ${{ secrets.PUSH_WORKER_URL }}
+          LIST_TOKEN: ${{ secrets.PUSH_LIST_TOKEN }}
+        run: |
+          echo "${{ steps.neu.outputs.files }}" | tr '\n' '\0' | xargs -0 node scripts/push-notify.mjs

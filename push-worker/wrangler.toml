@@ -1,0 +1,13 @@
+name = "ffw-push"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+# KV-Namespace für die Push-Abos.
+# id wird beim Anlegen gesetzt (siehe README.md):
+#   npx wrangler kv namespace create SUBS
+kv_namespaces = [
+  { binding = "SUBS", id = "ac2e310a678c4b0b9aa6f25f458fe300" }
+]
+
+# Secret (nicht hier eintragen, sondern setzen mit):
+#   npx wrangler secret put LIST_TOKEN

@@ -1,0 +1,326 @@
+---
+/**
+ * Web-Push-Anmeldung für die Feuerwehr Weiden.
+ *
+ * - Standard: Abo für den Kanal "berichte".
+ * - Verstecktes Feature: 5× auf das 🚒 tippen schaltet den Schalter
+ *   "Auch Einsätze" frei (Kanal "einsaetze").
+ *
+ * Die eigentliche Zustellung übernimmt der ffw-push-Worker + die
+ * GitHub-Action push-notify.yml. iOS erlaubt Web-Push nur, wenn die Seite
+ * vorher „Zum Home-Bildschirm" installiert wurde – das wird hier erkannt.
+ */
+import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
+---
+
+<div class="pushglocke reveal" data-push>
+  <div class="pg-siren" data-siren role="img" aria-label="Feuerwehr">🚒</div>
+
+  <p class="pg-msg" data-state="loading">Benachrichtigungen werden geladen …</p>
+
+  <p class="pg-msg" data-state="unsupported" hidden>
+    Dein Browser unterstützt leider keine Push-Benachrichtigungen.
+  </p>
+
+  <div class="pg-box" data-state="ios-install" hidden>
+    <p><strong>Auf dem iPhone/iPad</strong> geht es nur als installierte App:</p>
+    <ol>
+      <li>unten/oben auf <strong>Teilen</strong> <span aria-hidden="true">￼⬆︎</span> tippen,</li>
+      <li><strong>„Zum Home-Bildschirm"</strong> wählen,</li>
+      <li>die Feuerwehr-Weiden-App vom Home-Bildschirm öffnen –<br />hier erscheint dann der Knopf zum Aktivieren.</li>
+    </ol>
+  </div>
+
+  <div class="pg-box" data-state="ready" hidden>
+    <button type="button" class="pg-btn" data-subscribe>🔔 Benachrichtigungen aktivieren</button>
+  </div>
+
+  <div class="pg-box" data-state="active" hidden>
+    <p class="pg-aktiv">✓ Benachrichtigungen sind <strong>aktiv</strong>.</p>
+
+    <label class="pg-einsatz" data-einsatz-row hidden>
+      <input type="checkbox" data-einsatz /> Auch Einsätze <span class="pg-beta">Beta</span>
+    </label>
+
+    <button type="button" class="pg-btn pg-btn--sek" data-unsubscribe>Benachrichtigungen abbestellen</button>
+  </div>
+
+  <p class="pg-hinweis" data-hinweis aria-live="polite"></p>
+</div>
+
+<script define:vars={{ VAPID_PUBLIC_KEY, PUSH_WORKER_URL }}>
+  (() => {
+    const root = document.querySelector('[data-push]');
+    if (!root) return;
+
+    const boxes = root.querySelectorAll('[data-state]');
+    const hinweis = root.querySelector('[data-hinweis]');
+    const einsatzRow = root.querySelector('[data-einsatz-row]');
+    const einsatzBox = root.querySelector('[data-einsatz]');
+    const siren = root.querySelector('[data-siren]');
+
+    const LS_UNLOCK = 'ffw-push-einsatz-unlocked';
+    const show = (name) =>
+      boxes.forEach((b) => (b.hidden = b.getAttribute('data-state') !== name));
+    const sag = (t) => (hinweis.textContent = t || '');
+
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+      const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+      const raw = atob(base64);
+      const out = new Uint8Array(raw.length);
+      for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+      return out;
+    }
+
+    const istIOS = /iP(hone|ad|od)/.test(navigator.userAgent);
+    const istStandalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+
+    const kanaele = () => {
+      const arr = ['berichte'];
+      if (einsatzBox && einsatzBox.checked) arr.push('einsaetze');
+      return arr;
+    };
+
+    async function anMelden(sub) {
+      const res = await fetch(`${PUSH_WORKER_URL}/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscription: sub.toJSON(), channels: kanaele() }),
+      });
+      if (!res.ok) throw new Error(`Server ${res.status}`);
+    }
+
+    async function abMelden(sub) {
+      try {
+        await fetch(`${PUSH_WORKER_URL}/unsubscribe`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ endpoint: sub.endpoint }),
+        });
+      } catch {
+        /* egal – Browser-Abo wird trotzdem beendet */
+      }
+    }
+
+    // ---- Einsatz-Trick: 5× aufs 🚒 tippen ----
+    function schalteFrei() {
+      if (!einsatzRow) return;
+      einsatzRow.hidden = false;
+      localStorage.setItem(LS_UNLOCK, '1');
+    }
+    if (localStorage.getItem(LS_UNLOCK) === '1') schalteFrei();
+
+    let tapCount = 0;
+    let tapTimer = null;
+    siren?.addEventListener('click', () => {
+      tapCount++;
+      clearTimeout(tapTimer);
+      tapTimer = setTimeout(() => (tapCount = 0), 1200);
+      if (tapCount >= 5) {
+        tapCount = 0;
+        schalteFrei();
+        sag('🚒 Einsatz-Modus freigeschaltet – Häkchen setzen, um auch Einsätze zu erhalten.');
+      }
+    });
+
+    // ---- Init ----
+    (async () => {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+        // iOS ohne Installation meldet oft gar keinen PushManager
+        if (istIOS && !istStandalone) return show('ios-install');
+        return show('unsupported');
+      }
+      if (istIOS && !istStandalone) return show('ios-install');
+
+      try {
+        const reg = await navigator.serviceWorker.register('/sw.js');
+        const sub = await reg.pushManager.getSubscription();
+        if (sub && Notification.permission === 'granted') {
+          show('active');
+          bindAktiv(reg);
+        } else {
+          show('ready');
+          bindBereit(reg);
+        }
+      } catch (e) {
+        show('unsupported');
+      }
+    })();
+
+    function bindBereit(reg) {
+      root.querySelector('[data-subscribe]')?.addEventListener('click', async (ev) => {
+        const btn = ev.currentTarget;
+        btn.disabled = true;
+        sag('Frage nach Erlaubnis …');
+        try {
+          const perm = await Notification.requestPermission();
+          if (perm !== 'granted') {
+            sag('Ohne Erlaubnis geht es leider nicht. Du kannst sie in den Browser-Einstellungen wieder freigeben.');
+            btn.disabled = false;
+            return;
+          }
+          const sub = await reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+          });
+          await anMelden(sub);
+          sag('');
+          show('active');
+          bindAktiv(reg);
+        } catch (e) {
+          sag('Das hat nicht geklappt. Bitte später erneut versuchen.');
+          btn.disabled = false;
+        }
+      });
+    }
+
+    function bindAktiv(reg) {
+      // Einsatz-Häkchen ggf. vorbelegen (aus gespeichertem Wunsch)
+      if (einsatzBox) einsatzBox.checked = localStorage.getItem('ffw-push-einsatz-an') === '1';
+
+      einsatzBox?.addEventListener('change', async () => {
+        localStorage.setItem('ffw-push-einsatz-an', einsatzBox.checked ? '1' : '0');
+        try {
+          const sub = await reg.pushManager.getSubscription();
+          if (sub) {
+            await anMelden(sub);
+            sag(einsatzBox.checked ? '🚒 Du bekommst jetzt auch Einsätze.' : 'Einsätze wieder abbestellt.');
+          }
+        } catch {
+          sag('Konnte die Einstellung nicht speichern.');
+        }
+      });
+
+      root.querySelector('[data-unsubscribe]')?.addEventListener('click', async (ev) => {
+        const btn = ev.currentTarget;
+        btn.disabled = true;
+        try {
+          const sub = await reg.pushManager.getSubscription();
+          if (sub) {
+            await abMelden(sub);
+            await sub.unsubscribe();
+          }
+          sag('Benachrichtigungen wurden abbestellt.');
+          show('ready');
+          bindBereit(reg);
+        } catch {
+          sag('Das Abbestellen hat nicht geklappt.');
+          btn.disabled = false;
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+  .pushglocke {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 28px 24px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e6e6ea;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  }
+  .pg-siren {
+    font-size: 2.6rem;
+    line-height: 1;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pg-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+  .pg-box ol {
+    text-align: left;
+    margin: 6px 0 0;
+    padding-left: 1.2em;
+    line-height: 1.5;
+  }
+  .pg-btn {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: #b1060f;
+    padding: 13px 22px;
+    border-radius: 999px;
+    transition: background 0.15s ease, transform 0.05s ease;
+  }
+  .pg-btn:hover {
+    background: #8f050c;
+  }
+  .pg-btn:active {
+    transform: translateY(1px);
+  }
+  .pg-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .pg-btn--sek {
+    background: transparent;
+    color: #8f050c;
+    padding: 6px 12px;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+  .pg-btn--sek:hover {
+    background: transparent;
+    color: #b1060f;
+  }
+  .pg-aktiv {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .pg-einsatz {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .pg-beta {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: #fde2e2;
+    color: #8f050c;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .pg-hinweis {
+    margin: 14px 0 0;
+    min-height: 1.2em;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  .pg-msg {
+    margin: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .pushglocke {
+      background: #1b1d22;
+      border-color: #2c2f36;
+    }
+    .pg-hinweis {
+      color: #aab;
+    }
+    .pg-beta {
+      background: #4a1416;
+      color: #ffb3b3;
+    }
+  }
+</style>

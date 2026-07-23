@@ -10,6 +10,8 @@ interface Props {
   bild?: string;
   /** Alarm-Intro nur auf der Startseite abspielen */
   mitAlarm?: boolean;
+  /** Seite von Suchmaschinen ausnehmen (noindex) – z.B. noch nicht öffentliche Seiten */
+  noindex?: boolean;
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   beschreibung = '24 Stunden – 365 Tage für Ihre Sicherheit. Die Freiwillige Feuerwehr Weiden in der Oberpfalz.',
   bild,
   mitAlarm = false,
+  noindex = false,
 } = Astro.props;
 
 // Absolute URLs für Canonical und Open Graph (basieren auf `site` in astro.config.mjs).
@@ -30,8 +33,12 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={beschreibung} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={kanonisch.href} />
     <link rel="icon" href="/bilder/wappen.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/bilder/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#b1060f" />
     <title>{titel}</title>
 
     <!-- Open Graph / Social-Media-Vorschau (Facebook, WhatsApp, …) -->

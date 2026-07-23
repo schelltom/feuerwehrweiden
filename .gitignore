@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Web-Push VAPID – privater Schlüssel, niemals committen
+.vapid-keys.local.json

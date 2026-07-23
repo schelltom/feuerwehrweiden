@@ -1,0 +1,112 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+import PushGlocke from '../../components/PushGlocke.astro';
+---
+
+<Basis
+  titel="Benachrichtigungen – Feuerwehr Weiden"
+  beschreibung="Neue Berichte der Feuerwehr Weiden als Push-Benachrichtigung aufs Handy – so richtest du es ein."
+  noindex={true}
+>
+  <main>
+    <Seitenkopf
+      titel="Benachrichtigungen"
+      krumen={[{ name: 'Start', href: '/' }, { name: 'Service', href: '/service/' }, { name: 'Benachrichtigungen' }]}
+    />
+
+    <section>
+      <div class="wrap" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px)">
+        <p class="intro reveal" style="margin-bottom:36px">
+          Verpasse keinen neuen Bericht: Auf Wunsch meldet sich die Feuerwehr Weiden mit einer
+          kurzen Push-Nachricht direkt auf deinem Gerät, sobald ein neuer Beitrag erscheint.
+          Kostenlos, jederzeit wieder abbestellbar – und ganz ohne App aus dem Store.
+        </p>
+
+        <PushGlocke />
+
+        <div class="hilfe reveal">
+          <h2 class="display">So aktivierst du es</h2>
+
+          <h3>Am Computer, unter Android &amp; Co.</h3>
+          <ol>
+            <li>Oben auf <strong>„🔔 Benachrichtigungen aktivieren"</strong> tippen.</li>
+            <li>Die Nachfrage des Browsers mit <strong>„Zulassen"</strong> bestätigen.</li>
+            <li>Fertig – ab jetzt ploppt bei jedem neuen Bericht eine Meldung auf.</li>
+          </ol>
+
+          <h3>Auf dem iPhone &amp; iPad <span class="apple">Apple-Einschränkung</span></h3>
+          <p>
+            Apple erlaubt Push-Benachrichtigungen im Safari-Browser <strong>nur</strong>, wenn die
+            Seite vorher als App auf dem Home-Bildschirm installiert wurde. Das ist schnell erledigt:
+          </p>
+          <ol>
+            <li>Diese Seite in <strong>Safari</strong> öffnen (nicht in Chrome o. Ä.).</li>
+            <li>Unten in der Leiste auf das <strong>Teilen-Symbol</strong> tippen
+              (Quadrat mit Pfeil nach oben).</li>
+            <li><strong>„Zum Home-Bildschirm"</strong> wählen und mit <strong>„Hinzufügen"</strong> bestätigen.</li>
+            <li>Die neue <strong>Feuerwehr-Weiden-App</strong> vom Home-Bildschirm öffnen.</li>
+            <li>Erst dort erscheint der Knopf <strong>„🔔 Benachrichtigungen aktivieren"</strong>.</li>
+          </ol>
+          <p class="klein">
+            Voraussetzung ist iOS/iPadOS 16.4 oder neuer. Im normalen Safari-Tab (ohne Installation)
+            bietet Apple die Funktion technisch nicht an – das liegt nicht an unserer Seite.
+          </p>
+
+          <h3>Wieder abbestellen</h3>
+          <p>
+            Jederzeit oben über <strong>„Benachrichtigungen abbestellen"</strong> – oder in den
+            Benachrichtigungs-Einstellungen deines Browsers bzw. Geräts.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Basis>
+
+<style>
+  .hilfe {
+    margin-top: 56px;
+    max-width: 44rem;
+  }
+  .hilfe h2 {
+    margin: 0 0 18px;
+  }
+  .hilfe h3 {
+    margin: 32px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .hilfe ol {
+    line-height: 1.6;
+    padding-left: 1.3em;
+  }
+  .hilfe li {
+    margin-bottom: 6px;
+  }
+  .apple {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: #f0f0f3;
+    color: #555;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .klein {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  @media (prefers-color-scheme: dark) {
+    .apple {
+      background: #2c2f36;
+      color: #aab;
+    }
+    .klein {
+      color: #99a;
+    }
+  }
+</style>

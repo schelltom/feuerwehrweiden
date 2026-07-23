@@ -10,5 +10,11 @@ import sitemap from '@astrojs/sitemap';
 // Domain-Umzug hier auf https://feuerwehr-weiden.de umstellen.
 export default defineConfig({
   site: 'https://feuerwehr-weiden.de',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Noch nicht öffentliche Seiten aus der Sitemap heraushalten
+      // (nur per Direktlink erreichbar, zusätzlich noindex im Layout).
+      filter: (page) => !page.includes('/service/benachrichtigungen'),
+    }),
+  ],
 });
