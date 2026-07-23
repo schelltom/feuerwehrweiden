@@ -4,7 +4,7 @@ import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
-  const orte = (await getCollection('seiten')).filter((s) => s.data.bereich === 'ortsteile');
+  const orte = (await getCollection('seiten')).filter((s) => s.data.bereich === 'ortsteile' && !s.data.entwurf);
   return orte.map((s) => ({ params: { slug: s.id }, props: { seite: s } }));
 }
 
@@ -14,7 +14,7 @@ const d = seite.data;
 
 /* Fahrzeuge & Anhänger dieser Wehr automatisch aus dem Fuhrpark */
 const fahrzeuge = (await getCollection('fahrzeuge'))
-  .filter((f) => f.data.standort === d.titel)
+  .filter((f) => f.data.standort === d.titel && !f.data.entwurf)
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 ---
 

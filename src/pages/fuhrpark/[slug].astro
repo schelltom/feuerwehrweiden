@@ -4,7 +4,7 @@ import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
-  const fahrzeuge = await getCollection('fahrzeuge');
+  const fahrzeuge = (await getCollection('fahrzeuge')).filter((f) => !f.data.entwurf);
   return fahrzeuge.map((f) => ({ params: { slug: f.id }, props: { fahrzeug: f } }));
 }
 

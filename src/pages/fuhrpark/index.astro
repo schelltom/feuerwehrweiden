@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
-const alle = await getCollection('fahrzeuge');
+const alle = (await getCollection('fahrzeuge')).filter((f) => !f.data.entwurf);
 
 /* Fachliche Gruppen in fester Reihenfolge; innerhalb der Gruppe zuerst
    Hauptwache/Wache 2, dann die Ortsteile – jeweils nach "reihenfolge". */

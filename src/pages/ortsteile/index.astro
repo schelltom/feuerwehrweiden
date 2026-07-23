@@ -4,7 +4,7 @@ import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
 const orte = (await getCollection('seiten'))
-  .filter((s) => s.data.bereich === 'ortsteile')
+  .filter((s) => s.data.bereich === 'ortsteile' && !s.data.entwurf)
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 ---
 

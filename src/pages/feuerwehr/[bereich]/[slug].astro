@@ -4,7 +4,7 @@ import Basis from '../../../layouts/Basis.astro';
 import Seitenkopf from '../../../components/Seitenkopf.astro';
 
 export async function getStaticPaths() {
-  const seiten = (await getCollection('seiten')).filter((s) => s.data.bereich !== 'ortsteile');
+  const seiten = (await getCollection('seiten')).filter((s) => s.data.bereich !== 'ortsteile' && !s.data.entwurf);
   return seiten.map((s) => ({
     params: { bereich: s.data.bereich, slug: s.id },
     props: { seite: s },

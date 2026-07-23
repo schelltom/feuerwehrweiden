@@ -36,6 +36,8 @@ const fahrzeuge = defineCollection({
     typ: z.string(),
     funkruf: z.string().default(''),
     standort: z.string().default('Hauptfeuerwache'),
+    /** Entwurf – überall ausgeblendet (keine Detailseite), bis abgehakt */
+    entwurf: z.boolean().default(false),
     /** Fachliche Gruppe für die Fuhrpark-Übersicht; daraus wird auch Fahrzeug/Anhänger abgeleitet */
     gruppe: z
       .enum(['elw-kdow', 'loesch', 'hubrettung', 'ruest-geraete', 'sonstige', 'anhaenger', 'rollcontainer', 'ehemalige'])
@@ -162,6 +164,8 @@ const seiten = defineCollection({
   schema: z.object({
     titel: z.string(),
     bereich: z.enum(['ueber-uns', 'einheiten', 'ortsteile']),
+    /** Entwurf – überall ausgeblendet (keine Seite), bis abgehakt */
+    entwurf: z.boolean().default(false),
     reihenfolge: z.number().default(99),
     kurz: z.string().default(''),
     titelbild: z.string().optional(),

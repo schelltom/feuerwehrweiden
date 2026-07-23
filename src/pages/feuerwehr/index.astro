@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 
-const seiten = (await getCollection('seiten')).sort(
-  (a, b) => a.data.reihenfolge - b.data.reihenfolge
-);
+const seiten = (await getCollection('seiten'))
+  .filter((s) => !s.data.entwurf)
+  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 const ueberUns = seiten.filter((s) => s.data.bereich === 'ueber-uns');
 
 /** Statt Porträt: Helm mit Führungskennzeichnung (Anzahl roter Streifen) */

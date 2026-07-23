@@ -201,6 +201,7 @@ collections:
       - { label: Anhänger, field: gruppe, pattern: anhaenger }
     fields:
       - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
       - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
       - { name: funkruf, label: Funkrufname, widget: string, required: false, hint: 'z.B. FLORIAN WEIDEN 1/40/1 (Anhänger: leer lassen)' }
       - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache, hint: 'Hauptfeuerwache oder z.B. FF Rothenstadt' }
@@ -378,6 +379,7 @@ collections:
           - { label: 'Über uns', value: ueber-uns }
           - { label: Einheiten, value: einheiten }
           - { label: Ortsteile, value: ortsteile }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
       - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }

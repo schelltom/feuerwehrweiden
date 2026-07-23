@@ -25,7 +25,7 @@ const termine = (await getCollection('termine'))
   .slice(0, 4);
 
 const fahrzeuge = (await getCollection('fahrzeuge'))
-  .filter((f) => f.data.inHalle)
+  .filter((f) => f.data.inHalle && !f.data.entwurf)
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge)
   .map((f) => ({
     id: f.id,
