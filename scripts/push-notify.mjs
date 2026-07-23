@@ -60,7 +60,7 @@ for (const datei of dateien) {
     events.push({
       channel: 'einsaetze',
       payload: {
-        title: '🚒 Neuer Einsatz',
+        title: '🚒 Einsatz für Florian Weiden',
         body: `${data.stichwort || 'Einsatz'}${zusatz}`,
         url: `${SITE}/einsaetze/`,
         tag: `einsatz-${slug}`,
