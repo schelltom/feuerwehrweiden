@@ -1,4 +1,6 @@
 ---
+import Wasserzeichen from './Wasserzeichen.astro';
+
 interface Props {
   bilder: { bild: string; text?: string }[];
   /** Für Alt-Texte ohne eigene Bildunterschrift */
@@ -17,10 +19,6 @@ const { bilder, titel = 'Bericht' } = Astro.props;
       </figure>
     ))
   }
-  <span class="wasserzeichen" aria-hidden="true">
-    <img src="/bilder/logo.jpg" alt="" width="28" height="28" loading="lazy" />
-    © Feuerwehr Weiden
-  </span>
   <span class="stand">1 / {bilder.length}</span>
   {
     bilder.length > 1 && (
@@ -40,13 +38,12 @@ const { bilder, titel = 'Bericht' } = Astro.props;
     <button class="schliessen" aria-label="Schließen">×</button>
     {bilder.length > 1 && <button class="lpfeil zur" aria-label="Voriges Bild">←</button>}
     {bilder.length > 1 && <button class="lpfeil wei" aria-label="Nächstes Bild">→</button>}
-    <img src={bilder[0].bild} alt="" />
+    <span class="lb-figur">
+      <img src={bilder[0].bild} alt="" />
+      <Wasserzeichen />
+    </span>
     <span class="lstand">1 / {bilder.length}</span>
     <span class="ltext"></span>
-    <span class="wasserzeichen" aria-hidden="true">
-      <img src="/bilder/logo.jpg" alt="" width="34" height="34" loading="lazy" />
-      © Feuerwehr Weiden
-    </span>
   </dialog>
 </div>
 
@@ -150,34 +147,10 @@ const { bilder, titel = 'Bericht' } = Astro.props;
     font-size: 0.88rem;
     pointer-events: none;
   }
-  .wasserzeichen {
-    position: absolute;
-    right: 12px;
-    bottom: 12px;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.85);
-    background: rgba(14, 17, 22, 0.4);
-    padding: 4px 10px 4px 5px;
-    border-radius: 999px;
-    backdrop-filter: blur(5px);
-    pointer-events: none;
-  }
-  .wasserzeichen img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    opacity: 0.9;
-  }
   .stand {
     position: absolute;
     top: 14px;
-    right: 14px;
+    left: 14px;
     z-index: 2;
     font-family: var(--mono);
     font-size: 0.68rem;
@@ -258,20 +231,16 @@ const { bilder, titel = 'Bericht' } = Astro.props;
   .lightbox::backdrop {
     background: rgba(8, 10, 14, 0.92);
   }
+  .lightbox .lb-figur {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
   .lightbox img {
     max-width: 94vw;
     max-height: 92vh;
     object-fit: contain;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-  }
-  .lightbox .wasserzeichen {
-    right: max(18px, 3vw);
-    bottom: max(18px, 3vh);
-    font-size: 0.7rem;
-  }
-  .lightbox .wasserzeichen img {
-    width: 34px;
-    height: 34px;
   }
   .lightbox .schliessen {
     position: absolute;

@@ -1,0 +1,64 @@
+---
+/**
+ * Kleines rundes Wasserzeichen unten rechts auf großen Fotos: das runde
+ * Wappen-Logo (enthält bereits "Feuerwehr Weiden") mit "© Jahr" oben im
+ * Bogen entlang der Rundung (Siegel-Optik). Reines Anzeige-Overlay – das
+ * hochgeladene Originalbild bleibt unverändert (kein Einbrennen).
+ *
+ * Voraussetzung: das Elternelement ist position:relative (Galerie-figure,
+ * .raumbild, .kausschnitt, .gf-bild, .slideshow, .lightbox … sind das schon).
+ * Rückbau: <Wasserzeichen /> aus den Einbindungen entfernen und Datei löschen.
+ */
+const jahr = new Date().getFullYear();
+// Eindeutige Pfad-ID je Instanz (mehrere Wasserzeichen pro Seite möglich)
+const bogenId = 'wzb-' + Math.random().toString(36).slice(2, 8);
+---
+
+<span class="wz" aria-hidden="true">
+  <img src="/bilder/logo.jpg" alt="" width="40" height="40" loading="lazy" />
+  <svg class="wz-txt" viewBox="0 0 100 100">
+    <defs>
+      <path id={bogenId} d="M 20 37 A 34 34 0 0 1 80 37" fill="none" />
+    </defs>
+    <text text-anchor="middle">
+      <textPath href={`#${bogenId}`} startOffset="50%">© {jahr}</textPath>
+    </text>
+  </svg>
+</span>
+
+<style>
+  .wz {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 4;
+    width: 36px;
+    height: 36px;
+    pointer-events: none;
+  }
+  .wz img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
+  }
+  .wz-txt {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .wz-txt text {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    fill: #e10600;
+    paint-order: stroke;
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 1.6px;
+    stroke-linejoin: round;
+  }
+</style>
