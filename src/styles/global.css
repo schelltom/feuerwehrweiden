@@ -870,3 +870,11 @@
   }
   #countzahl.tick{animation:countpuls .5s ease-out}
   @keyframes countpuls{from{transform:scale(1.35)}to{transform:scale(1)}}
+
+/* "Benachrichtigungen"-Link im Footer nur zeigen, wenn die Seite als
+   installierte App (Home-Bildschirm/PWA) läuft – auf der normalen
+   Website bleibt er versteckt. */
+.nur-app{display:none}
+@media all and (display-mode:standalone){
+  .nur-app{display:list-item}
+}
