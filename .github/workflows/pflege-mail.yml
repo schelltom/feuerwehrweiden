@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'src/content/pflege/**'
+      - 'src/content/schlaeuche/**'
       - 'src/content/wehren/**'
 
 permissions:
@@ -30,12 +31,12 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           MAIL_FROM: ${{ secrets.MAIL_FROM }}
         run: node scripts/pflege-mail.mjs
-      - name: Zeitstempel committen
+      - name: Änderungen committen (Stempel & abgeholte Vorgänge entfernt)
         run: |
           git config user.name "pflege-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add src/content/pflege
+          git add -A src/content/pflege src/content/schlaeuche
           if ! git diff --cached --quiet; then
-            git commit -m "Atemschutzwerkstatt & Schlauchpflegestelle: abholbereit vermerkt / E-Mail verschickt"
+            git commit -m "Atemschutzwerkstatt & Schlauchpflegestelle: abholbereit vermerkt / E-Mail verschickt / abgeholt entfernt"
             git push
           fi

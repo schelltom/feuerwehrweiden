@@ -11,9 +11,10 @@
  * SMTP-Zugang kommt aus den Repo-Secrets SMTP_HOST/PORT/USER/PASS und
  * MAIL_FROM. Fehlen die Secrets, wird nur gestempelt und gewarnt.
  */
-import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, existsSync, unlinkSync } from 'node:fs';
 
 const PFLEGE = 'src/content/pflege';
+const SCHLAEUCHE = 'src/content/schlaeuche';
 const WEHREN = 'src/content/wehren';
 
 const frontmatter = (text) => {
@@ -102,4 +103,19 @@ for (const datei of readdirSync(PFLEGE).filter((d) => d.endsWith('.md'))) {
   }
 
   writeFileSync(pfad, text);
+}
+
+// Abgeholte Vorgänge (Atemschutz + Schläuche) automatisch entfernen – hält das
+// CMS-Backend sauber. (Auf der Website waren sie ohnehin schon ausgeblendet;
+// die Git-Historie bewahrt sie weiterhin auf, falls doch mal nachgesehen wird.)
+for (const ordner of [PFLEGE, SCHLAEUCHE]) {
+  if (!existsSync(ordner)) continue;
+  for (const datei of readdirSync(ordner).filter((d) => d.endsWith('.md'))) {
+    const pfad = `${ordner}/${datei}`;
+    const v = frontmatter(readFileSync(pfad, 'utf8'));
+    if (v.abgeholt === 'true') {
+      unlinkSync(pfad);
+      console.log(`🗑 ${pfad}: abgeholt → gelöscht.`);
+    }
+  }
 }
