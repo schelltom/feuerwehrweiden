@@ -1,27 +1,28 @@
 ---
-titel: "UG-ÖEL"
-bereich: "einheiten"
+titel: UG-ÖEL
+bereich: einheiten
+entwurf: false
 reihenfolge: 5
-kurz: "Unterstützungsgruppe Örtliche Einsatzleitung"
-titelbild: "/bilder/fahrzeuge/elw.jpg"
+kurz: Unterstützungsgruppe Örtliche Einsatzleitung
+titelbild: /bilder/fahrzeuge/elw.jpg
 kopfbild: false
 kontakt:
-  name: "UG-ÖEL der Stadt Weiden i.d.OPf."
-  telefon: "0961 / 391609-0"
-  fax: "0961 / 391609-19"
-  email: "ugwen@weiden.de"
-  adresse: "Städt. Feuerwache · Landgerichtsstraße 13 · 92637 Weiden"
+  name: UG-ÖEL der Stadt Weiden i.d.OPf.
+  telefon: 0961 / 391609-0
+  fax: 0961 / 813889
+  email: ugwen@weiden.de
+  adresse: Städt. Feuerwache · Landgerichtsstraße 13 · 92637 Weiden
 personen:
-  - name: "Thomas Schell"
-    funktion: "Leiter UG-ÖEL"
-    email: "thomas.schell@weiden.de"
-  - name: "Ronny Pressl"
-    funktion: "Stellv. Leiter UG-ÖEL"
-    telefon: "0961 / 391609-25"
-    email: "ronny.pressl@weiden.de"
-  - name: "Peter Pfaffenzeller"
-    funktion: "Stellv. Leiter UG-ÖEL"
-    email: "peter.pfaffenzeller@kkh.de"
+  - name: Thomas Schell
+    funktion: Leiter UG-ÖEL
+    email: thomas.schell@weiden.de
+  - name: Ronny Pressl
+    funktion: Stellv. Leiter UG-ÖEL
+    telefon: 0961 / 391609-25
+    email: ronny.pressl@weiden.de
+  - name: Peter Pfaffenzeller
+    funktion: Stellv. Leiter UG-ÖEL
+    email: peter.pfaffenzeller@kkh.de
 ---
 
 ### Aufgaben
