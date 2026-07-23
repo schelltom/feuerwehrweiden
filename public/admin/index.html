@@ -8,6 +8,9 @@
   </head>
   <body>
     <!-- Decap CMS: einfache Pflege-Oberfläche im Browser (Login via GitHub) -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Version FEST gepinnt (nicht ^3.0.0)! Sonst zieht unpkg automatisch die
+         neueste 3.x – und ein kaputtes Release (z.B. 3.15.0 am 23.07.2026,
+         React-Fehler #130) legt das komplette CMS lahm. Nur nach Test hochsetzen. -->
+    <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
   </body>
 </html>
