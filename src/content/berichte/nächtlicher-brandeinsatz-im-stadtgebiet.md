@@ -1,7 +1,7 @@
 ---
 titel: Nächtlicher Brandeinsatz im Stadtgebiet
 datum: 2026-07-24
-entwurf: false
+entwurf: true
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/647d8881-46b5-44df-bed2-edc915bbfe43.jpeg
 galerie:
