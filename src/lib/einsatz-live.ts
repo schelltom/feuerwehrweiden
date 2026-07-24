@@ -61,5 +61,5 @@ export function esc(text: string) {
 
 /** "Neu" nur, wenn der Einsatz keine 6 Stunden her ist */
 export function istNeu(wann: string) {
-  return Date.now() - Date.parse(wann) < 6 * 60 * 60 * 1000;
+  return Date.now() - Date.parse(wann) < 12 * 60 * 60 * 1000;
 }

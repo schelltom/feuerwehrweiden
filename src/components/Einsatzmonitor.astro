@@ -18,8 +18,8 @@ interface Props {
 const { einsaetze, kompakt = false } = Astro.props;
 const neuester = einsaetze[0];
 
-/** "Neu" nur, wenn der Einsatz keine 6 Stunden her ist (Browser prüft zusätzlich nach) */
-const istNeu = (w: Date) => Date.now() - w.getTime() < 6 * 60 * 60 * 1000;
+/** "Neu" nur, wenn der Einsatz keine 12 Stunden her ist (Browser prüft zusätzlich nach) */
+const istNeu = (w: Date) => Date.now() - w.getTime() < 12 * 60 * 60 * 1000;
 ---
 
 <div
@@ -60,8 +60,8 @@ const istNeu = (w: Date) => Date.now() - w.getTime() < 6 * 60 * 60 * 1000;
   import { beobachteEinsaetze, esc, istNeu, type EinsatzLive } from '../lib/einsatz-live';
   import { EINSATZ_ICONS } from '../lib/einsatz-icons';
 
-  /* "Neu"-Schild entfernen, wenn der Einsatz beim Betrachten älter als 6 Stunden ist */
-  const grenze = Date.now() - 6 * 60 * 60 * 1000;
+  /* "Neu"-Schild entfernen, wenn der Einsatz beim Betrachten älter als 12 Stunden ist */
+  const grenze = Date.now() - 12 * 60 * 60 * 1000;
   document.querySelectorAll<HTMLElement>('em.neu[data-wann]').forEach((el) => {
     if (Date.parse(el.dataset.wann!) < grenze) el.remove();
   });

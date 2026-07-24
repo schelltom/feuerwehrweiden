@@ -5,8 +5,8 @@ interface Props {
   ticker?: { wann: Date; datum: string; zeit: string; stichwort: string }[];
 }
 const { ticker = [] } = Astro.props;
-/** "Neu" nur, wenn der Einsatz keine 6 Stunden her ist (Browser prüft zusätzlich nach) */
-const istNeu = (w: Date) => Date.now() - w.getTime() < 6 * 60 * 60 * 1000;
+/** "Neu" nur, wenn der Einsatz keine 12 Stunden her ist (Browser prüft zusätzlich nach) */
+const istNeu = (w: Date) => Date.now() - w.getTime() < 12 * 60 * 60 * 1000;
 
 const folien = [
   { bild: '/bilder/header/absturz.jpg', titel: 'Absturzsicherung im Einsatz' },
@@ -145,8 +145,8 @@ const folien = [
 <script>
   import { beobachteEinsaetze, esc, istNeu, type EinsatzLive } from '../lib/einsatz-live';
 
-  /* "Neu" im Lauftext entfernen, wenn der Einsatz beim Betrachten älter als 6 Stunden ist */
-  const neuGrenze = Date.now() - 6 * 60 * 60 * 1000;
+  /* "Neu" im Lauftext entfernen, wenn der Einsatz beim Betrachten älter als 12 Stunden ist */
+  const neuGrenze = Date.now() - 12 * 60 * 60 * 1000;
   document.querySelectorAll<HTMLElement>('.eintrag[data-wann]').forEach((el) => {
     if (Date.parse(el.dataset.wann!) < neuGrenze) {
       el.classList.remove('neu');
