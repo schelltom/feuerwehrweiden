@@ -77,9 +77,9 @@ for (const datei of dateien) {
     events.push({
       channel: 'berichte',
       payload: {
-        // Absender ist auf iOS technisch der App-Name ("FF Weiden"); "Florian
-        // Weiden" (Funkrufname) daher fest als Titel jeder Bericht-Push.
-        title: 'Florian Weiden',
+        // Titel signalisiert die Art des Beitrags; der Berichtstitel folgt im
+        // Body. (Absender ist auf iOS zusätzlich der App-Name "FF Weiden".)
+        title: '🚒 Neuer Bericht 🚒',
         body: data.kurz
           ? `${data.titel} – ${data.kurz}`
           : data.titel || 'Neuer Beitrag der Feuerwehr Weiden.',
