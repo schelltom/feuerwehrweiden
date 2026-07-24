@@ -22,7 +22,7 @@ Personen mussten durch die Feuerwehr aus dem Brandobjekt nicht gerettet werden.
 
 Die Brandbekämpfung sowie die anschließenden Nachlöscharbeiten nahmen einen längeren Zeitraum in Anspruch. Nach knapp vier Stunden konnte der Löschzug wieder in die Hauptwache einrücken. Dort wurden die verbrauchten Materialien ersetzt und die Einsatzfahrzeuge wieder vollständig einsatzbereit gemacht.
 
-Im Einsatz waren insgesamt vier Feuerwehren mit zwölf Fahrzeugen und 54 Einsatzkräften.
+Im Einsatz waren insgesamt vier Feuerwehren mit elf Fahrzeugen und 54 Einsatzkräften.
 
 Zur Brandursache können seitens der Feuerwehr keine Angaben gemacht werden. Die weiteren Ermittlungen führt die Polizei.
 
