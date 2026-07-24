@@ -419,6 +419,7 @@ collections:
         required: false
         fields:
           - { name: name, label: Name, widget: string }
+          - { name: kategorie, label: Kategorie (Überschrift), widget: string, required: false, hint: 'Personen mit gleicher Kategorie werden unter einer Überschrift gruppiert' }
           - { name: funktion, label: Funktion, widget: string, required: false }
           - name: sachgebiete
             label: Sachgebiete

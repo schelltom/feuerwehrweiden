@@ -15,6 +15,19 @@ const { seite } = Astro.props;
 const { Content } = await render(seite);
 const d = seite.data;
 const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
+
+// Personen nach Kategorie gruppieren – Reihenfolge bleibt erhalten.
+// Ohne Kategorie landen alle in einer Gruppe ohne Überschrift (Rückwärtskompatibel).
+const personenGruppen: { kategorie: string; personen: typeof d.personen }[] = [];
+for (const p of d.personen) {
+  const key = p.kategorie ?? '';
+  let gruppe = personenGruppen.find((g) => g.kategorie === key);
+  if (!gruppe) {
+    gruppe = { kategorie: key, personen: [] };
+    personenGruppen.push(gruppe);
+  }
+  gruppe.personen.push(p);
+}
 ---
 
 <Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
@@ -88,28 +101,32 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
         }
 
         {
-          d.personen.length > 0 && (
-            <div class:list={['personen', { mitBild: d.personen.some((p) => p.bild) }]}>
-              {d.personen.map((p) => (
-                <div class="person reveal">
-                  {p.bild && <img src={p.bild} alt={p.name} loading="lazy" />}
-                  <div class="pdaten">
-                    {p.funktion && <em>{p.funktion}</em>}
-                    <b>{p.name}</b>
-                    {p.sachgebiete.length > 0 && (
-                      <ul>
-                        {p.sachgebiete.map((s) => (
-                          <li>{s}</li>
-                        ))}
-                      </ul>
-                    )}
-                    {p.telefon && <span class="ptel">{p.telefon}</span>}
-                    {p.email && <a href={`mailto:${p.email}`}>{p.email}</a>}
-                  </div>
+          d.personen.length > 0 &&
+            personenGruppen.map((g) => (
+              <div class="personengruppe">
+                {g.kategorie && <span class="eyebrow">{g.kategorie}</span>}
+                <div class:list={['personen', { mitBild: g.personen.some((p) => p.bild) }]}>
+                  {g.personen.map((p) => (
+                    <div class="person reveal">
+                      {p.bild && <img src={p.bild} alt={p.name} loading="lazy" />}
+                      <div class="pdaten">
+                        {p.funktion && <em>{p.funktion}</em>}
+                        <b>{p.name}</b>
+                        {p.sachgebiete.length > 0 && (
+                          <ul>
+                            {p.sachgebiete.map((s) => (
+                              <li>{s}</li>
+                            ))}
+                          </ul>
+                        )}
+                        {p.telefon && <span class="ptel">{p.telefon}</span>}
+                        {p.email && <a href={`mailto:${p.email}`}>{p.email}</a>}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          )
+              </div>
+            ))
         }
 
         {
@@ -278,6 +295,13 @@ const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
   }
 
   /* ---- Personen ---- */
+  .personengruppe + .personengruppe {
+    margin-top: 36px;
+  }
+  .personengruppe .eyebrow {
+    display: block;
+    margin-bottom: 16px;
+  }
   .personen {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

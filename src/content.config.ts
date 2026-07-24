@@ -193,6 +193,7 @@ const seiten = defineCollection({
       .array(
         z.object({
           name: z.string(),
+          kategorie: z.string().optional(),
           funktion: z.string().optional(),
           sachgebiete: z.array(z.string()).default([]),
           telefon: z.string().optional(),

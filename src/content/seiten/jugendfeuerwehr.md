@@ -8,21 +8,27 @@ titelbild: /bilder/feuerwehr/jugend-3597.jpg
 kopfbild: false
 personen:
   - name: Jonas Huber
+    kategorie: Jugendsprecher & Jugendkassier
     bild: /bilder/feuerwehr/jugend-3625.jpg
     funktion: Jugendsprecher
   - name: Leopold Reichl
+    kategorie: Jugendsprecher & Jugendkassier
     bild: /bilder/feuerwehr/jugend-3632.jpg
     funktion: Jugendkassier
   - name: Moritz Reindl
+    kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3645.jpg
     funktion: 1. Jugendwart - Stv. Stadtjugendwart
   - name: Michael Zielbauer
+    kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3610.jpg
     funktion: Stv. Jugendwart
   - name: Quirin Huber
+    kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3617.jpg
     funktion: Interims-Jugendwart
   - name: Jan Chmelnizki
+    kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3629.jpg
     funktion: Interims-Jugendwart
 uebungsplan:
