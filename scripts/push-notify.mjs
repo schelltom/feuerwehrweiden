@@ -14,6 +14,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { execSync } from 'node:child_process';
 import matter from 'gray-matter';
 import webpush from 'web-push';
 
@@ -34,7 +35,26 @@ if (!VAPID_PUBLIC || !VAPID_PRIVATE || !PUSH_WORKER_URL || !LIST_TOKEN) {
 
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
-// ---- neue Dateien → Benachrichtigungen bauen ----
+/**
+ * Stand einer Datei im vorherigen Commit (github.event.before, per GIT_BEFORE).
+ * Liefert, ob die Datei damals schon existierte und ob sie ein Entwurf war.
+ * Ohne verwertbares GIT_BEFORE gilt die Datei als "vorher nicht vorhanden".
+ */
+function vorherStand(datei) {
+  const before = process.env.GIT_BEFORE;
+  if (!before || /^0+$/.test(before)) return { existierte: false, entwurf: false };
+  try {
+    const roh = execSync(`git show "${before}:${datei}"`, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    });
+    return { existierte: true, entwurf: matter(roh).data.entwurf === true };
+  } catch {
+    return { existierte: false, entwurf: false };
+  }
+}
+
+// ---- geänderte Dateien → Benachrichtigungen bauen ----
 const dateien = process.argv.slice(2).filter(Boolean);
 const events = [];
 
@@ -44,8 +64,16 @@ for (const datei of dateien) {
   const { data } = matter(roh);
   const slug = path.basename(datei, '.md');
 
+  // Nur beim ÜBERGANG auf "veröffentlicht" pushen: aktuell kein Entwurf und
+  // vorher entweder gar nicht vorhanden oder noch Entwurf. So löst sowohl das
+  // direkte Anlegen als auch das spätere Freischalten eines Entwurfs genau
+  // einmal einen Push aus – spätere Korrektur-Edits an einem bereits
+  // veröffentlichten Beitrag dagegen nicht.
+  if (data.entwurf === true) continue;
+  const vorher = vorherStand(datei);
+  if (vorher.existierte && !vorher.entwurf) continue;
+
   if (datei.includes('/content/berichte/')) {
-    if (data.entwurf === true) continue; // Entwürfe nicht pushen
     events.push({
       channel: 'berichte',
       payload: {

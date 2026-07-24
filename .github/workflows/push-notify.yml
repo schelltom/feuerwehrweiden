@@ -24,10 +24,13 @@ jobs:
         run: |
           BEFORE="${{ github.event.before }}"
           SHA="${{ github.sha }}"
+          # Hinzugekommene UND geänderte Dateien betrachten – das Skript
+          # entscheidet anhand des Vorher-Stands, ob wirklich gepusht wird
+          # (nur beim Übergang Entwurf/neu → veröffentlicht).
           if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
-            LIST=$(git diff-tree --no-commit-id --diff-filter=A --name-only -r "$SHA")
+            LIST=$(git diff-tree --no-commit-id --diff-filter=AM --name-only -r "$SHA")
           else
-            LIST=$(git diff --diff-filter=A --name-only "$BEFORE" "$SHA")
+            LIST=$(git diff --diff-filter=AM --name-only "$BEFORE" "$SHA")
           fi
           FILES=$(echo "$LIST" | grep -E '^src/content/(berichte|einsaetze)/.*\.md$' || true)
           # mehrzeilig für die nächsten Steps bereitstellen
@@ -36,7 +39,7 @@ jobs:
             echo "$FILES"
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
-          echo "Gefundene neue Dateien:"; echo "$FILES"
+          echo "Geänderte Beitrags-Dateien:"; echo "$FILES"
 
       - name: Node einrichten
         if: steps.neu.outputs.files != ''
@@ -56,5 +59,6 @@ jobs:
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
           PUSH_WORKER_URL: ${{ secrets.PUSH_WORKER_URL }}
           LIST_TOKEN: ${{ secrets.PUSH_LIST_TOKEN }}
+          GIT_BEFORE: ${{ github.event.before }}
         run: |
           echo "${{ steps.neu.outputs.files }}" | tr '\n' '\0' | xargs -0 node scripts/push-notify.mjs
