@@ -27,10 +27,13 @@ jobs:
           # Hinzugekommene UND geänderte Dateien betrachten – das Skript
           # entscheidet anhand des Vorher-Stands, ob wirklich gepusht wird
           # (nur beim Übergang Entwurf/neu → veröffentlicht).
+          # core.quotePath=false: sonst umschließt Git Pfade mit Umlauten
+          # mit Anführungszeichen + Oktal-Escapes ("…n\303\244chtlicher…"),
+          # wodurch der ^src-verankerte Filter unten nicht mehr greift.
           if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
-            LIST=$(git diff-tree --no-commit-id --diff-filter=AM --name-only -r "$SHA")
+            LIST=$(git -c core.quotePath=false diff-tree --no-commit-id --diff-filter=AM --name-only -r "$SHA")
           else
-            LIST=$(git diff --diff-filter=AM --name-only "$BEFORE" "$SHA")
+            LIST=$(git -c core.quotePath=false diff --diff-filter=AM --name-only "$BEFORE" "$SHA")
           fi
           FILES=$(echo "$LIST" | grep -E '^src/content/(berichte|einsaetze)/.*\.md$' || true)
           # mehrzeilig für die nächsten Steps bereitstellen
