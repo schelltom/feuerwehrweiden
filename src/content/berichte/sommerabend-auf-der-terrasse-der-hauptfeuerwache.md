@@ -1,7 +1,7 @@
 ---
 titel: Sommerabend auf der Terrasse der Hauptfeuerwache
 datum: 2026-07-26
-entwurf: true
+entwurf: false
 ressort: Feuerwehrverein
 titelbild: /bilder/berichte/2026/img_8285.jpeg
 galerie:
