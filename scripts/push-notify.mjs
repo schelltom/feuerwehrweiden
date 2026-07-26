@@ -33,6 +33,19 @@ if (!VAPID_PUBLIC || !VAPID_PRIVATE || !PUSH_WORKER_URL || !LIST_TOKEN) {
   process.exit(0);
 }
 
+// Globaler Schalter aus dem CMS (src/data/push.json → { "aktiv": true }).
+// Steht "aktiv" auf false, wird gar nichts verschickt. Fehlt/kaputt die
+// Datei, gilt Push als aktiv (fail-open, damit ein Tippfehler nicht alles
+// stumm schaltet).
+try {
+  if (JSON.parse(fs.readFileSync('src/data/push.json', 'utf8')).aktiv === false) {
+    console.log('Push global deaktiviert (src/data/push.json → aktiv: false).');
+    process.exit(0);
+  }
+} catch {
+  /* Datei fehlt oder unlesbar → als aktiv behandeln */
+}
+
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
 /**

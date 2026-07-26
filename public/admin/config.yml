@@ -475,3 +475,14 @@ collections:
           - { name: kontakt_adresse, label: 'Kontaktzeile – Adresse/Öffnungszeiten (beide Seiten)', widget: text }
           - { name: telefon_atemschutz, label: 'Telefon Atemschutzwerkstatt', widget: string, hint: 'z.B. 0961 / 391 609-11' }
           - { name: telefon_schlaeuche, label: 'Telefon Schlauchpflegestelle', widget: string, hint: 'z.B. 0961 / 391 609-0' }
+
+  - name: benachrichtigungen
+    label: 'Push-Benachrichtigungen'
+    editor:
+      preview: false
+    files:
+      - name: schalter
+        label: 'Ein/Aus-Schalter'
+        file: src/data/push.json
+        fields:
+          - { name: aktiv, label: 'Push-Benachrichtigungen aktiv', widget: boolean, default: true, hint: 'Aus = für keinen neuen Bericht/Einsatz wird eine Push-Nachricht verschickt. An = normaler Betrieb.' }
