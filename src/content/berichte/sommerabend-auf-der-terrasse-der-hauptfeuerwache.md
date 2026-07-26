@@ -3,6 +3,11 @@ titel: Sommerabend auf der Terrasse der Hauptfeuerwache
 datum: 2026-07-26
 entwurf: true
 ressort: Feuerwehrverein
+titelbild: /bilder/berichte/2026/img_8285.jpeg
+galerie:
+  - bild: /bilder/berichte/2026/img_8287.jpeg
+  - bild: /bilder/berichte/2026/img_8288.jpeg
+  - bild: /bilder/berichte/2026/img_8289.jpeg
 ---
 Am Samstag begann bei angenehmen sommerlichen Temperaturen um 18 Uhr auf der Terrasse der Hauptfeuerwache das traditionelle Terrassenfest des Feuerwehrvereins. Die Veranstaltung ist seit vielen Jahren ein fester Bestandteil unseres Jahreskalenders und bietet eine schöne Gelegenheit, auch außerhalb des Einsatz- und Übungsdienstes gemeinsam Zeit zu verbringen.
 
