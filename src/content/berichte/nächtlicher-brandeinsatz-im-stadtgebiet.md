@@ -11,6 +11,7 @@ galerie:
   - bild: /bilder/berichte/2026/13.jpg
   - bild: /bilder/berichte/2026/17.jpg
   - bild: /bilder/berichte/2026/6.jpg
+  - bild: /bilder/berichte/2026/15.jpg
 ---
 In den frühen Morgenstunden des 24.07.2026 löste die Integrierte Leitstelle Oberpfalz-Nord für die Hauptwache der Feuerwehr Weiden Vollalarm mit dem Einsatzstichwort B3 – Person aus.
 
