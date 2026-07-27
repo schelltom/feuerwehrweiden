@@ -3,6 +3,7 @@ import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 import Einsatzbilanz from '../../components/Einsatzbilanz.astro';
 import { ladeEinsaetze } from '../../lib/einsaetze';
+import { kurzArt } from '../../lib/einsatz-icons';
 
 export async function getStaticPaths({ paginate }) {
   return paginate(await ladeEinsaetze(), { pageSize: 15 });
@@ -30,7 +31,7 @@ const { page } = Astro.props;
             page.data.map((e) => (
               <li>
                 <span class="zeit">{e.datum} · {e.zeit} Uhr</span>
-                <b class:list={['art', e.art.toLowerCase()]}>{e.art}</b>
+                <b class:list={['art', e.art.toLowerCase()]}>{kurzArt(e.art)}</b>
                 <span class="stichwort">{e.stichwort}</span>
               </li>
             ))
@@ -91,8 +92,8 @@ const { page } = Astro.props;
   }
   .einsatzliste .art.thl { background: #2b54d4; }
   .einsatzliste .art.brand { background: #e10600; }
-  .einsatzliste .art.abc { background: #c98a00; }
-  .einsatzliste .art.sicherheitswache { background: #6d3fb0; }
+  .einsatzliste .art.abc { background: #d9a400; }
+  .einsatzliste .art.sicherheitswache { background: #667085; }
   .einsatzliste .art.sonstige { background: #1a9b4e; }
   .blaettern {
     display: grid;

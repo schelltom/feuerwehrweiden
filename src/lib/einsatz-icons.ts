@@ -9,3 +9,13 @@ export const EINSATZ_ICONS: Record<string, string> = {
   Sicherheitswache: 'M12 2.5l7.5 3v5.5c0 4.6-3.2 7.8-7.5 9.5-4.3-1.7-7.5-4.9-7.5-9.5V5.5zM8.8 11.8l2.2 2.2 4.2-4.4',
   Sonstige: 'M9 10.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2zM16.5 11.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM3.5 20c0-3.2 2.4-5 5.5-5s5.5 1.8 5.5 5M13.5 15.6c.9-.7 2-1.1 3-1.1 2.3 0 4 1.5 4 4',
 };
+
+/**
+ * Kurzform der Einsatzart für die knappen Badges im Ticker und in der
+ * Einsatzliste. Nur wo nötig – sonst bleibt die Art wie sie ist.
+ * (In der Einsatzbilanz wird weiterhin die ausgeschriebene Form verwendet.)
+ */
+const ART_KURZ: Record<string, string> = {
+  Sicherheitswache: 'SiWa',
+};
+export const kurzArt = (art: string) => ART_KURZ[art] ?? art;
