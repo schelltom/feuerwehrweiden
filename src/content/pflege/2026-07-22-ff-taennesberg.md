@@ -1,5 +1,5 @@
 ---
-wehr: ff-taennesberg
+wehr: "FF Tännesberg"
 abgegeben: 2026-07-22T08:00
 geraete: 1
 masken: 0

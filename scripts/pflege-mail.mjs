@@ -56,6 +56,14 @@ const jetzt = new Intl.DateTimeFormat('sv-SE', {
   .format(new Date())
   .replace(' ', 'T');
 
+// Alle Wehren einlesen. `wehr` in einem Vorgang speichert den Namen (neu) oder
+// noch den Datei-Slug (Altbestand) – beides muss auflösbar sein.
+const wehrenListe = readdirSync(WEHREN)
+  .filter((d) => d.endsWith('.md'))
+  .map((d) => ({ id: d.replace(/\.md$/, ''), ...frontmatter(readFileSync(`${WEHREN}/${d}`, 'utf8')) }));
+const findeWehr = (wert) =>
+  wehrenListe.find((w) => w.id === wert || w.name === wert) ?? { name: wert, email: '' };
+
 const smtpBereit = process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS;
 let transport = null;
 if (smtpBereit) {
@@ -78,8 +86,7 @@ for (const datei of readdirSync(PFLEGE).filter((d) => d.endsWith('.md'))) {
 
   if (!v.abholbereitSeit) text = setzeFeld(text, 'abholbereitSeit', `"${jetzt}"`);
 
-  const wehrPfad = `${WEHREN}/${v.wehr}.md`;
-  const wehr = existsSync(wehrPfad) ? frontmatter(readFileSync(wehrPfad, 'utf8')) : { name: v.wehr, email: '' };
+  const wehr = findeWehr(v.wehr);
 
   if (!wehr.email) {
     console.warn(`⚠ ${datei}: keine E-Mail bei ${wehr.name} hinterlegt – Mail wird nachgeholt, sobald sie gepflegt ist.`);

@@ -1,7 +1,17 @@
 import { getCollection } from 'astro:content';
 
+/**
+ * Nachschlage-Map für Wehren – bewusst nach BEIDEN Schlüsseln (Datei-Slug und
+ * Name), da `wehr` in Vorgängen den Namen speichert (neu) oder noch den Slug
+ * (Altbestand). So löst `.get(v.wehr)` in jedem Fall auf.
+ */
 async function wehrenMap() {
-  return new Map((await getCollection('wehren')).map((w) => [w.id, w.data]));
+  const map = new Map<string, { name: string; email: string }>();
+  for (const w of await getCollection('wehren')) {
+    map.set(w.id, w.data);
+    map.set(w.data.name, w.data);
+  }
+  return map;
 }
 
 /** Vorgänge der Atemschutzwerkstatt, alphabetisch nach Wehr-Name, mit aufgelöstem Wehr-Namen. */

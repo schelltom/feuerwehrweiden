@@ -1,5 +1,5 @@
 ---
-wehr: ff-parkstein
+wehr: "FF Parkstein"
 abgegeben: 2026-07-25T16:40
 geraete: 0
 masken: 0

@@ -1,5 +1,5 @@
 ---
-wehr: ff-bechtsrieth
+wehr: "FF Bechtsrieth"
 abgegeben: 2026-07-27T14:56
 geraete: 0
 masken: 0
