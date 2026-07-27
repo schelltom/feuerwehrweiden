@@ -314,12 +314,13 @@ collections:
         search_fields: [name]
         display_fields: [name]
         value_field: '{{slug}}'
+        options_length: 100
         hint: 'Wehr nicht in der Liste? Erst unter "Feuerwehren" anlegen – die E-Mail wird dort gepflegt.'
       - { name: abgegeben, label: 'Abgegeben am', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
       - { name: geraete, label: 'Anzahl Atemschutzgeräte', widget: number, value_type: int, min: 0, default: 0 }
       - { name: masken, label: 'Anzahl Masken', widget: number, value_type: int, min: 0, default: 0 }
       - { name: flaschen, label: 'Anzahl Flaschen', widget: number, value_type: int, min: 0, default: 0 }
-      - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
+      - { name: hinweis, label: 'Abholhinweis (optional)', widget: string, required: false, default: '', hint: 'Erscheint auf der Website in Klammern hinter dem Wehr-Namen (nur wenn abholbereit).' }
       - { name: abholbereit, label: 'Geprüft & abholbereit (löst die E-Mail an die Wehr aus)', widget: boolean, default: false }
       - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
       - { name: abholbereitSeit, widget: hidden, default: '' }
@@ -341,6 +342,7 @@ collections:
         search_fields: [name]
         display_fields: [name]
         value_field: '{{slug}}'
+        options_length: 100
         hint: 'Wehr nicht in der Liste? Erst unter "Feuerwehren" anlegen.'
       - { name: abgegeben, label: 'Abgegeben am', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
       - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
