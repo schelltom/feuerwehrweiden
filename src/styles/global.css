@@ -437,6 +437,7 @@
   .monitorkarte .was .art.thl{color:#7D9BFF}
   .monitorkarte .was .art.brand{color:var(--rot-hell)}
   .monitorkarte .was .art.abc{color:#F0B429}
+  .monitorkarte .was .art.sicherheitswache{color:#A987E6}
   .monitorkarte .was .art.sonstige{color:#35C071}
   .monitorkarte.kompakt li{grid-template-columns:1fr;row-gap:1px;padding:8px 16px}
   .monitorkarte.kompakt .zeit{font-size:.68rem}

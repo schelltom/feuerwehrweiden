@@ -1,15 +1,16 @@
 import { getCollection } from 'astro:content';
 
-export type Einsatzart = 'Brand' | 'THL' | 'ABC' | 'Sonstige';
+export type Einsatzart = 'Brand' | 'THL' | 'ABC' | 'Sicherheitswache' | 'Sonstige';
 
 /**
  * Einsatzart automatisch aus dem Alarmstichwort ableiten (für die
  * Einsatzbilanz und die Farb-/Symbol-Zuordnung). Es gibt kein eigenes
  * Feld mehr – die Kategorie ergibt sich allein aus dem Stichwort:
- *   B …   → Brand   (B 1, B 3 Person, B-BMA …)
- *   THL … → THL     (auch "2× THL")
- *   ABC … → ABC     (ABC Explosion, ABC Öl …)
- *   alles andere → Sonstige (inkl. ältere Freitext-Stichwörter)
+ *   B …             → Brand   (B 1, B 3 Person, B-BMA …)
+ *   THL …           → THL     (auch "2× THL")
+ *   ABC …           → ABC     (ABC Explosion, ABC Öl …)
+ *   … SICHERHEITSWACHE → Sicherheitswache ("INF SICHERHEITSWACHE")
+ *   alles andere    → Sonstige (inkl. ältere Freitext-Stichwörter)
  * Eine führende Mengenangabe ("2× …") wird vorher entfernt.
  */
 export function artVonStichwort(stichwort: string): Einsatzart {
@@ -17,6 +18,7 @@ export function artVonStichwort(stichwort: string): Einsatzart {
   if (s === 'B' || /^B[\s\-\d]/.test(s)) return 'Brand';
   if (s.startsWith('THL')) return 'THL';
   if (s.startsWith('ABC')) return 'ABC';
+  if (s.includes('SICHERHEITSWACHE')) return 'Sicherheitswache';
   return 'Sonstige';
 }
 
