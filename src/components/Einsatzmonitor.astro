@@ -1,4 +1,5 @@
 ---
+import { EINSATZ_ICONS as ICONS } from '../lib/einsatz-icons';
 
 interface Einsatz {
   wann: Date;
@@ -39,6 +40,9 @@ const istNeu = (w: Date) => Date.now() - w.getTime() < 12 * 60 * 60 * 1000;
         <li>
           <span class="zeit">{e.datum} · {e.zeit}</span>
           <span class="was">
+            <span class:list={['art', e.art.toLowerCase()]} title={e.art}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d={ICONS[e.art]} /></svg>
+            </span>
             {e.stichwort}
             {i === 0 && istNeu(e.wann) && <em class="neu" data-wann={e.wann.toISOString()}>Neu</em>}
           </span>
@@ -54,6 +58,7 @@ const istNeu = (w: Date) => Date.now() - w.getTime() < 12 * 60 * 60 * 1000;
 
 <script>
   import { beobachteEinsaetze, esc, istNeu, type EinsatzLive } from '../lib/einsatz-live';
+  import { EINSATZ_ICONS } from '../lib/einsatz-icons';
 
   /* "Neu"-Schild entfernen, wenn der Einsatz beim Betrachten älter als 12 Stunden ist */
   const grenze = Date.now() - 12 * 60 * 60 * 1000;
@@ -73,6 +78,7 @@ const istNeu = (w: Date) => Date.now() - w.getTime() < 12 * 60 * 60 * 1000;
         .map(
           (e, i) =>
             `<li><span class="zeit">${esc(e.datum)} · ${esc(e.zeit)}</span><span class="was">` +
+            `<span class="art ${e.art.toLowerCase()}" title="${esc(e.art)}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${EINSATZ_ICONS[e.art]}"/></svg></span> ` +
             `${esc(e.stichwort)}` +
             (i === 0 && istNeu(e.wann) ? ' <em class="neu">Neu</em>' : '') +
             `</span></li>`
