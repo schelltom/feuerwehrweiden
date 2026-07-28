@@ -169,4 +169,26 @@ const REAKTIONEN = [
   .reakt-chip.aktiv .re-zahl {
     color: rgba(255, 255, 255, 0.85);
   }
+
+  /* Schmale Handys (z. B. iPhone): kleiner + zentriert, damit alle drei
+     nebeneinander passen. */
+  @media (max-width: 430px) {
+    .reakt-titel {
+      text-align: center;
+    }
+    .reakt-chips {
+      gap: 7px;
+      justify-content: center;
+    }
+    .reakt-chip {
+      padding: 7px 11px;
+      gap: 6px;
+    }
+    .re-emoji {
+      font-size: 1rem;
+    }
+    .re-wort {
+      font-size: 0.82rem;
+    }
+  }
 </style>
