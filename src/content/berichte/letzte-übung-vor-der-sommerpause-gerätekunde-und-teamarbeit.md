@@ -14,7 +14,7 @@ galerie:
   - bild: /bilder/berichte/2026/img_8330.jpeg
   - bild: /bilder/berichte/2026/img_8347.jpeg
 ---
-Am Montag stand für unseren ersten Zug die letzte Übung vor der Sommerpause auf dem Programm. Das Thema lautete **Material- und Gerätekunde** – und dass auch dieses Thema spannend und abwechslungsreich sein kann, wurde an diesem Abend eindrucksvoll unter Beweis gestellt.
+Am Montag stand für unseren ersten Zug die letzte Übung vor der Sommerpause auf dem Programm. Das Thema lautete **Material- und Gerätekunde** – und das auch dieses Thema spannend und abwechslungsreich sein kann, wurde an diesem Abend eindrucksvoll unter Beweis gestellt.
 
 Ziel des Ausbildungsabends war es, vorhandenes Wissen aufzufrischen, den sicheren Umgang mit Material und Geräten zu festigen und vor allem das selbstständige Denken sowie die Zusammenarbeit im Team zu fördern.
 
