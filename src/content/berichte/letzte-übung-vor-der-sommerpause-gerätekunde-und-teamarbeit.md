@@ -28,6 +28,6 @@ Jeder, der bei der Feuerwehr aktiv ist, kennt das: Man hat eine Vielzahl an Ger�
 
 Bei dieser Station stand nicht das schnelle Erreichen des Ziels im Vordergrund. Vielmehr sollten die Teilnehmer mögliche Probleme erkennen, gemeinsam Lösungswege entwickeln und diese sicher umsetzen. So wurde nicht nur der sichere Umgang mit Material und Geräten geübt, sondern auch die Zusammenarbeit innerhalb der Mannschaft gestärkt.
 
-**Beide Gruppen meisterten ihre Aufgaben erfolgreich und erreichten ihr Ausbildungsziel. Neben dem sicheren Umgang mit Material und Geräten stand vor allem das gemeinsame Lösen von Aufgaben im Team im Mittelpunkt der Ausbildung.**
+Beide Gruppen meisterten ihre Aufgaben erfolgreich und erreichten ihr Ausbildungsziel. Neben dem sicheren Umgang mit Material und Geräten stand vor allem das gemeinsame Lösen von Aufgaben im Team im Mittelpunkt der Ausbildung.
 
-**Damit endet für den ersten Zug die letzte Übung vor der Sommerpause. Wir wünschen allen Kameradinnen und Kameraden sowie ihren Familien eine schöne und erholsame Sommerzeit**
+Damit endet für den ersten Zug die letzte Übung vor der Sommerpause. Wir wünschen allen Kameradinnen und Kameraden sowie ihren Familien eine schöne und erholsame Sommerzeit.
