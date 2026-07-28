@@ -1,5 +1,5 @@
 ---
-titel: KINDERFLAMME BAYERN –  DAS ERSTE ABZEICHEN FÜR UNSEREN FEUERWEHRNACHWUCHS
+titel: Kinderflamme Bayern –  Das erste Abzeichen für unseren Feuerwehrnachwuchs
 datum: 2026-07-28
 entwurf: true
 ressort: Feuerwehr
