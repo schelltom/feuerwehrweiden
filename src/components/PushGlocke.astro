@@ -2,9 +2,8 @@
 /**
  * Web-Push-Anmeldung für die Feuerwehr Weiden.
  *
- * - Standard: Abo für den Kanal "berichte".
- * - Verstecktes Feature: 5× auf das 🚒 tippen schaltet den Schalter
- *   "Auch Einsätze" frei (Kanal "einsaetze").
+ * - Grundabo: Kanal "berichte" (neue Berichte).
+ * - Optional zuschaltbar: Kanal "einsaetze" (Häkchen "Auch bei Einsätzen").
  *
  * Die eigentliche Zustellung übernimmt der ffw-push-Worker + die
  * GitHub-Action push-notify.yml. iOS erlaubt Web-Push nur, wenn die Seite
@@ -37,9 +36,10 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
 
   <div class="pg-box" data-state="active" hidden>
     <p class="pg-aktiv">✓ Benachrichtigungen sind <strong>aktiv</strong>.</p>
+    <p class="pg-sub">Du erhältst neue <strong>Berichte</strong>. Möchtest du auch bei Einsätzen benachrichtigt werden?</p>
 
-    <label class="pg-einsatz" data-einsatz-row hidden>
-      <input type="checkbox" data-einsatz /> Auch Einsätze <span class="pg-beta">Beta</span>
+    <label class="pg-einsatz" data-einsatz-row>
+      <input type="checkbox" data-einsatz /> Auch bei Einsätzen benachrichtigen
     </label>
 
     <button type="button" class="pg-btn pg-btn--sek" data-unsubscribe>Benachrichtigungen abbestellen</button>
@@ -55,11 +55,8 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
 
     const boxes = root.querySelectorAll('[data-state]');
     const hinweis = root.querySelector('[data-hinweis]');
-    const einsatzRow = root.querySelector('[data-einsatz-row]');
     const einsatzBox = root.querySelector('[data-einsatz]');
-    const siren = root.querySelector('[data-siren]');
 
-    const LS_UNLOCK = 'ffw-push-einsatz-unlocked';
     const show = (name) =>
       boxes.forEach((b) => (b.hidden = b.getAttribute('data-state') !== name));
     const sag = (t) => (hinweis.textContent = t || '');
@@ -104,27 +101,6 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
         /* egal – Browser-Abo wird trotzdem beendet */
       }
     }
-
-    // ---- Einsatz-Trick: 5× aufs 🚒 tippen ----
-    function schalteFrei() {
-      if (!einsatzRow) return;
-      einsatzRow.hidden = false;
-      localStorage.setItem(LS_UNLOCK, '1');
-    }
-    if (localStorage.getItem(LS_UNLOCK) === '1') schalteFrei();
-
-    let tapCount = 0;
-    let tapTimer = null;
-    siren?.addEventListener('click', () => {
-      tapCount++;
-      clearTimeout(tapTimer);
-      tapTimer = setTimeout(() => (tapCount = 0), 1200);
-      if (tapCount >= 5) {
-        tapCount = 0;
-        schalteFrei();
-        sag('🚒 Einsatz-Modus freigeschaltet – Häkchen setzen, um auch Einsätze zu erhalten.');
-      }
-    });
 
     // ---- Init ----
     (async () => {
@@ -235,10 +211,8 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
     font-size: 2.6rem;
     line-height: 1;
     margin-bottom: 12px;
-    cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;
   }
   .pg-box {
     display: flex;
@@ -288,6 +262,12 @@ import { VAPID_PUBLIC_KEY, PUSH_WORKER_URL } from '../config/push';
   .pg-aktiv {
     margin: 0;
     font-size: 1.05rem;
+  }
+  .pg-sub {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #555;
+    max-width: 26rem;
   }
   .pg-einsatz {
     display: inline-flex;

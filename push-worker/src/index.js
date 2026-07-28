@@ -6,6 +6,7 @@
  * Endpunkte:
  *   POST /subscribe    { subscription, channels }  → Abo speichern/aktualisieren
  *   POST /unsubscribe  { endpoint }                → Abo löschen
+ *   GET  /count                                    → Anzahl Abos (öffentlich, nur Zahl)
  *   GET  /subscriptions   (Bearer LIST_TOKEN)      → alle Abos (für die Action)
  *
  * Keine personenbezogenen Klarnamen – gespeichert wird nur der vom Browser
@@ -16,6 +17,7 @@ const ERLAUBTE_ORIGINS = [
   'https://feuerwehr-weiden.de',
   'https://www.feuerwehr-weiden.de',
   'http://localhost:4321',
+  'http://localhost:4322',
 ];
 
 function corsHeaders(request) {
@@ -81,6 +83,18 @@ export default {
       if (!body || !body.endpoint) return json({ error: 'endpoint fehlt' }, 400, request);
       await env.SUBS.delete(await schluessel(body.endpoint));
       return json({ ok: true }, 200, request);
+    }
+
+    // ---- Öffentliche Abo-Anzahl (nur die Zahl, keine Daten) ----
+    if (request.method === 'GET' && url.pathname === '/count') {
+      let anzahl = 0;
+      let cursor;
+      do {
+        const list = await env.SUBS.list({ cursor, limit: 1000 });
+        anzahl += list.keys.length;
+        cursor = list.list_complete ? undefined : list.cursor;
+      } while (cursor);
+      return json({ count: anzahl }, 200, request);
     }
 
     // ---- Alle Abos ausliefern (nur für die GitHub-Action) ----

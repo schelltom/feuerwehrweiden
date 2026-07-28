@@ -14,6 +14,9 @@ const berichte = defineCollection({
     /** Entwurf – auf der Website überall ausgeblendet, bis abgehakt */
     entwurf: z.boolean().default(false),
     titelbild: z.string().optional(),
+    /** Titelbild in der News-Vorschau vollständig zeigen (einpassen statt
+     *  beschneiden) – für breite Grafiken mit Text. Standard: beschneiden. */
+    titelbildEinpassen: z.boolean().default(false),
     kurz: z.string().optional(),
     stats: z
       .array(z.object({ wert: z.string(), label: z.string() }))

@@ -2,12 +2,12 @@
 import Basis from '../../layouts/Basis.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
 import PushGlocke from '../../components/PushGlocke.astro';
+import { PUSH_WORKER_URL } from '../../config/push';
 ---
 
 <Basis
   titel="Benachrichtigungen – Feuerwehr Weiden"
   beschreibung="Neue Berichte der Feuerwehr Weiden als Push-Benachrichtigung aufs Handy – so richtest du es ein."
-  noindex={true}
 >
   <main>
     <Seitenkopf
@@ -17,61 +17,172 @@ import PushGlocke from '../../components/PushGlocke.astro';
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px);padding-bottom:clamp(72px,9vw,120px)">
-        <p class="intro reveal" style="margin-bottom:36px">
-          Verpasse keinen neuen Bericht: Auf Wunsch meldet sich die Feuerwehr Weiden mit einer
-          kurzen Push-Nachricht direkt auf deinem Gerät, sobald ein neuer Beitrag erscheint.
-          Kostenlos, jederzeit wieder abbestellbar – und ganz ohne App aus dem Store.
-        </p>
-
-        <PushGlocke />
-
-        <div class="hilfe reveal">
-          <h2 class="display">So aktivierst du es</h2>
-
-          <h3>Am Computer, unter Android &amp; Co.</h3>
-          <ol>
-            <li>Oben auf <strong>„🔔 Benachrichtigungen aktivieren"</strong> tippen.</li>
-            <li>Die Nachfrage des Browsers mit <strong>„Zulassen"</strong> bestätigen.</li>
-            <li>Fertig – ab jetzt ploppt bei jedem neuen Bericht eine Meldung auf.</li>
-          </ol>
-
-          <h3>Auf dem iPhone &amp; iPad <span class="apple">Apple-Einschränkung</span></h3>
-          <p>
-            Apple erlaubt Push-Benachrichtigungen im Safari-Browser <strong>nur</strong>, wenn die
-            Seite vorher als App auf dem Home-Bildschirm installiert wurde. Das ist schnell erledigt:
-          </p>
-          <ol>
-            <li>Diese Seite in <strong>Safari</strong> öffnen (nicht in Chrome o. Ä.).</li>
-            <li>Unten in der Leiste auf das <strong>Teilen-Symbol</strong> tippen
-              (Quadrat mit Pfeil nach oben).</li>
-            <li><strong>„Zum Home-Bildschirm"</strong> wählen und mit <strong>„Hinzufügen"</strong> bestätigen.</li>
-            <li>Die neue <strong>Feuerwehr-Weiden-App</strong> vom Home-Bildschirm öffnen.</li>
-            <li>Erst dort erscheint der Knopf <strong>„🔔 Benachrichtigungen aktivieren"</strong>.</li>
-          </ol>
-          <p class="klein">
-            Voraussetzung ist iOS/iPadOS 16.4 oder neuer. Im normalen Safari-Tab (ohne Installation)
-            bietet Apple die Funktion technisch nicht an – das liegt nicht an unserer Seite.
+        <div class="benach-layout">
+          <p class="intro ba-intro reveal">
+            Verpasse keinen neuen Bericht: Auf Wunsch meldet sich die Feuerwehr Weiden mit einer
+            kurzen Push-Nachricht direkt auf deinem Gerät, sobald ein neuer Beitrag erscheint.
+            Kostenlos, jederzeit wieder abbestellbar – und ganz ohne App aus dem Store.
           </p>
 
-          <h3>Wieder abbestellen</h3>
-          <p>
-            Jederzeit oben über <strong>„Benachrichtigungen abbestellen"</strong> – oder in den
-            Benachrichtigungs-Einstellungen deines Browsers bzw. Geräts.
-          </p>
+          <div class="ba-glocke">
+            <PushGlocke />
+          </div>
+
+          <aside class="ba-seite">
+            <div class="push-zaehler" data-zaehler hidden>
+              <span class="z-icon" aria-hidden="true">🔔</span>
+              <b class="z-num" data-znum>0</b>
+              <span class="z-label">Menschen bleiben mit der Feuerwehr Weiden auf dem Laufenden.</span>
+            </div>
+          </aside>
+
+          <div class="hilfe reveal">
+            <h2 class="display">So aktivierst du es</h2>
+
+            <h3>Am Computer, unter Android &amp; Co.</h3>
+            <ol>
+              <li>Oben auf <strong>„🔔 Benachrichtigungen aktivieren"</strong> tippen.</li>
+              <li>Die Nachfrage des Browsers mit <strong>„Zulassen"</strong> bestätigen.</li>
+              <li>Fertig – ab jetzt ploppt bei jedem neuen Bericht eine Meldung auf.</li>
+            </ol>
+
+            <h3>Auf dem iPhone &amp; iPad <span class="apple">Apple-Einschränkung</span></h3>
+            <p>
+              Apple erlaubt Push-Benachrichtigungen im Safari-Browser <strong>nur</strong>, wenn die
+              Seite vorher als App auf dem Home-Bildschirm installiert wurde. Das ist schnell erledigt:
+            </p>
+            <ol>
+              <li>Diese Seite in <strong>Safari</strong> öffnen (nicht in Chrome o. Ä.).</li>
+              <li>Unten in der Leiste auf das <strong>Teilen-Symbol</strong> tippen
+                (Quadrat mit Pfeil nach oben).</li>
+              <li><strong>„Zum Home-Bildschirm"</strong> wählen und mit <strong>„Hinzufügen"</strong> bestätigen.</li>
+              <li>Die neue <strong>Feuerwehr-Weiden-App</strong> vom Home-Bildschirm öffnen.</li>
+              <li>Erst dort erscheint der Knopf <strong>„🔔 Benachrichtigungen aktivieren"</strong>.</li>
+            </ol>
+            <p class="klein">
+              Voraussetzung ist iOS/iPadOS 16.4 oder neuer. Im normalen Safari-Tab (ohne Installation)
+              bietet Apple die Funktion technisch nicht an – das liegt nicht an unserer Seite.
+            </p>
+
+            <h3>Wieder abbestellen</h3>
+            <p>
+              Jederzeit oben über <strong>„Benachrichtigungen abbestellen"</strong> – oder in den
+              Benachrichtigungs-Einstellungen deines Browsers bzw. Geräts.
+            </p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 </Basis>
 
+<script define:vars={{ PUSH_WORKER_URL }}>
+  (async () => {
+    const box = document.querySelector('[data-zaehler]');
+    if (!box) return;
+    const numEl = box.querySelector('[data-znum]');
+    try {
+      const res = await fetch(`${PUSH_WORKER_URL}/count`, { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('nicht verfügbar');
+      const data = await res.json();
+      const ziel = Number(data && data.count);
+      if (!Number.isFinite(ziel) || ziel < 1) return; // 0 oder unbekannt → Blickfang aus
+      box.hidden = false;
+      // Hochzähl-Animation
+      const dauer = 900;
+      const start = performance.now();
+      const step = (t) => {
+        const p = Math.min(1, (t - start) / dauer);
+        const eased = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = Math.round(ziel * eased).toLocaleString('de-DE');
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    } catch {
+      /* Endpunkt (noch) nicht verfügbar → Zähler bleibt ausgeblendet */
+    }
+  })();
+</script>
+
 <style>
-  .hilfe {
-    margin-top: 56px;
-    max-width: 44rem;
+  .benach-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-areas:
+      'intro zaehler'
+      'glocke zaehler'
+      'hilfe zaehler';
+    gap: clamp(24px, 4vw, 52px);
+    align-items: start;
   }
-  .hilfe h2 {
-    margin: 0 0 18px;
+  .ba-intro { grid-area: intro; margin: 0; }
+  .ba-glocke { grid-area: glocke; }
+  .ba-seite { grid-area: zaehler; position: sticky; top: 100px; }
+  .hilfe { grid-area: hilfe; max-width: 44rem; margin-top: 8px; }
+
+  @media (max-width: 900px) {
+    .benach-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'intro'
+        'glocke'
+        'zaehler'
+        'hilfe';
+    }
+    .ba-seite { position: static; }
   }
+
+  /* Blickfang-Zähler */
+  .push-zaehler {
+    background: linear-gradient(160deg, #1a1f28 0%, #0e1117 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-top: 3px solid var(--rot);
+    border-radius: 16px;
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 12px 34px rgba(20, 22, 28, 0.18);
+  }
+  .z-icon {
+    font-size: 2rem;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 6px;
+    transform-origin: 50% 15%;
+    animation: glocke-laeuten 3.2s ease-in-out 1s infinite;
+  }
+  @keyframes glocke-laeuten {
+    /* die meiste Zeit ruhig, dann ein kurzes Bimmeln */
+    0%, 55%, 100% { transform: rotate(0); }
+    60% { transform: rotate(16deg); }
+    65% { transform: rotate(-13deg); }
+    70% { transform: rotate(10deg); }
+    75% { transform: rotate(-7deg); }
+    80% { transform: rotate(4deg); }
+    85% { transform: rotate(-2deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .z-icon { animation: none; }
+  }
+  .z-num {
+    display: block;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(3.2rem, 5vw, 4.4rem);
+    line-height: 1;
+    color: var(--rot-hell);
+    font-variant-numeric: tabular-nums;
+  }
+  .z-label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: var(--silber);
+  }
+
+  .hilfe h2 { margin: 0 0 18px; }
   .hilfe h3 {
     margin: 32px 0 8px;
     display: flex;
@@ -79,13 +190,8 @@ import PushGlocke from '../../components/PushGlocke.astro';
     gap: 10px;
     flex-wrap: wrap;
   }
-  .hilfe ol {
-    line-height: 1.6;
-    padding-left: 1.3em;
-  }
-  .hilfe li {
-    margin-bottom: 6px;
-  }
+  .hilfe ol { line-height: 1.6; padding-left: 1.3em; }
+  .hilfe li { margin-bottom: 6px; }
   .apple {
     font-size: 0.72rem;
     font-weight: 700;
@@ -96,8 +202,5 @@ import PushGlocke from '../../components/PushGlocke.astro';
     padding: 3px 9px;
     border-radius: 999px;
   }
-  .klein {
-    font-size: 0.9rem;
-    color: #666;
-  }
+  .klein { font-size: 0.9rem; color: #666; }
 </style>
