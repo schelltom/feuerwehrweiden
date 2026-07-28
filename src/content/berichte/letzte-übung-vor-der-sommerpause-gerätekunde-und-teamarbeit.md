@@ -19,6 +19,6 @@ Die zweite Station stand ganz im Zeichen der Teamarbeit. Vom Rüstwagen durfte a
 
 Jeder, der bei der Feuerwehr aktiv ist, kennt das: Man hat eine Vielzahl an Geräten und Hilfsmitteln dabei – und trotzdem kommt irgendwann der Moment, in dem man improvisieren muss. Genau so erging es der Gruppe bei der Knobelaufgabe. Als das vorhandene Rüstholz nicht mehr ausreichte, war Teamwork gefragt. Gemeinsam wurde nach einer sicheren Alternative gesucht und schließlich eine passende Lösung gefunden. Kurzerhand wurden die Standfüße der Ölspurschilder vom GW-L1 zweckentfremdet und als Unterbaumaterial eingesetzt. Ein gutes Beispiel dafür, dass Teamarbeit, Kommunikation und kreatives Denken im Einsatz genauso wichtig sind wie die richtige Ausrüstung.
 
-Beide Gruppen meisterten ihre Aufgaben erfolgreich. Die Übung zeigte einmal mehr, dass neben fundierter Gerätekunde vor allem Teamarbeit, Kommunikation und eigenständiges Handeln entscheidende Faktoren für einen sicheren Einsatzerfolg sind.
+Beide Gruppen meisterten ihre Aufgaben erfolgreich. Die Übung zeigte einmal mehr, dass neben fundierter Gerätekunde vor allem Teamarbeit, Kommunikation und taktisches Denken entscheidende Faktoren für einen sicheren Einsatzerfolg sind.
 
 **Mit dieser gelungenen Ausbildung verabschiedet sich der erste Zug in die Sommerpause. Wir wünschen allen Kameradinnen und Kameraden sowie ihren Familien eine schöne und erholsame Sommerzeit.**
