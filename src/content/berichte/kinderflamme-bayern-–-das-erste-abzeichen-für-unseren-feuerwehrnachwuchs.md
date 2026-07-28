@@ -3,6 +3,7 @@ titel: KINDERFLAMME BAYERN –  DAS ERSTE ABZEICHEN FÜR UNSEREN FEUERWEHRNACHWU
 datum: 2026-07-28
 entwurf: true
 ressort: Feuerwehr
+titelbild: /bilder/berichte/2026/img_8350.jpeg
 titelbildEinpassen: false
 ---
 Am 25.07.2026 fand an der Feuerwache 2 der Freiwilligen Feuerwehr Weiden die sich alle zwei Jahre wiederholende Kinderflamme statt. 	
