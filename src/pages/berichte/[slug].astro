@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Basis from '../../layouts/Basis.astro';
 import Slideshow from '../../components/Slideshow.astro';
 import Seitenkopf from '../../components/Seitenkopf.astro';
+import Reaktionen from '../../components/Reaktionen.astro';
 
 export async function getStaticPaths() {
   const berichte = (await getCollection('berichte')).filter((b) => !b.data.entwurf);
@@ -60,6 +61,8 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
             </div>
           )
         }
+
+        <Reaktionen slug={bericht.id} />
 
         <div class="artikel-ende reveal">
           <span class="artikel-navlinks">

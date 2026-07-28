@@ -1,0 +1,172 @@
+---
+/**
+ * Anonyme Reaktionen für einen Bericht – schlanke „Feuerwehr-Reactions".
+ * Zähler liegen im ffw-push-Worker (KV, Key `react:<slug>` = {flamme,wehr,danke}).
+ * Pro Gerät merkt localStorage, ob schon reagiert wurde (Toggle). Kein Login,
+ * keine Namen, kein Tracking – nur Zahlen.
+ */
+import { PUSH_WORKER_URL } from '../config/push';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+
+// `key` = interne ID für die Zählerspeicherung im Worker (muss dort in der
+// erlaubten Liste stehen). Emoji/Wort sind frei änderbar. Reihenfolge =
+// Anzeigereihenfolge.
+const REAKTIONEN = [
+  { key: 'stark', emoji: '💪', wort: 'Stark' },
+  { key: 'danke', emoji: '❤️', wort: 'Danke' },
+  { key: 'respekt', emoji: '🚒', wort: 'Respekt' },
+];
+---
+
+<div class="reaktionen reveal" data-reaktionen data-slug={slug}>
+  <span class="reakt-titel">Deine Reaktion</span>
+  <div class="reakt-chips">
+    {
+      REAKTIONEN.map((r) => (
+        <button type="button" class="reakt-chip" data-key={r.key} aria-pressed="false" title={r.wort}>
+          <span class="re-emoji" aria-hidden="true">{r.emoji}</span>
+          <span class="re-wort">{r.wort}</span>
+          <b class="re-zahl" data-zahl>0</b>
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script define:vars={{ PUSH_WORKER_URL }}>
+  (async () => {
+    const box = document.querySelector('[data-reaktionen]');
+    if (!box) return;
+    const slug = box.dataset.slug;
+    const chips = [...box.querySelectorAll('.reakt-chip')];
+    const ls = (key) => `ffw-react-${slug}-${key}`;
+    const zahlEl = (chip) => chip.querySelector('[data-zahl]');
+
+    // aktiven Zustand (dieses Gerät) aus localStorage
+    for (const chip of chips) {
+      const aktiv = localStorage.getItem(ls(chip.dataset.key)) === '1';
+      chip.classList.toggle('aktiv', aktiv);
+      chip.setAttribute('aria-pressed', String(aktiv));
+    }
+
+    // aktuelle Zählerstände laden
+    try {
+      const res = await fetch(`${PUSH_WORKER_URL}/reactions?slug=${encodeURIComponent(slug)}`);
+      if (res.ok) {
+        const { counts } = await res.json();
+        for (const chip of chips) {
+          zahlEl(chip).textContent = String(Math.max(0, Number(counts?.[chip.dataset.key]) || 0));
+        }
+      }
+    } catch {
+      /* Worker nicht erreichbar → Zähler bleiben bei 0, Toggle geht trotzdem */
+    }
+
+    for (const chip of chips) {
+      chip.addEventListener('click', async () => {
+        if (chip.dataset.busy) return;
+        const key = chip.dataset.key;
+        const war = chip.classList.contains('aktiv');
+        const delta = war ? -1 : 1;
+
+        // optimistisch umschalten
+        chip.classList.toggle('aktiv', !war);
+        chip.setAttribute('aria-pressed', String(!war));
+        const el = zahlEl(chip);
+        el.textContent = String(Math.max(0, (Number(el.textContent) || 0) + delta));
+        if (war) localStorage.removeItem(ls(key));
+        else localStorage.setItem(ls(key), '1');
+
+        chip.dataset.busy = '1';
+        try {
+          const res = await fetch(`${PUSH_WORKER_URL}/react`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug, key, delta }),
+          });
+          if (res.ok) {
+            const { counts } = await res.json();
+            if (counts && typeof counts[key] === 'number') {
+              el.textContent = String(Math.max(0, counts[key]));
+            }
+          }
+        } catch {
+          /* offline/Worker weg → optimistische Anzeige bleibt stehen */
+        } finally {
+          delete chip.dataset.busy;
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+  .reaktionen {
+    margin-top: clamp(36px, 5vw, 56px);
+    padding-top: 24px;
+    border-top: 1px solid var(--linie);
+  }
+  .reakt-titel {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    margin-bottom: 14px;
+  }
+  .reakt-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .reakt-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    appearance: none;
+    cursor: pointer;
+    font: inherit;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-radius: 999px;
+    padding: 9px 16px;
+    color: var(--tinte);
+    transition: border-color 0.15s, background 0.15s, transform 0.05s;
+  }
+  .reakt-chip:hover {
+    border-color: var(--rot);
+  }
+  .reakt-chip:active {
+    transform: translateY(1px);
+  }
+  .re-emoji {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+  .re-wort {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .re-zahl {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--tinte2);
+    min-width: 1.2ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .reakt-chip.aktiv {
+    background: var(--rot);
+    border-color: var(--rot);
+    color: #fff;
+  }
+  .reakt-chip.aktiv .re-zahl {
+    color: rgba(255, 255, 255, 0.85);
+  }
+</style>

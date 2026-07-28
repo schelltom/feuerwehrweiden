@@ -7,6 +7,8 @@
  *   POST /subscribe    { subscription, channels }  → Abo speichern/aktualisieren
  *   POST /unsubscribe  { endpoint }                → Abo löschen
  *   GET  /count                                    → Anzahl Abos (öffentlich, nur Zahl)
+ *   GET  /reactions?slug=…                          → Reaktions-Zähler eines Berichts (öffentlich)
+ *   POST /react        { slug, key, delta }         → Reaktion ±1 (öffentlich, erlaubte keys)
  *   GET  /subscriptions   (Bearer LIST_TOKEN)      → alle Abos (für die Action)
  *
  * Keine personenbezogenen Klarnamen – gespeichert wird nur der vom Browser
@@ -91,11 +93,41 @@ export default {
       let cursor;
       do {
         const list = await env.SUBS.list({ cursor, limit: 1000 });
-        // Dedup-Merker (Präfix "push:") sind keine Abos → nicht mitzählen.
-        anzahl += list.keys.filter((k) => !k.name.startsWith('push:')).length;
+        // Nur echte Abos zählen. Abo-Keys sind reine SHA-256-Hashes (kein ":");
+        // Hilfs-Keys wie "push:"/"react:" enthalten ":" und werden übersprungen.
+        anzahl += list.keys.filter((k) => !k.name.includes(':')).length;
         cursor = list.list_complete ? undefined : list.cursor;
       } while (cursor);
       return json({ count: anzahl }, 200, request);
+    }
+
+    // ---- Reaktionen eines Berichts lesen (öffentlich, nur Zahlen) ----
+    if (request.method === 'GET' && url.pathname === '/reactions') {
+      const slug = url.searchParams.get('slug') || '';
+      const raw = slug ? await env.SUBS.get(`react:${slug}`) : null;
+      return json({ counts: raw ? JSON.parse(raw) : {} }, 200, request);
+    }
+
+    // ---- Reaktion setzen/zurücknehmen (öffentlich, ±1, nur erlaubte Keys) ----
+    if (request.method === 'POST' && url.pathname === '/react') {
+      let body;
+      try {
+        body = await request.json();
+      } catch {
+        return json({ error: 'kein JSON' }, 400, request);
+      }
+      const ERLAUBT = ['stark', 'danke', 'respekt'];
+      const slug = body && typeof body.slug === 'string' ? body.slug : '';
+      if (!slug || !ERLAUBT.includes(body && body.key)) {
+        return json({ error: 'ungültig' }, 400, request);
+      }
+      const schritt = Number(body.delta) < 0 ? -1 : 1; // nur ±1
+      const key = `react:${slug}`;
+      const raw = await env.SUBS.get(key);
+      const counts = raw ? JSON.parse(raw) : {};
+      counts[body.key] = Math.max(0, (Number(counts[body.key]) || 0) + schritt);
+      await env.SUBS.put(key, JSON.stringify(counts));
+      return json({ counts }, 200, request);
     }
 
     // ---- Dedup: einen Push-Tag "reservieren" (nur für die GitHub-Action) ----
@@ -131,7 +163,7 @@ export default {
       do {
         const list = await env.SUBS.list({ cursor });
         for (const k of list.keys) {
-          if (k.name.startsWith('push:')) continue; // Dedup-Merker, kein Abo
+          if (k.name.includes(':')) continue; // Hilfs-Keys (push:/react:) sind keine Abos
           const raw = await env.SUBS.get(k.name);
           if (raw) abos.push(JSON.parse(raw));
         }
