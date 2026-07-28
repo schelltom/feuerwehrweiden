@@ -5,6 +5,7 @@ entwurf: true
 ressort: Übungsdienst
 titelbild: /bilder/berichte/2026/img_8307.jpeg
 titelbildEinpassen: false
+galerie: []
 ---
 Am Montag stand für unseren ersten Zug die letzte Übung vor der Sommerpause auf dem Programm. Das Thema lautete **Gerätekunde** – und dass auch dieses Thema spannend und abwechslungsreich sein kann, wurde an diesem Abend eindrucksvoll unter Beweis gestellt.
 
