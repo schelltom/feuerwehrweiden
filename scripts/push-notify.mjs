@@ -119,6 +119,37 @@ if (events.length === 0) {
   process.exit(0);
 }
 
+// ---- Dedup: kürzlich schon gepushte Tags überspringen ----
+// Verhindert eine doppelte Meldung, wenn derselbe Eintrag (gleicher Slug)
+// im Zeitfenster erneut "neu" auftaucht – etwa beim Löschen + Neuanlegen.
+// Der Worker merkt sich je Tag einen Ablauf-Merker (KV, self-expiring).
+// Fehlt der Endpunkt / Fehler → wird NICHT blockiert (fail-open).
+const DEDUP_FENSTER_SEK = 30 * 60; // 30 Minuten
+async function tagFrisch(tag) {
+  try {
+    const r = await fetch(`${PUSH_WORKER_URL}/pushed`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${LIST_TOKEN}` },
+      body: JSON.stringify({ tag, windowSeconds: DEDUP_FENSTER_SEK }),
+    });
+    if (!r.ok) return true;
+    const d = await r.json();
+    return d.fresh !== false;
+  } catch {
+    return true;
+  }
+}
+
+const zuSenden = [];
+for (const ev of events) {
+  if (await tagFrisch(ev.payload.tag)) zuSenden.push(ev);
+  else console.log(`↩︎ ${ev.payload.tag}: im Zeitfenster schon gepusht – übersprungen.`);
+}
+if (zuSenden.length === 0) {
+  console.log('Nichts zu senden (alles kürzlich schon gepusht).');
+  process.exit(0);
+}
+
 // ---- Abos holen ----
 const res = await fetch(`${PUSH_WORKER_URL}/subscriptions`, {
   headers: { Authorization: `Bearer ${LIST_TOKEN}` },
@@ -128,13 +159,13 @@ if (!res.ok) {
   process.exit(1);
 }
 const { subscriptions } = await res.json();
-console.log(`${subscriptions.length} Abo(s), ${events.length} Meldung(en).`);
+console.log(`${subscriptions.length} Abo(s), ${zuSenden.length} Meldung(en).`);
 
 // ---- versenden ----
 let gesendet = 0;
 let entfernt = 0;
 
-for (const ev of events) {
+for (const ev of zuSenden) {
   const empfaenger = subscriptions.filter(
     (s) => Array.isArray(s.channels) && s.channels.includes(ev.channel)
   );

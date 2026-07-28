@@ -91,10 +91,33 @@ export default {
       let cursor;
       do {
         const list = await env.SUBS.list({ cursor, limit: 1000 });
-        anzahl += list.keys.length;
+        // Dedup-Merker (Präfix "push:") sind keine Abos → nicht mitzählen.
+        anzahl += list.keys.filter((k) => !k.name.startsWith('push:')).length;
         cursor = list.list_complete ? undefined : list.cursor;
       } while (cursor);
       return json({ count: anzahl }, 200, request);
+    }
+
+    // ---- Dedup: einen Push-Tag "reservieren" (nur für die GitHub-Action) ----
+    // Beim ersten Aufruf frei (fresh:true) und für windowSeconds gesperrt;
+    // ein zweiter Aufruf im Fenster liefert fresh:false → Action pusht nicht.
+    if (request.method === 'POST' && url.pathname === '/pushed') {
+      const auth = request.headers.get('Authorization') || '';
+      if (auth !== `Bearer ${env.LIST_TOKEN}`) {
+        return json({ error: 'nicht autorisiert' }, 401, request);
+      }
+      let body;
+      try {
+        body = await request.json();
+      } catch {
+        return json({ error: 'kein JSON' }, 400, request);
+      }
+      if (!body || !body.tag) return json({ error: 'tag fehlt' }, 400, request);
+      const fenster = Math.max(60, Number(body.windowSeconds) || 21600); // KV-TTL min. 60 s
+      const key = `push:${body.tag}`;
+      if (await env.SUBS.get(key)) return json({ fresh: false }, 200, request);
+      await env.SUBS.put(key, String(Date.now()), { expirationTtl: fenster });
+      return json({ fresh: true }, 200, request);
     }
 
     // ---- Alle Abos ausliefern (nur für die GitHub-Action) ----
@@ -108,6 +131,7 @@ export default {
       do {
         const list = await env.SUBS.list({ cursor });
         for (const k of list.keys) {
+          if (k.name.startsWith('push:')) continue; // Dedup-Merker, kein Abo
           const raw = await env.SUBS.get(k.name);
           if (raw) abos.push(JSON.parse(raw));
         }
