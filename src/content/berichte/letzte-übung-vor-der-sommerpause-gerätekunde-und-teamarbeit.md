@@ -1,7 +1,7 @@
 ---
 titel: "Letzte Übung vor der Sommerpause: Gerätekunde und Teamarbeit"
 datum: 2026-07-28
-entwurf: true
+entwurf: false
 ressort: Übungsdienst
 titelbild: /bilder/berichte/2026/img_8307.jpeg
 titelbildEinpassen: false
