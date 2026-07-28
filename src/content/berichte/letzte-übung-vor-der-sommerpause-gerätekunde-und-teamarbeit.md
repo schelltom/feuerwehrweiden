@@ -26,8 +26,8 @@ Die zweite Station stand ganz im Zeichen der Teamarbeit. Vom Rüstwagen durfte a
 
 Jeder, der bei der Feuerwehr aktiv ist, kennt das: Man hat eine Vielzahl an Geräten und Hilfsmitteln dabei – und trotzdem kommt irgendwann der Moment, in dem man improvisieren muss. Genau so erging es der Gruppe bei der Knobelaufgabe. Als das vorhandene Rüstholz nicht mehr ausreichte, war Teamwork gefragt. Gemeinsam wurde nach einer sicheren Alternative gesucht und schließlich eine passende Lösung gefunden. Kurzerhand wurden die Standfüße der Ölspurschilder vom GW-L1 zweckentfremdet und als Unterbaumaterial eingesetzt.
 
-Bei dieser Station stand nicht das schnelle Erreichen des Ziels im Vordergrund. Vielmehr sollten die Teilnehmer mögliche Probleme erkennen, gemeinsam Lösungswege entwickeln und diese sicher umsetzen. So wurde nicht nur der Umgang mit dem Material geübt, sondern auch die Zusammenarbeit innerhalb der Mannschaft gestärkt.
+Bei dieser Station stand nicht das schnelle Erreichen des Ziels im Vordergrund. Vielmehr sollten die Teilnehmer mögliche Probleme erkennen, gemeinsam Lösungswege entwickeln und diese sicher umsetzen. So wurde nicht nur der sichere Umgang mit Material und Geräten geübt, sondern auch die Zusammenarbeit innerhalb der Mannschaft gestärkt.
 
-**Beide Gruppen erreichten ihr Ausbildungsziel und zeigten einmal mehr, wie wichtig fundierte Material- und Gerätekunde sowie eine gute Zusammenarbeit im Team für den Feuerwehreinsatz sind.**
+**Beide Gruppen meisterten ihre Aufgaben erfolgreich und erreichten ihr Ausbildungsziel. Neben dem sicheren Umgang mit Material und Geräten stand vor allem das gemeinsame Lösen von Aufgaben im Team im Mittelpunkt der Ausbildung.**
 
-**Damit endet für den ersten Zug die letzte Übung vor der Sommerpause. Wir wünschen allen Kameradinnen und Kameraden sowie ihren Familien eine schöne und erholsame Sommerzeit.**
+**Damit endet für den ersten Zug die letzte Übung vor der Sommerpause. Wir wünschen allen Kameradinnen und Kameraden sowie ihren Familien eine schöne und erholsame Sommerzeit**
