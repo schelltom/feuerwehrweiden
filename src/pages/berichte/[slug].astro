@@ -62,7 +62,10 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
         }
 
         <div class="artikel-ende reveal">
-          <a class="zurueck" href="/berichte/" style="margin:0">← Alle Berichte</a>
+          <span class="artikel-navlinks">
+            <a class="zurueck" href="/berichte/" data-zurueck style="margin:0">← Zurück</a>
+            <a class="zurueck" href="/berichte/" style="margin:0">Alle Berichte →</a>
+          </span>
           <a class="btn btn-rot" href="/feuerwehr/ueber-uns/mitglied-werden/">Lust bekommen? Mach mit!</a>
         </div>
       </div>
@@ -70,7 +73,25 @@ const monatsformat = new Intl.DateTimeFormat('de-DE', { month: 'long', year: 'nu
   </main>
 </Basis>
 
+<script>
+  /* "Zurück" springt zur vorigen Seite, wenn wir von der eigenen Site kamen –
+     sonst folgt der Link seinem href (Berichtsübersicht) als Fallback. */
+  document.querySelector('[data-zurueck]')?.addEventListener('click', (e) => {
+    const kamVonSite = document.referrer && new URL(document.referrer).origin === location.origin;
+    if (kamVonSite && history.length > 1) {
+      e.preventDefault();
+      history.back();
+    }
+  });
+</script>
+
 <style>
+  .artikel-navlinks {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
   .artikel-galerie {
     margin-top: clamp(32px, 5vw, 52px);
   }
