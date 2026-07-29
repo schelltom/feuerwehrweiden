@@ -154,7 +154,7 @@ collections:
       - name: ressort
         label: Ressort
         widget: select
-        options: [Einsatzdienst, Übungsdienst, Feuerwehrverein, Fuhrpark, Verein, Jugend, Feuerwehr]
+        options: [Einsatzdienst, Übungsdienst, Feuerwehrverein, Fuhrpark, Verein, Jugend, Kinderfeuerwehr, Feuerwehr]
         default: Feuerwehr
       - { name: titelbild, label: Titelbild, widget: image, required: false }
       - { name: titelbildEinpassen, label: 'Titelbild in der Vorschau vollständig zeigen (nicht beschneiden)', widget: boolean, default: false, required: false, hint: 'Für breite Grafiken mit Text – sonst wird das Vorschaubild zugeschnitten.' }
