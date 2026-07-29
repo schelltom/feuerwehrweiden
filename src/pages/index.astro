@@ -13,7 +13,7 @@ const einsaetze = await ladeEinsaetze();
 
 const berichte = (await getCollection('berichte'))
   .filter((b) => !b.data.entwurf)
-  .sort((a, b) => b.data.datum.getTime() - a.data.datum.getTime())
+  .sort((a, b) => (b.data.veroeffentlicht ?? b.data.datum).getTime() - (a.data.veroeffentlicht ?? a.data.datum).getTime())
   .slice(0, 6);
 
 const heute = new Date();

@@ -10,6 +10,10 @@ const berichte = defineCollection({
   schema: z.object({
     titel: z.string(),
     datum: z.coerce.date(),
+    /** Sortier-Datum (mit Uhrzeit) – bestimmt die Reihenfolge in den Listen.
+     *  Fehlt es, wird nach „datum" sortiert. So kann ein später freigeschalteter
+     *  Bericht nach oben rutschen, ohne sein angezeigtes Datum zu ändern. */
+    veroeffentlicht: z.coerce.date().optional(),
     ressort: z.string().default('Feuerwehr'),
     /** Entwurf – auf der Website überall ausgeblendet, bis abgehakt */
     entwurf: z.boolean().default(false),
