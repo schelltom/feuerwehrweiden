@@ -5,8 +5,8 @@ geraete: 0
 masken: 0
 flaschen: 0
 hinweis: ""
-abholbereit: true
+abholbereit: false
 abgeholt: false
-abholbereitSeit: "2026-07-28T14:09"
+abholbereitSeit: 2026-07-28T14:09
 benachrichtigt: false
 ---
