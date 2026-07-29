@@ -12,5 +12,72 @@
          neueste 3.x – und ein kaputtes Release (z.B. 3.15.0 am 23.07.2026,
          React-Fehler #130) legt das komplette CMS lahm. Nur nach Test hochsetzen. -->
     <script src="https://unpkg.com/decap-cms@3.14.1/dist/decap-cms.js"></script>
+
+    <!-- Editor-Vorschau der Berichte an die echte Website-Optik angleichen.
+         vorschau.css spiegelt den Artikel-Abschnitt aus global.css; das
+         Template baut dieselbe .artikel/.artikeltext-Struktur wie
+         src/pages/berichte/[slug].astro nach. -->
+    <script>
+      (function () {
+        var h = window.h;
+        var createClass = window.createClass;
+        if (!window.CMS || !h || !createClass) return;
+
+        CMS.registerPreviewStyle('/admin/vorschau.css');
+
+        var monate = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+        function monatJahr(iso) {
+          if (!iso) return '';
+          var t = String(iso).slice(0, 10).split('-');
+          if (t.length < 2) return '';
+          var m = monate[parseInt(t[1], 10) - 1];
+          return m ? m + ' ' + t[0] : '';
+        }
+
+        var BerichtVorschau = createClass({
+          render: function () {
+            var entry = this.props.entry;
+            var data = entry.get('data');
+            var getAsset = this.props.getAsset;
+
+            var titel = data.get('titel');
+            var kurz = data.get('kurz');
+            var ressort = data.get('ressort');
+            var titelbild = data.get('titelbild');
+            var stats = data.get('stats');
+
+            var kopf = [ressort, monatJahr(data.get('datum'))].filter(Boolean).join(' · ');
+
+            var kinder = [];
+
+            if (titelbild) {
+              kinder.push(h('img', { key: 'bild', className: 'artikel-titelbild', src: getAsset(titelbild) }));
+            }
+            kinder.push(h('h1', { key: 'titel' }, titel || 'Ohne Titel'));
+            if (kopf) kinder.push(h('p', { key: 'meta', className: 'artikel-meta' }, kopf));
+            if (kurz) kinder.push(h('p', { key: 'lead', className: 'artikel-lead' }, kurz));
+
+            if (stats && stats.size) {
+              kinder.push(
+                h('div', { key: 'stats', className: 'artikel-stats' },
+                  stats.map(function (s, i) {
+                    return h('div', { key: i, className: 'astat' }, [
+                      h('b', { key: 'w' }, s.get('wert')),
+                      h('span', { key: 'l' }, s.get('label')),
+                    ]);
+                  }).toArray()
+                )
+              );
+            }
+
+            kinder.push(h('div', { key: 'body', className: 'artikeltext' }, this.props.widgetFor('body')));
+
+            return h('div', { className: 'artikel' }, kinder);
+          },
+        });
+
+        CMS.registerPreviewTemplate('berichte', BerichtVorschau);
+      })();
+    </script>
   </body>
 </html>
