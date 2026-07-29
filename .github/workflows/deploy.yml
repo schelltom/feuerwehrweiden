@@ -10,6 +10,16 @@ permissions:
   pages: write
   id-token: write
 
+# Nur EIN Deploy gleichzeitig. Ohne das überholen sich bei einem Schwall
+# schneller CMS-Pushes mehrere parallele Builds und ein veralteter kann den
+# neuen überschreiben (z.B. eine schon abgeholte Anlieferung bleibt im
+# Frontend hängen). Der laufende Build wird bewusst NICHT abgebrochen; nur
+# der jeweils neueste wartende Build kommt danach dran -> zuletzt gewinnt
+# immer der aktuellste Stand.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
