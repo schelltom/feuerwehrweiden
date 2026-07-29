@@ -754,7 +754,7 @@
   .artikel{max-width:760px;margin:0 auto;padding:0 24px}
   .artikel-lead{font-size:1.28rem;line-height:1.7;color:var(--tinte);margin:0 0 8px;font-weight:500}
   .artikel p{color:#3A3F4C;font-size:1.04rem;margin:1.4em 0}
-  .artikel p:first-of-type::first-letter{
+  .artikeltext > p:first-of-type::first-letter{
     font-family:var(--display);font-style:italic;font-weight:700;color:var(--rot);
     font-size:3.6em;float:left;line-height:.82;padding:4px 10px 0 0;
   }
