@@ -1,8 +1,8 @@
 ---
 titel: Kinderflamme Bayern –  Das erste Abzeichen für unseren Feuerwehrnachwuchs
 datum: 2026-07-28
-entwurf: true
-ressort: Feuerwehr
+entwurf: false
+ressort: Kinderfeuerwehr
 titelbild: /bilder/berichte/2026/img_8350.jpeg
 titelbildEinpassen: false
 galerie:
