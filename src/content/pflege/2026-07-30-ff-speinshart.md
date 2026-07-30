@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: alles fertig bis auf eine Maske
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-07-30T15:06"
 benachrichtigt: false
 ---
