@@ -2,7 +2,7 @@
 titel: Leistungsprüfung „Die Gruppe im Löscheinsatz“ – Variante 1 erfolgreich abgelegt
 datum: 2026-07-31
 entwurf: true
-veroeffentlicht: 2026-07-31T21:58
+veroeffentlicht: 2026-07-31T22:18
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/img_0839.jpeg
 titelbildEinpassen: false
