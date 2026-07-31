@@ -1,7 +1,7 @@
 ---
 titel: Zwei Waldbrandeinsätze in einer Nacht
 datum: 2026-07-31
-entwurf: true
+entwurf: false
 veroeffentlicht: 2026-07-31T13:16
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/img_8401.jpeg
@@ -14,7 +14,7 @@ galerie:
   - bild: /bilder/berichte/2026/img_8450.jpeg
   - bild: /bilder/berichte/2026/img_8449.jpeg
 ---
-Von Donnerstag auf Freitag wurde die Feuerwehr Weiden kurz vor Mitternacht zu einem B Wald klein im Bereich der B 470 alarmiert.
+Von Donnerstag auf Freitag wurde die Feuerwehr Weiden kurz vor Mitternacht zu einem B Wald klein im Bereich der B 470 zwischen Weiden und Schwarzenbach alarmiert.
 
 Drei Kameraden der Hauptfeuerwache rückten zur gemeldeten Einsatzstelle aus und stellten dort die Wasserversorgung sicher. Zeitgleich lief bereits ein B Wald groß im Bereich der NEW 2 zwischen Parkstein und Hütten. Aufgrund der räumlichen Nähe beider Einsatzstellen wurde unser Tanklöschfahrzeug (TLF) von der ersten Einsatzstelle abgezogen und zur Unterstützung an den Großbrand umgesetzt.
 
