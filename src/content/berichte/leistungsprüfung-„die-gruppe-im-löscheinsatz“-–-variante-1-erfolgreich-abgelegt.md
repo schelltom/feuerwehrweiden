@@ -2,9 +2,16 @@
 titel: Leistungsprüfung „Die Gruppe im Löscheinsatz“ – Variante 1 erfolgreich abgelegt
 datum: 2026-07-31
 entwurf: true
-veroeffentlicht: 2026-07-31T18:49
+veroeffentlicht: 2026-07-31T21:58
 ressort: Feuerwehr
+titelbild: /bilder/berichte/2026/img_0839.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/5032015f-7ed6-460c-928d-cc9831efc812.jpeg
+  - bild: /bilder/berichte/2026/img_0838.jpeg
+  - bild: /bilder/berichte/2026/4465d3e2-5ec8-4536-b1c9-883e02d419cd.jpeg
+  - bild: /bilder/berichte/2026/img_0837.jpeg
+  - bild: /bilder/berichte/2026/1393039b-3ffc-4722-a111-ea6411a2b3d8.jpeg
 ---
 Am 31. Juli legten acht Kameraden unserer Feuerwehr sowie ein Kamerad der Freiwilligen Feuerwehr Frauenricht am städtischen Bauhof Weiden erfolgreich die Leistungsprüfung „Die Gruppe im Löscheinsatz“ in der Variante 1 (Außenangriff – Wasserentnahme aus dem Hydranten) ab.
 
