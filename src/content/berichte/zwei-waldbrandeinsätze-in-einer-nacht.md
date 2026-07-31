@@ -4,7 +4,15 @@ datum: 2026-07-31
 entwurf: true
 veroeffentlicht: 2026-07-31T13:16
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/img_8401.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/img_8454.jpeg
+  - bild: /bilder/berichte/2026/img_8448.jpeg
+  - bild: /bilder/berichte/2026/img_8451.jpeg
+  - bild: /bilder/berichte/2026/img_8453.jpeg
+  - bild: /bilder/berichte/2026/img_8450.jpeg
+  - bild: /bilder/berichte/2026/img_8449.jpeg
 ---
 Von Donnerstag auf Freitag wurde die Feuerwehr Weiden kurz vor Mitternacht zu einem B Wald klein im Bereich der B 470 alarmiert.
 
