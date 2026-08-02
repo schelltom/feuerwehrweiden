@@ -4,7 +4,18 @@ datum: 2026-08-02
 entwurf: true
 veroeffentlicht: 2026-08-02T16:36
 ressort: Feuerwehrverein
+titelbild: /bilder/berichte/2026/img_0901.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/img_0909.jpeg
+  - bild: /bilder/berichte/2026/img_0908.jpeg
+  - bild: /bilder/berichte/2026/img_0910.jpeg
+  - bild: /bilder/berichte/2026/img_0911.jpeg
+  - bild: /bilder/berichte/2026/img_0899.jpeg
+  - bild: /bilder/berichte/2026/img_0903.jpeg
+  - bild: /bilder/berichte/2026/img_0903.jpeg
+  - bild: /bilder/berichte/2026/img_0906.jpeg
+  - bild: /bilder/berichte/2026/img_0905.jpeg
 ---
 Am vergangenen Wochenende waren wir zu Gast bei unseren Partnerfeuerwehren in Schirmitz und Mantel.
 
