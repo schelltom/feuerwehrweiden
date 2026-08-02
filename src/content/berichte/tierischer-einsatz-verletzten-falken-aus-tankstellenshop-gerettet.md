@@ -2,7 +2,7 @@
 titel: "Tierischer Einsatz: Verletzten Falken aus Tankstellenshop gerettet"
 datum: 2026-08-02
 entwurf: true
-veroeffentlicht: 2026-08-02T16:47
+veroeffentlicht: 2026-08-02T16:55
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/img_0880.jpeg
 titelbildEinpassen: false
