@@ -1,7 +1,7 @@
 ---
 titel: Zu Gast bei unseren Patenfeuerwehren in Schirmitz und Mantel
 datum: 2026-08-02
-entwurf: true
+entwurf: false
 veroeffentlicht: 2026-08-02T16:36
 ressort: Feuerwehrverein
 titelbild: /bilder/berichte/2026/img_0901.jpeg
@@ -13,7 +13,7 @@ galerie:
   - bild: /bilder/berichte/2026/img_0911.jpeg
   - bild: /bilder/berichte/2026/img_0899.jpeg
   - bild: /bilder/berichte/2026/img_0903.jpeg
-  - bild: /bilder/berichte/2026/img_0903.jpeg
+  - bild: /bilder/berichte/2026/img_0904.jpeg
   - bild: /bilder/berichte/2026/img_0906.jpeg
   - bild: /bilder/berichte/2026/img_0905.jpeg
 ---
