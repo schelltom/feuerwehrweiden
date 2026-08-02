@@ -1,5 +1,5 @@
 ---
-titel: Zu Gast bei unseren Partnerfeuerwehren in Schirmitz und Mantel
+titel: Zu Gast bei unseren Patenfeuerwehren in Schirmitz und Mantel
 datum: 2026-08-02
 entwurf: true
 veroeffentlicht: 2026-08-02T16:36
@@ -17,7 +17,7 @@ galerie:
   - bild: /bilder/berichte/2026/img_0906.jpeg
   - bild: /bilder/berichte/2026/img_0905.jpeg
 ---
-Am vergangenen Wochenende waren wir zu Gast bei unseren Partnerfeuerwehren in Schirmitz und Mantel.
+Am vergangenen Wochenende waren wir zu Gast bei unseren Patenfeuerwehren in Schirmitz und Mantel.
 
 Am Samstag besuchten wir zunächst die Lange Nacht der Feuerwehr in Schirmitz. Ein besonderes Highlight war erneut die beliebte Bierkistenstapel-Challenge, die zahlreiche Besucher begeisterte und für beste Stimmung sorgte.
 
