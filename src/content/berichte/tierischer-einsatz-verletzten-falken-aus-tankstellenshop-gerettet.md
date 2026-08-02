@@ -10,6 +10,7 @@ galerie:
   - bild: /bilder/berichte/2026/img_0884.jpeg
   - bild: /bilder/berichte/2026/img_0881.jpeg
   - bild: /bilder/berichte/2026/img_0883.jpeg
+  - bild: /bilder/berichte/2026/img_0898.jpeg
 ---
 Am Freitag, den 01. August, wurde die Freiwillige Feuerwehr um 17:30 Uhr mit dem Alarmstichwort „THL 1 – Rettung Kleintier“ alarmiert. Vier Einsatzkräfte rückten mit dem Gerätewagen Logistik 1 (GW-L1) und dem Rollcontainer Tierrettung zu einer Tankstelle in der Straße Hinterm Rangierbahnhof aus.
 
