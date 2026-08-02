@@ -1,0 +1,39 @@
+name: Bilder verkleinern (wöchentlich)
+
+# Hält das Repo schlank: einmal pro Woche werden zu große Fotos in
+# public/bilder auf 2560px gedeckelt (gegen das „schwarze Bild" auf iOS,
+# siehe scripts/bilder-verkleinern.mjs). Nur wenn dabei wirklich etwas
+# kleiner wurde, wird zurück committet – sonst passiert nichts, kein Build.
+# Die Live-Seite ist ohnehin schon durch die Build-Integration geschützt.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1' # jeden Montag 04:00 UTC
+  workflow_dispatch: # zusätzlich manuell auslösbar
+
+permissions:
+  contents: write
+
+jobs:
+  verkleinern:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+      - name: Node einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bild-Bibliothek installieren
+        run: npm install --no-save sharp
+      - name: Zu große Bilder verkleinern
+        run: node scripts/bilder-verkleinern.mjs
+      - name: Verkleinerte Bilder committen (nur bei Änderungen)
+        run: |
+          git config user.name "bilder-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A public/bilder
+          if ! git diff --cached --quiet; then
+            git commit -m "Bilder verkleinert (wöchentliche Repo-Pflege)"
+            git push
+          fi
