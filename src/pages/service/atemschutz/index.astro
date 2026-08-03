@@ -6,9 +6,7 @@ import texte from '../../../data/service.json';
 
 const tel = (n: string) => 'tel:+49' + n.replace(/\D/g, '').replace(/^0/, '');
 
-const vorgaenge = (await ladePflege()).filter((v) => !v.abgeholt);
-const abholbereit = vorgaenge.filter((v) => v.abholbereit);
-const inPflege = vorgaenge.filter((v) => !v.abholbereit);
+const abholbereit = (await ladePflege()).filter((v) => !v.abgeholt && v.abholbereit);
 ---
 
 <Basis
@@ -37,28 +35,6 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
                     <div>
                       <b>{v.wehrName}</b>
                       {v.hinweis && <span class="abholhinweis">({v.hinweis})</span>}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )
-          }
-        </div>
-
-        <div class="statusblock reveal">
-          <h2 class="display statuskopf pflege">
-            <span class="punkt" aria-hidden="true"></span>
-            Angeliefert <em>({inPflege.length})</em>
-          </h2>
-          {
-            inPflege.length === 0 ? (
-              <p class="leer">Derzeit nichts in Bearbeitung.</p>
-            ) : (
-              <ul class="vorgaenge">
-                {inPflege.map((v) => (
-                  <li class="vorgang pflege">
-                    <div>
-                      <b>{v.wehrName}</b>
                     </div>
                   </li>
                 ))}
@@ -107,9 +83,6 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
     background: #1a9b4e;
     box-shadow: 0 0 10px rgba(26, 155, 78, 0.7);
   }
-  .statuskopf.pflege .punkt {
-    background: #e8a300;
-  }
   .vorgaenge {
     list-style: none;
     margin: 0;
@@ -131,9 +104,6 @@ const inPflege = vorgaenge.filter((v) => !v.abholbereit);
   }
   .vorgang.bereit {
     border-left-color: #1a9b4e;
-  }
-  .vorgang.pflege {
-    border-left-color: #e8a300;
   }
   .vorgang b {
     font-family: var(--display);
