@@ -1,5 +1,5 @@
 ---
-wehr: FF Grafenwöhr
+wehr: FF Kirchendemenreuth
 abgegeben: 2026-08-03T14:48
 geraete: 0
 masken: 0
