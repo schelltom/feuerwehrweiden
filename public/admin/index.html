@@ -34,6 +34,43 @@
           return m ? m + ' ' + t[0] : '';
         }
 
+        // Klickbare Slideshow wie auf der echten Berichtsseite (Pfeile + Punkte).
+        var Slideshow = createClass({
+          getInitialState: function () { return { i: 0 }; },
+          geh: function (n) {
+            var len = this.props.bilder.length;
+            this.setState({ i: (n + len) % len });
+          },
+          render: function () {
+            var self = this;
+            var bilder = this.props.bilder;
+            var getAsset = this.props.getAsset;
+            var i = Math.min(this.state.i, bilder.length - 1);
+            var akt = bilder[i];
+
+            var kinder = [
+              h('img', { key: 'bild', src: getAsset(akt.bild) }),
+              h('span', { key: 'stand', className: 'stand' }, (i + 1) + ' / ' + bilder.length),
+            ];
+            if (akt.text) kinder.push(h('figcaption', { key: 'cap' }, akt.text));
+            if (bilder.length > 1) {
+              kinder.push(h('button', { key: 'zur', type: 'button', className: 'spfeil zur', onClick: function () { self.geh(i - 1); } }, '←'));
+              kinder.push(h('button', { key: 'wei', type: 'button', className: 'spfeil wei', onClick: function () { self.geh(i + 1); } }, '→'));
+              kinder.push(
+                h('div', { key: 'punkte', className: 'spunkte' },
+                  bilder.map(function (_, j) {
+                    return h('button', { key: j, type: 'button', className: j === i ? 'an' : '', onClick: function () { self.geh(j); } });
+                  })
+                )
+              );
+            }
+            return h('div', { className: 'vslideshow' }, kinder);
+          },
+        });
+
+        // Statische Reaktionsleiste (nur Optik – Zähler sind live 0).
+        var REAKTIONEN = [['💪', 'Stark'], ['❤️', 'Danke'], ['🚒', 'Respekt']];
+
         var BerichtVorschau = createClass({
           render: function () {
             var entry = this.props.entry;
@@ -45,6 +82,7 @@
             var ressort = data.get('ressort');
             var titelbild = data.get('titelbild');
             var stats = data.get('stats');
+            var galerie = data.get('galerie');
 
             var kopf = [ressort, monatJahr(data.get('datum'))].filter(Boolean).join(' · ');
 
@@ -71,6 +109,38 @@
             }
 
             kinder.push(h('div', { key: 'body', className: 'artikeltext' }, this.props.widgetFor('body')));
+
+            // Bildergalerie als klickbare Slideshow – wie unter dem echten Bericht.
+            if (galerie && galerie.size) {
+              var bilder = galerie
+                .filter(function (g) { return g && g.get('bild'); })
+                .map(function (g) { return { bild: g.get('bild'), text: g.get('text') }; })
+                .toArray();
+              if (bilder.length) {
+                kinder.push(
+                  h('div', { key: 'galerie', className: 'artikel-galerie' }, [
+                    h('span', { key: 'eb', className: 'eyebrow' }, 'Bilder'),
+                    h(Slideshow, { key: 'ss', bilder: bilder, getAsset: getAsset }),
+                  ])
+                );
+              }
+            }
+
+            // Reaktionsleiste (Optik wie live, Zähler statisch 0).
+            kinder.push(
+              h('div', { key: 'reakt', className: 'reaktionen' }, [
+                h('span', { key: 't', className: 'reakt-titel' }, 'Deine Reaktion'),
+                h('div', { key: 'c', className: 'reakt-chips' },
+                  REAKTIONEN.map(function (r, ri) {
+                    return h('div', { key: ri, className: 'reakt-chip' }, [
+                      h('span', { key: 'e', className: 're-emoji' }, r[0]),
+                      h('span', { key: 'w', className: 're-wort' }, r[1]),
+                      h('b', { key: 'z', className: 're-zahl' }, '0'),
+                    ]);
+                  })
+                ),
+              ])
+            );
 
             return h('div', { className: 'artikel' }, kinder);
           },
