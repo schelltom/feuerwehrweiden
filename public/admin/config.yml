@@ -142,13 +142,16 @@ collections:
       - field: datum
         default_sort: desc
       - field: titel
-    # Bilder-Ordner je Jahr. Decap kann im media_folder KEIN Jahr aus dem
-    # Datum ableiten (nur direkte Feldverweise werden ersetzt, Filter/{{year}}
-    # nicht) – daher fest hinterlegt und zum Jahreswechsel hochzählen.
-    media_folder: '/public/bilder/berichte/2026'
-    public_folder: '/bilder/berichte/2026'
+    # Bilder-Ordner: pro Jahr UND pro Bericht ein eigener Unterordner (= Slug),
+    # sonst wird der Jahresordner mit der Zeit unübersichtlich. Decap ersetzt im
+    # media_folder nur direkte Entry-Platzhalter ({{slug}} ja, Filter/{{year}}
+    # nicht) – daher Jahr fest hinterlegt (Jahreswechsel hochzählen) + {{slug}}.
+    # WICHTIG: Der Slug entsteht aus dem Titel – bei neuen Berichten muss der
+    # Titel gesetzt sein, BEVOR Bilder hochgeladen werden.
+    media_folder: '/public/bilder/berichte/2026/{{slug}}'
+    public_folder: '/bilder/berichte/2026/{{slug}}'
     fields:
-      - { name: titel, label: Titel, widget: string }
+      - { name: titel, label: Titel, widget: string, hint: 'Zuerst ausfüllen! Aus dem Titel entsteht der eigene Bild-Ordner des Berichts – also erst den Titel eingeben, dann Bilder hochladen.' }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
       - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
       - { name: veroeffentlicht, label: 'Veröffentlicht am (Sortierung)', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', default: '{{now}}', required: false, hint: 'Bestimmt nur die Reihenfolge in den Listen (neueste oben). Beim Freischalten eines länger liegengebliebenen Entwurfs hier auf „jetzt" setzen, damit der Bericht nach oben rutscht. Leer = nach „Datum" sortiert.' }

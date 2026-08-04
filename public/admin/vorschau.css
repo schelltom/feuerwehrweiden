@@ -48,7 +48,10 @@ a{color:inherit}
   font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;
   text-transform:uppercase;color:var(--tinte2);margin:0 0 24px;
 }
-.artikel-titelbild{width:100%;max-height:280px;object-fit:cover;display:block;margin:0 0 28px;border:1px solid var(--linie)}
+/* Titelbild wird über die reaktive Widget-Vorschau gerendert (zeigt auch
+   frisch hochgeladene Bilder) – wir stylen das darin liegende <img>. */
+.artikel-titelbild-wrap{margin:0 0 28px}
+.artikel-titelbild-wrap img{width:100%;max-height:280px;object-fit:cover;display:block;border:1px solid var(--linie)}
 .artikel-lead{font-size:1.28rem;line-height:1.7;color:var(--tinte);margin:0 0 8px;font-weight:500}
 .artikeltext p{color:#3A3F4C;font-size:1.04rem;margin:1.4em 0}
 .artikeltext > p:first-of-type::first-letter{
@@ -76,7 +79,8 @@ a{color:inherit}
 .artikel-galerie{margin-top:clamp(32px,5vw,52px)}
 .artikel-galerie .eyebrow{display:block;margin-bottom:12px}
 .vslideshow{position:relative;aspect-ratio:16/10;background:var(--dunkel);overflow:hidden;box-shadow:0 18px 44px rgba(14,17,22,.22)}
-.vslideshow > img{width:100%;height:100%;object-fit:cover;display:block}
+.vslideshow .vslide{position:absolute;inset:0}
+.vslideshow .vslide img{width:100%;height:100%;object-fit:cover;display:block}
 .vslideshow figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 40px;background:linear-gradient(to top,rgba(14,17,22,.85),transparent);color:#fff;font-size:.88rem}
 .vslideshow .stand{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:#fff;background:rgba(14,17,22,.55);border:1px solid rgba(255,255,255,.25);padding:5px 10px}
 .vslideshow .spfeil{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(14,17,22,.5);color:#fff;font-size:1rem;cursor:pointer}

@@ -25,7 +25,7 @@
 
         CMS.registerPreviewStyle('/admin/vorschau.css');
 
-        var monate = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+        var monate =['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
         function monatJahr(iso) {
           if (!iso) return '';
           var t = String(iso).slice(0, 10).split('-');
@@ -44,12 +44,11 @@
           render: function () {
             var self = this;
             var bilder = this.props.bilder;
-            var getAsset = this.props.getAsset;
             var i = Math.min(this.state.i, bilder.length - 1);
             var akt = bilder[i];
 
             var kinder = [
-              h('img', { key: 'bild', src: getAsset(akt.bild) }),
+              h('div', { key: 'bild', className: 'vslide' }, akt.el),
               h('span', { key: 'stand', className: 'stand' }, (i + 1) + ' / ' + bilder.length),
             ];
             if (akt.text) kinder.push(h('figcaption', { key: 'cap' }, akt.text));
@@ -75,21 +74,19 @@
           render: function () {
             var entry = this.props.entry;
             var data = entry.get('data');
-            var getAsset = this.props.getAsset;
 
             var titel = data.get('titel');
             var kurz = data.get('kurz');
             var ressort = data.get('ressort');
             var titelbild = data.get('titelbild');
             var stats = data.get('stats');
-            var galerie = data.get('galerie');
 
             var kopf = [ressort, monatJahr(data.get('datum'))].filter(Boolean).join(' · ');
 
             var kinder = [];
 
             if (titelbild) {
-              kinder.push(h('img', { key: 'bild', className: 'artikel-titelbild', src: getAsset(titelbild) }));
+              kinder.push(h('div', { key: 'bild', className: 'artikel-titelbild-wrap' }, this.props.widgetFor('titelbild')));
             }
             kinder.push(h('h1', { key: 'titel' }, titel || 'Ohne Titel'));
             if (kopf) kinder.push(h('p', { key: 'meta', className: 'artikel-meta' }, kopf));
@@ -111,16 +108,21 @@
             kinder.push(h('div', { key: 'body', className: 'artikeltext' }, this.props.widgetFor('body')));
 
             // Bildergalerie als klickbare Slideshow – wie unter dem echten Bericht.
-            if (galerie && galerie.size) {
-              var bilder = galerie
-                .filter(function (g) { return g && g.get('bild'); })
-                .map(function (g) { return { bild: g.get('bild'), text: g.get('text') }; })
-                .toArray();
+            // widgetsFor liefert je Galerie-Eintrag die REAKTIVE Bild-Vorschau
+            // (zeigt frisch hochgeladene Bilder als Blob, vor dem Speichern).
+            var galWidgets = this.props.widgetsFor('galerie');
+            if (galWidgets && galWidgets.size) {
+              var bilder = [];
+              galWidgets.forEach(function (item) {
+                if (item && item.getIn(['data', 'bild'])) {
+                  bilder.push({ el: item.getIn(['widgets', 'bild']), text: item.getIn(['data', 'text']) });
+                }
+              });
               if (bilder.length) {
                 kinder.push(
                   h('div', { key: 'galerie', className: 'artikel-galerie' }, [
                     h('span', { key: 'eb', className: 'eyebrow' }, 'Bilder'),
-                    h(Slideshow, { key: 'ss', bilder: bilder, getAsset: getAsset }),
+                    h(Slideshow, { key: 'ss', bilder: bilder }),
                   ])
                 );
               }
