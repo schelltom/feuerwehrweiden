@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: Bitte PA Nr. 14 mitbringen
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-08-04T09:40"
 benachrichtigt: false
 ---
