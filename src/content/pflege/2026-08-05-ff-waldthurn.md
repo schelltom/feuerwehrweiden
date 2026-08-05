@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: Maskenbüchsen
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-08-05T15:46"
 benachrichtigt: false
 ---
