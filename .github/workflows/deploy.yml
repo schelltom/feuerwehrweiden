@@ -13,12 +13,16 @@ permissions:
 # Nur EIN Deploy gleichzeitig. Ohne das überholen sich bei einem Schwall
 # schneller CMS-Pushes mehrere parallele Builds und ein veralteter kann den
 # neuen überschreiben (z.B. eine schon abgeholte Anlieferung bleibt im
-# Frontend hängen). Der laufende Build wird bewusst NICHT abgebrochen; nur
-# der jeweils neueste wartende Build kommt danach dran -> zuletzt gewinnt
-# immer der aktuellste Stand.
+# Frontend hängen).
+#
+# cancel-in-progress: true -> bei einem Schwall schneller Pushes wird der noch
+# laufende, bereits veraltete Deploy abgebrochen und nur der NEUESTE Stand
+# veröffentlicht. So drängeln sich nicht mehrere Pages-Veröffentlichungen um
+# dieselbe Umgebung (das führte sonst zu "Timeout reached, aborting!"), und es
+# gewinnt trotzdem immer der aktuellste Stand.
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -38,6 +42,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -45,3 +50,12 @@ jobs:
       - name: Auf GitHub Pages veröffentlichen
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 900000 # 15 Min Geduld statt der Standard-10
+      # Seltene, vorübergehende Timeouts der Pages-Veröffentlichung heilen
+      # sich damit selbst – ein zweiter Versuch, ohne manuellen Re-Run.
+      - name: Zweiter Versuch, falls der erste in den Timeout lief
+        if: failure()
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 900000
