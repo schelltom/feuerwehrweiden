@@ -4,7 +4,12 @@ datum: 2026-08-07
 entwurf: true
 veroeffentlicht: 2026-08-07T22:25
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/vegetationsbrand-nahe-open-air-kino/e0b90c95-ff00-45a7-b840-906a4610f648.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/vegetationsbrand-nahe-open-air-kino/e0b90c95-ff00-45a7-b840-906a4610f648.jpeg
+  - bild: /bilder/berichte/2026/vegetationsbrand-nahe-open-air-kino/0f110980-82cf-4c17-adad-868e226278df.jpeg
+  - bild: /bilder/berichte/2026/vegetationsbrand-nahe-open-air-kino/e28f9c1a-8644-4c55-9c5d-d48142d81874.jpeg
 ---
 Am Freitag, den 07.08., wurden wir um 21:29 Uhr gemeinsam mit der Feuerwehr Neunkirchen von der Integrierten Leitstelle Oberpfalz-Nord zu einem Brand im Freien (B1) alarmiert.
 
