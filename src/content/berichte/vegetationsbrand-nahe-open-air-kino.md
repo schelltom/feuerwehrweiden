@@ -1,5 +1,5 @@
 ---
-titel: "# Vegetationsbrand nahe Open\\-Air\\-Kino"
+titel: Vegetationsbrand nahe Open-Air-Kino
 datum: 2026-08-07
 entwurf: true
 veroeffentlicht: 2026-08-07T22:25
