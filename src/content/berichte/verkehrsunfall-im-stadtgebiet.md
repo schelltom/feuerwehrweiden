@@ -1,7 +1,7 @@
 ---
 titel: Verkehrsunfall im Stadtgebiet
 datum: 2026-08-07
-entwurf: true
+entwurf: false
 veroeffentlicht: 2026-08-07T09:49
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/verkehrsunfall-im-stadtgebiet/img_0161.jpg
