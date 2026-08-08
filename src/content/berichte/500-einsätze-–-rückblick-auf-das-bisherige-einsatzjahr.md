@@ -4,7 +4,7 @@ datum: 2026-08-08
 entwurf: false
 veroeffentlicht: 2026-08-08T20:54
 ressort: Einsatzdienst
-titelbild: /bilder/berichte/2026/219bab1a-dc73-493e-ae02-29b5ce56ffe0.png
+titelbild: /bilder/berichte/2026/500-einsätze-–-rückblick-auf-das-bisherige-einsatzjahr/219bab1a-dc73-493e-ae02-29b5ce56ffe0.png
 titelbildEinpassen: false
 ---
 Am 8. August war es so weit: Unsere Feuerwehr rückte zum 500. Einsatz des Jahres 2026 aus. Ein Anlass, um einmal auf die vergangenen Monate zurückzublicken und die bisherigen Einsätze Revue passieren zu lassen.
