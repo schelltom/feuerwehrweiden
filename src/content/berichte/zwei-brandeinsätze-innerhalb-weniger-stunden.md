@@ -4,7 +4,14 @@ datum: 2026-08-08
 entwurf: true
 veroeffentlicht: 2026-08-08T04:07
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0969.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/18f314b3-0c9a-46a9-b29e-1f34b372876d.jpeg
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/ce9ff4bc-f0df-4ba7-8fc5-620313939956.jpeg
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/a854da63-8d49-4f39-9b36-c657a7afb36f.jpeg
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0968.jpeg
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/d631eb4c-57b8-4d31-a8b2-9e7395d80b7b.jpeg
 ---
 Gleich zweimal wurden wir innerhalb weniger Stunden zu Brandeinsätzen alarmiert.
 
