@@ -1,8 +1,8 @@
 ---
 titel: "    500 Einsätze – Rückblick auf das bisherige Einsatzjahr"
 datum: 2026-08-08
-entwurf: true
-veroeffentlicht: 2026-08-08T20:49
+entwurf: false
+veroeffentlicht: 2026-08-08T20:54
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/219bab1a-dc73-493e-ae02-29b5ce56ffe0.png
 titelbildEinpassen: false
