@@ -2,7 +2,7 @@
 titel: Zwei Brandeinsätze innerhalb weniger Stunden
 datum: 2026-08-08
 entwurf: true
-veroeffentlicht: 2026-08-08T04:07
+veroeffentlicht: 2026-08-08T08:24
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0969.jpeg
 titelbildEinpassen: false
@@ -33,7 +33,7 @@ Bereits wenige Stunden später wurden wir am Samstag, den 08.08., um 01:19 Uhr e
 
 Von der Hauptfeuerwache rückten erneut HLF und TLF zur Brandbekämpfung aus.
 
-Beim Eintreffen stellte sich heraus, dass bereits rund 150 m² Waldfläche in Brand geraten waren. Aufgrund der vorgefundenen Lage wurde die Feuerwehr Neunkirchen nachalarmiert, um die Einsatzkräfte bei der Brandbekämpfung zu unterstützen und die Löschwasserversorgung sicherzustellen. Die Feuerwehr Neunkirchen rückte daraufhin mit HLF und MZF zur Einsatzstelle aus.
+Beim Eintreffen stellte sich heraus, dass bereits rund 350 m² Waldfläche in Brand geraten waren. Aufgrund der vorgefundenen Lage wurde die Feuerwehr Neunkirchen nachalarmiert, um die Einsatzkräfte bei der Brandbekämpfung zu unterstützen und die Löschwasserversorgung sicherzustellen. Die Feuerwehr Neunkirchen rückte daraufhin mit HLF und MZF zur Einsatzstelle aus.
 
 Durch den gemeinsamen Einsatz der beiden HLF und des TLF konnte die weitere Brandausbreitung gestoppt werden. Nach etwa 40 Minuten war die Brandausbreitung unter Kontrolle.
 
