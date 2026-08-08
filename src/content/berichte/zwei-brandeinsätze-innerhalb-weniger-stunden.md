@@ -16,6 +16,7 @@ galerie:
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/c3ab1b9a-2424-4a9d-8358-7397ccbd0321.jpeg
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/2138cd59-25e4-460d-8f5e-14879e96e0ad.jpeg
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0968.jpeg
+  - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_9398.jpeg
 ---
 Gleich zweimal wurden wir innerhalb weniger Stunden zu Brandeinsätzen alarmiert.
 
