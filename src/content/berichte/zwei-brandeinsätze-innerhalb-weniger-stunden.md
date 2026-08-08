@@ -1,8 +1,8 @@
 ---
 titel: Zwei Brandeinsätze innerhalb weniger Stunden
 datum: 2026-08-08
-entwurf: true
-veroeffentlicht: 2026-08-08T08:24
+entwurf: false
+veroeffentlicht: 2026-08-08T08:31
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0969.jpeg
 titelbildEinpassen: false
