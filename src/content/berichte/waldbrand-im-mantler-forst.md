@@ -28,4 +28,4 @@ Eine besondere Herausforderung stellte die Sicherstellung einer ausreichenden L�
 
 Im weiteren Einsatzverlauf waren zahlreiche Feuerwehren aus dem Landkreis Neustadt an der Waldnaab an der Brandbekämpfung beteiligt. Auch die Feuerwehr Neunkirchen unterstützte die Einsatzmaßnahmen.
 
-Nach rund 7,5 Stunden konnte der Waldbrand erfolgreich bekämpft werden. Nach Abschluss der Löscharbeiten konnten die Einsatzkräfte die Einsatzstelle verlassen und wieder zu ihren Standorten zurückkehren.
+Nach rund 7,5 Stunden war der Einsatz für die Kräfte aus Weiden beendet und die eingesetzten Fahrzeuge konnten wieder zu ihren Standorten zurückkehren.
