@@ -8,18 +8,31 @@ titelbild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/i
 titelbildEinpassen: false
 galerie:
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/18f314b3-0c9a-46a9-b29e-1f34b372876d.jpeg
+    text: Vegetationsbrand nahe Open-Air-Kino
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/a854da63-8d49-4f39-9b36-c657a7afb36f.jpeg
+    text: Vegetationsbrand nahe Open-Air-Kino
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/ce9ff4bc-f0df-4ba7-8fc5-620313939956.jpeg
+    text: Vegetationsbrand nahe Open-Air-Kino
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_9393.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_6341.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_6348.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/c3ab1b9a-2424-4a9d-8358-7397ccbd0321.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/2138cd59-25e4-460d-8f5e-14879e96e0ad.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_0968.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_9398.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/d631eb4c-57b8-4d31-a8b2-9e7395d80b7b.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/img_6321.jpeg
+    text: Waldbrand an der Pressather Straße
   - bild: /bilder/berichte/2026/zwei-brandeinsätze-innerhalb-weniger-stunden/fc8d103a-c0db-4bea-9216-f47007f81e85.jpeg
+    text: Waldbrand an der Pressather Straße
 ---
 Gleich zweimal wurden wir innerhalb weniger Stunden zu Brandeinsätzen alarmiert.
 
