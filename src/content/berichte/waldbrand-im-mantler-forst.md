@@ -1,8 +1,8 @@
 ---
 titel: Waldbrand im Mantler Forst
 datum: 2026-08-10
-entwurf: true
-veroeffentlicht: 2026-08-10T00:53
+entwurf: false
+veroeffentlicht: 2026-08-10T01:07
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/waldbrand-im-mantler-forst/img_4010.jpeg
 titelbildEinpassen: false
