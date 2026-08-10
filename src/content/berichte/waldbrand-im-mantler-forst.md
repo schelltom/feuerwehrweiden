@@ -1,5 +1,5 @@
 ---
-titel: Waldbrand im Mantler Forst
+titel: Waldbrand im Manteler Forst
 datum: 2026-08-10
 entwurf: false
 veroeffentlicht: 2026-08-10T01:07
@@ -18,7 +18,7 @@ galerie:
   - bild: /bilder/berichte/2026/waldbrand-im-mantler-forst/img_8603.jpeg
   - bild: /bilder/berichte/2026/waldbrand-im-mantler-forst/img_8557.jpeg
 ---
-Am 09.08. wurden wir gegen 13:40 Uhr durch die Integrierte Leitstelle Oberpfalz Nord mit dem Alarmstichwort „B2 – Wald klein (< 1.000 m²)“ zu einem Waldbrand in den Mantler Forst bei Parkstein-Hütten im Landkreis Neustadt an der Waldnaab alarmiert.
+Am 09.08. wurden wir gegen 13:40 Uhr durch die Integrierte Leitstelle Oberpfalz Nord mit dem Alarmstichwort „B2 – Wald klein (< 1.000 m²)“ zu einem Waldbrand in den Manteler Forst bei Parkstein-Hütten im Landkreis Neustadt an der Waldnaab alarmiert.
 
 Kurz nach der Alarmierung rückten unser HLF und TLF zur Einsatzstelle aus. Vor Ort zeigte sich schnell, dass sich der Waldbrand auf eine deutlich größere Fläche ausgebreitet hatte. Aufgrund des Ausmaßes wurde das Alarmstichwort im weiteren Einsatzverlauf erhöht und weitere Feuerwehren nachalarmiert.
 
