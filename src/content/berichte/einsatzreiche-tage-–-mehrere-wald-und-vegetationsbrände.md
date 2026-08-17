@@ -18,21 +18,21 @@ galerie:
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/b1d9319e-fb88-4fe2-83dd-7671a84fb411.jpeg
     text: 12.08. - B Wald -groß (> 1000m²) kein Einsatz erf.
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1060.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1059.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1064.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1065.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1067.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/de91df0a-d0fb-48d8-a652-bed277d73ef6.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/10fd056b-932d-4926-b7f7-5bbde3157322.jpeg
-    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/05737551-40ff-4ee8-8808-a3b82d83fc9b.jpeg
-    text: "15.08. -  B2 Wald - klein (<1000m²) >Tröglersircht "
+    text: "15.08. -  B2 Wald - klein (<1000m²) >Tröglersricht "
 ---
 Die vergangenen Tage hatten es für unsere Einsatzkräfte in sich. Mehrfach wurden wir zu Wald- und Vegetationsbränden alarmiert – sowohl im eigenen Schutzbereich als auch überörtlich zur Unterstützung.
 
