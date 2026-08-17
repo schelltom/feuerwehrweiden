@@ -4,6 +4,7 @@ datum: 2026-08-17
 entwurf: true
 veroeffentlicht: 2026-08-17T15:15
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1061.jpeg
 titelbildEinpassen: false
 ---
 Die vergangenen Tage hatten es für unsere Einsatzkräfte in sich. Mehrfach wurden wir zu Wald- und Vegetationsbränden alarmiert – sowohl im eigenen Schutzbereich als auch überörtlich zur Unterstützung.
