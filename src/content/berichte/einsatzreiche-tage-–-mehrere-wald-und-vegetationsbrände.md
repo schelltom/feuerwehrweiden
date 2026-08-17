@@ -35,6 +35,8 @@ galerie:
     text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1066.jpeg
     text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/730e89a9-5d54-401b-b5c6-1d163a0de898.jpeg
+    text: "14.08. - B2 Wald - klein (<1000m²) >Tröglersricht "
   - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/05737551-40ff-4ee8-8808-a3b82d83fc9b.jpeg
     text: "15.08. -  B2 Wald - klein (<1000m²) >Tröglersricht "
 ---
