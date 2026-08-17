@@ -6,6 +6,24 @@ veroeffentlicht: 2026-08-17T15:15
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1061.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/f3e696c2-f56e-46b2-9f35-a3ac1e6411a1.jpeg
+    text: 10.08 - B2 Wald - klein (<1000m²) Manteler Forst
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/9c94a6b6-8e16-4d27-a538-7f234580f354.jpeg
+    text: "11.08. - B2 Wald - klein  (<1000m²) Mallersircht >>Neunkirchen "
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/fb298fa2-965a-4326-867a-9acee032b4a9.jpeg
+    text: "11.08. - B2 Wald - klein  (<1000m²) Mallersircht >>Neunkirchen "
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/cf7aa8d8-c28b-427a-b465-e138cb41cf25.jpeg
+    text: "11.08. - B2 Wald - klein  (<1000m²) Mallersircht >>Neunkirchen "
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/b1d9319e-fb88-4fe2-83dd-7671a84fb411.jpeg
+    text: 12.08. - B Wald -groß (> 1000m²) kein Einsatz erf.
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1060.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1059.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1064.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1065.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1067.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/de91df0a-d0fb-48d8-a652-bed277d73ef6.jpeg
+  - bild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/10fd056b-932d-4926-b7f7-5bbde3157322.jpeg
 ---
 Die vergangenen Tage hatten es für unsere Einsatzkräfte in sich. Mehrfach wurden wir zu Wald- und Vegetationsbränden alarmiert – sowohl im eigenen Schutzbereich als auch überörtlich zur Unterstützung.
 
