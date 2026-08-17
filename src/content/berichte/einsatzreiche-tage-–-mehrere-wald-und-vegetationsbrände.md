@@ -1,8 +1,8 @@
 ---
 titel: "Einsatzreiche Tage – mehrere Wald- und Vegetationsbrände "
 datum: 2026-08-17
-entwurf: true
-veroeffentlicht: 2026-08-17T15:15
+entwurf: false
+veroeffentlicht: 2026-08-17T15:55
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/einsatzreiche-tage-–-mehrere-wald-und-vegetationsbrände/img_1061.jpeg
 titelbildEinpassen: false
