@@ -12,6 +12,8 @@ galerie:
   - bild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/a1660427-fecf-4c98-8ce4-b0a936a9499c.jpeg
   - bild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/0b433ca9-299f-473e-8fd7-de1d34ae0da7.jpeg
   - bild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/10a0a563-ebb6-44cf-9f47-6d83c66da3c4.jpeg
+  - bild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/863a0489-5983-47b5-ad27-341cd4356599.jpeg
+  - bild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/1fce1857-b540-4b8f-92fd-51cc0bde5ffc.jpeg
 ---
 Am 18.08.2026 wurden wir um 17:15 Uhr durch die Integrierte Leitstelle Oberpfalz Nord mit dem Alarmstichwort B4 – Gewerbe/Industriegebäude alarmiert. Gemeldet wurde der Brand einer Maschine in einem Gewerbebetrieb. Gemeinsam mit uns wurden die Ortsteilfeuerwehren Neunkirchen und Frauenricht sowie die Feuerwehr Mantel aus dem Landkreis Neustadt an der Waldnaab alarmiert.
 
