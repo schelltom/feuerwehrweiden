@@ -1,8 +1,8 @@
 ---
 titel: Maschinenbrand mit starker Rauchentwicklung
 datum: 2026-08-19
-entwurf: true
-veroeffentlicht: 2026-08-19T16:23
+entwurf: false
+veroeffentlicht: 2026-08-19T16:35
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/maschinenbrand-mit-starker-rauchentwicklung/12bbb146-1755-4151-80ba-eeedfc244649.jpeg
 titelbildEinpassen: false
