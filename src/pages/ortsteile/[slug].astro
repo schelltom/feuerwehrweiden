@@ -12,10 +12,17 @@ const { seite } = Astro.props;
 const { Content } = await render(seite);
 const d = seite.data;
 
-/* Fahrzeuge & Anhänger dieser Wehr automatisch aus dem Fuhrpark */
-const fahrzeuge = (await getCollection('fahrzeuge'))
-  .filter((f) => f.data.standort === d.titel && !f.data.entwurf)
-  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+/* Ortsteilwehr mit eigener Website: Gerätehaus-Foto wird zum externen Link */
+const FotoTag = d.extern ? 'a' : 'figure';
+const fotoProps = d.extern ? { href: d.extern, target: '_blank', rel: 'noopener' } : {};
+
+/* Fahrzeuge & Anhänger dieser Wehr automatisch aus dem Fuhrpark.
+   Wehren mit eigener Website (extern) zeigen nur das Gerätehaus als Teaser. */
+const fahrzeuge = d.extern
+  ? []
+  : (await getCollection('fahrzeuge'))
+      .filter((f) => f.data.standort === d.titel && !f.data.entwurf)
+      .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 ---
 
 <Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
@@ -106,10 +113,15 @@ const fahrzeuge = (await getCollection('fahrzeuge'))
 
         {
           d.gruppenfoto && (
-            <figure class="gruppenfoto reveal">
+            <FotoTag class:list={['gruppenfoto', 'reveal', { alslink: d.extern }]} {...fotoProps}>
               <img src={d.gruppenfoto.bild} alt={d.gruppenfoto.text || d.titel} />
-              {d.gruppenfoto.text && <figcaption>{d.gruppenfoto.text}</figcaption>}
-            </figure>
+              <span class="schatten" aria-hidden="true" />
+              <figcaption>
+                <em>Gerätehaus</em>
+                <b>{d.gruppenfoto.text || d.titel}</b>
+                {d.extern && <i class="mehr">Zur Website der {d.titel} ↗</i>}
+              </figcaption>
+            </FotoTag>
           )
         }
 
@@ -322,18 +334,71 @@ const fahrzeuge = (await getCollection('fahrzeuge'))
   }
 
   .gruppenfoto {
+    position: relative;
+    overflow: hidden;
     margin: 0 0 44px;
-    border: 1px solid var(--linie);
-    background: var(--karte);
-    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+    aspect-ratio: 16 / 9;
+    background: var(--dunkel2);
+    box-shadow: 0 8px 30px rgba(20, 22, 28, 0.16);
   }
   .gruppenfoto img {
-    display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .gruppenfoto:hover img {
+    transform: scale(1.04);
+  }
+  .gruppenfoto .schatten {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 12, 16, 0.85) 0%, rgba(10, 12, 16, 0.15) 45%, transparent 70%);
   }
   .gruppenfoto figcaption {
-    padding: 14px 18px;
-    font-size: 0.85rem;
-    color: var(--tinte2);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 22px 24px;
+    display: grid;
+    gap: 4px;
+    color: #fff;
+  }
+  .gruppenfoto figcaption em {
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silber);
+  }
+  .gruppenfoto figcaption b {
+    font-family: var(--display);
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    line-height: 1.05;
+  }
+  .gruppenfoto.alslink {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gruppenfoto.alslink:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 48px rgba(20, 22, 28, 0.24);
+  }
+  .gruppenfoto .mehr {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffb300;
   }
 </style>

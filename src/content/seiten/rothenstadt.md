@@ -3,10 +3,12 @@ titel: "FF Rothenstadt"
 bereich: "ortsteile"
 reihenfolge: 5
 kurz: "Ortsteilfeuerwehr der Stadt Weiden"
-titelbild: "/bilder/fahrzeuge/f_roth_lf20.jpg"
+titelbild: "/bilder/ortsteile/geraetehaus-rothenstadt.jpg"
 kopfbild: false
-kartenmotiv: "geraetehaus"
 wappen: "/bilder/ortsteile/wappen-rothenstadt.png"
+gruppenfoto:
+  bild: "/bilder/ortsteile/geraetehaus-rothenstadt.jpg"
+  text: "Gerätehaus der Feuerwehr Rothenstadt"
 kontakt:
   name: "Michael Hösl"
   telefon: "+49 160 6513909"

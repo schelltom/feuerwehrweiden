@@ -7,6 +7,10 @@ titelbild: /bilder/uploads/2026/feuerwache-halle1.jpg
 kopfbild: false
 kartenbild: /bilder/uploads/2026/feuerwache-saal.jpg
 galerie:
+  - bild: /bilder/uploads/2026/hauptfeuerwache1.jpg
+    text: Hauptfeuerwache
+  - bild: /bilder/uploads/2026/hauptfeuerwache2.jpg
+    text: Hauptfeuerwache
   - bild: /bilder/uploads/2026/feuerwache-halle1.jpg
     text: Fahrzeughalle der Hauptfeuerwache
   - bild: /bilder/uploads/2026/feuerwache-halle1_1.jpg
