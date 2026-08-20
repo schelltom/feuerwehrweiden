@@ -97,9 +97,6 @@ uebungsplan:
     datum: 25.07.
     zeit: 14:30 – 17:00
     thema: FwDV 3 – Einheiten im Löscheinsatz
-  - tag: Mittwoch - Sonntag
-    datum: 05.08. – 09.08.
-    thema: Zeltlager
   - thema: "Vorbereitung: Jugendfeuerwehrcup"
     zeit: 14:30 - 17:00
     datum: 05.09.
