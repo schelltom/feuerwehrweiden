@@ -18,7 +18,7 @@ personen:
   - name: Moritz Reindl
     kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3645.jpg
-    funktion: 1. Jugendwart
+    funktion: 1. Jugendwart | Stv. Stadtjugendwart
     email: moritz.reindl@weiden.de
     telefon: ""
     sachgebiete: []
