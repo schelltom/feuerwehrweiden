@@ -105,10 +105,18 @@ uebungsplan:
     datum: 15.09.
     zeit: 19:00 Uhr
     thema: Dienstversammlung
+  - thema: Plätzchenbacken
+    zeit: 14:30 - 17:00 Uhr
+    datum: 05.12.
+    tag: Samstag
   - tag: Samstag
     datum: 12.12.
-    zeit: 19:00 Uhr
+    zeit: 19:00 - 21:00 Uhr
     thema: Weihnachtsfeier
+  - tag: Samstag
+    datum: 19.12.
+    zeit: 16:00 - 19:00 Uhr
+    thema: Jahresabschluss & Weihnachtsfeier
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der
