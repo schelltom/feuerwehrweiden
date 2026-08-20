@@ -35,6 +35,9 @@ personen:
     kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3629.jpg
     funktion: Interims-Jugendwart
+zeitstrahl:
+  - zeit: "1994"
+    titel: Gründung der Jugendfeuerwehr Weiden
 uebungsplan:
   - tag: Samstag
     datum: 28.02.
