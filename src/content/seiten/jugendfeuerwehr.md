@@ -117,6 +117,10 @@ uebungsplan:
     datum: 19.12.
     zeit: 16:00 - 19:00 Uhr
     thema: Jahresabschluss & Weihnachtsfeier
+  - thema: Abnahme_ Wissentest
+    zeit: 10:00-13:00 Uhr
+    datum: 21.11.
+    tag: Samstag
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der
