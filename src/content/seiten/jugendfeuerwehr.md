@@ -118,7 +118,7 @@ uebungsplan:
     zeit: 16:00 - 19:00 Uhr
     thema: Jahresabschluss & Weihnachtsfeier
   - thema: "Abnahme: Wissentest"
-    zeit: 10:00-13:00 Uhr
+    zeit: 10:00 - 13:00
     datum: 21.11.
     tag: Samstag
 ---
