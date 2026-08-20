@@ -114,7 +114,7 @@ uebungsplan:
     zeit: 19:00 - 21:00
     thema: Dienstversammlung
   - thema: "Festzug: Volksfest Weiden"
-    zeit: 17:00 - 20:30
+    zeit: 17:00-20:30
     datum: 17.09.
     tag: Donnerstag
   - thema: "Abnahme: Jugendfeuerwehrcup"
