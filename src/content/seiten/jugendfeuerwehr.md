@@ -38,65 +38,64 @@ personen:
 uebungsplan:
   - tag: Samstag
     datum: 28.02.
-    zeit: 14:30 – 17:00 Uhr
+    zeit: 14:30 – 17:00
     thema: Start ins Übungsjahr 2026 – Organisation (Einkleiden, Foto),
       UVV-Unterweisung
   - tag: Dienstag
     datum: 10.03.
-    zeit: 19:00 Uhr
+    zeit: 19:00 -21:00
     thema: Jahreshauptversammlung
   - tag: Samstag
     datum: 14.03.
-    zeit: 14:30 – 17:00 Uhr
+    zeit: 14:30 – 17:00
     thema: Brennen & Löschen
   - tag: Samstag
     datum: 28.03.
-    zeit: 14:30 – 17:00 Uhr
+    zeit: 14:30 – 17:00
     thema: Fahrzeugkunde
   - tag: Samstag
     datum: 18.04.
-    zeit: 14:30 – 17:00 Uhr
-    thema: Drehleiter
+    zeit: 14:30 – 17:00
+    thema: Ansaugen aus offenen Gewässer / Wasserwerfer
   - tag: Donnerstag
     datum: 30.04.
     thema: "Festzug: Frühlingsfest Weiden"
+    zeit: 17:00 - 20:00
   - tag: Samstag
     datum: 16.05.
-    zeit: 14:30 – 17:00 Uhr
+    zeit: 14:30 – 17:00
     thema: Knoten & Stiche / Vorbereitung Wachfest
   - tag: Sonntag
     datum: 17.05.
     thema: Wachfest mit Fahrzeugweihe HLF 20
-  - tag: Samstag
-    datum: 23.05.
-    thema: Tag des Ehrenamtes (kleine Einsatzübung)
+    zeit: 09:00 - 19:00
   - tag: Montag
     datum: 08.06.
-    zeit: 17:00 – 20:00 Uhr
+    zeit: 17:00 – 20:00
     thema: "Vorbereitung: Bayerische Jugendleistungsspange"
   - tag: Dienstag
     datum: 09.06.
-    zeit: 19:00 Uhr
+    zeit: 19:00 -21:00
     thema: Dienstversammlung
   - tag: Freitag
     datum: 12.06.
-    zeit: 15:00 – 18:00 Uhr
+    zeit: 15:00 – 18:00
     thema: "Vorbereitung: Bayerische Jugendleistungsspange"
   - tag: Samstag
     datum: 13.06.
-    zeit: 10:00 – 14:00 Uhr
+    zeit: 10:00 – 14:00
     thema: "Abnahme: Bayerische Jugendleistungsspange"
   - tag: Samstag
     datum: 27.06.
-    zeit: 13:00 – 17:00 Uhr
+    zeit: 13:00 – 17:00
     thema: Sprechfunk
   - tag: Sonntag
     datum: 19.07.
-    zeit: 09:00 – 19:00 Uhr
+    zeit: 09:00 – 19:00
     thema: Kinderbürgerfest
   - tag: Samstag
     datum: 25.07.
-    zeit: 14:30 – 17:00 Uhr
+    zeit: 14:30 – 17:00
     thema: FwDV 3 – Einheiten im Löscheinsatz
   - tag: Mi. – So.
     datum: 05.08. – 09.08.
