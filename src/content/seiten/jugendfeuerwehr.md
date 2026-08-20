@@ -25,6 +25,7 @@ personen:
     kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3610.jpg
     funktion: Stv. Jugendwart
+    email: michael.zielbauer2@weiden.de
   - name: Quirin Huber
     kategorie: Jugendwarte
     bild: /bilder/feuerwehr/jugend-3617.jpg
