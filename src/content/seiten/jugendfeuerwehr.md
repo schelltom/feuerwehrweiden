@@ -101,10 +101,42 @@ uebungsplan:
   - tag: Mi. – So.
     datum: 05.08. – 09.08.
     thema: Zeltlager
+  - thema: "Vorbereitung: Jugendfeuerwehrcup"
+    zeit: 14:30 - 17:00
+    datum: 05.09.
+    tag: Samstag
+  - thema: "Vorbereitung: Jugendfeuerwehrcup"
+    zeit: 13:30 - 16:00
+    datum: 11.09.
+    tag: Freitag
   - tag: Dienstag
     datum: 15.09.
-    zeit: 19:00 Uhr
+    zeit: 19:00 - 21:00
     thema: Dienstversammlung
+  - thema: "Festzug: Volksfest Weiden"
+    zeit: 17:00 - 20:30
+    datum: 17.09.
+    tag: Donnerstag
+  - thema: "Abnahme: Jugendfeuerwehrcup"
+    zeit: 09:30 - 14:00
+    datum: 19.09.
+    tag: Samstag
+  - thema: Einsatzübung in Muglhof
+    zeit: 17:30 - 21:30
+    datum: 02.10.
+    tag: Freitag
+  - thema: Filmabend
+    zeit: 18:00 - 21:30
+    datum: 16.10.
+    tag: Freitag
+  - thema: "Vorbereitung: Wissentest"
+    zeit: 14:30 - 17:00
+    datum: 07.11.
+    tag: Samstag
+  - thema: Volkstrauertag
+    zeit: 07:30 - 13:00
+    datum: 15.11.
+    tag: Sonntag
   - thema: "Abnahme: Wissentest"
     zeit: 10:00 - 13:00
     datum: 21.11.
@@ -121,10 +153,6 @@ uebungsplan:
     datum: 19.12.
     zeit: 16:00 - 19:00
     thema: Jahresabschluss & Weihnachtsfeier
-  - thema: Volkstrauertag
-    zeit: 07:30 - 13:00 Uhr
-    datum: 15.11.
-    tag: ""
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der
