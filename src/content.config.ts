@@ -17,6 +17,9 @@ const berichte = defineCollection({
     ressort: z.string().default('Feuerwehr'),
     /** Entwurf – auf der Website überall ausgeblendet, bis abgehakt */
     entwurf: z.boolean().default(false),
+    /** Keine Push-Benachrichtigung beim Veröffentlichen verschicken – z.B. für
+     *  nachträglich eingepflegte Altberichte. Auf der Website normal sichtbar. */
+    keinPush: z.boolean().default(false),
     titelbild: z.string().optional(),
     /** Titelbild in der News-Vorschau vollständig zeigen (einpassen statt
      *  beschneiden) – für breite Grafiken mit Text. Standard: beschneiden. */

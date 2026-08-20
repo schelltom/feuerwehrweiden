@@ -83,6 +83,9 @@ for (const datei of dateien) {
   // einmal einen Push aus – spätere Korrektur-Edits an einem bereits
   // veröffentlichten Beitrag dagegen nicht.
   if (data.entwurf === true) continue;
+  // Ausdrücklich stummgeschaltet (z.B. nachträglich eingepflegte Altberichte):
+  // erscheint normal auf der Website, löst aber keinen Push aus.
+  if (data.keinPush === true) continue;
   const vorher = vorherStand(datei);
   if (vorher.existierte && !vorher.entwurf) continue;
 
