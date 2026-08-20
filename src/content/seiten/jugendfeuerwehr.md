@@ -97,6 +97,10 @@ uebungsplan:
     datum: 25.07.
     zeit: 14:30 – 17:00
     thema: FwDV 3 – Einheiten im Löscheinsatz
+  - thema: "Besichtigung: THW Weiden"
+    datum: 08.08.
+    zeit: 14:30 - 18:00
+    tag: Samstag
   - thema: "Vorbereitung: Jugendfeuerwehrcup"
     zeit: 14:30 - 17:00
     datum: 05.09.
@@ -149,10 +153,6 @@ uebungsplan:
     datum: 19.12.
     zeit: 16:00 - 19:00
     thema: Jahresabschluss & Weihnachtsfeier
-  - thema: "Besichtigung: THW Weiden"
-    datum: 08.08.
-    zeit: 14:30 - 18:00
-    tag: Samstag
 ---
 
 Derzeit sind 34 Mitglieder, davon 12 Mädchen und 22 Jungen, in der
