@@ -60,7 +60,7 @@ uebungsplan:
   - tag: Donnerstag
     datum: 30.04.
     thema: "Festzug: Frühlingsfest Weiden"
-    zeit: 17:00 - 20:00
+    zeit: 17:00-20:00
   - tag: Samstag
     datum: 16.05.
     zeit: 14:30 – 17:00
