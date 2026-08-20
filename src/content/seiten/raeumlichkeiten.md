@@ -33,6 +33,8 @@ galerie:
     text: Historische Vereinsfahne im Eingangsbereich
   - bild: /bilder/uploads/2026/feuerwache-florian.jpg
     text: Heiliger Florian – Schutzpatron der Feuerwehr
+  - bild: /bilder/uploads/2026/schlauchturm.jpg
+    text: Schlauchturm
   - bild: /bilder/uploads/2026/wache2.jpg
     text: Feuerwache 2
   - bild: /bilder/uploads/2026/fahrzeuge_wache2.jpg
