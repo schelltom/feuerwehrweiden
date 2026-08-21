@@ -328,7 +328,11 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
         const pruefe = () => {
           if (b.clientWidth >= 90) b.classList.add('zoombar');
         };
-        b.complete ? pruefe() : b.addEventListener('load', pruefe);
+        /* Sofort prüfen (das Layout steht, auch bei noch nicht geladenen
+           Lazy-Bildern) UND erneut beim Laden – so kann kein Bild das
+           Vergrößern verpassen, egal ob es aus dem Cache kommt. */
+        pruefe();
+        b.addEventListener('load', pruefe);
       });
       /* Blättern: alle zoombaren Bilder der Seite in Dokument-Reihenfolge */
       const zoomListe = () => [...document.querySelectorAll<HTMLImageElement>('main img.zoombar')];
