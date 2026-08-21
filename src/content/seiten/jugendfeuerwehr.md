@@ -2,7 +2,7 @@
 titel: Jugendfeuerwehr
 bereich: einheiten
 entwurf: false
-reihenfolge: 7
+reihenfolge: 3
 kurz: 34 Mitglieder · rund 30 Übungen im Jahr
 titelbild: /bilder/feuerwehr/jugend-3597.jpg
 kopfbild: false
