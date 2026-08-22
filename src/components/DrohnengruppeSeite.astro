@@ -1,0 +1,628 @@
+---
+/**
+ * Sonderlayout für die Drohnengruppe (Einheiten). Reicheres Layout als die
+ * generische Einheiten-Vorlage: Kennzahlen, Einsatzauftrag als Checkliste,
+ * Technik-Karten, Einsatzmannschaft, Galerie und Datenschutz-Hinweis.
+ * Fügt sich über die globalen Bausteine (.eyebrow, .display, .specs, .galerie,
+ * .reveal, .btn) ins Gesamtkonzept ein. Rückbau: Sonderfall in
+ * feuerwehr/[bereich]/[slug].astro entfernen.
+ */
+import Seitenkopf from './Seitenkopf.astro';
+
+interface Props {
+  d: {
+    titel: string;
+    kurz?: string;
+    titelbild?: string;
+  };
+}
+const { d } = Astro.props;
+
+const auftrag = [
+  'Suche nach vermissten oder orientierungslosen Personen',
+  'Schnelle Lageerkundung bei größeren Einsatzlagen',
+  'Unterstützung bei Wald- und Vegetationsbränden',
+  'Aufspüren von Glutnestern mit der Wärmebildkamera',
+  'Dokumentation von Einsatzstellen aus der Luft',
+  'Live-Bildübertragung an die Einsatzleitung',
+];
+
+const kennzahlen = [
+  { wert: '2022', label: 'Gegründet' },
+  { wert: '20', label: 'Einsatzkräfte' },
+  { wert: '2', label: 'Einsatzgruppen' },
+  { wert: 'monatlich', label: 'Ausbildung' },
+];
+
+const technik = [
+  {
+    label: 'Beleuchtung & Warnung',
+    titel: 'LP12-Aufsatz',
+    text: 'Starke Lampe mit 2200 Lumen (30 W) leuchtet den Boden bei Nacht aus. Der Lautsprecher mit 122 dB dient zur Kommunikation und zur Bevölkerungswarnung.',
+  },
+  {
+    label: 'Steuerung',
+    titel: '2× DJI RC Plus',
+    text: 'Ein Pilot fliegt, ein zweiter Bediener führt die Kamera. Ein Spotter unterstützt den Piloten und meldet aufkommende Gefahrenquellen.',
+  },
+  {
+    label: 'Bildübertragung',
+    titel: 'Feelworld-Monitorkoffer',
+    text: 'Robuster, staub- und spritzwassergeschützter Full-HD-Monitor, kabellos versorgt über Hollyland Mars 400S Pro. Das Kamerabild lässt sich zusätzlich auf einem iPad darstellen.',
+  },
+  {
+    label: 'Energie',
+    titel: '4 Akkusätze',
+    text: 'Nahezu unterbrechungsfreier Flugbetrieb: Während ein Satz fliegt, laden die übrigen im DJI-Schnellladekoffer BS30 – auch für längere Einsatzlagen.',
+  },
+  {
+    label: 'Zweitdrohne',
+    titel: 'DJI Mini 4 Pro',
+    text: 'Liefert im Erstangriff schnelle Übersichten. Kommt bei kleineren Lagen zur Dokumentation und als Ergänzung zur M30T zum Einsatz.',
+  },
+];
+
+const rollen = [
+  { rolle: 'Gruppenführer', text: 'Leitung Drohne' },
+  { rolle: 'Pilot', text: 'Steuert die Drohne' },
+  { rolle: 'Kamerapilot', text: 'Führt die Kamera' },
+  { rolle: 'Spotter', text: 'Sichert den Flug' },
+];
+
+const galerie = [
+  { bild: '/bilder/uploads/2026/drohne2.jpg', text: 'Transportkoffer der Drohne' },
+  { bild: '/bilder/uploads/2026/drohne4.jpg', text: 'Kabellose Bildübertragung' },
+  { bild: '/bilder/uploads/2026/drohne5.jpg', text: 'Ausrüstung der Drohnengruppe' },
+  { bild: '/bilder/uploads/2026/drohne6.jpg', text: 'Monitorkoffer im Einsatz' },
+  { bild: '/bilder/uploads/2026/drohne7.jpg', text: 'Akkusätze im Ladekoffer' },
+  { bild: '/bilder/uploads/2026/drohne9.jpg', text: 'Full-HD-Monitor am Einsatzort' },
+];
+---
+
+<main>
+  <Seitenkopf
+    titel={d.titel}
+    krumen={[
+      { name: 'Start', href: '/' },
+      { name: 'Feuerwehr', href: '/feuerwehr/' },
+      { name: 'Einheiten' },
+    ]}
+    bild="/bilder/uploads/2026/drohne3.jpg"
+    kenburns
+    gerade
+  />
+
+  <!-- Einleitung -->
+  <section>
+    <div class="wrap dg-intro" style="padding-bottom:clamp(12px,1.5vw,18px)">
+      <div class="dg-introtext reveal">
+        <span class="eyebrow">Seit 2022 · Luftaufklärung</span>
+        <h2 class="display">Moderne Augen über der Einsatzstelle</h2>
+        <p class="lead">
+          Die Drohnengruppe der Freiwilligen Feuerwehr Weiden wurde 2022 gegründet und unterstützt
+          die Einsatzkräfte seitdem mit moderner Luftaufklärung. Mit der leistungsfähigen
+          Wärmebilddrohne <b>DJI M30T</b> lassen sich Einsatzstellen aus der Vogelperspektive
+          erkunden und wichtige Informationen in Echtzeit an die Einsatzleitung übermitteln.
+        </p>
+        <p>
+          Die Luftbilder ermöglichen eine schnelle Lagebeurteilung und helfen den Einsatzkräften,
+          Entscheidungen fundiert und sicher zu treffen. Damit ergänzt die Drohnengruppe die
+          klassischen Einsatzmittel der Feuerwehr um eine moderne und vielseitige Komponente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kennzahlen -->
+  <section>
+    <div class="wrap" style="padding-top:0;padding-bottom:clamp(20px,2.5vw,30px)">
+      <div class="specs reveal">
+        {kennzahlen.map((k) => (
+          <div class="spec">
+            <span>{k.label}</span>
+            <b>{k.wert}</b>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Einsatzauftrag -->
+  <section class="dg-band">
+    <div class="wrap" style="padding-block:clamp(30px,4vw,48px)">
+      <span class="eyebrow">Unser Einsatzauftrag</span>
+      <h2 class="display dg-h">Wenn der Blick von oben zählt</h2>
+      <p class="dg-teaser">
+        Die Drohnengruppe kommt immer dann zum Einsatz, wenn Informationen aus der Luft einen
+        taktischen Mehrwert bieten. Durch schnellen Aufbau und hohe Mobilität ist die Drohne in
+        kurzer Zeit selbst in jedem Gelände einsatzbereit.
+      </p>
+      <ul class="dg-auftrag reveal">
+        {auftrag.map((a) => (
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+            <span>{a}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="dg-schluss">
+        Die Luftbilder helfen zusätzlich, Gefahren frühzeitig zu erkennen, Einsatzabschnitte besser
+        zu koordinieren und Einsatzkräfte gezielter einzusetzen sowie zu entlasten.
+      </p>
+    </div>
+  </section>
+
+  <!-- Organisation & Ausbildung -->
+  <section>
+    <div class="wrap dg-org" style="padding-top:clamp(28px,3.5vw,44px)">
+      <figure class="dg-orgbild reveal">
+        <img src="/bilder/uploads/2026/drohne1.jpg" alt="Ausbildung der Drohnengruppe" loading="lazy" />
+      </figure>
+      <div class="dg-orgtext reveal">
+        <span class="eyebrow">Organisation &amp; Ausbildung</span>
+        <p>
+          Die Drohnengruppe besteht aus zwei Einsatzgruppen mit insgesamt 20 Einsatzkräften. So kann
+          auch bei längeren oder mehreren Einsatzlagen innerhalb kurzer Zeit eine hohe
+          Einsatzbereitschaft gewährleistet werden.
+        </p>
+        <p>
+          Um jederzeit sicher und professionell zu handeln, finden <b>monatliche Ausbildungen</b>
+          statt. Neben dem sicheren Umgang mit der Drohne werden verschiedene Einsatzszenarien
+          trainiert – regelmäßige Übungen sorgen für routinierte, sichere Abläufe im Einsatz.
+        </p>
+        <div class="dg-tags">
+          <span>Personensuche</span>
+          <span>Vegetationsbrände</span>
+          <span>Signalverlust</span>
+          <span>Technische Störungen</span>
+          <span>Datenschutz</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unsere Technik -->
+  <section>
+    <div class="wrap" style="padding-top:clamp(28px,3.5vw,44px)">
+      <span class="eyebrow">Unsere Technik</span>
+      <h2 class="display dg-h">Das Herzstück: DJI M30T</h2>
+
+      <div class="dg-hero reveal">
+        <figure class="dg-herobild">
+          <img src="/bilder/uploads/2026/drohne8.jpg" alt="DJI M30T Wärmebilddrohne" loading="lazy" />
+        </figure>
+        <div class="dg-herotext">
+          <p>
+            Die DJI M30T verfügt über eine hochauflösende Weitwinkelkamera, eine Zoomkamera mit bis
+            zu 200-fachem Zoom sowie eine leistungsfähige Wärmebildkamera – und ermöglicht dadurch
+            bei Tag und Nacht eine effektive Erkundung. Ein integrierter IR-Entfernungsmesser erlaubt
+            zudem die präzise Messung von Entfernungen.
+          </p>
+          <div class="dg-chips">
+            <span>Weitwinkelkamera</span>
+            <span>200× Zoom</span>
+            <span>Wärmebildkamera</span>
+            <span>IR-Entfernungsmesser</span>
+            <span>Tag &amp; Nacht</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dg-technik reveal">
+        {technik.map((t) => (
+          <article class="dg-tkarte">
+            <span class="eyebrow">{t.label}</span>
+            <h3 class="display">{t.titel}</h3>
+            <p>{t.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Im Einsatz -->
+  <section class="dg-band">
+    <div class="wrap" style="padding-block:clamp(30px,4vw,48px)">
+      <span class="eyebrow">Im Einsatz</span>
+      <h2 class="display dg-h">Ein eingespieltes Team</h2>
+      <p class="dg-teaser">
+        Standardmäßig rückt die Drohnengruppe mit vier oder mehr Personen aus. Bei kleineren Lagen
+        genügen auch zwei Kräfte, wobei der Kamerapilot zusätzlich die Rolle des Spotters übernimmt.
+      </p>
+      <div class="dg-rollen reveal">
+        {rollen.map((r, i) => (
+          <div class="dg-rolle">
+            <span class="dg-nr">{i + 1}</span>
+            <b class="display">{r.rolle}</b>
+            <em>{r.text}</em>
+          </div>
+        ))}
+      </div>
+      <p class="dg-schluss">
+        Die Drohne ist nicht fest auf einem Fahrzeug verladen, was große Flexibilität schafft.
+        Hauptsächlich wird sie in Kombination mit dem <b>MZF</b> eingesetzt, da dessen Wechselrichter
+        die Stromversorgung für den Ladekoffer sicherstellt.
+      </p>
+    </div>
+  </section>
+
+  <!-- Abschluss / Galerie -->
+  <section>
+    <div class="wrap" style="padding-top:clamp(28px,3.5vw,44px)">
+      <div class="dg-fazit reveal">
+        <h2 class="display">Moderne Unterstützung für den Feuerwehreinsatz</h2>
+        <p>
+          Ob bei der Suche nach vermissten Personen, der Erkundung größerer Einsatzstellen oder der
+          Bekämpfung von Vegetationsbränden – die Drohnengruppe liefert wichtige Informationen aus
+          der Luft und unterstützt damit die eingesetzten Kräfte. Durch moderne Technik, regelmäßige
+          Ausbildung und engagierte Mitglieder werden Einsätze sicherer, effizienter und
+          zielgerichteter.
+        </p>
+      </div>
+
+      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Einblicke</span>
+      <div class="galerie reveal" style="margin-top:16px">
+        {galerie.map((g) => (
+          <figure>
+            <img src={g.bild} alt={g.text} loading="lazy" />
+            <figcaption>{g.text}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <aside class="dg-datenschutz reveal">
+        <div class="dg-dschild" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3Z" /></svg>
+        </div>
+        <div>
+          <span class="eyebrow">Datenschutz</span>
+          <p>
+            Während eines Einsatzes können Bild- und Videoaufnahmen zur Dokumentation und Auswertung
+            erstellt werden. Diese werden anschließend auf einem separaten Einsatzlaptop gesichert und
+            ausschließlich berechtigten Verantwortlichen zur Verfügung gestellt – unter Beachtung der
+            geltenden Datenschutzbestimmungen. Aufnahmen, die nicht langfristig für die
+            Einsatzdokumentation benötigt werden, werden nach der Auswertung unwiderruflich gelöscht.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<style>
+  section {
+    scroll-margin-top: 90px;
+  }
+  /* Enger als der globale Standard (64–110px) – die Seite soll kompakter wirken */
+  section .wrap {
+    padding-block: clamp(26px, 3.5vw, 44px);
+  }
+
+  /* ---- Einleitung: Text über volle Breite ---- */
+  .dg-introtext h2 {
+    font-style: italic;
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    margin: 10px 0 14px;
+    line-height: 1.02;
+  }
+  .dg-introtext .lead {
+    font-size: 1.12rem;
+    color: #2c313c;
+    margin: 0 0 14px;
+  }
+  .dg-introtext p {
+    color: var(--tinte2);
+    margin: 0 0 12px;
+  }
+
+  /* Kennzahlen enger an den Text und an das folgende Band rücken */
+  .specs {
+    margin: 0 !important;
+  }
+
+  /* ---- Abschnittsbänder (dunkel abgesetzt) ---- */
+  .dg-band {
+    background: var(--dunkel);
+    color: #eef0f5;
+    position: relative;
+  }
+  .dg-band::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--rot);
+  }
+  .dg-band .eyebrow {
+    color: var(--rot-hell);
+  }
+  .dg-h {
+    font-style: italic;
+    font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+    margin: 12px 0 18px;
+  }
+  .dg-teaser {
+    max-width: 68ch;
+    font-size: 1.06rem;
+    color: #c8ccd6;
+    margin: 0 0 30px;
+  }
+  .dg-band .dg-teaser {
+    color: #c1c6d2;
+  }
+
+  /* ---- Einsatzauftrag: Checkliste ---- */
+  .dg-auftrag {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 700px) {
+    .dg-auftrag {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dg-auftrag li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--dunkel2);
+    border: 1px solid var(--hell-linie);
+    border-left: 3px solid var(--rot);
+    padding: 14px 18px;
+    font-size: 1rem;
+  }
+  .dg-auftrag svg {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--rot-hell);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .dg-schluss {
+    max-width: 70ch;
+    color: #c1c6d2;
+    margin: 0;
+  }
+
+  /* ---- Organisation: Bild + Text ---- */
+  .dg-org {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: center;
+  }
+  .dg-orgbild {
+    margin: 0;
+    border: 1px solid var(--linie);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(20, 22, 28, 0.1);
+  }
+  .dg-orgbild img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .dg-orgbild:hover img {
+    transform: scale(1.04);
+  }
+  .dg-orgtext .eyebrow {
+    display: inline-flex;
+    margin-bottom: 16px;
+  }
+  .dg-orgtext p {
+    color: var(--tinte2);
+    margin: 0 0 14px;
+  }
+  @media (max-width: 780px) {
+    .dg-org {
+      grid-template-columns: 1fr;
+    }
+    .dg-orgbild {
+      order: 2;
+    }
+  }
+  .dg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .dg-tags span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--tinte2);
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    padding: 7px 12px;
+  }
+
+  /* ---- Technik: Herzstück ---- */
+  .dg-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(24px, 3vw, 40px);
+    align-items: stretch;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-top: 3px solid var(--rot);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.07);
+    margin: 8px 0 24px;
+  }
+  .dg-herobild {
+    margin: 0;
+    overflow: hidden;
+  }
+  .dg-herobild img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+  }
+  .dg-herotext {
+    padding: clamp(22px, 3vw, 36px) clamp(22px, 3vw, 36px) clamp(22px, 3vw, 36px) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dg-herotext p {
+    color: var(--tinte2);
+    margin: 0 0 18px;
+  }
+  @media (max-width: 780px) {
+    .dg-hero {
+      grid-template-columns: 1fr;
+    }
+    .dg-herotext {
+      padding: 0 24px 26px;
+    }
+  }
+  .dg-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dg-chips span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rot-tief);
+    background: rgba(225, 6, 0, 0.07);
+    border: 1px solid rgba(225, 6, 0, 0.2);
+    padding: 7px 12px;
+  }
+
+  /* ---- Technik: Karten ---- */
+  .dg-technik {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) {
+    .dg-technik {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .dg-technik {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dg-tkarte {
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    padding: 22px 22px 24px;
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .dg-tkarte:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(20, 22, 28, 0.12);
+  }
+  .dg-tkarte h3 {
+    font-style: italic;
+    font-size: 1.4rem;
+    margin: 10px 0 10px;
+  }
+  .dg-tkarte p {
+    color: var(--tinte2);
+    font-size: 0.96rem;
+    margin: 0;
+  }
+
+  /* ---- Im Einsatz: Rollen ---- */
+  .dg-rollen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 760px) {
+    .dg-rollen {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .dg-rolle {
+    background: var(--dunkel2);
+    border: 1px solid var(--hell-linie);
+    border-top: 3px solid var(--rot);
+    padding: 20px 20px 22px;
+  }
+  .dg-nr {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--rot-hell);
+    letter-spacing: 0.1em;
+  }
+  .dg-rolle b {
+    display: block;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    margin: 6px 0 4px;
+    color: #fff;
+  }
+  .dg-rolle em {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: #b9bec9;
+  }
+
+  /* ---- Fazit ---- */
+  .dg-fazit {
+    max-width: 78ch;
+  }
+  .dg-fazit h2 {
+    font-style: italic;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    margin: 0 0 14px;
+  }
+  .dg-fazit p {
+    color: var(--tinte2);
+    font-size: 1.06rem;
+    margin: 0;
+  }
+
+  /* ---- Datenschutz-Hinweis ---- */
+  .dg-datenschutz {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+    margin: 44px 0 8px;
+    background: var(--karte);
+    border: 1px solid var(--linie);
+    border-left: 3px solid var(--rot);
+    padding: 24px 26px;
+  }
+  .dg-dschild svg {
+    width: 40px;
+    height: 40px;
+    fill: none;
+    stroke: var(--rot);
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+  }
+  .dg-datenschutz p {
+    margin: 8px 0 0;
+    color: var(--tinte2);
+    font-size: 0.98rem;
+  }
+  @media (max-width: 560px) {
+    .dg-datenschutz {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
