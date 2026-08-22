@@ -77,6 +77,14 @@ const galerie = [
   { bild: '/bilder/uploads/2026/drohne7.jpg', text: 'Akkusätze im Ladekoffer' },
   { bild: '/bilder/uploads/2026/drohne9.jpg', text: 'Full-HD-Monitor am Einsatzort' },
 ];
+
+const einsatzbilder = [
+  { bild: '/bilder/uploads/2026/drohne11.jpg', text: 'Luftaufnahme aus dem Einsatz' },
+  { bild: '/bilder/uploads/2026/drohne12.jpg', text: 'Wärmebild eines Vegetationsbrands' },
+  { bild: '/bilder/uploads/2026/drohne13.jpg', text: 'Erkundung aus der Luft' },
+  { bild: '/bilder/uploads/2026/drohne14.jpg', text: 'Glutnester im Wärmebild' },
+  { bild: '/bilder/uploads/2026/drohne15.jpg', text: 'Blick über die Einsatzstelle' },
+];
 ---
 
 <main>
@@ -110,6 +118,12 @@ const galerie = [
           klassischen Einsatzmittel der Feuerwehr um eine moderne und vielseitige Komponente.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Gruppenfoto + Kennzahlen -->
+  <section>
+    <div class="wrap dg-uebersicht" style="padding-top:0;padding-bottom:clamp(20px,2.5vw,30px)">
       <figure class="dg-gruppenfoto reveal">
         <img
           src="/bilder/uploads/2026/drohne10.jpg"
@@ -118,13 +132,7 @@ const galerie = [
         />
         <figcaption>Die Drohnengruppe der Freiwilligen Feuerwehr Weiden</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <!-- Kennzahlen -->
-  <section>
-    <div class="wrap" style="padding-top:0;padding-bottom:clamp(20px,2.5vw,30px)">
-      <div class="specs reveal">
+      <div class="dg-kennzahlen reveal">
         {kennzahlen.map((k) => (
           <div class="spec">
             <span>{k.label}</span>
@@ -278,6 +286,16 @@ const galerie = [
         ))}
       </div>
 
+      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Aus dem Einsatz</span>
+      <div class="galerie reveal" style="margin-top:16px">
+        {einsatzbilder.map((g) => (
+          <figure>
+            <img src={g.bild} alt={g.text} loading="lazy" />
+            <figcaption>{g.text}</figcaption>
+          </figure>
+        ))}
+      </div>
+
       <aside class="dg-datenschutz reveal">
         <div class="dg-dschild" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3Z" /></svg>
@@ -328,9 +346,20 @@ const galerie = [
     margin: 0 !important;
   }
 
-  /* ---- Gruppenfoto ---- */
+  /* ---- Gruppenfoto links + Kennzahlen rechts ---- */
+  .dg-uebersicht {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    align-items: center;
+  }
+  @media (max-width: 820px) {
+    .dg-uebersicht {
+      grid-template-columns: 1fr;
+    }
+  }
   .dg-gruppenfoto {
-    margin: clamp(22px, 3vw, 34px) 0 0;
+    margin: 0;
     border: 1px solid var(--linie);
     border-top: 3px solid var(--rot);
     overflow: hidden;
@@ -346,6 +375,16 @@ const galerie = [
     font-size: 0.85rem;
     color: var(--tinte2);
     background: var(--karte);
+  }
+  .dg-kennzahlen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .dg-kennzahlen {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* ---- Abschnittsbänder (dunkel abgesetzt) ---- */
