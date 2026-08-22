@@ -293,24 +293,6 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
             </ul>
           </div>
         )}
-
-        <div class="ug-kontakt">
-          <span class="eyebrow">Erreichbarkeit im Einsatz</span>
-          <ul>
-            <li>
-              <span>Einsatzleitwagen</span>
-              <a href="/fuhrpark/elw-1-5/">Kater Weiden 1/12/1</a>
-            </li>
-            <li>
-              <span>KEZ Telefon</span>
-              <a href="tel:0961391609011">0961 / 391609-11 und -12</a>
-            </li>
-            <li>
-              <span>KEZ E-Mail</span>
-              <a href="mailto:kez.wen@weiden.de">kez.wen@weiden.de</a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
@@ -639,13 +621,8 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
   /* ---- Kontaktdaten ---- */
   .ug-kontaktgrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 14px;
-  }
-  @media (max-width: 760px) {
-    .ug-kontaktgrid {
-      grid-template-columns: 1fr;
-    }
   }
   .ug-kontakt {
     background: var(--dunkel2);
