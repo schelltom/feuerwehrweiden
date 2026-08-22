@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Basis from '../../../layouts/Basis.astro';
 import Seitenkopf from '../../../components/Seitenkopf.astro';
 import DrohnengruppeSeite from '../../../components/DrohnengruppeSeite.astro';
+import UgOeelSeite from '../../../components/UgOeelSeite.astro';
 
 export async function getStaticPaths() {
   const seiten = (await getCollection('seiten')).filter((s) => s.data.bereich !== 'ortsteile' && !s.data.entwurf);
@@ -34,6 +35,8 @@ for (const p of d.personen) {
 <Basis titel={`${d.titel} – Feuerwehr Weiden`} beschreibung={d.kurz || d.titel}>
   {seite.id === 'drohnengruppe' ? (
     <DrohnengruppeSeite d={d} />
+  ) : seite.id === 'ug-oeel' ? (
+    <UgOeelSeite d={d} />
   ) : (
   <main>
         <Seitenkopf
