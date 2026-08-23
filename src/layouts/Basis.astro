@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getCollection } from 'astro:content';
 import SkylineWeiden from '../components/SkylineWeiden.astro';
 import Wasserzeichen from '../components/Wasserzeichen.astro';
 
@@ -25,6 +26,15 @@ const {
 // Absolute URLs für Canonical und Open Graph (basieren auf `site` in astro.config.mjs).
 const kanonisch = new URL(Astro.url.pathname, Astro.site);
 const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
+
+/* Navigations-Untermenüs datengetrieben aus der Seiten-Collection –
+   neue Einheiten/Seiten erscheinen dadurch automatisch im Menü. */
+const nachReihenfolge = (a: { data: { reihenfolge: number } }, b: { data: { reihenfolge: number } }) =>
+  a.data.reihenfolge - b.data.reihenfolge;
+const alleSeiten = (await getCollection('seiten')).filter((s) => !s.data.entwurf);
+const navUeberUns = alleSeiten.filter((s) => s.data.bereich === 'ueber-uns').sort(nachReihenfolge);
+const navEinheiten = alleSeiten.filter((s) => s.data.bereich === 'einheiten').sort(nachReihenfolge);
+const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').sort(nachReihenfolge);
 ---
 
 <!doctype html>
@@ -87,9 +97,36 @@ const vorschaubild = new URL(bild ?? '/bilder/intro-start.jpg', Astro.site);
           <nav class="menue" id="menue" aria-label="Hauptmenü">
           <ul>
             <li><a href="/?direkt">Home</a></li>
-            <li><a href="/feuerwehr/">Feuerwehr</a></li>
+            <li class="hat-untermenue hat-mega">
+              <a href="/feuerwehr/">Feuerwehr <span class="caret" aria-hidden="true">▾</span></a>
+              <div class="megamenue">
+                <div class="megaspalte">
+                  <span class="megatitel">Über uns</span>
+                  <ul>
+                    {navUeberUns.map((s) => (
+                      <li><a href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>{s.data.titel}</a></li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="megaspalte">
+                  <span class="megatitel">Einheiten</span>
+                  <ul>
+                    {navEinheiten.map((s) => (
+                      <li><a href={`/feuerwehr/${s.data.bereich}/${s.id}/`}>{s.data.titel}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </li>
             <li><a href="/fuhrpark/">Fuhrpark</a></li>
-            <li><a href="/ortsteile/">Ortsteile</a></li>
+            <li class="hat-untermenue">
+              <a href="/ortsteile/">Ortsteile <span class="caret" aria-hidden="true">▾</span></a>
+              <ul class="untermenue">
+                {navOrtsteile.map((s) => (
+                  <li><a href={`/ortsteile/${s.id}/`}>{s.data.titel}</a></li>
+                ))}
+              </ul>
+            </li>
             <li class="hat-untermenue">
               <a href="/service/">Service <span class="caret" aria-hidden="true">▾</span></a>
               <ul class="untermenue">
