@@ -1,9 +1,9 @@
 ---
 titel: "Tierrettung: Feuerwehr rettet verletzten Kater"
 datum: 2026-08-24
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-08-24T08:46
+veroeffentlicht: 2026-08-24T08:54
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/tierrettung-feuerwehr-rettet-verletzten-kater/img_1119.jpeg
 titelbildEinpassen: false
@@ -14,7 +14,7 @@ galerie:
 ---
 Am 22.08.2026 wurden wir um 10:09 Uhr auf Anforderung der Polizei und des Veterinäramtes Weiden durch die Integrierte Leitstelle Oberpfalz Nord mit dem Alarmstichwort „THL 1 – Rettung Kleintier“ alarmiert.
 
-Nur kurze Zeit später rückte unser GWL 1, beladen mit dem Rollcontainer für die Tierrettung, zur Einsatzstelle aus.
+Nur kurze Zeit später rückte unser GW-L1, beladen mit dem Rollcontainer für die Tierrettung, zur Einsatzstelle aus.
 
 Dort fanden unsere Einsatzkräfte einen verletzten Kater vor. Mit der nötigen Ruhe und Sorgfalt wurde das Tier behutsam aufgenommen und schonend abtransportiert. Anschließend konnte der Kater zur weiteren Versorgung an eine Tierärztin übergeben werden.
 
