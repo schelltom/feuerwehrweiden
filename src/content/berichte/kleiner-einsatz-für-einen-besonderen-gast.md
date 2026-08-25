@@ -3,8 +3,9 @@ titel: Kleiner Einsatz für einen besonderen Gast
 datum: 2026-08-25
 entwurf: true
 keinPush: false
-veroeffentlicht: 2026-08-25T15:38
+veroeffentlicht: 2026-08-25T16:54
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/kleiner-einsatz-für-einen-besonderen-gast/img_8886.jpeg
 titelbildEinpassen: false
 ---
 Nicht jeder Einsatz beginnt mit Sirene und Blaulicht – manchmal braucht auch ein kleiner gefiederter Gast unsere Hilfe.
