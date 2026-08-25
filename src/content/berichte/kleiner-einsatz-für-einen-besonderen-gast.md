@@ -7,6 +7,9 @@ veroeffentlicht: 2026-08-25T16:54
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/kleiner-einsatz-für-einen-besonderen-gast/img_8886.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/kleiner-einsatz-für-einen-besonderen-gast/img_8882.jpeg
+  - bild: /bilder/berichte/2026/kleiner-einsatz-für-einen-besonderen-gast/img_8887.jpeg
 ---
 Nicht jeder Einsatz beginnt mit Sirene und Blaulicht – manchmal braucht auch ein kleiner gefiederter Gast unsere Hilfe.
 
