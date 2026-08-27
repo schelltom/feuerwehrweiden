@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: Bitte für Flaschen TÜV Arbeitsflasche 25 & 27 mitbringen
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-08-27T14:57"
 benachrichtigt: false
 ---
