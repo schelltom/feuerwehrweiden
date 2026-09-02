@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: ""
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-09-02T12:56"
 benachrichtigt: false
 ---
