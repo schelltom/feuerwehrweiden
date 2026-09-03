@@ -6,6 +6,12 @@ on:
     paths:
       - 'src/content/berichte/**'
       - 'src/content/einsaetze/**'
+  workflow_dispatch:
+    inputs:
+      dateien:
+        description: 'Manuell nachpushen: Pfad(e) zu .md-Dateien, Leerzeichen-getrennt (z. B. src/content/einsaetze/2026-09-03-thl-1.md)'
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -21,7 +27,21 @@ jobs:
 
       - name: Neu hinzugekommene Beiträge ermitteln
         id: neu
+        env:
+          MANUELL: ${{ inputs.dateien }}
         run: |
+          # Manuell ausgelöst: die übergebenen Pfade direkt verwenden (das
+          # Push-Skript entscheidet weiter unten selbst, ob wirklich gepusht wird).
+          if [ -n "$MANUELL" ]; then
+            FILES=$(printf '%s\n' $MANUELL | grep -E '^src/content/(berichte|einsaetze)/.*\.md$' || true)
+            {
+              echo 'files<<EOF'
+              echo "$FILES"
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+            echo "Manuell angefordert:"; echo "$FILES"
+            exit 0
+          fi
           BEFORE="${{ github.event.before }}"
           SHA="${{ github.sha }}"
           # Hinzugekommene UND geänderte Dateien betrachten – das Skript

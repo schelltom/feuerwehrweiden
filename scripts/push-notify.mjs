@@ -49,6 +49,23 @@ try {
 webpush.setVapidDetails(VAPID_SUBJECT, VAPID_PUBLIC, VAPID_PRIVATE);
 
 /**
+ * Wiedererkennungs-Kennung eines Einsatzes aus Alarmzeit + Stichwort – bewusst
+ * NICHT aus dem Dateinamen. Im CMS wird ein Einsatz beim Jonglieren mit der
+ * automatischen Slug-Nummerierung gern gelöscht/überschrieben und unter neuem
+ * Slug wieder angelegt. Über diese Kennung zählt das als derselbe Einsatz und
+ * löst dank Dedup-Fenster keinen zweiten Push aus.
+ */
+function einsatzKennung(data) {
+  const wann = data.wann instanceof Date ? data.wann.toISOString() : String(data.wann ?? '');
+  return (
+    `${wann}|${data.stichwort ?? ''}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'unbekannt'
+  );
+}
+
+/**
  * Stand einer Datei im vorherigen Commit (github.event.before, per GIT_BEFORE).
  * Liefert, ob die Datei damals schon existierte und ob sie ein Entwurf war.
  * Ohne verwertbares GIT_BEFORE gilt die Datei als "vorher nicht vorhanden".
@@ -111,7 +128,10 @@ for (const datei of dateien) {
         title: '🚒 Einsatz für Florian Weiden',
         body: `${data.stichwort || 'Einsatz'}${zusatz}`,
         url: `${SITE}/einsaetze/`,
-        tag: `einsatz-${slug}`,
+        // Tag aus Alarmzeit+Stichwort statt Slug: derselbe Einsatz unter neuem
+        // Dateinamen wird so als Dublette erkannt (Dedup unten) und ersetzt auf
+        // dem Gerät eine evtl. schon liegende Meldung, statt sich daneben zu legen.
+        tag: `einsatz-${einsatzKennung(data)}`,
       },
     });
   }
@@ -123,17 +143,21 @@ if (events.length === 0) {
 }
 
 // ---- Dedup: kürzlich schon gepushte Tags überspringen ----
-// Verhindert eine doppelte Meldung, wenn derselbe Eintrag (gleicher Slug)
-// im Zeitfenster erneut "neu" auftaucht – etwa beim Löschen + Neuanlegen.
+// Verhindert eine doppelte Meldung, wenn dieselbe Sache im Zeitfenster erneut
+// "neu" auftaucht – beim Löschen + Neuanlegen oder beim Umbenennen des Slugs
+// (Einsätze werden über Alarmzeit+Stichwort erkannt, nicht über den Dateinamen).
+// Einsätze bekommen ein großzügiges Fenster, weil im CMS beim Nachtragen gern
+// mehrfach umsortiert wird; Berichte nur ein kurzes.
 // Der Worker merkt sich je Tag einen Ablauf-Merker (KV, self-expiring).
 // Fehlt der Endpunkt / Fehler → wird NICHT blockiert (fail-open).
-const DEDUP_FENSTER_SEK = 30 * 60; // 30 Minuten
-async function tagFrisch(tag) {
+const DEDUP_FENSTER_SEK = { berichte: 30 * 60, einsaetze: 12 * 60 * 60 };
+async function tagFrisch(tag, channel) {
+  const fenster = DEDUP_FENSTER_SEK[channel] ?? 30 * 60;
   try {
     const r = await fetch(`${PUSH_WORKER_URL}/pushed`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${LIST_TOKEN}` },
-      body: JSON.stringify({ tag, windowSeconds: DEDUP_FENSTER_SEK }),
+      body: JSON.stringify({ tag, windowSeconds: fenster }),
     });
     if (!r.ok) return true;
     const d = await r.json();
@@ -145,7 +169,7 @@ async function tagFrisch(tag) {
 
 const zuSenden = [];
 for (const ev of events) {
-  if (await tagFrisch(ev.payload.tag)) zuSenden.push(ev);
+  if (await tagFrisch(ev.payload.tag, ev.channel)) zuSenden.push(ev);
   else console.log(`↩︎ ${ev.payload.tag}: im Zeitfenster schon gepusht – übersprungen.`);
 }
 if (zuSenden.length === 0) {
