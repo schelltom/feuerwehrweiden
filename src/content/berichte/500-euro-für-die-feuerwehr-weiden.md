@@ -5,7 +5,7 @@ entwurf: false
 keinPush: false
 veroeffentlicht: 2026-09-06T12:05
 ressort: Feuerwehr
-titelbild: /bilder/berichte/2026/500-euro-für-die-feuerwehr-weiden/img_8954.jpeg
+titelbild: /bilder/berichte/2026/500-euro-für-die-feuerwehr-weiden/0d9f88c4-ead1-4b5e-9ed8-17ec5f1db91a.jpeg
 titelbildEinpassen: false
 galerie:
   - bild: /bilder/berichte/2026/500-euro-für-die-feuerwehr-weiden/0d9f88c4-ead1-4b5e-9ed8-17ec5f1db91a.jpeg
