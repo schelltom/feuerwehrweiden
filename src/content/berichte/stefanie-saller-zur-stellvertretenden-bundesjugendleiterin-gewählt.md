@@ -1,9 +1,9 @@
 ---
 titel: Stefanie Saller zur stellvertretenden Bundesjugendleiterin gewählt
 datum: 2026-09-06
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-09-06T12:30
+veroeffentlicht: 2026-09-06T12:43
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/stefanie-saller-zur-stellvertretenden-bundesjugendleiterin-gewählt/img_1176.jpeg
 titelbildEinpassen: false
