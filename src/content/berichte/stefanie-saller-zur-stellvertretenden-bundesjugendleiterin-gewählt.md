@@ -7,6 +7,10 @@ veroeffentlicht: 2026-09-06T12:30
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/stefanie-saller-zur-stellvertretenden-bundesjugendleiterin-gewählt/img_1176.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/stefanie-saller-zur-stellvertretenden-bundesjugendleiterin-gewählt/img_1179.jpeg
+  - bild: /bilder/berichte/2026/stefanie-saller-zur-stellvertretenden-bundesjugendleiterin-gewählt/img_1180.jpeg
+  - bild: /bilder/berichte/2026/stefanie-saller-zur-stellvertretenden-bundesjugendleiterin-gewählt/img_1178.jpeg
 ---
 Bei der Delegiertenversammlung der Deutschen Jugendfeuerwehr in Hannover wurde Stefanie Saller zur stellvertretenden Bundesjugendleiterin gewählt. Die Versammlung fand im Rahmen des Deutschen Jugendfeuerwehrtages statt.
 
