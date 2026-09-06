@@ -31,5 +31,3 @@ Wir bedanken uns ganz herzlich bei der Sparkasse Nördliche Oberpfalz für die g
 Ein ebenso großes Dankeschön geht an alle Bürgerinnen und Bürger, die sich an der Herzaktion beteiligt haben. Mit jedem einzelnen Herz wurde ein kleines Zeichen gesetzt – und gemeinsam ist daraus eine tolle Unterstützung für die Feuerwehr Weiden geworden.
 
 Vielen Dank für eure Unterstützung und die Wertschätzung unseres Ehrenamtes!
-
-Eure Feuerwehr Weiden
