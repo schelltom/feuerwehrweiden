@@ -1,9 +1,9 @@
 ---
 titel: " 500 Euro für die Feuerwehr Weiden"
 datum: 2026-09-06
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-09-06T11:57
+veroeffentlicht: 2026-09-06T12:05
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/500-euro-für-die-feuerwehr-weiden/img_8954.jpeg
 titelbildEinpassen: false
