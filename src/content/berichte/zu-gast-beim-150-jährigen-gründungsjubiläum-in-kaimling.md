@@ -1,7 +1,7 @@
 ---
 titel: Zu Gast beim 150-jährigen Gründungsjubiläum in Kaimling
 datum: 2026-09-06
-entwurf: true
+entwurf: false
 keinPush: false
 veroeffentlicht: 2026-09-06T21:46
 ressort: Feuerwehrverein
