@@ -5,7 +5,7 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-09-06T21:15
 ressort: Feuerwehrverein
-titelbild: ""
+titelbild: /bilder/berichte/2026/zu-gast-beim-150-jährigen-gründungsjubiläum-in-kaimling/7ab5a420-8eae-4698-846a-1615a805b427.jpeg
 titelbildEinpassen: false
 galerie:
   - bild: /bilder/berichte/2026/zu-gast-beim-150-jährigen-gründungsjubiläum-in-kaimling/29c3c657-73b3-4c40-a6a4-7bf034c48ade.jpeg
