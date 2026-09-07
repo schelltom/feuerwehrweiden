@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: 1 PA defekt
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-09-07T15:55"
 benachrichtigt: false
 ---
