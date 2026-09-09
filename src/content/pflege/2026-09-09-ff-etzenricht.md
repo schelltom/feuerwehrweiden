@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: Arbeitsflasche
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-09-09T15:10"
 benachrichtigt: false
 ---
