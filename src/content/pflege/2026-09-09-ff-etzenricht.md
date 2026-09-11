@@ -5,8 +5,8 @@ geraete: 0
 masken: 0
 flaschen: 0
 hinweis: Arbeitsflasche
-abholbereit: true
+abholbereit: false
 abgeholt: false
-abholbereitSeit: "2026-09-09T15:10"
+abholbereitSeit: 2026-09-09T15:10
 benachrichtigt: false
 ---
