@@ -8,6 +8,9 @@ kopfbild: false
 wappen: "/bilder/ortsteile/wappen-muglhof.png"
 gruppenfoto:
   bild: "/bilder/ortsteile/geraetehaus-muglhof.jpg"
-  text: "Gerätehaus der Feuerwehr Muglhof"
+  text: ""
+galerie:
+  - bild: "/bilder/ortsteile/geraetehaus-muglhof-fassade.jpg"
+  - bild: "/bilder/ortsteile/geraetehaus-muglhof-luftbild.jpg"
 entwurf: false
 ---

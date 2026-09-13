@@ -21,7 +21,7 @@ const fotoProps = d.extern ? { href: d.extern, target: '_blank', rel: 'noopener'
 const fahrzeuge = d.extern
   ? []
   : (await getCollection('fahrzeuge'))
-      .filter((f) => f.data.standort === d.titel && !f.data.entwurf)
+      .filter((f) => f.data.standort === d.titel && f.data.gruppe !== 'ehemalige' && !f.data.entwurf)
       .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 ---
 
@@ -40,6 +40,41 @@ const fahrzeuge = d.extern
 
     <section>
       <div class="wrap schmal" style="padding-top:clamp(44px,6vw,72px)">
+        {
+          fahrzeuge.length > 0 && (
+            <>
+              <span class="eyebrow">Fuhrpark</span>
+              <div class="fahrzeuge">
+                {fahrzeuge.map((f) => (
+                  <a class="fz reveal" href={`/fuhrpark/${f.id}/`}>
+                    {f.data.bild && <img src={f.data.bild} alt={f.data.name} loading="lazy" />}
+                    <span class="schatten" aria-hidden="true" />
+                    <span class="txt">
+                      <em>{f.data.typ}</em>
+                      <b>{f.data.name}</b>
+                      {f.data.funkruf && <i>{f.data.funkruf}</i>}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </>
+          )
+        }
+
+        {
+          d.gruppenfoto && (
+            <FotoTag class:list={['gruppenfoto', 'reveal', { alslink: d.extern }]} {...fotoProps}>
+              <img src={d.gruppenfoto.bild} alt={d.gruppenfoto.text || d.titel} />
+              <span class="schatten" aria-hidden="true" />
+              <figcaption>
+                <em>Gerätehaus</em>
+                <b>{d.gruppenfoto.text || d.titel}</b>
+                {d.extern && <i class="mehr">Zur Website der {d.titel} ↗</i>}
+              </figcaption>
+            </FotoTag>
+          )
+        }
+
         {
           seite.body?.trim() && (
             <div class="fliesstext reveal">
@@ -87,41 +122,6 @@ const fahrzeuge = d.extern
                 ))}
               </div>
             </>
-          )
-        }
-
-        {
-          fahrzeuge.length > 0 && (
-            <>
-              <span class="eyebrow">Fuhrpark</span>
-              <div class="fahrzeuge">
-                {fahrzeuge.map((f) => (
-                  <a class="fz reveal" href={`/fuhrpark/${f.id}/`}>
-                    {f.data.bild && <img src={f.data.bild} alt={f.data.name} loading="lazy" />}
-                    <span class="schatten" aria-hidden="true" />
-                    <span class="txt">
-                      <em>{f.data.typ}</em>
-                      <b>{f.data.name}</b>
-                      {f.data.funkruf && <i>{f.data.funkruf}</i>}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </>
-          )
-        }
-
-        {
-          d.gruppenfoto && (
-            <FotoTag class:list={['gruppenfoto', 'reveal', { alslink: d.extern }]} {...fotoProps}>
-              <img src={d.gruppenfoto.bild} alt={d.gruppenfoto.text || d.titel} />
-              <span class="schatten" aria-hidden="true" />
-              <figcaption>
-                <em>Gerätehaus</em>
-                <b>{d.gruppenfoto.text || d.titel}</b>
-                {d.extern && <i class="mehr">Zur Website der {d.titel} ↗</i>}
-              </figcaption>
-            </FotoTag>
           )
         }
 

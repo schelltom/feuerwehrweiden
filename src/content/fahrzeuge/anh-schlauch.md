@@ -1,8 +1,9 @@
 ---
 name: "Schlauchanhänger"
 typ: "Anhänger"
-standort: "Hauptfeuerwache"
-reihenfolge: 37
+standort: "FF Rothenstadt"
+bild: /bilder/fahrzeuge/anh-schlauch-rothenstadt.jpg
+reihenfolge: 47
 gruppe: anhaenger
 entwurf: false
 ---

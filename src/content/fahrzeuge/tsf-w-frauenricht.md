@@ -52,6 +52,12 @@ beladung:
       - "Wassertank 750 Liter"
       - "Tragkraftspritze TS 8/8"
       - "Steckleitern"
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/tsf-w-frauenricht-6.jpg"
+    inhalt:
+      - "Navigationssystem"
+      - "Digitalfunkgerät"
+      - "Handscheinwerfer"
 gruppe: loesch
 entwurf: false
 ---
