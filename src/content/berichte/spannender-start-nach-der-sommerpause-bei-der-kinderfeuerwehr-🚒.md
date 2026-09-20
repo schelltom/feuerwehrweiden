@@ -5,7 +5,28 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-09-20T21:22
 ressort: Kinderfeuerwehr
+titelbild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1352.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/3091fe6b-b743-4114-933e-65e21963b34e.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1365.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1364.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1363.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1362.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1361.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1360.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1359.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1358.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1357.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1356.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1355.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1354.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1353.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/3d38082e-1665-477b-ba82-2718020fac64.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/dc307aeb-4148-4870-b326-564e49afbb9f.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/783b05bb-7c06-481c-9a17-686e9e7c407c.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/62e4b37b-3441-4be4-babb-005e59d20adf.jpeg
+  - {}
 ---
 Nach der Sommerpause ist unsere Kinderfeuerwehr vergangenen Samstag wieder mit viel Begeisterung und Motivation in die erste Gruppenstunde gestartet. 
 
