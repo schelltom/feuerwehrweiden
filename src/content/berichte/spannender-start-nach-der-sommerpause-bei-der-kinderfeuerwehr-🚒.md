@@ -1,9 +1,9 @@
 ---
-titel: Spannender Start nach der Sommerpause bei der Kinderfeuerwehr 🚒
+titel: "Spannender Start nach der Sommerpause bei der Kinderfeuerwehr "
 datum: 2026-09-20
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-09-20T21:22
+veroeffentlicht: 2026-09-20T21:43
 ressort: Kinderfeuerwehr
 titelbild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1352.jpeg
 titelbildEinpassen: false
@@ -15,7 +15,7 @@ galerie:
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/dc307aeb-4148-4870-b326-564e49afbb9f.jpeg
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1354.jpeg
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1355.jpeg
-  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1357.jpeg
+  - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1356.jpeg
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1357.jpeg
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1359.jpeg
   - bild: /bilder/berichte/2026/spannender-start-nach-der-sommerpause-bei-der-kinderfeuerwehr-🚒/img_1360.jpeg
