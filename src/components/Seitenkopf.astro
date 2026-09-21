@@ -23,9 +23,11 @@ interface Props {
   gerade?: boolean;
   /** Kleines Wappen links neben dem Titel (Ortsteile) */
   wappen?: string;
+  /** Bild vollständig zeigen (einpassen statt beschneiden) – für Logos */
+  einpassen?: boolean;
 }
 
-const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = true, wappen } = Astro.props;
+const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = true, wappen, einpassen = false } = Astro.props;
 ---
 
 <header class="seitenkopf">
@@ -58,7 +60,7 @@ const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = tru
     </div>
     {
       bild && (
-        <span class:list={['kfoto', { kenburns, gerade }]}>
+        <span class:list={['kfoto', { kenburns: kenburns && !einpassen, gerade, einpassen }]}>
           <span class="kausschnitt">
             <img class="kbild" src={bild} alt="" loading="eager" />
           </span>
@@ -185,6 +187,16 @@ const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = tru
     object-fit: cover;
     transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
+  .kfoto.einpassen {
+    width: min(250px, 30vw);
+  }
+  .kfoto.einpassen .kbild {
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: var(--karte);
+    padding: 14px;
+    box-sizing: border-box;
+  }
   .kfoto.kenburns .kbild {
     animation: kenburns-kopf 12s ease-in-out infinite alternate;
   }
@@ -234,6 +246,10 @@ const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = tru
   @media (max-width: 680px) {
     .zeile {
       grid-template-columns: 1fr;
+    }
+    .kfoto.einpassen {
+      width: 200px;
+      justify-self: start;
     }
     .kfoto {
       width: calc(100% - 14px);

@@ -56,7 +56,8 @@ for (const p of d.personen) {
         { name: bereichsname },
       ]}
       untertitel={d.kurz}
-      bild={seite.id === 'mitglied-werden' ? '/bilder/uploads/2026/team112-kampagne.jpg' : d.kopfbild ? d.titelbild : undefined}
+      einpassen={seite.id === 'kinderfeuerwehr'}
+      bild={seite.id === 'kinderfeuerwehr' ? d.galerie[0]?.bild : seite.id === 'mitglied-werden' ? '/bilder/uploads/2026/team112-kampagne.jpg' : d.kopfbild ? d.titelbild : undefined}
     />
 
     <section>
@@ -111,7 +112,7 @@ for (const p of d.personen) {
           ressortBerichte.length > 0 && (
             <div class="reveal" style="margin-bottom:44px">
               <span class="eyebrow">Aktuelles</span>
-              <ul class="news">
+              <ul class="news" id="kf-berichte" data-seite="6">
                 {ressortBerichte.map((b) => (
                   <li>
                     <a class="thumb" href={`/berichte/${b.id}/`} tabindex="-1" aria-hidden="true">
@@ -136,6 +137,13 @@ for (const p of d.personen) {
                   </li>
                 ))}
               </ul>
+              {ressortBerichte.length > 6 && (
+                <nav class="blaettern" id="kf-blaettern" aria-label="Seiten" hidden>
+                  <button type="button" data-richtung="-1">← Neuere Berichte</button>
+                  <span class="stand" />
+                  <button type="button" data-richtung="1">Ältere Berichte →</button>
+                </nav>
+              )}
             </div>
           )
         }
@@ -220,7 +228,7 @@ for (const p of d.personen) {
         }
 
         {
-          d.galerie.length > 0 && (
+          d.galerie.length > 0 && seite.id !== 'kinderfeuerwehr' && (
             <div class="galerie reveal" style="margin-top:44px">
               {d.galerie.map((g) => (
                 <figure>
@@ -237,7 +245,77 @@ for (const p of d.personen) {
   )}
 </Basis>
 
+<script>
+  // Blättern in den Kinderfeuerwehr-Berichten (ohne JS sind alle sichtbar)
+  const liste = document.getElementById('kf-berichte');
+  const nav = document.getElementById('kf-blaettern');
+  if (liste && nav) {
+    const proSeite = Number(liste.dataset.seite) || 6;
+    const items = Array.from(liste.children) as HTMLElement[];
+    const seiten = Math.ceil(items.length / proSeite);
+    const stand = nav.querySelector('.stand') as HTMLElement;
+    const knoepfe = nav.querySelectorAll('button');
+    let aktuell = 1;
+    const zeige = (n: number) => {
+      aktuell = Math.min(Math.max(n, 1), seiten);
+      items.forEach((li, i) => (li.hidden = Math.floor(i / proSeite) + 1 !== aktuell));
+      stand.textContent = `Seite ${aktuell} / ${seiten}`;
+      (knoepfe[0] as HTMLButtonElement).style.visibility = aktuell > 1 ? 'visible' : 'hidden';
+      (knoepfe[1] as HTMLButtonElement).style.visibility = aktuell < seiten ? 'visible' : 'hidden';
+    };
+    nav.hidden = false;
+    knoepfe.forEach((b) =>
+      b.addEventListener('click', () => {
+        zeige(aktuell + Number(b.dataset.richtung));
+        liste.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }),
+    );
+    zeige(1);
+  }
+</script>
+
 <style>
+  .blaettern {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--linie);
+  }
+  :global(.news li[hidden]) {
+    display: none !important;
+  }
+  .blaettern[hidden] {
+    display: none;
+  }
+  .blaettern button {
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 1rem;
+    color: var(--tinte);
+    text-align: left;
+  }
+  .blaettern button:last-child {
+    text-align: right;
+  }
+  .blaettern button:hover {
+    color: var(--rot);
+  }
+  .blaettern .stand {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--tinte2);
+  }
   .wrap.schmal {
     max-width: 980px;
   }
