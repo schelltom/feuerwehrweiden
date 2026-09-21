@@ -16,6 +16,15 @@ export async function getStaticPaths() {
 const { seite } = Astro.props;
 const { Content } = await render(seite);
 const d = seite.data;
+
+// Kinderfeuerwehr: Berichte des gleichnamigen Ressorts als Vorschauliste zeigen
+const ressortBerichte =
+  seite.id === 'kinderfeuerwehr'
+    ? (await getCollection('berichte'))
+        .filter((b) => !b.data.entwurf && b.data.ressort === 'Kinderfeuerwehr')
+        .sort((a, b) => (b.data.veroeffentlicht ?? b.data.datum).getTime() - (a.data.veroeffentlicht ?? a.data.datum).getTime())
+    : [];
+const datumsformat = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 const bereichsname = d.bereich === 'ueber-uns' ? 'Über uns' : 'Einheiten';
 
 // Personen nach Kategorie gruppieren – Reihenfolge bleibt erhalten.
@@ -91,9 +100,42 @@ for (const p of d.personen) {
         }
 
         {
-          seite.body?.trim() && (
+          seite.body?.trim() && ressortBerichte.length === 0 && (
             <div class="fliesstext reveal">
               <Content />
+            </div>
+          )
+        }
+
+        {
+          ressortBerichte.length > 0 && (
+            <div class="reveal" style="margin-bottom:44px">
+              <span class="eyebrow">Aktuelles</span>
+              <ul class="news">
+                {ressortBerichte.map((b) => (
+                  <li>
+                    <a class="thumb" href={`/berichte/${b.id}/`} tabindex="-1" aria-hidden="true">
+                      {b.data.titelbild ? (
+                        <img src={b.data.titelbild} alt="" loading="lazy" class:list={{ einpassen: b.data.titelbildEinpassen }} />
+                      ) : (
+                        <span class="ohne">
+                          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c1 4-3 5-3 9a3 3 0 0 0 6 0c0-2-1-3-1-3s4 1 4 5a6 6 0 0 1-12 0c0-6 5-7 6-11z"/></svg>
+                        </span>
+                      )}
+                    </a>
+                    <div class="ntext">
+                      <span class="meta">
+                        {datumsformat.format(b.data.datum)}
+                        <b>{b.data.ressort}</b>
+                      </span>
+                      <h3>
+                        <a href={`/berichte/${b.id}/`}>{b.data.titel}</a>
+                      </h3>
+                      {b.data.kurz && <p>{b.data.kurz}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           )
         }
