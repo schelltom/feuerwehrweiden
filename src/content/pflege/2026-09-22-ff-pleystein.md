@@ -1,5 +1,5 @@
 ---
-wehr: FF Pleystein
+wehr: FF Waidhaus
 abgegeben: 2026-09-22T15:19
 geraete: 0
 masken: 0
