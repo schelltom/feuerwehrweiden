@@ -6,6 +6,12 @@ keinPush: false
 veroeffentlicht: 2026-09-30T15:06
 ressort: Einsatzdienst
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img_1425.jpeg
+  - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/755384fc-7608-4866-838d-ce1b8be074b0.jpeg
+  - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img_1426.jpeg
+  - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img_1427.jpeg
+  - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img_1424.jpeg
 ---
 Am 30.09.2026 um 01:32 Uhr wurde unser Tanklöschfahrzeug durch die bereits an der Einsatzstelle befindliche Feuerwehr Neunkirchen zu einem Brand in einem Waldstück zwischen Neunkirchen und Wiesendorf nachgefordert. Die Erstalarmierung erfolgte mit dem Schlagwort B2 – Brand im Freien, Wald klein (< 1.000 m²).
 
