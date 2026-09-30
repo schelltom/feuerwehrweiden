@@ -1,9 +1,9 @@
 ---
 titel: Brand eines Holzstoßes im Wald zwischen Neunkirchen und Wiesendorf
 datum: 2026-09-30
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-09-30T15:06
+veroeffentlicht: 2026-09-30T15:29
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img-20260930-wa0002.jpg
 titelbildEinpassen: false
