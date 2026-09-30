@@ -22,7 +22,7 @@ Am 30.09.2026 um 01:32 Uhr wurde unser Tanklöschfahrzeug durch die bereits an d
 
 Bereits auf der Anfahrt war eine deutlich sichtbare Rauchsäule über dem Einsatzort zu erkennen. Vor Ort bestätigte sich die Lage: Ein rund 15 × 8 × 2 Meter großer Holzstoß stand in voller Ausdehnung in Brand. Die Flammen hatten bereits auf den angrenzenden Waldbereich übergegriffen.
 
-Aufgrund der Ausdehnung des Brandes wurde die Einsatzstelle in die beiden Brandabschnitte Wiesendorf und Brandweiher gegliedert. Zur Brandbekämpfung wurden insgesamt vier C-Rohre eingesetzt. Die abgelegene Lage und die damit verbundene schwierige Löschwasserversorgung stellten dabei eine besondere Herausforderung dar.
+Aufgrund der Ausdehnung des Brandes wurde die Einsatzstelle in zwei  Brandabschnitte Wiesendorf und Brandweiher gegliedert. Zur Brandbekämpfung wurden insgesamt vier C-Rohre eingesetzt. Die abgelegene Lage und die damit verbundene schwierige Löschwasserversorgung stellten dabei eine besondere Herausforderung dar.
 
 Zur Sicherstellung der Löschwasserversorgung wurde im weiteren Einsatzverlauf das Dispositionsmodul Wassertransport nachalarmiert. Unterstützt wurden die Einsatzkräfte durch die Feuerwehren Parkstein und Mantel aus dem Landkreis Neustadt an der Waldnaab sowie die Feuerwehr Rothenstadt aus dem Stadtgebiet Weiden. Für die Kräfte der Hauptwache wurde ebenfalls Großalarm ausgelöst.
 
