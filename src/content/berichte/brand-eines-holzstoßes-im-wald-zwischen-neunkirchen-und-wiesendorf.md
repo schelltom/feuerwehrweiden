@@ -5,6 +5,7 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-09-30T15:06
 ressort: Einsatzdienst
+titelbild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img-20260930-wa0002.jpg
 titelbildEinpassen: false
 galerie:
   - bild: /bilder/berichte/2026/brand-eines-holzstoßes-im-wald-zwischen-neunkirchen-und-wiesendorf/img_1425.jpeg
