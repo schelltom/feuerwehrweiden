@@ -1,9 +1,9 @@
 ---
 titel: Maschinenbrand im Industriegebiet
 datum: 2026-10-03
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-10-03T15:25
+veroeffentlicht: 2026-10-03T15:44
 ressort: Einsatzdienst
 titelbild: /bilder/berichte/2026/maschinenbrand-im-industriegebiet/photo-2026-10-03-12-42-03-3.jpeg
 titelbildEinpassen: false
