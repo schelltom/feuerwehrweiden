@@ -19,7 +19,7 @@ Vor Ort wurde umgehend mit der Brandbekämpfung begonnen. Der Löschangriff erfo
 
 Im weiteren Einsatzverlauf wurden umfangreiche Nachlöscharbeiten durchgeführt. Über die Drehleiter wurde die Dachhaut geöffnet, um den betroffenen Bereich zu kontrollieren und mögliche Glutnester gezielt abzulöschen.
 
-Für einen Rettungshubschrauber wurde zudem ein Landeplatz ausgeleuchtet.
+Für einen benötigten Rettungshubschrauber wurde zudem ein Landeplatz ausgeleuchtet.
 
 Insgesamt waren vier Feuerwehren mit 11 Fahrzeugen an der Einsatzstelle im Einsatz.
 
