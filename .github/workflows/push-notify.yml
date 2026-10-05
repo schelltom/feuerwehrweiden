@@ -59,6 +59,16 @@ jobs:
             --jq '[.workflow_runs[] | select(.id != ${{ github.event.workflow_run.id }})][0].head_sha' || true)
           [ "$BEFORE" = "null" ] && BEFORE=""
           [ -z "$BEFORE" ] && BEFORE=$(git rev-parse "${SHA}^" 2>/dev/null || echo 0000000000000000000000000000000000000000)
+          # Plausibilitätsprüfung: Die Basis muss ein Vorfahre des Deploy-Stands
+          # sein und darf nur wenige Commits zurückliegen. Sonst (z.B. weil die API
+          # mal einen uralten Run liefert) gilt nur der Vor-Commit als Basis –
+          # sonst würde alles seit damals als "neu" nochmal gepusht.
+          if ! git merge-base --is-ancestor "$BEFORE" "$SHA" 2>/dev/null \
+             || [ "$(git rev-list --count "$BEFORE..$SHA" 2>/dev/null || echo 999)" -gt 15 ]; then
+            echo "::warning::Basis $BEFORE unplausibel – nehme Vor-Commit von $SHA"
+            BEFORE=$(git rev-parse "${SHA}^" 2>/dev/null || echo 0000000000000000000000000000000000000000)
+          fi
+          echo "Basis: $BEFORE -> $SHA"
           echo "before=$BEFORE" >> "$GITHUB_OUTPUT"
           # Hinzugekommene UND geänderte Dateien betrachten – das Skript
           # entscheidet anhand des Vorher-Stands, ob wirklich gepusht wird

@@ -142,6 +142,17 @@ if (events.length === 0) {
   process.exit(0);
 }
 
+// Notbremse: Normal kommt immer nur 1 Beitrag auf einmal. Viele auf einmal
+// deuten auf einen falschen Vergleichsstand hin (würde alte Beiträge nochmal
+// an alle schicken) -> lieber gar nichts senden und den Lauf rot färben.
+const MAX_EVENTS = 3;
+if (events.length > MAX_EVENTS && process.env.PUSH_FORCE !== '1') {
+  console.error(
+    `Abbruch: ${events.length} Meldungen auf einmal (Limit ${MAX_EVENTS}) – vermutlich falscher Vergleichsstand. Nichts gesendet.`
+  );
+  process.exit(1);
+}
+
 // ---- Dedup: kürzlich schon gepushte Tags überspringen ----
 // Verhindert eine doppelte Meldung, wenn dieselbe Sache im Zeitfenster erneut
 // "neu" auftaucht – beim Löschen + Neuanlegen oder beim Umbenennen des Slugs
