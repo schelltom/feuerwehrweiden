@@ -4,7 +4,7 @@ titel: "Rauch, Menschenrettung und Brandbekämpfung: Feuerwehrnachwuchs meistert
 datum: 2026-10-08
 entwurf: true
 keinPush: false
-veroeffentlicht: 2026-10-08T09:44
+veroeffentlicht: 2026-10-08T09:59
 ressort: Jugend
 titelbild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1514.jpeg
 titelbildEinpassen: false
@@ -28,13 +28,13 @@ galerie:
   - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1492.jpeg
   - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1491.jpeg
 ---
-Matzlesrieth bei Muglhof - Freitag, 2. Oktober, 18:04Uhr: „B3 – Rauchentwicklung im Gebäude.“ Die örtlich zuständige Feuerwehr Muglhof wird alarmiert. Was zunächst nach einem überschaubaren Übungseinsatz klingt, entwickelt sich nur wenige Minuten später zu einem anspruchsvollen Einsatzszenario.
+Matzlesrieth bei Muglhof - Freitag, 2. Oktober, 18:04 Uhr: „B3 – Rauchentwicklung im Gebäude.“ Die örtlich zuständige Feuerwehr Muglhof wird alarmiert. Was zunächst nach einem überschaubaren Übungseinsatz klingt, entwickelt sich nur wenige Minuten später zu einem anspruchsvollen Einsatzszenario.
 
 Denn um 18:12 Uhr folgt die Nachalarmierung mit dem Stichwort „B4 – Landwirtschaft/Bauernhof“. Der Löschzug Weiden sowie die Feuerwehren aus Mallersricht und Neunkirchen werden zusätzlich alarmiert. Für die Jugendlichen beginnt damit die diesjährige traditionelle Einsatzübung der Stadtjugendfeuerwehren Weiden.
 
 Und die hat es in sich.
 
-Viele Aufgaben – ein gemeinsames Ziel
+**Viele Aufgaben – ein gemeinsames Ziel**
 
 Vor Ort wartet ein umfangreiches und realitätsnahes Szenario auf die jungen Feuerwehrleute. Innerhalb kürzester Zeit müssen zahlreiche Aufgaben gleichzeitig bewältigt und miteinander koordiniert werden.
 
@@ -48,7 +48,7 @@ Während die Menschenrettung läuft, gehen weitere Trupps zur Brandbekämpfung v
 
 Auch die Einsatzleitung hat alle Hände voll zu tun. Der Einsatzleitwagen unterstützt den Einsatzleiter beim Funkverkehr und bei der Einsatzdokumentation und sorgt damit für einen strukturierten Ablauf des Übungseinsatzes.
 
-Was das ganze Jahr geübt wurde, wird jetzt angewendet
+**Was das ganze Jahr geübt wurde, wird jetzt angewendet**
 
 Das Besondere an dieser Übung: Die Jugendlichen kennen die einzelnen Aufgaben. Sie haben sie das ganze Jahr über gelernt und trainiert.
 
@@ -58,11 +58,11 @@ Nun kommt alles zusammen.
 
 Und die jungen Feuerwehrleute zeigen eindrucksvoll, was in ihnen steckt:
 
-Alle gestellten Aufgaben werden mit Bravour gemeistert.
+**Alle gestellten Aufgaben werden mit Bravour gemeistert.**
 
 Insgesamt sind 54 Jugendliche mit 12 Fahrzeugen im Einsatz. Begleitet und unterstützt werden sie von 19 Betreuerinnen und Betreuern. Für die realistische Darstellung des Einsatzgeschehens sorgen außerdem zahlreiche Statistinnen und Statisten.
 
-Nachwuchs, auf den man stolz sein kann
+**Nachwuchs, auf den man stolz sein kann**
 
 Eine solche Übung ist weit mehr als ein gewöhnlicher Ausbildungsdienst. Sie zeigt, wie wichtig Teamarbeit, gegenseitiges Vertrauen, Kommunikation und eine gute Ausbildung sind.
 
@@ -76,6 +76,8 @@ Ein herzliches Dankeschön gilt allen 54 Jugendlichen, den 19 Betreuerinnen und 
 
 Nach dem erfolgreichen Abschluss des Einsatzes durfte natürlich auch die Kameradschaft nicht zu kurz kommen. Im Feuerwehrgerätehaus Muglhof wartete zum Abschluss eine wohlverdiente Brotzeit auf alle Beteiligten.
 
-54 Jugendliche. 12 Fahrzeuge. Ein starkes Team.
+**54 Jugendliche. 12 Fahrzeuge. Ein starkes Team.**
 
 Wir sind stolz auf unseren Feuerwehrnachwuchs und auf das Engagement, mit dem unsere Jugendlichen das ganze Jahr über für den Ernstfall trainieren.
+
+**Denn die Feuerwehr von morgen ist heute schon mittendrin.**
