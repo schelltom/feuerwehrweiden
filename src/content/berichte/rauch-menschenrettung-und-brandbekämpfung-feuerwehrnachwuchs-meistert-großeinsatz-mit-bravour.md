@@ -6,7 +6,27 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-10-08T09:44
 ressort: Jugend
+titelbild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1514.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1513.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1512.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1511.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1510.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1509.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1507.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1505.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1504.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1503.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1502.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1500.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1499.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1497.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1496.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1494.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1493.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1492.jpeg
+  - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1491.jpeg
 ---
 Matzlesrieth bei Muglhof - Freitag, 2. Oktober, 18:04Uhr: „B3 – Rauchentwicklung im Gebäude.“ Die örtlich zuständige Feuerwehr Muglhof wird alarmiert. Was zunächst nach einem überschaubaren Übungseinsatz klingt, entwickelt sich nur wenige Minuten später zu einem anspruchsvollen Einsatzszenario.
 
