@@ -28,7 +28,7 @@ galerie:
   - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1492.jpeg
   - bild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1491.jpeg
 ---
-Matzlesrieth bei Muglhof - Freitag, 2. Oktober, 18:04 Uhr: „B3 – Rauchentwicklung im Gebäude.“ Die örtlich zuständige Feuerwehr Muglhof wird alarmiert. Was zunächst nach einem überschaubaren Übungseinsatz klingt, entwickelt sich nur wenige Minuten später zu einem anspruchsvollen Einsatzszenario.
+**Matzlesrieth bei Muglhof - Freitag, 2. Oktober, 18:04 Uhr:** „B3 – Rauchentwicklung im Gebäude.“ Die örtlich zuständige Feuerwehr Muglhof wird alarmiert. Was zunächst nach einem überschaubaren Übungseinsatz klingt, entwickelt sich nur wenige Minuten später zu einem anspruchsvollen Einsatzszenario.
 
 Denn um 18:12 Uhr folgt die Nachalarmierung mit dem Stichwort „B4 – Landwirtschaft/Bauernhof“. Der Löschzug Weiden sowie die Feuerwehren aus Mallersricht und Neunkirchen werden zusätzlich alarmiert. Für die Jugendlichen beginnt damit die diesjährige traditionelle Einsatzübung der Stadtjugendfeuerwehren Weiden.
 
