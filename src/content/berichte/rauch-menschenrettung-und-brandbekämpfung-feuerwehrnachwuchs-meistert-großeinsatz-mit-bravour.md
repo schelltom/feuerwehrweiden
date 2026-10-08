@@ -2,9 +2,9 @@
 titel: "Rauch, Menschenrettung und Brandbekämpfung: Feuerwehrnachwuchs meistert
   Großeinsatz mit Bravour"
 datum: 2026-10-08
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-10-08T09:59
+veroeffentlicht: 2026-10-08T10:07
 ressort: Jugend
 titelbild: /bilder/berichte/2026/rauch-menschenrettung-und-brandbekämpfung-feuerwehrnachwuchs-meistert-großeinsatz-mit-bravour/img_1514.jpeg
 titelbildEinpassen: false
