@@ -198,7 +198,7 @@ collections:
     media_folder: '/public/bilder/fahrzeuge'
     public_folder: '/bilder/fahrzeuge'
     identifier_field: name
-    summary: '{{fields.name}} – {{fields.typ}}'
+    summary: '{{fields.name}} {{fields.funkruf}} – {{fields.typ}}'
     sortable_fields: [name, reihenfolge, standort]
     # Fahrzeug/Anhänger wird aus der Gruppe abgeleitet (Gruppe "Anhänger" = Anhänger,
     # alles andere = Fahrzeug) – daher kein eigenes Kategorie-Feld mehr.
