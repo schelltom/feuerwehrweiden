@@ -1,7 +1,0 @@
----
-wehr: FF Leuchtenberg
-abgegeben: 2026-10-14T15:49
-hinweis: ""
-abholbereit: true
-abgeholt: true
----
