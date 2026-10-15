@@ -100,4 +100,5 @@ personen:
       - Wartung medizinische Produkte
     telefon: 0961 / 391 609-62
     bild: /bilder/feuerwehr/goetz.jpg
+    email: simon.goetz@weiden.de
 ---
