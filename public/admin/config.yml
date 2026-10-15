@@ -153,7 +153,7 @@ collections:
     fields:
       - { name: titel, label: Titel, widget: string, hint: 'Zuerst ausfüllen! Aus dem Titel entsteht der eigene Bild-Ordner des Berichts – also erst den Titel eingeben, dann Bilder hochladen.' }
       - { name: datum, label: Datum, widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD.MM.YYYY', time_format: false, default: '{{now}}' }
-      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false, required: false }
       - { name: keinPush, label: 'Keine Push-Benachrichtigung verschicken', widget: boolean, default: false, required: false, hint: 'Für nachträglich eingepflegte Altberichte: erscheint normal auf der Website, löst aber keinen Push an die Abonnenten aus.' }
       - { name: veroeffentlicht, label: 'Veröffentlicht am (Sortierung)', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', default: '{{now}}', required: false, hint: 'Bestimmt nur die Reihenfolge in den Listen (neueste oben). Beim Freischalten eines länger liegengebliebenen Entwurfs hier auf „jetzt" setzen, damit der Bericht nach oben rutscht. Leer = nach „Datum" sortiert.' }
       - name: ressort
@@ -207,7 +207,7 @@ collections:
       - { label: Anhänger, field: gruppe, pattern: anhaenger }
     fields:
       - { name: name, label: Name, widget: string, hint: 'z.B. HLF 20' }
-      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false, required: false }
       - { name: typ, label: Fahrzeugtyp, widget: string, hint: 'z.B. Hilfeleistungslöschgruppenfahrzeug' }
       - { name: funkruf, label: Funkrufname, widget: string, required: false, hint: 'z.B. FLORIAN WEIDEN 1/40/1 (Anhänger: leer lassen)' }
       - { name: standort, label: Standort, widget: string, default: Hauptfeuerwache, hint: 'Hauptfeuerwache oder z.B. FF Rothenstadt' }
@@ -224,7 +224,7 @@ collections:
           - { label: 'Rollcontainer', value: rollcontainer }
           - { label: 'Ehemalige Fahrzeuge', value: ehemalige }
         default: sonstige
-      - { name: inHalle, label: 'In der Fahrzeughalle auf der Startseite zeigen', widget: boolean, default: false }
+      - { name: inHalle, label: 'In der Fahrzeughalle auf der Startseite zeigen', widget: boolean, default: false, required: false }
       - { name: bild, label: Hauptbild, widget: image, required: false }
       - { name: reihenfolge, label: 'Reihenfolge (klein = weiter vorn)', widget: number, default: 99 }
       - name: ausstattung
@@ -267,7 +267,7 @@ collections:
         fields:
           - { name: bild, label: Bild, widget: image }
           - { name: text, label: Bildunterschrift, widget: string, required: false }
-      - { name: body, label: Beschreibung, widget: markdown }
+      - { name: body, label: Beschreibung, widget: markdown, required: false }
 
   - name: termine
     label: Termine
@@ -327,8 +327,8 @@ collections:
       - { name: masken, label: 'Anzahl Masken', widget: number, value_type: int, min: 0, default: 0 }
       - { name: flaschen, label: 'Anzahl Flaschen', widget: number, value_type: int, min: 0, default: 0 }
       - { name: hinweis, label: 'Abholhinweis (optional)', widget: string, required: false, default: '', hint: 'Erscheint auf der Website in Klammern hinter dem Wehr-Namen (nur wenn abholbereit).' }
-      - { name: abholbereit, label: 'Geprüft & abholbereit (löst die E-Mail an die Wehr aus)', widget: boolean, default: false }
-      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
+      - { name: abholbereit, label: 'Geprüft & abholbereit (löst die E-Mail an die Wehr aus)', widget: boolean, default: false, required: false }
+      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false, required: false }
       - { name: abholbereitSeit, widget: hidden, default: '' }
       - { name: benachrichtigt, widget: hidden, default: false }
 
@@ -352,8 +352,8 @@ collections:
         hint: 'Wehr nicht in der Liste? Erst unter "Feuerwehren" anlegen.'
       - { name: abgegeben, label: 'Abgegeben am', widget: datetime, format: 'YYYY-MM-DDTHH:mm', date_format: 'DD.MM.YYYY', time_format: 'HH:mm', hint: 'Ist mit jetzt vorbelegt' }
       - { name: hinweis, label: 'Hinweis (optional)', widget: string, required: false, default: '' }
-      - { name: abholbereit, label: 'Geprüft & abholbereit', widget: boolean, default: false }
-      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false }
+      - { name: abholbereit, label: 'Geprüft & abholbereit', widget: boolean, default: false, required: false }
+      - { name: abgeholt, label: 'Abgeholt (verschwindet von der Website)', widget: boolean, default: false, required: false }
 
   - name: wehren
     label: Feuerwehren (Atemschutzwerkstatt & Schlauchpflegestelle)
@@ -387,11 +387,11 @@ collections:
           - { label: 'Über uns', value: ueber-uns }
           - { label: Einheiten, value: einheiten }
           - { label: Ortsteile, value: ortsteile }
-      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false }
+      - { name: entwurf, label: 'Entwurf – noch nicht veröffentlichen (auf der Website versteckt)', widget: boolean, default: false, required: false }
       - { name: reihenfolge, label: Reihenfolge, widget: number, default: 99 }
       - { name: kurz, label: 'Kurzzeile (für Übersichtskarte)', widget: string, required: false }
       - { name: titelbild, label: Titelbild, widget: image, required: false }
-      - { name: kopfbild, label: 'Titelbild groß im Seitenkopf zeigen', widget: boolean, default: false, hint: 'Aus = Titelbild wird nur für die Übersichtskachel genutzt, nicht als großes Kopfbild.' }
+      - { name: kopfbild, label: 'Titelbild groß im Seitenkopf zeigen', widget: boolean, default: false, required: false, hint: 'Aus = Titelbild wird nur für die Übersichtskachel genutzt, nicht als großes Kopfbild.' }
       - { name: kartenbild, label: 'Bild für die Übersichtskarte (falls anders als Titelbild)', widget: image, required: false }
       - { name: wappen, label: 'Wappen (Ortsteile)', widget: image, required: false }
       - { name: extern, label: 'Externe Website (Karte verlinkt dorthin)', widget: string, required: false }
@@ -493,4 +493,4 @@ collections:
         label: 'Ein/Aus-Schalter'
         file: src/data/push.json
         fields:
-          - { name: aktiv, label: 'Push-Benachrichtigungen aktiv', widget: boolean, default: true, hint: 'Aus = für keinen neuen Bericht/Einsatz wird eine Push-Nachricht verschickt. An = normaler Betrieb.' }
+          - { name: aktiv, label: 'Push-Benachrichtigungen aktiv', widget: boolean, default: true, required: false, hint: 'Aus = für keinen neuen Bericht/Einsatz wird eine Push-Nachricht verschickt. An = normaler Betrieb.' }
