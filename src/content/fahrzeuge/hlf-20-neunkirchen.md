@@ -44,7 +44,7 @@ beladung:
       - Ölbindemittel
       - Sperrwerkzeug
       - Türverschließung
-      - Schaufeln & Gabeln
+      - Räumgeräte
   - raum: Geräteraum 5
     bild: /bilder/fahrzeuge/detail/hlf-20-neunkirchen-5.jpg
     inhalt:
