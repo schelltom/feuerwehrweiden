@@ -301,18 +301,6 @@ const einsatzbilder = [
         ))}
       </div>
 
-      <div class="dg-kontakt reveal">
-        <span class="eyebrow">Ansprechpartner</span>
-        <div class="dg-personen">
-          {personen.map((p) => (
-            <div class="dg-person">
-              <b class="display">{p.name}</b>
-              <a href={`mailto:${p.email}`}>{p.email}</a>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <aside class="dg-datenschutz reveal">
         <div class="dg-dschild" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3Z" /></svg>
@@ -328,6 +316,18 @@ const einsatzbilder = [
           </p>
         </div>
       </aside>
+
+      <div class="dg-kontakt reveal">
+        <span class="eyebrow">Ansprechpartner</span>
+        <div class="dg-personen">
+          {personen.map((p) => (
+            <div class="dg-person">
+              <b class="display">{p.name}</b>
+              <a href={`mailto:${p.email}`}>{p.email}</a>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 </main>
