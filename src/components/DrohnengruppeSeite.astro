@@ -270,17 +270,7 @@ const einsatzbilder = [
   <!-- Abschluss / Galerie -->
   <section>
     <div class="wrap" style="padding-top:clamp(28px,3.5vw,44px)">
-      <span class="eyebrow">Ansprechpartner</span>
-      <div class="dg-personen reveal" style="margin-top:16px">
-        {personen.map((p) => (
-          <div class="dg-person">
-            <b class="display">{p.name}</b>
-            <a href={`mailto:${p.email}`}>{p.email}</a>
-          </div>
-        ))}
-      </div>
-
-      <div class="dg-fazit reveal" style="margin-top:48px">
+      <div class="dg-fazit reveal">
         <h2 class="display">Moderne Unterstützung für den Feuerwehreinsatz</h2>
         <p>
           Ob bei der Suche nach vermissten Personen, der Erkundung größerer Einsatzstellen oder der
@@ -309,6 +299,18 @@ const einsatzbilder = [
             <figcaption>{g.text}</figcaption>
           </figure>
         ))}
+      </div>
+
+      <div class="dg-kontakt reveal">
+        <span class="eyebrow">Ansprechpartner</span>
+        <div class="dg-personen">
+          {personen.map((p) => (
+            <div class="dg-person">
+              <b class="display">{p.name}</b>
+              <a href={`mailto:${p.email}`}>{p.email}</a>
+            </div>
+          ))}
+        </div>
       </div>
 
       <aside class="dg-datenschutz reveal">
@@ -663,6 +665,17 @@ const einsatzbilder = [
   }
 
   /* ---- Ansprechpartner ---- */
+  .dg-kontakt {
+    background: var(--dunkel);
+    border-top: 4px solid var(--rot);
+    padding: clamp(22px, 3vw, 34px);
+    margin: 48px 0 0;
+  }
+  .dg-kontakt .eyebrow {
+    display: inline-flex;
+    margin-bottom: 16px;
+    color: var(--rot-hell);
+  }
   .dg-personen {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -674,10 +687,9 @@ const einsatzbilder = [
     }
   }
   .dg-person {
-    background: var(--karte);
-    border: 1px solid var(--linie);
+    background: var(--dunkel2);
+    border: 1px solid var(--hell-linie);
     border-top: 3px solid var(--rot);
-    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
     padding: 20px 20px 22px;
   }
   .dg-person b {
@@ -687,17 +699,18 @@ const einsatzbilder = [
     font-size: 1.35rem;
     line-height: 1.05;
     margin: 0 0 10px;
+    color: #fff;
   }
   .dg-person a {
     display: block;
     font-family: var(--mono);
     font-size: 0.78rem;
-    color: var(--tinte2);
+    color: #c8ccd6;
     text-decoration: none;
     word-break: break-word;
   }
   .dg-person a:hover {
-    color: var(--rot);
+    color: var(--rot-hell);
   }
 
   /* ---- Fazit ---- */
