@@ -69,6 +69,11 @@ const rollen = [
   { rolle: 'Spotter', text: 'Sichert den Flug' },
 ];
 
+const personen = [
+  { name: 'Tobias Zielbauer', email: 'tobias.zielbauer@weiden.de' },
+  { name: 'Hannes Lehner', email: 'hannes.lehner@weiden.de' },
+];
+
 const galerie = [
   { bild: '/bilder/uploads/2026/drohne2.jpg', text: 'Transportkoffer der Drohne' },
   { bild: '/bilder/uploads/2026/drohne4.jpg', text: 'Kabellose Bildübertragung' },
@@ -311,6 +316,22 @@ const einsatzbilder = [
           </p>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- Ansprechpartner (am Ende) -->
+  <section class="dg-band">
+    <div class="wrap" style="padding-block:clamp(30px,4vw,48px)">
+      <span class="eyebrow">Leitung &amp; Kontakt</span>
+      <h2 class="display dg-h">Ansprechpartner</h2>
+      <div class="dg-personen reveal">
+        {personen.map((p) => (
+          <div class="dg-person">
+            <b class="display">{p.name}</b>
+            <a href={`mailto:${p.email}`}>{p.email}</a>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </main>
@@ -645,6 +666,44 @@ const einsatzbilder = [
     font-style: normal;
     font-size: 0.9rem;
     color: #b9bec9;
+  }
+
+  /* ---- Ansprechpartner ---- */
+  .dg-personen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) {
+    .dg-personen {
+      grid-template-columns: 1fr;
+    }
+  }
+  .dg-person {
+    background: var(--dunkel2);
+    border: 1px solid var(--hell-linie);
+    border-top: 3px solid var(--rot);
+    padding: 20px 20px 22px;
+  }
+  .dg-person b {
+    display: block;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    line-height: 1.05;
+    margin: 0 0 10px;
+    color: #fff;
+  }
+  .dg-person a {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: #c8ccd6;
+    text-decoration: none;
+    word-break: break-word;
+  }
+  .dg-person a:hover {
+    color: var(--rot-hell);
   }
 
   /* ---- Fazit ---- */
