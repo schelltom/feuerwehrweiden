@@ -238,16 +238,6 @@ const einsatzbilder = [
           </article>
         ))}
       </div>
-
-      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Ansprechpartner</span>
-      <div class="dg-personen reveal" style="margin-top:16px">
-        {personen.map((p) => (
-          <div class="dg-person">
-            <b class="display">{p.name}</b>
-            <a href={`mailto:${p.email}`}>{p.email}</a>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 
@@ -280,7 +270,17 @@ const einsatzbilder = [
   <!-- Abschluss / Galerie -->
   <section>
     <div class="wrap" style="padding-top:clamp(28px,3.5vw,44px)">
-      <div class="dg-fazit reveal">
+      <span class="eyebrow">Ansprechpartner</span>
+      <div class="dg-personen reveal" style="margin-top:16px">
+        {personen.map((p) => (
+          <div class="dg-person">
+            <b class="display">{p.name}</b>
+            <a href={`mailto:${p.email}`}>{p.email}</a>
+          </div>
+        ))}
+      </div>
+
+      <div class="dg-fazit reveal" style="margin-top:48px">
         <h2 class="display">Moderne Unterstützung für den Feuerwehreinsatz</h2>
         <p>
           Ob bei der Suche nach vermissten Personen, der Erkundung größerer Einsatzstellen oder der
