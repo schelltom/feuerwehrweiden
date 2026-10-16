@@ -238,6 +238,16 @@ const einsatzbilder = [
           </article>
         ))}
       </div>
+
+      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Ansprechpartner</span>
+      <div class="dg-personen reveal" style="margin-top:16px">
+        {personen.map((p) => (
+          <div class="dg-person">
+            <b class="display">{p.name}</b>
+            <a href={`mailto:${p.email}`}>{p.email}</a>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -298,16 +308,6 @@ const einsatzbilder = [
             <img src={g.bild} alt={g.text} loading="lazy" />
             <figcaption>{g.text}</figcaption>
           </figure>
-        ))}
-      </div>
-
-      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Ansprechpartner</span>
-      <div class="dg-personen reveal" style="margin-top:16px">
-        {personen.map((p) => (
-          <div class="dg-person">
-            <b class="display">{p.name}</b>
-            <a href={`mailto:${p.email}`}>{p.email}</a>
-          </div>
         ))}
       </div>
 
