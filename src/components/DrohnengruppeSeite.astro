@@ -301,6 +301,16 @@ const einsatzbilder = [
         ))}
       </div>
 
+      <span class="eyebrow" style="margin-top:48px;display:inline-flex">Ansprechpartner</span>
+      <div class="dg-personen reveal" style="margin-top:16px">
+        {personen.map((p) => (
+          <div class="dg-person">
+            <b class="display">{p.name}</b>
+            <a href={`mailto:${p.email}`}>{p.email}</a>
+          </div>
+        ))}
+      </div>
+
       <aside class="dg-datenschutz reveal">
         <div class="dg-dschild" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V5l-8-3Z" /></svg>
@@ -316,22 +326,6 @@ const einsatzbilder = [
           </p>
         </div>
       </aside>
-    </div>
-  </section>
-
-  <!-- Ansprechpartner (am Ende) -->
-  <section class="dg-band">
-    <div class="wrap" style="padding-block:clamp(30px,4vw,48px)">
-      <span class="eyebrow">Leitung &amp; Kontakt</span>
-      <h2 class="display dg-h">Ansprechpartner</h2>
-      <div class="dg-personen reveal">
-        {personen.map((p) => (
-          <div class="dg-person">
-            <b class="display">{p.name}</b>
-            <a href={`mailto:${p.email}`}>{p.email}</a>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 </main>
@@ -680,9 +674,10 @@ const einsatzbilder = [
     }
   }
   .dg-person {
-    background: var(--dunkel2);
-    border: 1px solid var(--hell-linie);
+    background: var(--karte);
+    border: 1px solid var(--linie);
     border-top: 3px solid var(--rot);
+    box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
     padding: 20px 20px 22px;
   }
   .dg-person b {
@@ -692,18 +687,17 @@ const einsatzbilder = [
     font-size: 1.35rem;
     line-height: 1.05;
     margin: 0 0 10px;
-    color: #fff;
   }
   .dg-person a {
     display: block;
     font-family: var(--mono);
     font-size: 0.78rem;
-    color: #c8ccd6;
+    color: var(--tinte2);
     text-decoration: none;
     word-break: break-word;
   }
   .dg-person a:hover {
-    color: var(--rot-hell);
+    color: var(--rot);
   }
 
   /* ---- Fazit ---- */
