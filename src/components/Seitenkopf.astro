@@ -228,6 +228,16 @@ const { titel = '', krumen = [], untertitel, bild, kenburns = true, gerade = tru
     transition: transform 0.8s ease;
     transform: translateX(130%);
   }
+  /* gerader Zuschnitt: abgerundete Ecken statt Clip-Path */
+  .kfoto.gerade .kausschnitt,
+  .kfoto.gerade::before,
+  .kfoto.gerade::after {
+    clip-path: none;
+    border-radius: var(--radius-gross);
+  }
+  .kfoto.gerade .kausschnitt {
+    overflow: hidden;
+  }
   @keyframes kfoto-rein {
     from {
       opacity: 0;

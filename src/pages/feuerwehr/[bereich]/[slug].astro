@@ -327,6 +327,8 @@ for (const p of d.personen) {
 
   /* ---- Kontaktkarte (Personenseite) ---- */
   .kontaktkarte {
+    border-radius: var(--radius-klein);
+    overflow: hidden;
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: clamp(24px, 4vw, 48px);
@@ -347,6 +349,7 @@ for (const p of d.personen) {
     grid-template-columns: 1fr;
   }
   .kontaktkarte .portraet {
+    border-radius: var(--radius-klein);
     width: 100%;
     aspect-ratio: 6 / 7;
     object-fit: cover;
@@ -406,6 +409,7 @@ for (const p of d.personen) {
 
   /* ---- Gruppenfoto ---- */
   .gruppenfoto {
+    border-radius: var(--radius-gross);
     margin: 0 0 44px;
     border: 1px solid var(--linie);
     background: var(--karte);
@@ -449,6 +453,7 @@ for (const p of d.personen) {
     }
   }
   .person {
+    border-radius: var(--radius-klein);
     background: var(--karte);
     border: 1px solid var(--linie);
     box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
@@ -641,6 +646,7 @@ for (const p of d.personen) {
     margin: 0 0 14px;
   }
   .station .sbild img {
+    border-radius: var(--radius-klein);
     display: block;
     width: 100%;
     border: 1px solid var(--linie);

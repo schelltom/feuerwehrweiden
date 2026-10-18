@@ -11,12 +11,20 @@ on:
 permissions:
   contents: write
 
+# Mehrere Einträge kurz hintereinander (z. B. über das CMS) nacheinander abarbeiten,
+# nicht parallel – sonst überholt sich der Bot beim Pushen selbst.
+concurrency:
+  group: pflege-mail
+  cancel-in-progress: false
+
 jobs:
   benachrichtigen:
     runs-on: ubuntu-latest
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Node einrichten
         uses: actions/setup-node@v4
         with:
@@ -38,5 +46,10 @@ jobs:
           git add -A src/content/pflege src/content/schlaeuche
           if ! git diff --cached --quiet; then
             git commit -m "Atemschutzwerkstatt & Schlauchpflegestelle: abholbereit vermerkt / E-Mail verschickt / abgeholt entfernt"
-            git push
+            # Zwischenzeitlich eingegangene Commits (z. B. neue Anlieferung) einholen und erneut pushen
+            for versuch in 1 2 3 4; do
+              git pull --rebase origin main && git push && break
+              sleep $((versuch * 3))
+              if [ "$versuch" = 4 ]; then exit 1; fi
+            done
           fi

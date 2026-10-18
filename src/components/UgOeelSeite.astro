@@ -410,6 +410,7 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
     align-items: center;
   }
   .ug-katsbild {
+    border-radius: var(--radius-gross);
     margin: 0;
     border: 1px solid var(--linie);
     overflow: hidden;
@@ -493,6 +494,7 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
     }
   }
   .ug-fzkarte {
+    border-radius: var(--radius-gross);
     display: grid;
     grid-template-columns: 40% 1fr;
     background: var(--karte);
@@ -589,6 +591,8 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
     }
   }
   .ug-person {
+    border-radius: var(--radius-klein);
+    overflow: hidden;
     background: var(--dunkel2);
     border: 1px solid var(--hell-linie);
     border-top: 3px solid var(--rot);
@@ -630,6 +634,8 @@ const telHref = (t: string) => `tel:${t.replace(/[^+\d]/g, '')}`;
     gap: 14px;
   }
   .ug-kontakt {
+    border-radius: var(--radius-klein);
+    overflow: hidden;
     background: var(--dunkel2);
     border: 1px solid var(--hell-linie);
     padding: 22px 24px 24px;

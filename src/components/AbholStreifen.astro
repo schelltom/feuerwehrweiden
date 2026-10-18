@@ -53,6 +53,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
 
 <style>
   .abholstreifen {
+    border-radius: var(--radius-gross);
     background: var(--karte);
     border: 1px solid var(--linie);
     box-shadow: 0 2px 10px rgba(20, 22, 28, 0.05);
@@ -91,6 +92,7 @@ const schlaeuche = (await ladeSchlaeuche()).filter((v) => v.abholbereit && !v.ab
     gap: 8px;
   }
   .ab-pill {
+    border-radius: var(--radius-klein);
     display: inline-flex;
     align-items: center;
     gap: 7px;

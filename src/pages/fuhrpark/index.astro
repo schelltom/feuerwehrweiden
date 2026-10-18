@@ -126,12 +126,13 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
     color: #fff;
     background: var(--dunkel2);
     aspect-ratio: 16 / 11;
-    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: var(--radius-gross);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1), 0 0 0 0 rgba(230, 30, 20, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .fzk:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 22px 48px rgba(20, 22, 28, 0.22);
+    transform: translateY(-6px);
+    box-shadow: 0 24px 50px rgba(20, 22, 28, 0.25), 0 0 0 2px rgba(230, 30, 20, 0.85), 0 0 26px rgba(230, 30, 20, 0.35);
   }
   .fzk img {
     position: absolute;
@@ -220,6 +221,7 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     padding: 10px 18px;
+    border-radius: 999px;
     border: 1px solid rgba(20, 22, 28, 0.25);
     background: transparent;
     color: inherit;
@@ -264,8 +266,9 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
     transform: translateY(-3px);
   }
   .fzk .pfeil {
-    top: auto;
-    bottom: 14px;
+    top: 14px;
+    right: auto;
+    left: 14px;
   }
 
   /* ---- Anhänger: kompaktes Band ---- */
@@ -282,12 +285,13 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
     color: #fff;
     aspect-ratio: 16/10;
     background: var(--dunkel2);
-    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: var(--radius-gross);
+    box-shadow: 0 4px 18px rgba(20, 22, 28, 0.1), 0 0 0 0 rgba(230, 30, 20, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .anh:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(20, 22, 28, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(20, 22, 28, 0.22), 0 0 0 2px rgba(230, 30, 20, 0.85), 0 0 22px rgba(230, 30, 20, 0.3);
   }
   .anh img {
     position: absolute;
