@@ -5,9 +5,18 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-10-18T21:40
 ressort: Übungsdienst
+titelbild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1567.jpeg
 titelbildEinpassen: false
 kurz: Menschenrettung, Brandbekämpfung und Drehleitereinsatz bei der letzten
   Übung des Jahres
+galerie:
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1552.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1555.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1558.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1560.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1562.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1563.jpeg
+  - bild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1564.jpeg
 ---
 Am vergangenen Montag stand für den 2. Zug die traditionelle Abschlussübung des Jahres auf dem Dienstplan. Wie jedes Jahr bildete eine realitätsnahe Einsatzübung den Abschluss des Übungsjahres. Gespannt warteten die Kameradinnen und Kameraden in der Wache auf den Alarm – kurz nach 19 Uhr war es schließlich so weit.
 
