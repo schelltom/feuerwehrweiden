@@ -5,7 +5,13 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-10-18T21:54
 ressort: Übungsdienst
+titelbild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/0c8c4545-e7e7-4027-a79d-6b9469e472c1.jpeg
 titelbildEinpassen: false
+galerie:
+  - bild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/69f96810-d63b-4dc8-b5db-324b534d2715.jpeg
+  - bild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/bb2bed0b-64af-4905-84cd-1c1a035e5776.jpeg
+  - bild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/cc408efb-018c-45f5-8000-7c31551826d0.jpeg
+  - bild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/70f8a408-6fff-478f-b0d9-4a381ae9d256.jpeg
 ---
 Vergangene Woche nahmen zwei Kameraden unserer Feuerwehr am zweitägigen Lehrgang „Brandhaus“ an der Staatlichen Feuerwehrschule Würzburg teil. Im Mittelpunkt der Ausbildung stand das realitätsnahe Training verschiedener Brandeinsatzszenarien unter Atemschutz.
 
