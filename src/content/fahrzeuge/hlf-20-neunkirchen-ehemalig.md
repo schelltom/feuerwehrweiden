@@ -1,10 +1,10 @@
 ---
 name: "HLF 20"
 typ: "Hilfeleistungslöschgruppenfahrzeug"
-funkruf: "FLORIAN NEUNKIRCHEN 40/1"
-standort: "FF Neunkirchen"
+funkruf: "FLORIAN WEIDEN 1/41/1"
+standort: "Hauptfeuerwache"
 bild: /bilder/fahrzeuge/f_nk_hlf-ehemalig.jpg
-reihenfolge: 44
+reihenfolge: 5
 beladung:
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/hlf-20-neunkirchen-ehemalig-1.jpg"
@@ -36,6 +36,6 @@ beladung:
       - "Pumpe"
       - "Saugkorb"
       - "Sammelstück"
-gruppe: ehemalige
+gruppe: loesch
 entwurf: false
 ---

@@ -73,7 +73,6 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
                     <span class="schatten" aria-hidden="true" />
                     {kurzRuf(f.data.funkruf) && <span class="ruf" aria-hidden="true">{kurzRuf(f.data.funkruf)}</span>}
                     <span class="txt">
-                      <em>{f.data.standort === 'Hauptfeuerwache' ? f.data.typ : f.data.standort}</em>
                       <b>{f.data.name}</b>
                       {f.data.funkruf && <i>{f.data.funkruf}</i>}
                     </span>

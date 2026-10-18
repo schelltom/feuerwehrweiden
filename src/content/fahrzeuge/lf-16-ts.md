@@ -4,7 +4,7 @@ typ: "Löschgruppenfahrzeug"
 funkruf: "FLORIAN WEIDEN 1/48/1"
 standort: "Hauptfeuerwache"
 bild: /bilder/fahrzeuge/f_lf16ts.jpg
-reihenfolge: 6
+reihenfolge: 45
 beladung:
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/lf-16-ts-1.jpg"
@@ -51,7 +51,7 @@ beladung:
       - "Übergangsstücke"
   - raum: "Vorbaupumpe"
     bild: "/bilder/fahrzeuge/detail/lf-16-ts-6.jpg"
-gruppe: loesch
+gruppe: ehemalige
 entwurf: false
 ---
 
