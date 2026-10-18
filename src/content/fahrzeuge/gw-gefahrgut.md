@@ -7,6 +7,8 @@ inHalle: true
 bild: /bilder/fahrzeuge/gwg.jpg
 reihenfolge: 12
 beladung:
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-kabine.jpg"
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/gw-gefahrgut-1.jpg"
     inhalt:
