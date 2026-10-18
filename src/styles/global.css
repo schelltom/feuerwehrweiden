@@ -491,6 +491,8 @@
   /* ============ Sektionen ============ */
   section{position:relative}
   section .wrap{padding-top:clamp(64px,8vw,110px);padding-bottom:clamp(64px,8vw,110px)}
+  #bereiche .wrap{padding-bottom:clamp(20px,2.5vw,36px)}
+  #fuhrpark .wrap{padding-top:clamp(20px,2.5vw,36px)}
   h2.titel{font-size:clamp(2.2rem,5.5vw,3.8rem);margin:14px 0 10px;font-style:italic}
   p.intro{color:var(--tinte2);max-width:60ch;margin:0 0 44px;font-size:1.02rem}
   .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
