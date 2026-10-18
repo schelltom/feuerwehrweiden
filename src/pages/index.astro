@@ -24,13 +24,17 @@ const termine = (await getCollection('termine'))
   .sort((a, b) => a.datum.getTime() - b.datum.getTime())
   .slice(0, 4);
 
+/** Kurzbezeichnung für die Fahrzeughalle: nur der Teil vor „·“, Bandwurmwörter gekürzt */
+const kurzTyp = (typ: string) =>
+  typ.split('·')[0].trim().replace('Hilfeleistungslöschgruppenfahrzeug', 'Löschfahrzeug').replace('Löschgruppenfahrzeug', 'Löschfahrzeug');
+
 const fahrzeuge = (await getCollection('fahrzeuge'))
   .filter((f) => f.data.inHalle && !f.data.entwurf)
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge)
   .map((f) => ({
     id: f.id,
     name: f.data.name,
-    typ: f.data.typ,
+    typ: kurzTyp(f.data.typ),
     funkruf: f.data.funkruf,
     bild: f.data.bild,
   }));
