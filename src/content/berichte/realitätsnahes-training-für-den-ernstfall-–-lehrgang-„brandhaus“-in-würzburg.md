@@ -4,7 +4,7 @@ datum: 2026-10-18
 entwurf: true
 keinPush: false
 veroeffentlicht: 2026-10-18T21:54
-ressort: Übungsdienst
+ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/0c8c4545-e7e7-4027-a79d-6b9469e472c1.jpeg
 titelbildEinpassen: false
 galerie:
