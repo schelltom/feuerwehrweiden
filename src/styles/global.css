@@ -948,9 +948,8 @@ border-radius:var(--radius-klein);    position:relative;border:1px solid var(--l
   .alarmintro .mix .kern{width:min(640px,100%);max-width:none;box-sizing:border-box}
   .alarmintro .mbild{
     display:block;max-width:min(56vw,680px);max-height:44svh;width:auto;height:auto;
-    /* Ränder lösen sich weich im roten Hintergrund auf */
-    -webkit-mask-image:radial-gradient(115% 100% at 50% 50%,#000 52%,transparent 88%);
-    mask-image:radial-gradient(115% 100% at 50% 50%,#000 52%,transparent 88%);
+    border-radius:var(--radius-gross);
+    box-shadow:0 18px 50px rgba(0,0,0,.4);
   }
   @media (max-width:720px){
     .alarmintro .mbild{max-width:88vw}
