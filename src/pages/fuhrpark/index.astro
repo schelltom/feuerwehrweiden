@@ -18,6 +18,19 @@ const GRUPPEN = [
   { id: 'ehemalige', titel: 'Ehemalige Fahrzeuge' },
 ] as const;
 
+/* Prototyp Filter + Funkrufnummer */
+type Kat = 'wache1' | 'wache2' | 'ortsteile' | 'anhaenger';
+const kat = (f: (typeof alle)[number]): Kat =>
+  f.data.gruppe === 'anhaenger' ? 'anhaenger' : f.data.standort !== 'Hauptfeuerwache' ? 'ortsteile' : / 2\/\d/.test(f.data.funkruf) ? 'wache2' : 'wache1';
+const kurzRuf = (r: string) => r.match(/(\d+(?:\/\d+)+)\s*$/)?.[1] ?? '';
+const FILTER = [
+  { id: 'alle', label: 'Alle' },
+  { id: 'wache1', label: 'Hauptwache' },
+  { id: 'wache2', label: 'Wache 2' },
+  { id: 'ortsteile', label: 'Ortsteile' },
+  { id: 'anhaenger', label: 'Anhänger' },
+];
+
 const rang = (f: (typeof alle)[number]) => (f.data.standort === 'Hauptfeuerwache' ? 0 : 1);
 const gruppen = GRUPPEN.map((g) => ({
   ...g,
@@ -37,14 +50,17 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
 
     <section>
       <div class="wrap" style="padding-top:clamp(44px,6vw,72px)">
+        <div class="filter" role="group" aria-label="Fuhrpark filtern">
+          {FILTER.map((x, i) => <button type="button" class:list={['chip', { aktiv: i === 0 }]} data-filter={x.id}>{x.label}</button>)}
+        </div>
         {
           gruppen.map((g, gi) => (
-            <div class="gruppe" style={gi === gruppen.length - 1 ? 'margin-bottom:0' : undefined}>
+            <div class="gruppe" data-gruppe style={gi === gruppen.length - 1 ? 'margin-bottom:0' : undefined}>
               <span class="eyebrow">{g.fahrzeuge.length} {g.fahrzeuge.length === 1 ? 'Fahrzeug' : 'Fahrzeuge'}</span>
               <h2 class="titel display reveal">{g.titel}</h2>
               <div class:list={[g.id === 'anhaenger' ? 'anhaengerband' : 'mosaik']}>
                 {g.fahrzeuge.map((f, i) => (
-                  <a class:list={[g.id === 'anhaenger' ? 'anh' : 'fzk', 'reveal']} href={`/fuhrpark/${f.id}/`}>
+                  <a class:list={[g.id === 'anhaenger' ? 'anh' : 'fzk', 'reveal']} href={`/fuhrpark/${f.id}/`} data-kat={kat(f)}>
                     {
                       f.data.bild ? (
                         <img src={f.data.bild} alt={f.data.name} loading={gi === 0 && i < 3 ? 'eager' : 'lazy'} />
@@ -55,6 +71,7 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
                       )
                     }
                     <span class="schatten" aria-hidden="true" />
+                    {kurzRuf(f.data.funkruf) && <span class="ruf" aria-hidden="true">{kurzRuf(f.data.funkruf)}</span>}
                     <span class="txt">
                       <em>{f.data.standort === 'Hauptfeuerwache' ? f.data.typ : f.data.standort}</em>
                       <b>{f.data.name}</b>
@@ -71,6 +88,20 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
     </section>
   </main>
 </Basis>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const karten = document.querySelectorAll<HTMLElement>('[data-kat]');
+  const gruppen = document.querySelectorAll<HTMLElement>('[data-gruppe]');
+  chips.forEach((c) =>
+    c.addEventListener('click', () => {
+      const f = c.dataset.filter;
+      chips.forEach((x) => x.classList.toggle('aktiv', x === c));
+      karten.forEach((k) => (k.hidden = f !== 'alle' && k.dataset.kat !== f));
+      gruppen.forEach((g) => (g.hidden = !g.querySelector('[data-kat]:not([hidden])')));
+    })
+  );
+</script>
 
 <style>
   .gruppe {
@@ -173,6 +204,68 @@ const anzahlFahrzeuge = alle.length - anzahlAnhaenger;
   }
   .fzk:hover .txt i {
     text-shadow: 0 0 14px rgba(255, 179, 0, 0.8);
+  }
+
+
+  /* ---- Filter-Chips ---- */
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: clamp(32px, 5vw, 56px);
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid rgba(20, 22, 28, 0.25);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--rot);
+  }
+  .chip.aktiv {
+    background: var(--rot);
+    border-color: var(--rot);
+    color: #fff;
+  }
+  .gruppe[hidden],
+  .fzk[hidden],
+  .anh[hidden] {
+    display: none;
+  }
+
+  /* ---- Funkrufnummer als Umriss-Schrift auf dem Foto ---- */
+  .ruf {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    z-index: 1;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.75);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+    transition: -webkit-text-stroke-color 0.3s, transform 0.4s ease;
+  }
+  .fzk:hover .ruf,
+  .anh:hover .ruf {
+    -webkit-text-stroke-color: #ffb300;
+    transform: translateY(-3px);
+  }
+  .fzk .pfeil {
+    top: auto;
+    bottom: 14px;
   }
 
   /* ---- Anhänger: kompaktes Band ---- */
