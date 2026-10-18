@@ -1,0 +1,36 @@
+---
+titel: Realitätsnahes Training für den Ernstfall – Lehrgang „Brandhaus“ in Würzburg
+datum: 2026-10-18
+entwurf: true
+keinPush: false
+veroeffentlicht: 2026-10-18T21:54
+ressort: Übungsdienst
+titelbildEinpassen: false
+---
+Vergangene Woche nahmen zwei Kameraden unserer Feuerwehr am zweitägigen Lehrgang „Brandhaus“ an der Staatlichen Feuerwehrschule Würzburg teil. Im Mittelpunkt der Ausbildung stand das realitätsnahe Training verschiedener Brandeinsatzszenarien unter Atemschutz.
+
+**Brandeinsätze unter realistischen Bedingungen**
+
+Das Brandhaus ermöglicht Atemschutzgeräteträgern, unterschiedliche Einsatzsituationen unter möglichst realistischen Bedingungen zu trainieren. Dabei werden theoretische Kenntnisse in die Praxis umgesetzt und wichtige Fähigkeiten für den Ernstfall gefestigt.
+
+Simuliert wurden verschiedene Brandszenarien, darunter Wohnungs- und Zimmerbrände, verrauchte Treppenräume sowie Garagenbrände. Die Einsatzkräfte mussten sich bei stark eingeschränkter Sicht orientieren, die Lage beurteilen, Brandherde lokalisieren und geeignete Maßnahmen zur Brandbekämpfung einleiten.
+
+**Menschenrettung und taktische Brandbekämpfung**
+
+Ein besonderer Schwerpunkt lag auf der Personensuche und Menschenrettung. In stark verrauchten Räumen galt es, vermisste Personen aufzufinden und aus dem Gefahrenbereich zu retten. Dabei mussten die Kameraden jederzeit auch die eigene Sicherheit und die ihres Trupppartners im Blick behalten.
+
+Darüber hinaus trainierten sie das richtige Vorgehen beim Öffnen von Türen zu Brandräumen sowie die Beurteilung unterschiedlicher Brandverläufe und der Rauch- und Wärmeentwicklung. Ziel war es, mögliche Gefahren frühzeitig zu erkennen und das taktische Vorgehen an die jeweilige Situation anzupassen.
+
+**Anspruchsvolle Bedingungen**
+
+Eingeschränkte Sicht, hohe Temperaturen, schwierige Orientierung und die körperliche Belastung unter Atemschutz stellten hohe Anforderungen an die Teilnehmer. Realistische Geräuschkulissen, darunter Personen- und Babygeschrei, erschwerten die Orientierung zusätzlich.
+
+Gerade unter diesen Bedingungen waren Konzentration, klare Kommunikation und eine eingespielte Zusammenarbeit innerhalb des Trupps entscheidend.
+
+**Wertvolle Erfahrungen für den Einsatzdienst**
+
+Die beiden Ausbildungstage an der Staatlichen Feuerwehrschule Würzburg waren für unsere Kameraden eine intensive und lehrreiche Erfahrung. Sie konnten ihre Fähigkeiten unter anspruchsvollen Bedingungen erproben, taktische Abläufe festigen und wertvolle Erkenntnisse für zukünftige Brandeinsätze gewinnen.
+
+Eine regelmäßige Aus- und Fortbildung ist ein wesentlicher Bestandteil der Feuerwehrarbeit und trägt dazu bei, im Ernstfall sicher, überlegt und effektiv handeln zu können.
+
+**Denn im Ernstfall zählt jeder Handgriff – und jede Entscheidung kann entscheidend sein.**
