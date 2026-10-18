@@ -7,6 +7,8 @@ inHalle: true
 bild: /bilder/fahrzeuge/tlf.jpg
 reihenfolge: 7
 beladung:
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-kabine.jpg"
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/tlf-20-40-sl-1.jpg"
     inhalt:

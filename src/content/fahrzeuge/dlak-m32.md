@@ -7,6 +7,12 @@ bild: /bilder/fahrzeuge/dlak.jpg
 inHalle: true
 reihenfolge: 8
 beladung:
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/dlak-m32-kabine.jpg"
+  - raum: "Kabine Innenraum"
+    bild: "/bilder/fahrzeuge/detail/dlak-m32-kabine-2.jpg"
+  - raum: "Drehleitersteuerung"
+    bild: "/bilder/fahrzeuge/detail/dlak-m32-steuerung.jpg"
   - raum: "Korb RC 400"
     bild: /bilder/fahrzeuge/dlak/dreh.jpg
     inhalt:

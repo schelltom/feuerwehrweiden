@@ -7,6 +7,8 @@ inHalle: true
 bild: /bilder/fahrzeuge/gwl.jpg
 reihenfolge: 11
 beladung:
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/gw-logistik-kabine.jpg"
   - raum: "Frontansicht"
     bild: "/bilder/fahrzeuge/detail/gw-logistik-1.jpg"
     inhalt:
@@ -38,6 +40,8 @@ beladung:
       - "Gegensprechanalage"
       - "Heizung"
       - "Fahrzeugöffnungssatz"
+  - raum: "Heck"
+    bild: "/bilder/fahrzeuge/detail/gw-logistik-heck.jpg"
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/gw-logistik-4.jpg"
     inhalt:

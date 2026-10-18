@@ -121,6 +121,8 @@ beladung:
       - "1x HNE HiCafs 10 Löscher"
       - "1x Zeltgarnitur 1600 mm x 500 mm"
       - "TETRA Funkantenne Masten"
+  - raum: "Geräteraum Heck"
+    bild: "/bilder/fahrzeuge/detail/elw-1-5-geraeteraum-heck.jpg"
   - raum: "Auszug Stromerzeuger"
     bild: "/bilder/fahrzeuge/detail/elw-1-5-10.jpg"
     inhalt:

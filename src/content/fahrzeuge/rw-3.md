@@ -7,6 +7,12 @@ inHalle: true
 bild: /bilder/fahrzeuge/rw3.jpg
 reihenfolge: 10
 beladung:
+  - raum: "Fahrerkabine"
+    bild: "/bilder/fahrzeuge/detail/rw-3-kabine.jpg"
+  - raum: "Steuerung Seilwinde und Kran"
+    bild: "/bilder/fahrzeuge/detail/rw-3-steuerung.jpg"
+  - raum: "Dach"
+    bild: "/bilder/fahrzeuge/detail/rw-3-dach.jpg"
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/rw-3-1.jpg"
     inhalt:

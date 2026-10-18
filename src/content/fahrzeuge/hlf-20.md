@@ -1,11 +1,10 @@
 ---
 name: "HLF 20"
 typ: "Hilfeleistungslöschgruppenfahrzeug"
-funkruf: "FLORIAN WEIDEN 1/40/1"
+funkruf: "FLORIAN WEIDEN 1/40/2"
 standort: "Hauptfeuerwache"
-inHalle: true
 bild: /bilder/fahrzeuge/hlf.jpg
-reihenfolge: 4
+reihenfolge: 4.5
 beladung:
   - raum: "Geräteraum 1"
     bild: "/bilder/fahrzeuge/detail/hlf-20-1.jpg"
