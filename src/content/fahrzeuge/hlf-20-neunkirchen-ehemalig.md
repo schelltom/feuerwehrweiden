@@ -36,6 +36,6 @@ beladung:
       - "Pumpe"
       - "Saugkorb"
       - "Sammelstück"
-gruppe: loesch
-entwurf: false
+gruppe: ehemalige
+entwurf: true
 ---
