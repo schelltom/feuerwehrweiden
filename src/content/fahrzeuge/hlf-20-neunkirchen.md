@@ -14,7 +14,7 @@ beladung:
       - Bolzenschneider
       - Feuerwehräxte
       - Hacke lang
-      - Spalthammer / Hooligan-Tool
+      - Spalthammer / Halligan-Tool
       - Stabfast Stabilisierungssystem
       - Akku-Rettungssatz (Spreizer, Schere)
   - raum: Geräteraum 2
