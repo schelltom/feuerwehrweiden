@@ -1,9 +1,9 @@
 ---
 titel: Realitätsnahes Training für den Ernstfall – Lehrgang „Brandhaus“ in Würzburg
-datum: 2026-10-18
+datum: 2026-10-19
 entwurf: true
 keinPush: false
-veroeffentlicht: 2026-10-18T21:54
+veroeffentlicht: 2026-10-19T07:23
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/realitätsnahes-training-für-den-ernstfall-–-lehrgang-„brandhaus“-in-würzburg/0c8c4545-e7e7-4027-a79d-6b9469e472c1.jpeg
 titelbildEinpassen: false
