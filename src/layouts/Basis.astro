@@ -78,7 +78,10 @@ const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').so
               <div class="zeile2" id="tipptext" />
               <div class="balken" />
             </div>
-            <img class="mbild" src="/bilder/intro-start.jpg" alt="" />
+            <img class="mbild" id="mbild" src="/bilder/intro-start.jpg" alt="" />
+            <script is:inline>
+              if (Math.random() < 0.5) document.getElementById('mbild').src = '/bilder/intro-start2.jpg';
+            </script>
             <b id="countzahl">3</b>
           </div>
         </div>
@@ -263,7 +266,9 @@ const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').so
         const txt = 'ALARM FÜR FLORIAN WEIDEN — EINSATZ FÜR ALLE EINHEITEN';
         const ziel = document.getElementById('tipptext')!;
         let i = 0;
+        let gehalten = false;
         const tipp = setInterval(() => {
+          if (gehalten) return;
           ziel.textContent = txt.slice(0, ++i);
           if (i >= txt.length) clearInterval(tipp);
         }, 42); // Tippgeschwindigkeit
@@ -283,17 +288,48 @@ const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').so
           setTimeout(() => alarm.remove(), 800);
         };
 
+        /* Countdown in 100-ms-Schritten, damit er beim Halten des Bildes pausieren kann */
+        let vergangen = 0;
         const tick = setInterval(() => {
-          n--;
-          if (n < 1) {
+          if (gehalten) return;
+          vergangen += 100;
+          const rest = 3 - Math.floor(vergangen / 1000);
+          if (rest < 1) {
             fertig();
             return;
           }
-          zahl.textContent = String(n);
-          zahl.classList.remove('tick');
-          void (zahl as HTMLElement).offsetWidth; // Animation neu starten
-          zahl.classList.add('tick');
-        }, 1000);
+          if (rest !== n) {
+            n = rest;
+            zahl.textContent = String(n);
+            zahl.classList.remove('tick');
+            void (zahl as HTMLElement).offsetWidth; // Animation neu starten
+            zahl.classList.add('tick');
+          }
+        }, 100);
+
+        /* Bild gedrückt halten: Balken, Countdown und Tippen pausieren; loslassen = weiter */
+        const balken = alarm.querySelector<HTMLElement>('.balken')!;
+        const bild = document.getElementById('mbild')!;
+        const halten = (e: Event) => {
+          e.stopPropagation(); // nicht als "überspringen" werten
+          if (gehalten) return;
+          gehalten = true;
+          const anteil = balken.getBoundingClientRect().width / (balken.parentElement!.getBoundingClientRect().width || 1);
+          balken.style.transition = 'none';
+          balken.style.width = `${anteil * 100}%`;
+        };
+        const weiter = () => {
+          if (!gehalten) return;
+          gehalten = false;
+          const anteil = parseFloat(balken.style.width) / 100 || 0;
+          void balken.offsetWidth;
+          balken.style.transition = `width ${Math.round(3200 * (1 - anteil))}ms linear`;
+          balken.style.width = '100%';
+        };
+        bild.addEventListener('pointerdown', halten);
+        addEventListener('pointerup', weiter);
+        addEventListener('pointercancel', weiter);
+        bild.addEventListener('contextmenu', (e) => e.preventDefault());
 
         /* Klick (Maus/Touch) oder beliebige Taste überspringt den Countdown sofort */
         alarm.addEventListener('pointerdown', fertig);
