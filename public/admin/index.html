@@ -199,7 +199,8 @@
             var raeume = [];
             if (raumWidgets && raumWidgets.forEach) {
               raumWidgets.forEach(function (item, i) {
-                var d = item.get('data');
+                var d = item && item.get('data');
+                if (!d) return;
                 var inh = liste(d.get('inhalt')).filter(Boolean);
                 var bildEl = d.get('bild') ? item.getIn(['widgets', 'bild']) : null;
                 var teile = [];
@@ -235,7 +236,7 @@
             var figs = [];
             if (galWidgets && galWidgets.forEach) {
               galWidgets.forEach(function (item, i) {
-                if (!item.getIn(['data', 'bild'])) return;
+                if (!item || !item.getIn(['data', 'bild'])) return;
                 var text = item.getIn(['data', 'text']);
                 figs.push(h('figure', { key: i }, [item.getIn(['widgets', 'bild']), text ? h('figcaption', { key: 'c' }, text) : null]));
               });
