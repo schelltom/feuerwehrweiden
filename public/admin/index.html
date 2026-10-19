@@ -286,6 +286,19 @@
             var d = this.props.entry.get('data');
             var asset = function (pfad) { return pfad ? self.props.getAsset(pfad).toString() : ''; };
             var bereich = d.get('bereich');
+
+            // Drohnengruppe & UG-ÖEL haben im Frontend ein fest verdrahtetes
+            // Sonderlayout (Texte/Bilder stehen im Code) – statt Nachbau zeigen
+            // wir die echte, veröffentlichte Seite. Änderungen aus dem Editor
+            // (Titel, Kontakt, Personen) erscheinen erst nach dem Veröffentlichen.
+            var slug = this.props.entry.get('slug');
+            if (bereich === 'einheiten' && (slug === 'drohnengruppe' || slug === 'ug-oeel')) {
+              return h('div', { style: { display: 'flex', flexDirection: 'column', height: '100vh' } }, [
+                h('p', { key: 'hinweis', style: { margin: 0, padding: '8px 16px', background: '#FFF4D6', borderBottom: '1px solid #E4C770', font: '12px system-ui', color: '#5B4A10' } },
+                  'Diese Seite hat ein festes Sonderlayout. Gezeigt wird die veröffentlichte Version – ungespeicherte Änderungen siehst du erst nach dem Veröffentlichen.'),
+                h('iframe', { key: 'live', src: '/feuerwehr/einheiten/' + slug + '/', style: { flex: 1, border: 0, width: '100%' } }),
+              ]);
+            }
             var titel = d.get('titel');
             var bildUrl = d.get('kopfbild') ? asset(d.get('titelbild')) : '';
             var teile = [];
