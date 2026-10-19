@@ -1,9 +1,9 @@
 ---
 titel: Abschlussübung des 2. Zuges – Übungsjahr 2026
-datum: 2026-10-18
+datum: 2026-10-19
 entwurf: true
 keinPush: false
-veroeffentlicht: 2026-10-18T21:40
+veroeffentlicht: 2026-10-19T07:20
 ressort: Übungsdienst
 titelbild: /bilder/berichte/2026/abschlussübung-des-2-zuges-–-übungsjahr-2026/img_1567.jpeg
 titelbildEinpassen: false
