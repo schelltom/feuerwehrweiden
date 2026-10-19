@@ -149,6 +149,295 @@
         });
 
         CMS.registerPreviewTemplate('berichte', BerichtVorschau);
+
+        // Fahrzeug-Vorschau: baut Seitenkopf, Kennzahlen, Beladung, Ausstattung
+        // und Galerie wie src/pages/fuhrpark/[slug].astro nach.
+        var FahrzeugVorschau = createClass({
+          render: function () {
+            var entry = this.props.entry;
+            var data = entry.get('data');
+            var self = this;
+
+            var name = data.get('name');
+            var typ = data.get('typ');
+            var funkruf = data.get('funkruf');
+            var standort = data.get('standort');
+            var ausstattung = data.get('ausstattung');
+            var beladung = data.get('beladung');
+
+            var liste = function (l) { return l && l.toArray ? l.toArray() : []; };
+            var eintraege = liste(ausstattung).filter(Boolean);
+
+            // Kopf: Breadcrumb + Titel links, Hauptbild rechts
+            var textspalte = [
+              h('nav', { key: 'k', className: 'fz-krumen' }, [
+                h('span', { key: 'a' }, 'Start'), h('span', { key: 't1', className: 'teiler' }),
+                h('span', { key: 'b' }, 'Fuhrpark'), h('span', { key: 't2', className: 'teiler' }),
+                h('b', { key: 'c' }, [typ, standort].filter(Boolean).join(' · ')),
+              ]),
+              h('h1', { key: 'h' }, name || 'Ohne Name'),
+            ];
+            if (funkruf) textspalte.push(h('div', { key: 'f' }, h('span', { className: 'funkruf' }, funkruf)));
+
+            var kopf = [h('div', { key: 'tx', className: 'ktext' }, textspalte)];
+            if (data.get('bild')) {
+              kopf.push(h('span', { key: 'foto', className: 'fz-foto' },
+                h('span', { className: 'fz-ausschnitt' }, this.props.widgetFor('bild'))));
+            }
+
+            var inhalt = [];
+            var specs = [h('div', { key: 's1', className: 'spec' }, [h('span', { key: 'l' }, 'Fahrzeugtyp'), h('b', { key: 'v' }, typ || '–')])];
+            if (funkruf) specs.push(h('div', { key: 's2', className: 'spec' }, [h('span', { key: 'l' }, 'Funkrufname'), h('b', { key: 'v' }, String(funkruf).toLowerCase())]));
+            inhalt.push(h('div', { key: 'specs', className: 'specs' }, specs));
+
+            if (data.get('body') && String(data.get('body')).trim()) {
+              inhalt.push(h('div', { key: 'besch', className: 'beschreibung' }, this.props.widgetFor('body')));
+            }
+
+            // Beladung: je Geräteraum ein Aufklapp-Kasten (bild über widgetsFor = reaktive Vorschau)
+            var raumWidgets = this.props.widgetsFor('beladung');
+            var raeume = [];
+            if (raumWidgets && raumWidgets.forEach) {
+              raumWidgets.forEach(function (item, i) {
+                var d = item.get('data');
+                var inh = liste(d.get('inhalt')).filter(Boolean);
+                var bildEl = d.get('bild') ? item.getIn(['widgets', 'bild']) : null;
+                var teile = [];
+                if (inh.length) teile.push(h('ul', { key: 'ul' }, inh.map(function (e, j) { return h('li', { key: j }, e); })));
+                if (bildEl) teile.push(h('span', { key: 'bild', className: 'raumbild' }, bildEl));
+                raeume.push(
+                  h('details', { key: i, className: 'raum', open: i === 0 }, [
+                    h('summary', { key: 's' }, d.get('raum') || 'Geräteraum'),
+                    h('div', { key: 'i', className: 'inhalt2' + (inh.length && bildEl ? ' nebeneinander' : '') }, teile),
+                  ])
+                );
+              });
+            }
+
+            var bloecke = [];
+            if (raeume.length) {
+              bloecke.push(h('div', { key: 'bel', className: eintraege.length ? '' : 'voll' }, [
+                h('span', { key: 'e', className: 'eyebrow' }, 'Beladung'),
+                h('h2', { key: 'h', className: 'titel' }, 'Geräteräume'),
+                h('div', { key: 'r' }, raeume),
+              ]));
+            }
+            if (eintraege.length) {
+              bloecke.push(h('div', { key: 'aus', className: 'korb' }, [
+                h('span', { key: 'e', className: 'eyebrow' }, 'Ausstattung'),
+                h('h2', { key: 'h', className: 'titel' }, 'Highlights'),
+                h('ul', { key: 'u' }, eintraege.map(function (a, i) { return h('li', { key: i }, a); })),
+              ]));
+            }
+            if (bloecke.length) inhalt.push(h('div', { key: 'ausstattung', className: 'ausstattung' }, bloecke));
+
+            var galWidgets = this.props.widgetsFor('galerie');
+            var figs = [];
+            if (galWidgets && galWidgets.forEach) {
+              galWidgets.forEach(function (item, i) {
+                if (!item.getIn(['data', 'bild'])) return;
+                var text = item.getIn(['data', 'text']);
+                figs.push(h('figure', { key: i }, [item.getIn(['widgets', 'bild']), text ? h('figcaption', { key: 'c' }, text) : null]));
+              });
+            }
+            if (figs.length) inhalt.push(h('div', { key: 'galerie', className: 'galerie' }, figs));
+
+            return h('div', null, [
+              h('div', { key: 'balken', className: 'fz-balken' }),
+              h('div', { key: 'kopf', className: 'fz-wrap fz-kopf' }, kopf),
+              h('div', { key: 'inhalt', className: 'fz-wrap fz-inhalt' }, inhalt),
+            ]);
+          },
+        });
+
+        CMS.registerPreviewTemplate('fahrzeuge', FahrzeugVorschau);
+
+        // ---- Feuerwehr-Seiten (Einheiten / Über uns / Ortsteile) ----
+        // Spiegel von src/pages/feuerwehr/[bereich]/[slug].astro. Bilder in
+        // verschachtelten Feldern kommen über getAsset (zeigt auch frisch
+        // hochgeladene Bilder vor dem Speichern).
+        var BEREICHE = { 'ueber-uns': 'Über uns', einheiten: 'Einheiten', ortsteile: 'Ortsteile' };
+        var arr = function (l) { return l && l.toArray ? l.toArray() : []; };
+
+        function kopfBlock(titel, krumen, untertitel, bildUrl, einpassen) {
+          var krumenEl = [];
+          krumen.forEach(function (k, i) {
+            if (i > 0) krumenEl.push(h('span', { key: 't' + i, className: 'teiler' }));
+            krumenEl.push(i === krumen.length - 1 ? h('b', { key: 'k' + i }, k) : h('span', { key: 'k' + i }, k));
+          });
+          var tx = [h('nav', { key: 'k', className: 'fz-krumen' }, krumenEl)];
+          if (titel) tx.push(h('h1', { key: 'h' }, titel));
+          if (untertitel) tx.push(h('p', { key: 'u', className: 'unter' }, untertitel));
+          var kopf = [h('div', { key: 'tx', className: 'ktext' }, tx)];
+          if (bildUrl) {
+            kopf.push(h('span', { key: 'foto', className: 'fz-foto' + (einpassen ? ' einpassen' : '') },
+              h('span', { className: 'fz-ausschnitt' }, h('img', { src: bildUrl, alt: '' }))));
+          }
+          return [
+            h('div', { key: 'balken', className: 'fz-balken' }),
+            h('div', { key: 'kopf', className: 'fz-wrap fz-kopf' }, kopf),
+          ];
+        }
+
+        var SeiteVorschau = createClass({
+          render: function () {
+            var self = this;
+            var d = this.props.entry.get('data');
+            var asset = function (pfad) { return pfad ? self.props.getAsset(pfad).toString() : ''; };
+            var bereich = d.get('bereich');
+            var titel = d.get('titel');
+            var bildUrl = d.get('kopfbild') ? asset(d.get('titelbild')) : '';
+            var teile = [];
+
+            var kontakt = d.get('kontakt');
+            if (kontakt && (kontakt.get('name') || kontakt.get('telefon') || kontakt.get('email') || kontakt.get('adresse'))) {
+              var zeilen = [];
+              if (kontakt.get('telefon')) zeilen.push(h('li', { key: 't' }, [h('span', { key: 'l' }, 'Telefon'), h('a', { key: 'v' }, kontakt.get('telefon'))]));
+              if (kontakt.get('fax')) zeilen.push(h('li', { key: 'f' }, [h('span', { key: 'l' }, 'Telefax'), kontakt.get('fax')]));
+              if (kontakt.get('email')) zeilen.push(h('li', { key: 'e' }, [h('span', { key: 'l' }, 'E-Mail'), h('a', { key: 'v' }, kontakt.get('email'))]));
+              if (kontakt.get('adresse')) zeilen.push(h('li', { key: 'a' }, [h('span', { key: 'l' }, 'Anschrift'), kontakt.get('adresse')]));
+              var kb = kontakt.get('bild');
+              teile.push(h('div', { key: 'kontakt', className: 'kontaktkarte' + (kb ? '' : ' ohneBild') }, [
+                kb ? h('img', { key: 'p', className: 'portraet', src: asset(kb), alt: '' }) : null,
+                h('div', { key: 'kd', className: 'kdaten' }, [
+                  h('span', { key: 'e', className: 'eyebrow' }, titel),
+                  h('h2', { key: 'n' }, kontakt.get('name')),
+                  h('ul', { key: 'u' }, zeilen),
+                ]),
+              ]));
+            }
+
+            if (d.get('body') && String(d.get('body')).trim()) {
+              teile.push(h('div', { key: 'body', className: 'fliesstext' }, this.props.widgetFor('body')));
+            }
+
+            var gf = d.get('gruppenfoto');
+            if (gf && gf.get('bild')) {
+              teile.push(h('figure', { key: 'gf', className: 'gruppenfoto' }, [
+                h('img', { key: 'i', src: asset(gf.get('bild')), alt: '' }),
+                gf.get('text') ? h('figcaption', { key: 'c' }, gf.get('text')) : null,
+              ]));
+            }
+
+            // Personen nach Kategorie gruppieren (Reihenfolge bleibt)
+            var gruppen = [];
+            arr(d.get('personen')).forEach(function (p) {
+              var key = p.get('kategorie') || '';
+              var g = gruppen.filter(function (x) { return x.kategorie === key; })[0];
+              if (!g) { g = { kategorie: key, personen: [] }; gruppen.push(g); }
+              g.personen.push(p);
+            });
+            gruppen.forEach(function (g, gi) {
+              teile.push(h('div', { key: 'pg' + gi, className: 'personengruppe' }, [
+                g.kategorie ? h('span', { key: 'e', className: 'eyebrow' }, g.kategorie) : null,
+                h('div', { key: 'p', className: 'personen' }, g.personen.map(function (p, i) {
+                  var sg = arr(p.get('sachgebiete')).filter(Boolean);
+                  return h('div', { key: i, className: 'person' }, [
+                    p.get('bild') ? h('img', { key: 'b', src: asset(p.get('bild')), alt: '' }) : null,
+                    h('div', { key: 'd', className: 'pdaten' }, [
+                      p.get('funktion') ? h('em', { key: 'f' }, p.get('funktion')) : null,
+                      h('b', { key: 'n' }, p.get('name')),
+                      sg.length ? h('ul', { key: 'u' }, sg.map(function (x, j) { return h('li', { key: j }, x); })) : null,
+                      p.get('telefon') ? h('span', { key: 't', className: 'ptel' }, p.get('telefon')) : null,
+                      p.get('email') ? h('a', { key: 'm' }, p.get('email')) : null,
+                    ]),
+                  ]);
+                })),
+              ]));
+            });
+
+            var plan = arr(d.get('uebungsplan'));
+            if (plan.length) {
+              teile.push(h('div', { key: 'plan', className: 'uebungsplan' }, [
+                h('span', { key: 'e', className: 'eyebrow' }, 'Übungsplan'),
+                h('ol', { key: 'o' }, plan.map(function (u, i) {
+                  return h('li', { key: i }, [
+                    h('span', { key: 'd', className: 'udatum' }, u.get('datum')),
+                    h('span', { key: 't', className: 'utag' }, (u.get('tag') || '') + (u.get('zeit') ? ' · ' + u.get('zeit') : '')),
+                    h('b', { key: 'b' }, u.get('thema')),
+                  ]);
+                })),
+              ]));
+            }
+
+            var zeit = arr(d.get('zeitstrahl'));
+            if (zeit.length) {
+              teile.push(h('ol', { key: 'zeit', className: 'zeitstrahl' }, zeit.map(function (e, i) {
+                return h('li', { key: i, className: 'station' }, [
+                  h('span', { key: 'p', className: 'punkt' }),
+                  h('span', { key: 'z', className: 'zeit' }, e.get('zeit')),
+                  h('div', { key: 's', className: 'stext' }, [
+                    h('h3', { key: 'h' }, e.get('titel')),
+                    e.get('bild') ? h('figure', { key: 'f', className: 'sbild' }, [
+                      h('img', { key: 'i', src: asset(e.get('bild')), alt: '' }),
+                      e.get('bildtext') ? h('figcaption', { key: 'c' }, e.get('bildtext')) : null,
+                    ]) : null,
+                    h('p', { key: 'p' }, e.get('text')),
+                    e.get('quelle') ? h('small', { key: 'q' }, 'Quelle: ' + e.get('quelle')) : null,
+                  ]),
+                ]);
+              })));
+            }
+
+            var gal = arr(d.get('galerie')).filter(function (g) { return g.get('bild'); });
+            if (gal.length) {
+              teile.push(h('div', { key: 'gal', className: 'galerie' }, gal.map(function (g, i) {
+                return h('figure', { key: i }, [
+                  h('img', { key: 'i', src: asset(g.get('bild')), alt: '' }),
+                  g.get('text') ? h('figcaption', { key: 'c' }, g.get('text')) : null,
+                ]);
+              })));
+            }
+
+            var krumen = bereich === 'ortsteile'
+              ? ['Start', 'Ortsteile', titel || '']
+              : ['Start', 'Feuerwehr', BEREICHE[bereich] || ''];
+            return h('div', null, kopfBlock(titel || 'Ohne Titel', krumen, d.get('kurz'), bildUrl, false).concat([
+              h('div', { key: 'inhalt', className: 'fz-wrap schmal fz-inhalt' }, teile),
+            ]));
+          },
+        });
+        CMS.registerPreviewTemplate('seiten', SeiteVorschau);
+
+        // ---- Service-Seiten: feste Texte (src/data/service.json) ----
+        // Zeigt die drei Seiten untereinander, die diese Texte verwenden.
+        var ServiceVorschau = createClass({
+          render: function () {
+            var d = this.props.entry.get('data');
+            var kopfTrenner = function (t) { return h('div', { className: 'vorschau-trenner' }, 'Seite: ' + t); };
+            var seite = function (key, bezeichnung, krumen, titel, inhalt) {
+              return h('div', { key: key }, [kopfTrenner(bezeichnung)].concat(kopfBlock(titel, krumen, null, '', false), [
+                h('div', { key: 'i', className: 'fz-wrap fz-inhalt' }, inhalt),
+              ]));
+            };
+            var status = function (kontakt, tel) {
+              return [
+                h('div', { key: 's', style: { marginBottom: '44px' } }, [
+                  h('h2', { key: 'h', className: 'statuskopf' }, [h('span', { key: 'p', className: 'punkt' }), 'Abholbereit ', h('em', { key: 'e' }, '(…)')]),
+                  h('p', { key: 'l', className: 'leer' }, 'Die Liste kommt live aus den Einträgen der Werkstatt.'),
+                ]),
+                h('div', { key: 'k', className: 'hinweisbox' }, [d.get('kontakt_adresse') + ' · Fragen: ', h('a', { key: 'a' }, tel)]),
+              ];
+            };
+            var karten = [['Atemschutzwerkstatt', 'Atemschutz abholbereit'], ['Schlauchpflegestelle', 'Schläuche abholbereit'], ['Im Notfall', 'Notruf 112'], ['Benachrichtigungen', 'Immer auf dem Laufenden']];
+            return h('div', null, [
+              seite('uebersicht', 'Service', ['Start', 'Service'], 'Service', [
+                h('p', { key: 'i', className: 'intro' }, d.get('uebersicht_intro')),
+                h('div', { key: 'r', className: 'serviceraster' }, karten.map(function (k, i) {
+                  return h('div', { key: i, className: 'servicekarte' }, [
+                    h('span', { key: 's', className: 'schatten' }),
+                    h('span', { key: 't', className: 'txt' }, [h('em', { key: 'e' }, k[0]), h('b', { key: 'b' }, k[1])]),
+                  ]);
+                })),
+              ]),
+              seite('atemschutz', 'Atemschutzwerkstatt', ['Start', 'Service', 'Atemschutzwerkstatt'], '',
+                [h('p', { key: 'i', className: 'intro' }, d.get('atemschutz_intro'))].concat(status(null, d.get('telefon_atemschutz')))),
+              seite('schlaeuche', 'Schlauchpflegestelle', ['Start', 'Service', 'Schlauchpflegestelle'], '',
+                [h('p', { key: 'i', className: 'intro' }, d.get('schlaeuche_intro'))].concat(status(null, d.get('telefon_schlaeuche')))),
+            ]);
+          },
+        });
+        CMS.registerPreviewTemplate('texte', ServiceVorschau);
       })();
     </script>
   </body>

@@ -470,8 +470,6 @@ collections:
   # Die Seiten selbst sind Vorlagen; nur diese Texte sind hier pflegbar.
   - name: service_texte
     label: 'Service-Seiten (Texte)'
-    editor:
-      preview: false
     files:
       - name: texte
         label: 'Einleitungen & Kontakt'

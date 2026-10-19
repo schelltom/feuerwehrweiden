@@ -99,3 +99,148 @@ a{color:inherit}
 .re-emoji{font-size:1.15rem;line-height:1}
 .re-wort{font-weight:600;font-size:.9rem}
 .re-zahl{font-family:var(--mono);font-size:.8rem;color:var(--tinte2)}
+
+/* ============ Fahrzeug (aus global.css + Seitenkopf.astro gespiegelt) ============ */
+:root{--radius-klein:8px}
+.fz-balken{background:var(--dunkel);height:84px;border-bottom:12px solid var(--rot)}
+.fz-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.fz-kopf{display:grid;grid-template-columns:1fr auto;gap:clamp(24px,4vw,56px);align-items:start;padding-top:clamp(28px,4vw,44px);padding-bottom:10px}
+@media (max-width:760px){.fz-kopf{grid-template-columns:1fr}}
+.fz-kopf .ktext{min-width:0}
+.fz-krumen{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinte2);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.fz-krumen b{font-weight:400;color:var(--rot)}
+.fz-krumen .teiler{width:14px;height:2px;background:var(--silber);transform:skewX(-30deg)}
+.fz-kopf h1{
+  margin:10px 0 0;font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-style:italic;font-size:clamp(2.2rem,5vw,3.6rem);line-height:.94;letter-spacing:.01em;
+  hyphens:auto;overflow-wrap:anywhere;
+}
+.funkruf{
+  display:inline-block;margin-top:14px;
+  font-family:var(--mono);font-size:clamp(.8rem,1.6vw,1rem);letter-spacing:.14em;
+  color:#FFB300;background:rgba(0,0,0,.55);border:1px solid rgba(255,179,0,.35);
+  padding:8px 14px;white-space:nowrap;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 10px rgba(255,179,0,.5);
+}
+.fz-foto{position:relative;justify-self:end;width:min(430px,40vw);margin-top:2px}
+@media (max-width:760px){.fz-foto{width:100%;justify-self:stretch}}
+.fz-foto::before{content:"";position:absolute;top:16px;right:-18px;bottom:-14px;left:18px;background:linear-gradient(115deg,var(--rot),var(--rot-tief))}
+.fz-foto .fz-ausschnitt{position:relative;z-index:1;display:block;filter:drop-shadow(0 18px 34px rgba(20,22,28,.3))}
+.fz-foto img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+
+.fz-inhalt{padding-top:clamp(44px,6vw,72px);padding-bottom:64px}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 54px}
+@media (max-width:960px){.specs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.specs{grid-template-columns:1fr}}
+.spec{border-radius:var(--radius-klein);background:var(--karte);border:1px solid var(--linie);border-top:3px solid var(--rot);padding:18px 20px;box-shadow:0 2px 10px rgba(20,22,28,.04)}
+.spec span{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tinte2);display:block;margin-bottom:8px}
+.spec b{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:1.25rem;line-height:1.15}
+.beschreibung{max-width:70ch;color:var(--tinte2);font-size:1.04rem;margin-bottom:54px}
+.ausstattung{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,60px);align-items:start}
+@media (max-width:900px){.ausstattung{grid-template-columns:1fr}}
+.ausstattung > .voll{grid-column:1/-1}
+h2.titel{font-family:var(--display);font-weight:700;text-transform:uppercase;font-style:italic;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:.95;margin:14px 0 10px}
+.korb ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.korb li{padding:13px 0 13px 26px;border-bottom:1px solid var(--linie);position:relative;color:var(--tinte);font-size:.95rem}
+.korb li::before{content:"";position:absolute;left:2px;top:1.35em;width:10px;height:2px;background:var(--rot)}
+details.raum{border-radius:var(--radius-klein);overflow:hidden;border:1px solid var(--linie);background:var(--karte);margin-bottom:10px;box-shadow:0 2px 10px rgba(20,22,28,.04)}
+details.raum summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-family:var(--display);font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem}
+details.raum summary::-webkit-details-marker{display:none}
+details.raum summary::after{content:"+";font-family:var(--mono);color:var(--rot);font-size:1.2rem;font-style:normal;transition:transform .25s}
+details.raum[open] summary::after{transform:rotate(45deg)}
+details.raum[open]{border-color:rgba(225,6,0,.4)}
+details.raum .inhalt2{padding:0 20px 18px;color:var(--tinte2);font-size:.92rem}
+details.raum .inhalt2 ul{margin:0;padding:0;list-style:none;columns:2;column-gap:28px}
+@media (max-width:560px){details.raum .inhalt2 ul{columns:1}}
+details.raum .inhalt2 li{padding:5px 0;border-bottom:1px dashed var(--linie);break-inside:avoid}
+.inhalt2.nebeneinander{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start}
+.inhalt2.nebeneinander ul{columns:1}
+.raumbild{border-radius:var(--radius-klein);display:block;overflow:hidden;border:1px solid var(--linie);align-self:start}
+.raumbild img{display:block;width:100%;max-height:520px;object-fit:contain}
+.galerie{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:54px}
+@media (max-width:760px){.galerie{grid-template-columns:repeat(2,1fr)}}
+.galerie figure{margin:0;border-radius:var(--radius-klein);position:relative;overflow:hidden;border:1px solid var(--linie);aspect-ratio:4/3;background:var(--karte)}
+.galerie img{width:100%;height:100%;object-fit:cover;display:block}
+.galerie figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 10px;background:linear-gradient(to top,rgba(14,17,22,.88),transparent);font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#fff}
+
+/* ============ Feuerwehr-Seiten (Einheiten / Über uns) + Service ============ */
+:root{--radius-gross:14px}
+.fz-kopf .unter{margin:12px 0 0;color:var(--tinte2);max-width:56ch;font-size:.98rem}
+.fz-foto.einpassen{width:min(250px,30vw)}
+.fz-foto.einpassen img{aspect-ratio:4/3;object-fit:contain;background:var(--karte);padding:14px;box-sizing:border-box}
+.fz-wrap.schmal{max-width:980px}
+p.intro{color:var(--tinte2);max-width:60ch;margin:0 0 36px;font-size:1.02rem}
+.hinweisbox{border-radius:var(--radius-klein);margin-top:54px;border:1px dashed #C9CCD6;background:var(--karte);padding:20px 24px;font-family:var(--mono);font-size:.78rem;color:var(--tinte2);letter-spacing:.04em}
+.hinweisbox a{color:var(--rot)}
+.vorschau-trenner{max-width:980px;margin:0 auto;padding:28px 24px 0;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinte2)}
+.vorschau-trenner + .fz-balken{margin-top:10px}
+
+.kontaktkarte{border-radius:var(--radius-klein);overflow:hidden;display:grid;grid-template-columns:280px 1fr;gap:clamp(24px,4vw,48px);background:var(--karte);border:1px solid var(--linie);border-top:3px solid var(--rot);padding:clamp(20px,3vw,36px);box-shadow:0 4px 18px rgba(20,22,28,.07);margin-bottom:44px;align-items:start}
+@media (max-width:640px){.kontaktkarte{grid-template-columns:1fr}}
+.kontaktkarte.ohneBild{grid-template-columns:1fr}
+.kontaktkarte .portraet{border-radius:var(--radius-klein);width:100%;aspect-ratio:6/7;object-fit:cover;border:1px solid var(--linie)}
+.kdaten h2{font-family:var(--display);font-weight:700;font-style:italic;text-transform:uppercase;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:.92;margin:8px 0 20px}
+.kdaten ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.kdaten li{display:grid;grid-template-columns:110px 1fr;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--linie);font-size:1rem}
+.kdaten li span{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tinte2);padding-top:4px}
+.kdaten a{color:var(--rot);text-decoration:none}
+
+.fliesstext{max-width:72ch;color:#3a3f4c;font-size:1.04rem;margin-bottom:44px}
+.fliesstext h3{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:1.5rem;margin:1.6em 0 .4em}
+.gruppenfoto{border-radius:var(--radius-gross);margin:0 0 44px;border:1px solid var(--linie);background:var(--karte);box-shadow:0 4px 18px rgba(20,22,28,.07);overflow:hidden}
+.gruppenfoto img{display:block;width:100%}
+.gruppenfoto figcaption{padding:14px 18px;font-size:.85rem;color:var(--tinte2);line-height:1.6}
+
+.personengruppe + .personengruppe{margin-top:36px}
+.personengruppe .eyebrow{display:block;margin-bottom:16px}
+.personen{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.personen{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:540px){.personen{grid-template-columns:1fr}}
+.person{border-radius:var(--radius-klein);background:var(--karte);border:1px solid var(--linie);box-shadow:0 2px 10px rgba(20,22,28,.05);overflow:hidden}
+.person img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center top;display:block}
+.person .pdaten{padding:16px 18px 18px}
+.person em{font-family:var(--mono);font-style:normal;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rot)}
+.person b{display:block;font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:1.3rem;line-height:1.05;margin:4px 0 8px}
+.person ul{list-style:none;margin:0 0 8px;padding:0;font-size:.85rem;color:var(--tinte2)}
+.person li{padding:3px 0 3px 16px;position:relative}
+.person li::before{content:"";position:absolute;left:0;top:.9em;width:8px;height:2px;background:var(--rot)}
+.person .ptel{display:block;font-family:var(--mono);font-size:.74rem;color:var(--tinte2);margin-bottom:4px}
+.person a{font-family:var(--mono);font-size:.74rem;color:var(--tinte2);text-decoration:none;border-bottom:1px solid var(--rot)}
+
+.uebungsplan{margin:44px 0}
+.uebungsplan ol{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--linie)}
+.uebungsplan li{display:grid;grid-template-columns:120px 190px 1fr;gap:16px;align-items:baseline;padding:12px 14px;border-bottom:1px solid var(--linie);background:var(--karte)}
+.uebungsplan li:nth-child(even){background:transparent}
+@media (max-width:680px){.uebungsplan li{grid-template-columns:100px 1fr}.uebungsplan li b{grid-column:1/-1}}
+.uebungsplan .udatum{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.uebungsplan .utag{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--tinte2)}
+.uebungsplan li b{font-weight:600;font-size:.95rem}
+
+.zeitstrahl{list-style:none;margin:12px 0 0;padding:0;position:relative}
+.zeitstrahl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--rot),var(--linie))}
+.station{position:relative;padding:0 0 36px 44px}
+.station:last-child{padding-bottom:0}
+.station .punkt{position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--grund);border:3px solid var(--rot)}
+.station .zeit{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--rot);padding:4px 12px;margin-bottom:12px;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.station .stext{background:var(--karte);border:1px solid var(--linie);padding:20px 24px;box-shadow:0 2px 10px rgba(20,22,28,.05)}
+.station h3{font-family:var(--display);font-weight:700;font-style:italic;text-transform:uppercase;font-size:1.3rem;margin:0 0 8px}
+.station p{margin:0;color:#3a3f4c;font-size:.98rem}
+.station .sbild{margin:0 0 14px}
+.station .sbild img{border-radius:var(--radius-klein);display:block;width:100%;border:1px solid var(--linie)}
+.station .sbild figcaption{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--tinte2);margin-top:6px}
+.station small{display:block;margin-top:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--tinte2)}
+
+/* Service-Seiten */
+.serviceraster{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:820px){.serviceraster{grid-template-columns:repeat(2,1fr)}}
+.servicekarte{position:relative;display:block;border-radius:var(--radius-gross);overflow:hidden;aspect-ratio:4/3;background:var(--dunkel)}
+.servicekarte .schatten{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,17,22,.85),transparent 60%)}
+.servicekarte .txt{position:absolute;left:16px;right:16px;bottom:14px;color:#fff}
+.servicekarte em{display:block;font-family:var(--mono);font-style:normal;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#FF8B85}
+.servicekarte b{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:1.3rem;line-height:1}
+.statuskopf{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:700;font-style:italic;text-transform:uppercase;font-size:clamp(1.4rem,3vw,1.9rem);margin:0 0 16px}
+.statuskopf em{color:var(--tinte2);font-size:.7em}
+.statuskopf .punkt{width:12px;height:12px;border-radius:50%;flex:none;background:#1a9b4e;box-shadow:0 0 10px rgba(26,155,78,.7)}
+.vorgang{border-radius:var(--radius-klein);background:var(--karte);border:1px solid var(--linie);border-left:4px solid #1a9b4e;padding:14px 18px;box-shadow:0 2px 10px rgba(20,22,28,.04)}
+.vorgang b{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:1.1rem}
+.leer{color:var(--tinte2);font-size:.95rem;margin:0}
