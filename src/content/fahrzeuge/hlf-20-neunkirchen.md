@@ -15,27 +15,22 @@ beladung:
       - Feuerwehräxte
       - Hacke lang
       - Spalthammer / Hooligan-Tool
-      - Stabfast-Steckleiter
-      - Akku-Rettungssatz (Spreizer, Schere, Säbelsäge)
-      - Hebekissen-Zubehör
+      - Stabfast Stabilisierungssystem
+      - Akku-Rettungssatz (Spreizer, Schere)
   - raum: Geräteraum 2
     bild: /bilder/fahrzeuge/detail/hlf-20-neunkirchen-2.jpg
     inhalt:
       - Rettungsbrett
-      - Sauerstoff-Beatmungsgerät
+      - Rettungsplattform
       - Hebekissen
       - Stromerzeuger RTE PX 14
       - Tauchpumpe
-      - Abschleppseil
-      - Absperrband
   - raum: Geräteraum 3
     bild: /bilder/fahrzeuge/detail/hlf-20-neunkirchen-3.jpg
     inhalt:
-      - Nasssauger
       - Wassersauger
       - Sicherheitstrupptasche
       - Sprungretter
-      - Werkzeugkästen
       - Schlauchbrücke
   - raum: Geräteraum 4
     bild: /bilder/fahrzeuge/detail/hlf-20-neunkirchen-4.jpg
@@ -43,7 +38,6 @@ beladung:
       - Rangierroller
       - Ölbindemittel
       - Sperrwerkzeug
-      - Türverschließung
       - Räumgeräte
   - raum: Geräteraum 5
     bild: /bilder/fahrzeuge/detail/hlf-20-neunkirchen-5.jpg
