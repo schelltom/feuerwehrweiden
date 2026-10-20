@@ -1,9 +1,9 @@
 ---
 titel: Abschlussübung des 1. Zuges in der JVA Weiden
 datum: 2026-10-20
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-10-20T11:33
+veroeffentlicht: 2026-10-20T11:38
 ressort: Übungsdienst
 titelbild: /bilder/berichte/2026/196e787c-7c84-44e9-a68f-93d8c628f9b9.jpeg
 titelbildEinpassen: false
