@@ -1,7 +1,7 @@
 ---
 name: "TSF-W"
 typ: "Tragkraftspritzenfahrzeug"
-funkruf: "FLORIAN FRAUENRICH 46/1"
+funkruf: "FLORIAN FRAUENRICHT 46/1"
 standort: "FF Frauenricht"
 bild: /bilder/fahrzeuge/f_frauenricht.jpg
 reihenfolge: 20

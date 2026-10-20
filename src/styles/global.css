@@ -950,6 +950,14 @@ border-radius:var(--radius-klein);    position:relative;border:1px solid var(--l
     box-sizing:border-box; /* sonst ragt 100% + Padding rechts aus dem Handy-Display */
   }
   .alarmintro .mix .kern{width:min(640px,100%);max-width:none;box-sizing:border-box}
+  .alarmintro .mbildbox{position:relative;line-height:0}
+  .alarmintro .kihinweis{
+    position:absolute;right:6px;bottom:3px;line-height:1;
+    font-family:var(--mono);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.38);text-decoration:none;
+    text-shadow:0 1px 3px rgba(0,0,0,.7);padding:4px 2px;
+  }
+  .alarmintro .kihinweis:hover{color:#fff;text-decoration:underline}
   .alarmintro .mbild{
     display:block;max-width:min(56vw,680px);max-height:44svh;width:auto;height:auto;
     border-radius:var(--radius-gross);

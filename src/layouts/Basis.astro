@@ -78,7 +78,10 @@ const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').so
               <div class="zeile2" id="tipptext" />
               <div class="balken" />
             </div>
-            <img class="mbild" id="mbild" src="/bilder/intro-start.jpg" alt="" />
+            <div class="mbildbox">
+              <img class="mbild" id="mbild" src="/bilder/intro-start.jpg" alt="" />
+              <a class="kihinweis" href="/impressum/#ki-bilder">KI-generiert</a>
+            </div>
             <script is:inline>
               if (Math.random() < 0.7) document.getElementById('mbild').src = '/bilder/intro-start2.jpg';
             </script>
@@ -332,6 +335,8 @@ const navOrtsteile = alleSeiten.filter((s) => s.data.bereich === 'ortsteile').so
         bild.addEventListener('contextmenu', (e) => e.preventDefault());
 
         /* Klick (Maus/Touch) oder beliebige Taste überspringt den Countdown sofort */
+        /* Link „KI-generiert“ soll das Intro nicht überspringen, sondern zum Impressum führen */
+        alarm.querySelector('.kihinweis')?.addEventListener('pointerdown', (e) => e.stopPropagation());
         alarm.addEventListener('pointerdown', fertig);
         addEventListener('keydown', fertig);
       }
