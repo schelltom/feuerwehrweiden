@@ -5,7 +5,7 @@ entwurf: false
 keinPush: false
 veroeffentlicht: 2026-10-20T11:38
 ressort: Übungsdienst
-titelbild: /bilder/berichte/2026/196e787c-7c84-44e9-a68f-93d8c628f9b9.jpeg
+titelbild: /bilder/berichte/2026/abschlussübung-des-1-zuges-in-der-jva-weiden/196e787c-7c84-44e9-a68f-93d8c628f9b9.jpeg
 titelbildEinpassen: false
 kurz: "Brand in einem Zellentrakt, zwei vermisste Personen und besondere
   örtliche Gegebenheiten: Bei der diesjährigen Abschlussübung trainierte der 1.
