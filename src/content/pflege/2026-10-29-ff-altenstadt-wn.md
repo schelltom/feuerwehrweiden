@@ -7,6 +7,6 @@ flaschen: 0
 hinweis: "Flaschen TÜV "
 abholbereit: true
 abgeholt: false
-abholbereitSeit: ""
+abholbereitSeit: "2026-10-29T14:27"
 benachrichtigt: false
 ---
