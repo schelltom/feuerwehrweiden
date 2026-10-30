@@ -6,7 +6,7 @@ masken: 0
 flaschen: 0
 hinweis: "Flaschen TÜV "
 abholbereit: true
-abgeholt: false
-abholbereitSeit: "2026-10-29T14:30"
+abgeholt: true
+abholbereitSeit: 2026-10-29T14:30
 benachrichtigt: false
 ---
