@@ -1,12 +1,12 @@
 ---
 titel: Hochzeit bei unserer Feuerwehr!
 datum: 2026-11-05
-entwurf: true
+entwurf: false
 keinPush: false
 veroeffentlicht: 2026-11-05T17:40
 ressort: Feuerwehrverein
 titelbild: /bilder/berichte/2026/hochzeit-bei-unserer-feuerwehr/233ea589-1bd9-4357-b47f-8321022de1fe.jpeg
-titelbildEinpassen: false
+titelbildEinpassen: true
 galerie:
   - bild: /bilder/berichte/2026/hochzeit-bei-unserer-feuerwehr/44517f43-3ee4-4745-b731-fbb8892e8439.jpeg
   - bild: /bilder/berichte/2026/hochzeit-bei-unserer-feuerwehr/9ecd3222-5fb7-4189-9e7e-293450019956.jpeg
