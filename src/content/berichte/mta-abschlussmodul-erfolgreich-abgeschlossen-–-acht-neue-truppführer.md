@@ -15,7 +15,7 @@ Von Anfang September bis Mitte Oktober absolvierten zwei Kameraden aus Weiden, d
 
 Ein besonderer Schwerpunkt lag auf realitätsnahen Einsatzübungen aus den Bereichen der Technischen Hilfeleistung (THL), des Brandeinsatzes sowie des ABC-Einsatzes. Unterschiedliche Szenarien forderten die Kameraden dazu auf, die richtigen Maßnahmen zu ergreifen, strukturiert vorzugehen und als Mannschaft zusammenzuarbeiten.
 
-Auch die Kommunikation im Einsatz ist ein entscheidender Faktor. Deshalb wurde bei einer zusätzlichen Funkübung der Feuerwehrfunk aufgefrischt und die sichere Kommunikation zwischen den Einsatzkräften trainiert.
+Auch die Kommunikation im Einsatz ist ein entscheidender Faktor. Deshalb wurde bei einer zusätzlichen Funkübung das Wissen rund um den Sprechfunk aufgefrischt und die sichere Kommunikation zwischen den Einsatzkräften trainiert.
 
 Die intensive Vorbereitung hat sich ausgezahlt: Alle acht Kameraden bestanden das MTA-Abschlussmodul erfolgreich und erwarben damit die Truppführerqualifikation. Sie sind nun bestens auf ihre zukünftigen Aufgaben und die damit verbundene Verantwortung im Feuerwehrdienst vorbereitet.
 
