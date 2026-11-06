@@ -5,6 +5,7 @@ entwurf: true
 keinPush: false
 veroeffentlicht: 2026-11-06T09:28
 ressort: Feuerwehr
+titelbild: /bilder/berichte/2026/mta-abschlussmodul-erfolgreich-abgeschlossen-–-acht-neue-truppführer/img_9460.jpeg
 titelbildEinpassen: false
 kurz: Acht Feuerwehrdienstleistende aus Weiden sowie den Ortsteilen Neunkirchen
   und Rothenstadt haben ihre Ausbildung erfolgreich abgeschlossen und die
