@@ -1,9 +1,9 @@
 ---
 titel: MTA-Abschlussmodul erfolgreich abgeschlossen – acht neue Truppführer
 datum: 2026-11-06
-entwurf: true
+entwurf: false
 keinPush: false
-veroeffentlicht: 2026-11-06T09:28
+veroeffentlicht: 2026-11-06T09:48
 ressort: Feuerwehr
 titelbild: /bilder/berichte/2026/mta-abschlussmodul-erfolgreich-abgeschlossen-–-acht-neue-truppführer/img_9460.jpeg
 titelbildEinpassen: false
