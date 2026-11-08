@@ -21,7 +21,7 @@ Die intensive Vorbereitung hat sich ausgezahlt: Alle acht Kameraden bestanden da
 
 Nach den lehrreichen und fordernden Wochen durfte natürlich auch die Kameradschaft nicht zu kurz kommen. Bei einem gemeinsamen Essen ließen die Kameraden die Ausbildungszeit in gemütlicher Runde ausklingen.
 
-Ein besonderer Dank gilt unseren Ausbildern Moritz Langer und Michael Hösl für ihr großes Engagement, die intensive Vorbereitung und die fachkundige Vermittlung der Ausbildungsinhalte. Mit ihrem Einsatz haben sie maßgeblich zum erfolgreichen Abschluss der acht Kameraden beigetragen.
+Ein besonderer Dank gilt unseren Ausbildern Moritz Langner und Michael Hösl für ihr großes Engagement, die intensive Vorbereitung und die fachkundige Vermittlung der Ausbildungsinhalte. Mit ihrem Einsatz haben sie maßgeblich zum erfolgreichen Abschluss der acht Kameraden beigetragen.
 
 Die Feuerwehr Weiden gratuliert allen acht Kameraden herzlich zur erfolgreich bestandenen Truppführerqualifikation und freut sich besonders über die beiden Kameraden aus den eigenen Reihen.
 
