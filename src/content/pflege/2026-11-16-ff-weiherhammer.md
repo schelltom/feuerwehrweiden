@@ -6,7 +6,7 @@ masken: 0
 flaschen: 0
 hinweis: Masken
 abholbereit: true
-abgeholt: false
-abholbereitSeit: "2026-11-16T15:58"
+abgeholt: true
+abholbereitSeit: 2026-11-16T15:58
 benachrichtigt: false
 ---
