@@ -80,7 +80,7 @@ personen:
     bild: /bilder/feuerwehr/krausm.jpg
   - name: Stefan Hirmer
     sachgebiete:
-      - Stellvertreter Schichtbesetzung Einsatzzentrale
+      - Schichtbesetzung Einsatzzentrale
       - Atemschutzgerätewart
       - Hallen u. Werkstattdienst
     telefon: 0961 / 391 609-30
