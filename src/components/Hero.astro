@@ -54,71 +54,7 @@ const folien = [
     </div>
   </div>
   <div class="schlauch" aria-hidden="true">
-    <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
-      <path
-        id="schlauchweg"
-        class="leitung"
-        pathLength="1"
-        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,56"></path>
-      <path
-        class="fuellung"
-        pathLength="1"
-        d="M-20,62 C180,38 320,74 520,58 C700,44 840,70 1030,56 L1116,56"></path>
-      <path
-        class="glanz"
-        pathLength="1"
-        d="M-20,59 C180,35 320,71 520,55 C700,41 840,67 1030,53 L1116,53"></path>
-      <g class="rolle" opacity="0">
-        <g>
-          <circle r="26" fill="none" stroke="#B00500" stroke-width="7"></circle>
-          <circle r="15" fill="none" stroke="#E10600" stroke-width="6"></circle>
-          <circle r="5.5" fill="#7E0400"></circle>
-          <animateTransform
-            attributeName="transform"
-            additive="sum"
-            type="scale"
-            from="1"
-            to="0.04"
-            begin="indefinite"
-            dur="3s"
-            fill="freeze"></animateTransform>
-          <animateTransform
-            attributeName="transform"
-            additive="sum"
-            type="rotate"
-            from="0"
-            to="-1080"
-            begin="indefinite"
-            dur="3s"
-            fill="freeze"></animateTransform>
-        </g>
-        <animateMotion begin="indefinite" dur="3s" fill="freeze" rotate="auto">
-          <mpath href="#schlauchweg"></mpath>
-        </animateMotion>
-        <animate attributeName="opacity" from="0" to="1" begin="indefinite" dur="0.05s" fill="freeze"></animate>
-      </g>
-      <g class="rohr" opacity="0" transform="translate(1116,56)">
-        <g transform="scale(1.5)">
-          <rect x="0" y="-6" width="7" height="12" rx="1.5" fill="#C9CCD6" stroke="#8A8F9C" stroke-width="1"></rect>
-          <path d="M7,-5 L23,-7 L23,7 L7,5 Z" fill="#3A3F4C"></path>
-          <rect x="12" y="4" width="4.5" height="9" rx="1.5" fill="#22252D"></rect>
-          <rect x="23" y="-8" width="8" height="16" rx="2.5" fill="#E10600"></rect>
-        </g>
-        <animate attributeName="opacity" from="0" to="1" begin="indefinite" dur="0.2s" fill="freeze"></animate>
-        <animateTransform attributeName="transform" additive="sum" type="translate"
-          from="22 0" to="0 0" begin="indefinite" dur="0.45s" fill="freeze"
-          calcMode="spline" keySplines="0.2 0.8 0.3 1" keyTimes="0;1" values="22 0;0 0"></animateTransform>
-      </g>
-      <g class="wasser" transform="translate(1164,56)">
-        <line x1="2" y1="0" x2="15" y2="-7"></line>
-        <line x1="2" y1="0" x2="18" y2="-2"></line>
-        <line x1="2" y1="0" x2="17" y2="3"></line>
-        <line x1="2" y1="0" x2="13" y2="7"></line>
-        <circle cx="22" cy="-6" r="1.4"></circle>
-        <circle cx="25" cy="-1" r="1.6"></circle>
-        <circle cx="21" cy="5" r="1.3"></circle>
-      </g>
-    </svg>
+    <div class="blaulicht"><i></i><i></i></div>
     {
       ticker.length > 0 && (
         <div class="schlauchticker" data-quelle="/einsaetze.json" data-stand={ticker[0].wann.toISOString()}>
@@ -180,21 +116,14 @@ const folien = [
 
   const reduziert = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Schlauchrolle & Strahlrohr exakt synchron zur ausrollenden Leitung starten
-     (die Leitung beginnt per CSS 0,9s nach body.los, Dauer 3s) */
-  const starteSchlauch = () => {
-    if (document.body.classList.contains('sofort') || reduziert) return;
-    const rolle = document.querySelectorAll<SVGAnimationElement>(
-      '.hero .schlauch .rolle animate, .hero .schlauch .rolle animateTransform, .hero .schlauch .rolle animateMotion'
-    );
-    const rohr = document.querySelectorAll<SVGAnimationElement>(
-      '.hero .schlauch .rohr animate, .hero .schlauch .rohr animateTransform'
-    );
-    setTimeout(() => rolle.forEach((a) => a.beginElement()), 900);
-    setTimeout(() => rohr.forEach((a) => a.beginElement()), 4000);
-  };
-  if (document.body.classList.contains('los')) starteSchlauch();
-  else addEventListener('feuerwehr:los', starteSchlauch, { once: true });
+  /* Skyline nach Tageszeit (Testen: ?zeit=tag|daemmerung|nacht) */
+  const heroZeit = document.querySelector<HTMLElement>('.hero');
+  if (heroZeit) {
+    const h = new Date().getHours() + new Date().getMinutes() / 60;
+    const auto = h >= 8 && h < 17 ? 'tag' : h >= 6 && h < 20 ? 'daemmerung' : 'nacht';
+    const test = new URLSearchParams(location.search).get('zeit');
+    heroZeit.dataset.zeit = ['tag', 'daemmerung', 'nacht'].includes(test ?? '') ? test! : auto;
+  }
 
   const folien = document.querySelectorAll<HTMLElement>('.hero .folie');
   const punkte = document.getElementById('punkte')!;
@@ -242,50 +171,26 @@ const folien = [
   if (heroEl) {
     const farben = [
       // rot (bisher): Zeilen weiß, "Für Ihre Sicherheit." rot
-      { basis: 'var(--rot)', fuell: '#FF3B30', tief: '#B00500', kern: '#7E0400', zeilen: '#fff', sicherheit: '#FF3B30' },
+      { basis: 'var(--rot)', fuell: '#FF3B30', tief: '#B00500', kern: '#7E0400', zeilen: '#fff', sicherheit: '#FF3B30', licht: '#FF2A1F', hell: '#FFB0A8', glow: '255,42,31' },
       // leuchtgelb: Zeilen weiß, Sicherheit gelb
-      { basis: '#D8CE00', fuell: '#F2FF00', tief: '#A89A00', kern: '#756B00', zeilen: '#fff', sicherheit: '#F2FF00' },
+      { basis: '#D8CE00', fuell: '#F2FF00', tief: '#A89A00', kern: '#756B00', zeilen: '#fff', sicherheit: '#F2FF00', licht: '#E6F000', hell: '#FBFFA0', glow: '242,255,0' },
       // weiß: 24 Stunden / 365 Tage rot, Sicherheit weiß
-      { basis: '#C9CDD6', fuell: '#FFFFFF', tief: '#9AA0AD', kern: '#6E7480', zeilen: '#FF3B30', sicherheit: '#FFFFFF' },
+      { basis: '#C9CDD6', fuell: '#FFFFFF', tief: '#9AA0AD', kern: '#6E7480', zeilen: '#FF3B30', sicherheit: '#FFFFFF', licht: '#DDE2EE', hell: '#FFFFFF', glow: '255,255,255' },
+      // blau (Blaulicht): Zeilen weiß, Sicherheit hellblau
+      { basis: '#2F6BFF', fuell: '#5B8CFF', tief: '#1B3FA8', kern: '#122A75', zeilen: '#fff', sicherheit: '#5B8CFF', licht: '#2F6BFF', hell: '#9DBBFF', glow: '47,107,255' },
     ];
-    const wahl = farben[Math.floor(Math.random() * farben.length)];
+    const test = new URLSearchParams(location.search).get('licht');
+    const idx = ['rot', 'gelb', 'weiss', 'blau'].indexOf(test ?? '');
+    const wahl = farben[idx >= 0 ? idx : Math.floor(Math.random() * farben.length)];
     heroEl.style.setProperty('--schlauch-basis', wahl.basis);
     heroEl.style.setProperty('--schlauch-fuell', wahl.fuell);
     heroEl.style.setProperty('--schlauch-tief', wahl.tief);
     heroEl.style.setProperty('--schlauch-kern', wahl.kern);
+    heroEl.style.setProperty('--licht', wahl.licht);
+    heroEl.style.setProperty('--licht-hell', wahl.hell);
+    heroEl.style.setProperty('--licht-glow', wahl.glow);
     heroEl.style.setProperty('--zeilen-farbe', wahl.zeilen);
     heroEl.style.setProperty('--sicherheit-farbe', wahl.sicherheit);
-  }
-
-  /* Druckstoß: sporadisch (alle ~35–90 s) füllt sich der Schlauch sichtbar neu.
-     Direkt nach dem Intro spritzt nur die Düse (die Füllung läuft da gerade
-     zum ersten Mal durch) – sonst setzt der Puls die Befüllung mittendrin zurück. */
-  const schlauchEl = document.querySelector<HTMLElement>('.hero .schlauch');
-  const fuellung = schlauchEl?.querySelector<SVGPathElement>('.fuellung');
-  if (schlauchEl && fuellung && !reduziert) {
-    const spritz = () => {
-      schlauchEl.classList.remove('pulsiert');
-      void schlauchEl.offsetWidth;
-      schlauchEl.classList.add('pulsiert');
-    };
-    const puls = () => {
-      // Füll-Animation erneut abspielen (Web Animations API überlagert die
-      // CSS-Animation und startet sauber neu), Düse spritzt wenn der Druck ankommt
-      fuellung.animate(
-        [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
-        { duration: 3200, easing: 'ease-in', fill: 'forwards' }
-      );
-      spritz();
-      setTimeout(puls, 35000 + Math.random() * 55000);
-    };
-    const start = () => {
-      // Erste Füllung kommt vom Intro (CSS, 10,6s + 3,6s nach "los"):
-      // dann nur spritzen, die Puls-Kette folgt deutlich später
-      setTimeout(spritz, document.body.classList.contains('sofort') ? 2500 : 14300);
-      setTimeout(puls, 45000 + Math.random() * 45000);
-    };
-    if (document.body.classList.contains('los')) start();
-    else addEventListener('feuerwehr:los', start, { once: true });
   }
 
   /* Schlauch-Ticker: je 1 Durchlauf (aktuellste 4 Meldungen), dann 60 s Pause – endlos */

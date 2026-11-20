@@ -12,7 +12,7 @@
     --dunkel2:#161A22;
     --silber:#C6CAD4;
     --hell-linie:rgba(255,255,255,.1);
-    --display:"Arial Narrow","Helvetica Neue Condensed","Roboto Condensed",system-ui,sans-serif;
+    --display:"Barlow Condensed","Arial Narrow","Helvetica Neue Condensed",system-ui,sans-serif;
     --text:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --radius-gross:14px;
     --radius-klein:8px;
@@ -336,54 +336,48 @@
   @media (max-width:960px),(max-height:620px){
     .hero .schlauch{display:none}
   }
-  .hero .schlauch svg{display:block;width:100%;height:90px}
-  /* Schlauchfarbe: wird pro Besuch zufällig gesetzt (rot / leuchtgelb / weiß) */
-  .hero{--schlauch-basis:var(--rot);--schlauch-fuell:#FF3B30;--schlauch-tief:#B00500;--schlauch-kern:#7E0400}
-  .hero .schlauch .rolle circle:nth-of-type(1){stroke:var(--schlauch-tief)}
-  .hero .schlauch .rolle circle:nth-of-type(2){stroke:var(--schlauch-basis)}
-  .hero .schlauch .rolle circle:nth-of-type(3){fill:var(--schlauch-kern)}
-  .hero .schlauch .leitung{
-    fill:none;stroke:var(--schlauch-basis);stroke-width:7;stroke-linecap:round;
-    filter:drop-shadow(0 3px 6px rgba(0,0,0,.35));
-    stroke-dasharray:1 3;stroke-dashoffset:1;
+  /* Blaulicht-/Rotlicht-Kante (Farbe pro Besuch zufällig wie die Überschrift; Test: ?licht=rot|gelb|weiss|blau): zwei Lichtbalken laufen im Wechsel über eine dünne Leiste */
+  .hero{--licht:#2F6BFF;--licht-hell:#9DBBFF;--licht-glow:47,107,255}
+  .hero .blaulicht{
+    position:relative;height:3px;margin-top:52px;overflow:hidden;
+    background:rgba(255,255,255,.08);
+    opacity:0;transition:opacity .8s ease .9s;
   }
-  .hero .schlauch .fuellung{
-    fill:none;stroke:var(--schlauch-fuell);stroke-width:10;stroke-linecap:round;
-    stroke-dasharray:1 3;stroke-dashoffset:1;opacity:.92;
-    filter:drop-shadow(0 3px 7px rgba(0,0,0,.4));
+  body.los .hero .blaulicht,body.sofort .hero .blaulicht{opacity:1}
+  .hero .blaulicht i{
+    position:absolute;top:0;bottom:0;width:22%;left:-22%;
+    background:linear-gradient(90deg,transparent,var(--licht) 35%,var(--licht-hell) 50%,var(--licht) 65%,transparent);
+    box-shadow:0 0 18px 3px rgba(var(--licht-glow),.75),0 0 60px 12px rgba(var(--licht-glow),.35);
+    animation:blaulauf 14s cubic-bezier(.45,.05,.55,.95) 1s infinite;
   }
-  body.los .hero .schlauch .fuellung{
-    animation:fuellen 3.6s ease-in 10.6s forwards;
-  }
-  @keyframes fuellen{to{stroke-dashoffset:0}}
-  .hero .schlauch .glanz{
-    fill:none;stroke:rgba(255,255,255,.4);stroke-width:2;stroke-linecap:round;
-    stroke-dasharray:1 3;stroke-dashoffset:1;
-  }
-  body.los .hero .schlauch .leitung,
-  body.los .hero .schlauch .glanz{
-    animation:ausrollen 3s linear .9s forwards;
-  }
-  @keyframes ausrollen{to{stroke-dashoffset:0}}
-  /* Direktaufruf übers Logo: alles liegt fertig da */
-  body.sofort .hero .schlauch .leitung,
-  body.sofort .hero .schlauch .glanz,
-  body.sofort .hero .schlauch .fuellung{animation:none;stroke-dashoffset:0}
-  body.sofort .hero .schlauch .rolle{display:none}
-  body.sofort .hero .schlauch .rohr{opacity:1}
+  .hero .blaulicht i:nth-child(2){animation-name:blaulauf2;animation-delay:4s;opacity:.75}
+  @keyframes blaulauf{0%{left:-22%}20%,100%{left:100%}}
+  @keyframes blaulauf2{0%{left:100%}20%,100%{left:-22%}}
   @media (prefers-reduced-motion:reduce){
-    .hero .schlauch .leitung,.hero .schlauch .glanz{stroke-dashoffset:0}
-    .hero .schlauch .rolle{display:none}
-    .hero .schlauch .rohr{opacity:1}
+    .hero .blaulicht i{animation:none;left:39%}
+    .hero .blaulicht i:nth-child(2){display:none}
   }
-  .hero .schlauch .wasser{opacity:0}
-  .hero .schlauch .wasser line{stroke:#8CC1FF;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:18;stroke-dashoffset:18}
-  .hero .schlauch .wasser circle{fill:#B7D9FF}
-  /* Druckstoß: Düse spritzt, sobald die Füllung am Rohr ankommt */
-  .hero .schlauch.pulsiert .wasser{animation:spritzstoss 1.6s ease 2.9s forwards}
-  .hero .schlauch.pulsiert .wasser line{animation:strahl 1.6s linear 2.9s forwards}
-  @keyframes spritzstoss{0%{opacity:0}12%{opacity:1}70%{opacity:.9}100%{opacity:0}}
-  @keyframes strahl{0%{stroke-dashoffset:18}35%,75%{stroke-dashoffset:0}100%{stroke-dashoffset:18}}
+  /* Skyline nach Tageszeit: tag / daemmerung / nacht (gesetzt per Skript, Test: ?zeit=nacht) */
+  .hero .heroskyline{position:relative;width:fit-content;max-width:100%}
+  .hero .heroskyline::before,.hero .heroskyline::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.4s ease;
+    -webkit-mask:url(/bilder/skyline-weiden.svg) left bottom/100% 100% no-repeat;
+    mask:url(/bilder/skyline-weiden.svg) left bottom/100% 100% no-repeat;
+  }
+  .hero .heroskyline::before{
+    background:radial-gradient(circle,#FFE3A3 0 .9px,transparent 1.5px) 0 0/9px 11px;
+  }
+  .hero .heroskyline::after{
+    background:radial-gradient(circle,#FFC96B 0 .9px,transparent 1.5px) 4px 5px/13px 15px;
+  }
+  .hero .heroskyline svg{transition:color 1.4s ease}
+  .hero[data-zeit="daemmerung"] .heroskyline svg{color:#FFC59A;filter:drop-shadow(0 0 14px rgba(255,140,60,.55))}
+  .hero[data-zeit="nacht"] .heroskyline svg{color:#8FA6E0;opacity:.8;filter:drop-shadow(0 0 12px rgba(80,120,255,.35))}
+  .hero[data-zeit="nacht"] .heroskyline::before{opacity:.95;animation:fenster 7s ease-in-out infinite}
+  .hero[data-zeit="nacht"] .heroskyline::after{opacity:.85;animation:fenster 11s ease-in-out -4s infinite}
+  .hero[data-zeit="daemmerung"] .heroskyline::before{opacity:.5}
+  @keyframes fenster{0%,100%{opacity:.95}45%{opacity:.55}60%{opacity:.9}}
+  @media (prefers-reduced-motion:reduce){.hero .heroskyline::before,.hero .heroskyline::after{animation:none!important}}
   .schlauchticker{
     overflow:hidden;white-space:nowrap;margin-top:-4px;
     transition:opacity .9s ease;
