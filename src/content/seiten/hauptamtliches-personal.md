@@ -42,6 +42,7 @@ personen:
     sachgebiete:
       - Schichtbesetzung Einsatzzentrale
       - Leiterin Schutz- u. Dienstkleidung
+      - "Atemschutzgerätewartin "
     telefon: 0961 / 391 609-23
     email: eva.kraus@weiden.de
     bild: /bilder/feuerwehr/krause.jpg
