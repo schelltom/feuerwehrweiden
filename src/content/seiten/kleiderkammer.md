@@ -1,11 +1,11 @@
 ---
 titel: Kleiderkammer
 bereich: ueber-uns
+entwurf: false
 reihenfolge: 11
 kurz: Persönliche Schutzausrüstung - zentral verwaltet, jederzeit einsatzbereit
 titelbild: /bilder/ueber-uns/304cbab0-40ee-4a38-bc46-1ff847789811.jpeg
 kopfbild: true
-entwurf: false
 ---
 # **Kleiderkammer**
 
@@ -24,6 +24,6 @@ Zum Aufgabenbereich gehören die Ausstattung neuer Einsatzkräfte, die Ausgabe u
 * 4 Schnittschutzjacken
 * 23 Schnittschutzhosen
 
-Neben der Verwaltung des Bestands werden jährlich rund **226 Kleidungsstücke** extern gereinigt und anschließend wieder in den Bestand übernommen. Zudem werden im Bereich der Kleiderkammer jährlich rund **650 Prüfungen** an Schutz- und Einsatzbekleidung durchgeführt. Diese regelmäßigen Kontrollen tragen dazu bei, Mängel frühzeitig zu erkennen und die Sicherheit der Einsatzkräfte dauerhaft zu gewährleisten.
+Neben der Verwaltung des Bestands werden jährlich rund **235Kleidungsstücke** extern gereinigt und anschließend wieder in den Bestand übernommen. Zudem werden im Bereich der Kleiderkammer jährlich rund **670 Prüfungen** an Schutz- und Einsatzbekleidung durchgeführt. Diese regelmäßigen Kontrollen tragen dazu bei, Mängel frühzeitig zu erkennen und die Sicherheit der Einsatzkräfte dauerhaft zu gewährleisten.
 
 Die Kleiderkammer arbeitet eng mit den Feuerwehren im gesamten Stadtgebiet zusammen und stellt sicher, dass jederzeit ausreichend einsatzbereite Schutzausrüstung zur Verfügung steht. Sie ist damit ein unverzichtbarer Bestandteil der Feuerwehr Weiden und unterstützt alle Feuerwehren im Stadtgebiet zuverlässig bei ihrer täglichen Arbeit.
