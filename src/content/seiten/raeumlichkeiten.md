@@ -1,6 +1,7 @@
 ---
-titel: 'Wachen & Räumlichkeiten'
+titel: Wachen & Räumlichkeiten
 bereich: ueber-uns
+entwurf: false
 reihenfolge: 10
 kurz: Das Herz der Feuerwehr Weiden – die Feuerwache in der Landgerichtsstraße
 titelbild: /bilder/uploads/2026/feuerwache-halle1.jpg
@@ -18,9 +19,9 @@ galerie:
   - bild: /bilder/uploads/2026/feuerwache-halle2.jpg
     text: Zweite Fahrzeughalle
   - bild: /bilder/uploads/2026/fahrzeuge_halle_1.jpg
-    text: 'Fahrzeuge Halle 1: GWL-1, Rüstwagen, MZF, Kdow 2, LF-16 TS'
+    text: "Fahrzeuge Halle 2: GWL-1, Rüstwagen, MZF, Kdow 2, LF-16 TS"
   - bild: /bilder/uploads/2026/fahrzeuge_halle_2.jpg
-    text: 'Fahrzeuge in Halle 2: HLF 1, DLK 1, HLF 2, TLF'
+    text: "Fahrzeuge in Halle 1: HLF 1, DLK 1, HLF 2, TLF"
   - bild: /bilder/uploads/2026/feuerwache-kleinersaal.jpg
     text: Schulungs- und Ausbildungsraum
   - bild: /bilder/uploads/2026/feuerwache-saal.jpg
@@ -39,7 +40,6 @@ galerie:
     text: Feuerwache 2
   - bild: /bilder/uploads/2026/fahrzeuge_wache2.jpg
     text: Fahrzeuge Feuerwache 2
-entwurf: false
 ---
 
 ## Das Herz der Feuerwehr Weiden
