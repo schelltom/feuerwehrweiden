@@ -1,6 +1,6 @@
 ---
 wann: 2026-11-20T19:30
-stichwort: Sonstiges
+stichwort: INF SICHERHEITSWACHE
 details: Sicherheitswache
 anzahl: 1
 ---
