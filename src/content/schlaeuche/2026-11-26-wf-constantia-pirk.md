@@ -1,0 +1,7 @@
+---
+wehr: WF Constantia Pirk
+abgegeben: 2026-11-26T15:00
+hinweis: ""
+abholbereit: true
+abgeholt: false
+---
